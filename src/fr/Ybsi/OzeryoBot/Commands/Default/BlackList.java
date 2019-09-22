@@ -33,7 +33,7 @@ public class BlackList {
             }
             if (c2.toLowerCase().equals("blacklist")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous ne pouvez pas d\u00e9sactiver cette commande.").queue();
+                    channel.sendMessage("Vous ne pouvez pas désactiver cette commande.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can't disable this command.").queue();
@@ -43,9 +43,9 @@ public class BlackList {
             if (c1.equals("add")) {
                 String channel_cible = channel.getId();
                 String command_cible = c2;
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/");
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/");
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/" + command_cible, "true", 1);
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/");
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/");
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/" + command_cible, "true", 1);
                 if (!c2.equals("all")) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Il n'est plus possible d'utiliser la commande " + command_cible + " sur ce channel").queue();
@@ -64,9 +64,9 @@ public class BlackList {
             } else if (c1.equals("remove")) {
                 String channel_cible = channel.getId();
                 String command_cible = c2;
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/");
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/");
-                TextFileWriter.delete("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/" + command_cible);
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/");
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/");
+                TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel_cible + "/" + command_cible);
                 if (!c2.equals("all")) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Il est desormais possible d'utiliser la commande " + command_cible + " sur ce channel").queue();

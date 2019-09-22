@@ -30,8 +30,8 @@ public class Competence {
             competence = new HashMap<String, Integer>();
             competence.put("guerre", 0);
             competence.put("ville", 0);
-            competence.put("divinit\u00e9s", 0);
-            competence.put("h\u00e9ros", 0);
+            competence.put("divinités", 0);
+            competence.put("héros", 0);
             competence.put("intelligence", 0);
             competence.put("pays", 0);
             data.getProfils().get(user.getId()).setCompetence(competence);
@@ -60,14 +60,14 @@ public class Competence {
         }
         if (c1.equals("")) {
             EmbedBuilder builder = new EmbedBuilder();
-            builder.setTitle(":deciduous_tree: Arbre de comp\u00e9tences");
+            builder.setTitle(":deciduous_tree: Arbre de compétences");
             builder.setAuthor(user.getName(), user.getAvatarUrl());
             builder.setColor(color.couleurAleatoire(user));
             builder.setFooter(guild.getName(), guild.getIconUrl());
             builder.addField("Branche de la guerre :crossed_swords: :", "", true);
             builder.addField("Branches de la ville :hotel: :", "", true);
-            builder.addField("Branche des divinit\u00e9s :classical_building: :  :", "", true);
-            builder.addField("Branche des h\u00e9ros :statue_of_liberty: : :", "", true);
+            builder.addField("Branche des divinités :classical_building: :  :", "", true);
+            builder.addField("Branche des héros :statue_of_liberty: : :", "", true);
             builder.addField("Branche de l'intelligence :dove: : :", "", true);
             builder.addField("Branche du pays :map: : :", "", true);
         }

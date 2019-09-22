@@ -50,7 +50,7 @@ public class Soldier {
             c2 = 0;
         }
         long habitant = habitants.pop(user);
-        String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+        String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
         HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
         try {
             list = data.getProfils().get(user.getId()).getPet().get(ActivePet);
@@ -64,7 +64,7 @@ public class Soldier {
         catch (NullPointerException e) {
             Pet_EXP = 0;
         }
-        String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + ActivePet);
+        String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
         double operation = Pet_EXP / 10;
         double operation2 = Math.sqrt(operation);
         double Pet_Level = Math.round(operation2);
@@ -291,7 +291,7 @@ public class Soldier {
             }
             if ((long)price > money && tuto != 8) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("D\u00e9sol\u00e9 mais vous n'avez pas asser d'argent pour former autant de soldats").queue();
+                    channel.sendMessage("Désolé mais vous n'avez pas asser d'argent pour former autant de soldats").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Sorry but you don't have enough money to train so much soldiers").queue();
@@ -300,7 +300,7 @@ public class Soldier {
             }
             if ((long)price_hab > habitant && tuto != 8) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("D\u00e9sol\u00e9 mais vous n'avez pas asser d'habitants pour former autant de soldats").queue();
+                    channel.sendMessage("Désolé mais vous n'avez pas asser d'habitants pour former autant de soldats").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Sorry but you don't have enough people to train so much soldiers").queue();
@@ -336,7 +336,7 @@ public class Soldier {
                     message = "Your pet give you a bonus of " + soldier2 + " soldiers more.";
                 }
             }
-            if ((eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/eglise.txt")).equals("Ares")) {
+            if ((eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt")).equals("Ares")) {
                 soldier += (long)(soldier2 += (int)((double)c2 * 1.25) - c2);
                 if (lang == command.Language.fr) {
                     message = String.valueOf(message) + " Vous obtenez un bonus de " + soldier2 + " soldats grace a Ares.";
@@ -347,7 +347,7 @@ public class Soldier {
             }
             if ((double)soldier > (double)habitant * 0.25 || (long)c2 > soldiers) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez pas former autant de soldats.").queue();
+                    channel.sendMessage("Désolé mais vous ne pouvez pas former autant de soldats.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Sorry but you can't train so much sodliers.").queue();
@@ -385,7 +385,7 @@ public class Soldier {
             if (tuto == 8) {
                 data.getProfils().get(user.getId()).setTuto(9);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonn\u00e9s d'un joueur. Testons maintenant : =a Ozeryo 15.").queue();
+                    channel.sendMessage("Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonnés d'un joueur. Testons maintenant : =a Ozeryo 15.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("To launch an attack you can check the map and use a player's id, tag, or coordinates. Now, let's test: =a Ozeryo 15.").queue();

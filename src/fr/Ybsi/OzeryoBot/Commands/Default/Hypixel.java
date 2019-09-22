@@ -143,7 +143,7 @@ public class Hypixel {
                             jeux = String.valueOf(jeux) + "- " + i.toString() + " \n";
                         }
                         if (lang == command.Language.fr) {
-                            hypixel.addField("Jeux pref\u00e9r\u00e9s  : ", jeux, true);
+                            hypixel.addField("Jeux preférés  : ", jeux, true);
                         }
                         if (lang == command.Language.en) {
                             hypixel.addField("favorite games  : ", jeux, true);
@@ -735,7 +735,7 @@ public class Hypixel {
                             }
                             catch (NullPointerException e) {
                                 if (lang == command.Language.fr) {
-                                    mess = "vous n'avez pas encore d\u00e9bloqu\u00e9 de d'amelioration grace aux renown.";
+                                    mess = "vous n'avez pas encore débloqué de d'amelioration grace aux renown.";
                                 }
                                 if (lang != command.Language.en) break block280;
                                 mess = "You doesn't unlock any renown upgrade for the moment.";
@@ -802,7 +802,7 @@ public class Hypixel {
                         String four_death_bedwars;
                         String duo_beds_broken_bedwars;
                         String coins;
-                        String parties_jou\u00e9es;
+                        String parties_jouées;
                         String duo_wins_bedwars;
                         String four_kills_bedwars;
                         hypixel = new EmbedBuilder();
@@ -837,16 +837,16 @@ public class Hypixel {
                             deaths = "0";
                         }
                         try {
-                            parties_jou\u00e9es = jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("Bedwars").get("games_played_bedwars_1").toString().replace("\"", "");
+                            parties_jouées = jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("Bedwars").get("games_played_bedwars_1").toString().replace("\"", "");
                         }
                         catch (NullPointerException e) {
-                            parties_jou\u00e9es = "0";
+                            parties_jouées = "0";
                         }
                         hypixel.addField("\ud83d\udcb0 | Coins | \ud83d\udcb0 : ", coins, true);
                         hypixel.addField("\ud83d\udcaf | Level | \ud83d\udcaf : ", level, true);
                         hypixel.addField("\u2694 | Kills | \u2694  : ", kills, true);
                         hypixel.addField("\u2620  | Deaths | \u2620  : ", deaths, true);
-                        hypixel.addField("\ud83c\udfae | Game played | \ud83c\udfae : ", parties_jou\u00e9es, true);
+                        hypixel.addField("\ud83c\udfae | Game played | \ud83c\udfae : ", parties_jouées, true);
                         try {
                             beds_broken_bedwars = jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("Bedwars").get("beds_broken_bedwars").toString().replace("\"", "");
                         }
@@ -1123,7 +1123,7 @@ public class Hypixel {
                     try {
                         TnTRun_Deaths = jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("TNTGames").get("deaths_tntrun").toString().replace("\"", "");
                     }
-                    catch (NullPointerException parties_jou\u00e9es) {
+                    catch (NullPointerException parties_jouées) {
                         // empty catch block
                     }
                     int TnTRunDoubleJump = 0;

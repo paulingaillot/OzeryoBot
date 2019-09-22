@@ -98,7 +98,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -123,7 +123,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -148,7 +148,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -173,7 +173,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -198,7 +198,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -223,7 +223,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -279,7 +279,7 @@ public class HelpCommand {
             ((UserImpl)user).getPrivateChannel().sendMessage(builder13.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -322,7 +322,7 @@ public class HelpCommand {
                 ((UserImpl)user).getPrivateChannel().sendMessage(builder.build()).queue();
                 if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages priv\u00e9s").queue();
+                        channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -331,7 +331,7 @@ public class HelpCommand {
                 return;
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("La commande recherch\u00e9 ne semble pas exister").queue();
+                channel.sendMessage("La commande recherché ne semble pas exister").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("This command doesn't exist.").queue();
@@ -537,7 +537,7 @@ public class HelpCommand {
                 return;
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("La commande recherch\u00e9 ne semble pas exister").queue();
+                channel.sendMessage("La commande recherché ne semble pas exister").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("This commands doesn't exist").queue();

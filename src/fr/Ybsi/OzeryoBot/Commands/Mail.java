@@ -116,7 +116,7 @@ public class Mail {
             catch (Exception e) {
                 cible = jda.getUserById(args[0]);
             }
-            String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/prefix.txt");
+            String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt");
             if (pref.equals("0")) {
                 pref = "=";
             }
@@ -141,7 +141,7 @@ public class Mail {
             mails.add(list);
             data.getProfils().get(cible.getId()).setListMail(mails);
             if (lang == command.Language.fr) {
-                channel.sendMessage("Votre mail a bien \u00e9t\u00e9 envoy\u00e9 a " + cible.getName() + ".").queue();
+                channel.sendMessage("Votre mail a bien été envoyé a " + cible.getName() + ".").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("Your mail has been sent to " + cible.getName() + ".").queue();
@@ -222,7 +222,7 @@ public class Mail {
             mails.remove(c2);
             data.getProfils().get(user.getId()).setListMail(mails);
             if (lang == command.Language.fr) {
-                channel.sendMessage(":mailbox: Le mail num\u00e9ro " + (c2 + 1) + " a bien \u00e9t\u00e9 supprim\u00e9").queue();
+                channel.sendMessage(":mailbox: Le mail numéro " + (c2 + 1) + " a bien été supprimé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage(":mailbox: The mail number " + (c2 + 1) + " has been deleted").queue();
@@ -234,7 +234,7 @@ public class Mail {
             }
             data.getProfils().get(user.getId()).setListMail(mails);
             if (lang == command.Language.fr) {
-                channel.sendMessage(":mailbox: Tout vos mails ont \u00e9t\u00e9 supprim\u00e9s").queue();
+                channel.sendMessage(":mailbox: Tout vos mails ont été supprimés").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage(":mailbox: All your mails has been deleted").queue();
@@ -243,14 +243,14 @@ public class Mail {
             boolean mail4 = data.getProfils().get(user.getId()).isMail();
             if (mail4) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":mailbox: Les notifications via mails sont activ\u00e9s").queue();
+                    channel.sendMessage(":mailbox: Les notifications via mails sont activés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":mailbox: Mails notifications are enable").queue();
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":mailbox: Les notifications via mails sont d\u00e9sactiv\u00e9s").queue();
+                    channel.sendMessage(":mailbox: Les notifications via mails sont désactivés").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":mailbox: Mails notifications are disable").queue();

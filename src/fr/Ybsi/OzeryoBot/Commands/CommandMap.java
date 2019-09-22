@@ -116,7 +116,7 @@ public final class CommandMap {
     }
 
     public String getPrefix(Guild guild) {
-        String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/prefix.txt");
+        String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt");
         prefix = pref.equals("0") ? "=" : pref;
         return prefix;
     }
@@ -184,12 +184,12 @@ public final class CommandMap {
         if (((SimpleCommand)object[0]).getExecutorType() == command.ExecutorType.CONSOLE) {
             return false;
         }
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/");
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/");
-        if (TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/all").equals("true") && !((SimpleCommand)object[0]).getMethod().getName().equals("blacklist")) {
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/");
+        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/all").equals("true") && !((SimpleCommand)object[0]).getMethod().getName().equals("blacklist")) {
             return false;
         }
-        if (TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/" + ((SimpleCommand)object[0]).getMethod().getName()).equals("true")) {
+        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/BlackList/" + channel.getId() + "/" + ((SimpleCommand)object[0]).getMethod().getName()).equals("true")) {
             return false;
         }
         if (((SimpleCommand)object[0]).getMethod().getName().equals("donotusethiscommand")) {
@@ -221,7 +221,7 @@ public final class CommandMap {
                     int mHour = calendar.get(11);
                     int mMinute = calendar.get(12);
                     if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
-                        channel.sendMessage("OzeryoBot passe en version 3.0 dans " + mDay + " jours, " + mHour + " heures et " + mMinute + " minutes. Pr\u00e9inscrivez-vous pour \u00eatre averti de la sortie de la 3\u00e8me version d'OzeryoBot et ainsi obtenir 1 mois de premium gratuitement d\u00e8s \u00e0 pr\u00e9sent gr\u00e2ce a la commande ``=register`` . Il y a actuelement " + data.getRegisters() + " inscrits.").queue();
+                        channel.sendMessage("OzeryoBot passe en version 3.0 dans " + mDay + " jours, " + mHour + " heures et " + mMinute + " minutes. Préinscrivez-vous pour \u00eatre averti de la sortie de la 3\u00e8me version d'OzeryoBot et ainsi obtenir 1 mois de premium gratuitement d\u00e8s \u00e0 présent gr\u00e2ce a la commande ``=register`` . Il y a actuelement " + data.getRegisters() + " inscrits.").queue();
                         return true;
                     }
                     if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() != command.Language.en) return true;
@@ -232,7 +232,7 @@ public final class CommandMap {
                     System.out.print("New player");
                     data.getProfils().get(user.getId()).setGame(true);
                     CommandMap.NewPlayer(user);
-                    int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/");
+                    int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
                     int x = 0;
                     int y = 0;
                     int places = 0;
@@ -243,7 +243,7 @@ public final class CommandMap {
                             String name;
                             System.out.print(y);
                             try {
-                                name = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y + "/name.txt");
+                                name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                             }
                             catch (IllegalArgumentException e1) {
                                 name = "0";
@@ -257,8 +257,8 @@ public final class CommandMap {
                         if (places >= alea) break;
                     }
                     data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y + "/name.txt", user.getId(), 1);
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt", user.getId(), 1);
                     CommandMap.PublicLog(":baby:  Un nouveau joueur a rejoint le monde d'OzeryoBot. Il s'agit de **" + user.getName() + "**. Bonne chance \u00e0 lui.", DiscordBot.getjda());
                 }
                 Achivement.achivement(user, command2, channel);
@@ -272,19 +272,19 @@ public final class CommandMap {
                 String name1 = "";
                 String x1 = "1";
                 String y1 = "";
-                int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/");
+                int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
                 try {
                     String[] xy = home.split("_");
                     x1 = xy[0];
                     y1 = xy[1];
-                    name1 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x1 + "_" + y1 + "/name.txt");
+                    name1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x1 + "_" + y1 + "/name.txt");
                 }
                 catch (ArrayIndexOutOfBoundsException xy) {
                     // empty catch block
                 }
                 if (home.equals("0") || !name1.equals(user.getId())) {
                     try {
-                        TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x1 + "_" + y1));
+                        TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/bot/Map/" + x1 + "_" + y1));
                     }
                     catch (IOException xy) {
                         // empty catch block
@@ -299,7 +299,7 @@ public final class CommandMap {
                             String name;
                             System.out.print(y);
                             try {
-                                name = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y + "/name.txt");
+                                name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                             }
                             catch (IllegalArgumentException e1) {
                                 name = "0";
@@ -313,8 +313,8 @@ public final class CommandMap {
                         if (places >= alea) break;
                     }
                     data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y + "/name.txt", user.getId(), 1);
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt", user.getId(), 1);
                 }
                 home = data.getProfils().get(user.getId()).getHome();
                 home = "x=" + home.replaceAll("_", " | y=");
@@ -331,7 +331,7 @@ public final class CommandMap {
                 }
                 if (tuto == 1 && ((SimpleCommand)object[0]).getMethod().getName() != "daily" && ((SimpleCommand)object[0]).getMethod().getName() != "dl") {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Bien, commencez par r\u00e9cup\u00e9rer votre r\u00e9compense quotidienne avec la commande =daily.").queue();
+                        channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.").queue();
                     }
                     if (lang != command.Language.en) return true;
                     channel.sendMessage("Well, start by collecting your daily reward with the =daily command.").queue();
@@ -355,7 +355,7 @@ public final class CommandMap {
                 }
                 if (tuto == 4 && ((SimpleCommand)object[0]).getMethod().getName() != "work" && ((SimpleCommand)object[0]).getMethod().getName() != "w") {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous pouvez y voir votre exp, le niveau de vos constructions et vos r\u00e9serves de ressources. Le mana, affich\u00e9 en haut, vous permet de r\u00e9colter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.").queue();
+                        channel.sendMessage("Vous pouvez y voir votre exp, le niveau de vos constructions et vos réserves de ressources. Le mana, affiché en haut, vous permet de récolter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.").queue();
                     }
                     if (lang != command.Language.en) return true;
                     channel.sendMessage("You can see your exp, the level of your builds, and your resource reserves. The mana, shown at the top, allows you to collect resources using work command, try now with =work all.").queue();
@@ -363,10 +363,10 @@ public final class CommandMap {
                 }
                 if (tuto == 5 && ((SimpleCommand)object[0]).getMethod().getName() != "build" && ((SimpleCommand)object[0]).getMethod().getName() != "b") {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("\u00c0 pr\u00e9sent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le march\u00e9 comme exemple : =b march\u00e9 1.").queue();
+                        channel.sendMessage("\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.").queue();
                     }
                     if (lang != command.Language.en) return true;
-                    channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b march\u00e9 1.").queue();
+                    channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b marché 1.").queue();
                     return true;
                 }
                 if (tuto == 6 && ((SimpleCommand)object[0]).getMethod().getName() != "city" && ((SimpleCommand)object[0]).getMethod().getName() != "c") {
@@ -379,7 +379,7 @@ public final class CommandMap {
                 }
                 if (tuto == 7 && ((SimpleCommand)object[0]).getMethod().getName() != "build" && ((SimpleCommand)object[0]).getMethod().getName() != "b") {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux diff\u00e9rents mat\u00e9riaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.").queue();
+                        channel.sendMessage("Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux différents matériaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.").queue();
                     }
                     if (lang != command.Language.en) return true;
                     channel.sendMessage("Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.").queue();
@@ -395,7 +395,7 @@ public final class CommandMap {
                 }
                 if (tuto == 9 && ((SimpleCommand)object[0]).getMethod().getName() != "attack" && ((SimpleCommand)object[0]).getMethod().getName() != "a") {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonn\u00e9s d'un joueur. Testons maintenant : =a Ozeryo 15.").queue();
+                        channel.sendMessage("Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonnés d'un joueur. Testons maintenant : =a Ozeryo 15.").queue();
                     }
                     if (lang != command.Language.en) return true;
                     channel.sendMessage("To launch an attack you can check the map and use a player's id, tag, or coordinates. Now, let's test: =a Ozeryo 15.").queue();
@@ -796,7 +796,7 @@ public final class CommandMap {
                                     plastique += 1 * level;
                                 }
                                 if (lang == command.Language.fr) {
-                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez gagn\u00e9 " + level + " " + res1 + ".").queue();
+                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez gagné " + level + " " + res1 + ".").queue();
                                 }
                                 if (lang == command.Language.en) {
                                     channel.sendMessage("You just cross the step " + lastpallier + ". You won " + level + " " + res1 + ".").queue();
@@ -845,7 +845,7 @@ public final class CommandMap {
                                     plastique += 1 * level;
                                 }
                                 if (lang == command.Language.fr) {
-                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez gagn\u00e9 " + level + " " + res1 + " ainsi que " + level + " " + res2 + ".").queue();
+                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez gagné " + level + " " + res1 + " ainsi que " + level + " " + res2 + ".").queue();
                                 }
                                 if (lang == command.Language.en) {
                                     channel.sendMessage("You just cross the step " + lastpallier + ". You won " + level + " " + res1 + " and " + level + " " + res2 + ".").queue();
@@ -909,7 +909,7 @@ public final class CommandMap {
                                     channel.sendMessage("You just cross the step " + lastpallier + ". So you won the Beach which give a bonus of 200k people.").queue();
                                 }
                             } else if (lastpallier == 27) {
-                                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/rank.txt", "\ud83c\udfc4 Summer 2019", 1);
+                                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/rank.txt", "\ud83c\udfc4 Summer 2019", 1);
                                 if (lang == command.Language.fr) {
                                     channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez donc obtenu le rank \"\ud83c\udfc4 Summer 2019\" sur le serveur Ozeryo.").queue();
                                 }
@@ -962,17 +962,17 @@ public final class CommandMap {
                             } else if (lastpallier == 57) {
                                 User User_Premium = user;
                                 if (Premium.Premium(User_Premium)) {
-                                    int jours = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/jours.txt"));
-                                    int mois = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/mois.txt"));
-                                    int ann\u00e9es = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/ann\u00e9es.txt"));
+                                    int jours = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/jours.txt"));
+                                    int mois = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/mois.txt"));
+                                    int années = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/années.txt"));
                                     if (++mois > 12) {
-                                        ++ann\u00e9es;
+                                        ++années;
                                         mois -= 12;
                                     }
-                                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/");
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/jours.txt", Integer.toString(jours), 1);
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/mois.txt", Integer.toString(mois), 1);
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/ann\u00e9es.txt", Integer.toString(ann\u00e9es), 1);
+                                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/");
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/jours.txt", Integer.toString(jours), 1);
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/mois.txt", Integer.toString(mois), 1);
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/années.txt", Integer.toString(années), 1);
                                     if (lang == command.Language.fr) {
                                         channel.sendMessage(String.valueOf(User_Premium.getName()) + " a recu un mois de premium en plus.").queue();
                                     }
@@ -982,11 +982,11 @@ public final class CommandMap {
                                 } else {
                                     String jours = new SimpleDateFormat("dd", Locale.FRANCE).format(new Date());
                                     String mois = new SimpleDateFormat("MM", Locale.FRANCE).format(new Date());
-                                    String ann\u00e9es = new SimpleDateFormat("yyyy", Locale.FRANCE).format(new Date());
-                                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/");
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/jours.txt", jours, 1);
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/mois.txt", mois, 1);
-                                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + User_Premium.getId() + "/Premium/ann\u00e9es.txt", ann\u00e9es, 1);
+                                    String années = new SimpleDateFormat("yyyy", Locale.FRANCE).format(new Date());
+                                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/");
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/jours.txt", jours, 1);
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/mois.txt", mois, 1);
+                                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + User_Premium.getId() + "/Premium/années.txt", années, 1);
                                     if (lang == command.Language.fr) {
                                         channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous avez donc obtenu un mois de Premium.").queue();
                                     }
@@ -1122,7 +1122,7 @@ public final class CommandMap {
                                 }
                                 data.getProfils().get(user.getId()).setHeroe(heroe);
                                 if (lang == command.Language.fr) {
-                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous obtenez donc une carte du Hero l\u00e9gendaire Ivoire").queue();
+                                    channel.sendMessage("Vous venez de franchir le pallier " + lastpallier + ". Vous obtenez donc une carte du Hero légendaire Ivoire").queue();
                                 }
                                 if (lang == command.Language.en) {
                                     channel.sendMessage("You just cross the step " + lastpallier + ". So you get a legendary card of the hero Ivoire").queue();
@@ -1164,11 +1164,11 @@ public final class CommandMap {
             }
             if (!(CoolDown1 = CoolDown.CoolDown(user)) && ((SimpleCommand)object[0]).getMethod().getName() != "cf") {
                 channel.sendMessage(":x: CoolDown (1sec) !! :x: ").queue();
-                System.out.println(" La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " a voulu etre utilis\u00e9 par " + user.getName() + " trop rapidement");
+                System.out.println(" La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " a voulu etre utilisé par " + user.getName() + " trop rapidement");
                 return true;
             }
             CommandMap.execute((SimpleCommand)object[0], command2, (String[])object[1], message, channel, guild, user);
-            System.out.println(" La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " a \u00e9t\u00e9 utilis\u00e9 par " + user.getName() + " sur le serveur " + guild.getName());
+            System.out.println(" La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " a été utilisé par " + user.getName() + " sur le serveur " + guild.getName());
             long temps_de_jeu = data.getProfils().get(user.getId()).getTemps_de_jeu();
             long lastcommand = data.getProfils().get(user.getId()).getLastCommand();
             long delay = System.currentTimeMillis() - lastcommand;
@@ -1221,14 +1221,14 @@ public final class CommandMap {
         }
         catch (Exception exception) {
             if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
-                channel.sendMessage(":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionn\u00e9e et vous remercions de votre aide.").queue();
+                channel.sendMessage(":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionnée et vous remercions de votre aide.").queue();
             }
             if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
                 channel.sendMessage("An error occurred! Report it to an admin such as Ybsi#0451 (102108573298851840) or make a bug report with the command =report. We apologize for the inconvenience.").queue();
             }
             System.out.println("La methode " + ((SimpleCommand)object[0]).getMethod().getName() + " n'est pas correctement initialis\ufffd." + exception.getLocalizedMessage() + " " + exception.toString() + " " + exception.getCause() + " " + exception.getMessage() + " ");
             try {
-                mail.main("Error command " + ((SimpleCommand)object[0]).getMethod().getName(), "La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " n'est pas correctement initilais\u00e9. \n" + "User : " + user.getName() + " (" + user.getId() + ") \n" + "Guild : " + guild.getName() + " (" + guild.getName() + ") \n" + "Param\u00e8tres : " + command2 + "\n" + "Erreur : " + exception.getCause());
+                mail.main("Error command " + ((SimpleCommand)object[0]).getMethod().getName(), "La commande " + ((SimpleCommand)object[0]).getMethod().getName() + " n'est pas correctement initilaisé. \n" + "User : " + user.getName() + " (" + user.getId() + ") \n" + "Guild : " + guild.getName() + " (" + guild.getName() + ") \n" + "Param\u00e8tres : " + command2 + "\n" + "Erreur : " + exception.getCause());
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -1236,7 +1236,7 @@ public final class CommandMap {
             exception.printStackTrace();
             Guild ozeryo = DiscordBot.getjda().getGuildById("326345972739473410");
             TextChannel logChannel = ozeryo.getTextChannelById("498483581052649492");
-            logChannel.sendMessage("La commande " + command2 + " utilis\u00e9 par " + user.getName() + " sur le serveur " + guild.getName() + " n'est pas correctement initialis\u00e9 : \n\n " + exception.getStackTrace().toString()).queue();
+            logChannel.sendMessage("La commande " + command2 + " utilisé par " + user.getName() + " sur le serveur " + guild.getName() + " n'est pas correctement initialisé : \n\n " + exception.getStackTrace().toString()).queue();
         }
         return true;
     }
@@ -1319,14 +1319,14 @@ public final class CommandMap {
                 }
                 catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
-                        channel.sendMessage(":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionn\u00e9e et vous remercions de votre aide.").queue();
+                        channel.sendMessage(":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionnée et vous remercions de votre aide.").queue();
                     }
                     if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
                         channel.sendMessage("An error occurred! Report it to an admin such as Ybsi#0451 (102108573298851840) or make a bug report with the command =report. We apologize for the inconvenience.").queue();
                     }
                     System.out.println("La methode " + command2 + " n'est pas correctement initialis\ufffd." + e.getLocalizedMessage() + " " + e.toString() + " " + e.getCause() + " " + e.getMessage() + " ");
                     try {
-                        mail.main("Error command " + command2, "La commande " + command2 + " n'est pas correctement initilais\u00e9. \n" + "User : " + user.getName() + " (" + user.getId() + ") \n" + "Guild : " + guild.getName() + " (" + guild.getName() + ") \n" + "Param\u00e8tres : " + command2 + "\n" + "Erreur : " + e.getCause());
+                        mail.main("Error command " + command2, "La commande " + command2 + " n'est pas correctement initilaisé. \n" + "User : " + user.getName() + " (" + user.getId() + ") \n" + "Guild : " + guild.getName() + " (" + guild.getName() + ") \n" + "Param\u00e8tres : " + command2 + "\n" + "Erreur : " + e.getCause());
                     }
                     catch (Exception e1) {
                         e1.printStackTrace();
@@ -1334,7 +1334,7 @@ public final class CommandMap {
                     e.printStackTrace();
                     Guild ozeryo = DiscordBot.getjda().getGuildById("326345972739473410");
                     TextChannel logChannel = ozeryo.getTextChannelById("498483581052649492");
-                    logChannel.sendMessage("La commande " + command2 + " utilis\u00e9 par " + user.getName() + " sur le serveur " + guild.getName() + " n'est pas correctement initialis\u00e9 : \n\n " + e.getStackTrace().toString()).queue();
+                    logChannel.sendMessage("La commande " + command2 + " utilisé par " + user.getName() + " sur le serveur " + guild.getName() + " n'est pas correctement initialisé : \n\n " + e.getStackTrace().toString()).queue();
                 }
             }
         };
@@ -1344,7 +1344,7 @@ public final class CommandMap {
     public static void NewPlayer(User user) {
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> building = new HashMap<String, Integer>();
-        building.put("march\u00e9", 0);
+        building.put("marché", 0);
         building.put("habitations", 0);
         building.put("auberge", 0);
         building.put("camp d'entrainement", 0);
@@ -1376,12 +1376,12 @@ public final class CommandMap {
         map.put("Entrepreneur I", 0L);
         map.put("Entrepreneur II", 0L);
         map.put("Entrepreneur III", 0L);
-        map.put("Conqu\u00e9rant I", 0L);
-        map.put("Conqu\u00e9rant II", 0L);
-        map.put("Conqu\u00e9rant III", 0L);
-        map.put("D\u00e9fenseur I", 0L);
-        map.put("D\u00e9fenseur II", 0L);
-        map.put("D\u00e9fenseur III", 0L);
+        map.put("Conquérant I", 0L);
+        map.put("Conquérant II", 0L);
+        map.put("Conquérant III", 0L);
+        map.put("Défenseur I", 0L);
+        map.put("Défenseur II", 0L);
+        map.put("Défenseur III", 0L);
         map.put("Espion I", 0L);
         map.put("Espion II", 0L);
         map.put("Espion III", 0L);
@@ -1399,9 +1399,9 @@ public final class CommandMap {
         map.put("Braquer I", 0L);
         map.put("Braquer II", 0L);
         map.put("Braquer III", 0L);
-        map.put("Crime en s\u00e9rie", 0L);
+        map.put("Crime en série", 0L);
         map.put("Parrain de la mafia", 0L);
-        map.put("Toujours pr\u00e9sent", 0L);
+        map.put("Toujours présent", 0L);
         map.put("Toujours debout", 0L);
         map.put("Fou des jeux", 0L);
         map.put("Croyant", 0L);
@@ -1421,7 +1421,7 @@ public final class CommandMap {
         map.put("A good player", 0L);
         map.put("Ville attractive", 0L);
         map.put("Useless", 0L);
-        map.put("Impliqu\u00e9", 0L);
+        map.put("Impliqué", 0L);
         map.put("Starter", 0L);
         map.put("Grinder I", 0L);
         map.put("Grinder II", 0L);

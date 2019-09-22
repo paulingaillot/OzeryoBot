@@ -125,7 +125,7 @@ public class Factory {
                 }
             }
         }
-        String etat = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt");
+        String etat = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt");
         try {
             c1 = args[0];
         }
@@ -148,35 +148,35 @@ public class Factory {
                 }
             } else if (etat.equals("active")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":telescope: Vous \u00eates d\u00e9j\u00e0 en train de faire des recherches.").queue();
+                    channel.sendMessage(":telescope: Vous \u00eates déj\u00e0 en train de faire des recherches.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":telescope: You are already doing researches.").queue();
                 }
             } else {
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/");
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt", "active", 1);
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/");
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt", "active", 1);
                 int secondes = Integer.parseInt(new SimpleDateFormat("ss", Locale.FRANCE).format(new Date()));
                 int minutes = Integer.parseInt(new SimpleDateFormat("mm", Locale.FRANCE).format(new Date()));
                 int heures = Integer.parseInt(new SimpleDateFormat("HH", Locale.FRANCE).format(new Date()));
                 int jours = Integer.parseInt(new SimpleDateFormat("dd", Locale.FRANCE).format(new Date()));
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/secondes.txt", Integer.toString(secondes), 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/minutes.txt", Integer.toString(minutes), 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/heures.txt", Integer.toString(heures), 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/jours.txt", Integer.toString(jours), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/secondes.txt", Integer.toString(secondes), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/minutes.txt", Integer.toString(minutes), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/heures.txt", Integer.toString(heures), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/jours.txt", Integer.toString(jours), 1);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":alembic: Vous venez de d\u00e9buter vos recherches.").queue();
+                    channel.sendMessage(":alembic: Vous venez de débuter vos recherches.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":alembic: You just start your researches.").queue();
                 }
             }
         } else if (c1.equals("claim")) {
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/");
-            String Lsecondes = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/secondes.txt");
-            String Lminutes = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/minutes.txt");
-            String Lheures = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/heures.txt");
-            String Ljours = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/jours.txt");
+            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/");
+            String Lsecondes = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/secondes.txt");
+            String Lminutes = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/minutes.txt");
+            String Lheures = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/heures.txt");
+            String Ljours = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/jours.txt");
             if (Lsecondes == null) {
                 Lsecondes = Integer.toString(0);
             }
@@ -218,7 +218,7 @@ public class Factory {
                 int Scientifique = data.getProfils().get(user.getId()).getScientifique();
                 data.getProfils().get(user.getId()).setScientifique(++Scientifique);
                 Quest.Quest("exp", user, channel, Bonus_factory);
-                String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+                String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
                 HashMap<String, ArrayList<String>> activePet = data.getProfils().get(user.getId()).getPet();
                 try {
                     list = data.getProfils().get(user.getId()).getPet().get(pet);
@@ -262,7 +262,7 @@ public class Factory {
                     data.getProfils().get(user.getId()).setMana(mana);
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":microscope: Apr\u00e8s des heures de recherche, vous venez de d\u00e9couvrir **" + Bonus_factory + "** EXP ainsi que **" + gain + "** mana.").queue();
+                    channel.sendMessage(":microscope: Apr\u00e8s des heures de recherche, vous venez de découvrir **" + Bonus_factory + "** EXP ainsi que **" + gain + "** mana.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":microscope: After hours of researches, you just discover **" + Bonus_factory + "** Xp and **" + gain + "** mana.").queue();
@@ -276,16 +276,16 @@ public class Factory {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setXp(Game_EXP);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt", "idle", 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt", "idle", 1);
             } else if (etat.equals("active") && Nheures > 4) {
                 channel.sendMessage(":boom: Votre laboratoire vient d'exploser ! Il sera de nouveau utilisable dans 24 heures.").queue();
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt", "broken", 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt", "broken", 1);
             } else if (etat.equals("active") && Nheures < 4) {
                 Nheures = 3 - Nheures;
                 Nminutes = 60 - Nminutes;
                 Nsecondes = 60 - Nsecondes;
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":telescope: Vous pourrez r\u00e9cup\u00e9rer le r\u00e9sultat de vos exp\u00e9riences dans **" + Nheures + "** heures et **" + Nminutes + "** minutes. ").queue();
+                    channel.sendMessage(":telescope: Vous pourrez récupérer le résultat de vos expériences dans **" + Nheures + "** heures et **" + Nminutes + "** minutes. ").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":telescope: You will be able to discover the result of your researches in **" + Nheures + "** hours and **" + Nminutes + "** minutes. ").queue();
@@ -300,8 +300,8 @@ public class Factory {
             }
         } else if (c1.equals("repair")) {
             if (etat.equals("broken")) {
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/structure/");
-                TextFileWriter.CreateFile("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/structure/industrie.txt");
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/structure/");
+                TextFileWriter.CreateFile("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/structure/industrie.txt");
                 System.out.println("1");
                 long money = data.getProfils().get(user.getId()).getMoney();
                 System.out.println("2");
@@ -448,27 +448,27 @@ public class Factory {
                             data.getProfils().put(user.getId(), new Profil(user.getId()));
                             data.getProfils().get(user.getId()).setRes(res);
                         }
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt", "idle", 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt", "idle", 1);
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(":microscope: Votre laboratoire a bien \u00e9t\u00e9 repar\u00e9.").queue();
+                            channel.sendMessage(":microscope: Votre laboratoire a bien été reparé.").queue();
                         }
                         if (lang == command.Language.en) {
                             channel.sendMessage(":microscope: Your laboratory has been repaired.").queue();
                         }
                     } else {
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(":tools: Vous n'avez pas les mat\u00e9riaux n\u00e9cessaires pour r\u00e9parer votre laboratoire.").queue();
+                            channel.sendMessage(":tools: Vous n'avez pas les matériaux nécessaires pour réparer votre laboratoire.").queue();
                         }
                         if (lang == command.Language.en) {
                             channel.sendMessage(":tools: You don't have the necessary materials to repair your laboratory.").queue();
                         }
                     }
                 } else {
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/");
-                    String Lsecondes = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/secondes.txt");
-                    String Lminutes = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/minutes.txt");
-                    String Lheures = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/heures.txt");
-                    String Ljours = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory/jours.txt");
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/");
+                    String Lsecondes = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/secondes.txt");
+                    String Lminutes = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/minutes.txt");
+                    String Lheures = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/heures.txt");
+                    String Ljours = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory/jours.txt");
                     if (Lsecondes == null) {
                         Lsecondes = Integer.toString(0);
                     }
@@ -503,18 +503,18 @@ public class Factory {
                     }
                     if (etat.equals("broken") && (Nheures += 24 * Njours) >= 28 || etat.equals("broken") && Nheures < 0) {
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(":microscope: Votre laboratoire a \u00e9t\u00e9 repar\u00e9.").queue();
+                            channel.sendMessage(":microscope: Votre laboratoire a été reparé.").queue();
                         }
                         if (lang == command.Language.en) {
                             channel.sendMessage(":microscope: Your laboratoire has been repaired.").queue();
                         }
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/factory.txt", "idle", 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/factory.txt", "idle", 1);
                     } else {
                         Nheures = 27 - Nheures;
                         Nminutes = 60 - Nminutes;
                         Nsecondes = 60 - Nsecondes;
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(":hammer_pick: Votre laboratoire sera r\u00e9par\u00e9 dans **" + Nheures + "** heures et **" + Nminutes + "** minutes.\r\n" + ":tools: Vous pouvez tout de m\u00eame appeler une \u00e9quipe de sp\u00e9cialistes pour **" + need_money + "** money ainsi que **" + need_mat + "** pierre, **" + need_mat + "** argile et **" + need_mat + "** paille.").queue();
+                            channel.sendMessage(":hammer_pick: Votre laboratoire sera réparé dans **" + Nheures + "** heures et **" + Nminutes + "** minutes.\r\n" + ":tools: Vous pouvez tout de m\u00eame appeler une équipe de spécialistes pour **" + need_money + "** money ainsi que **" + need_mat + "** pierre, **" + need_mat + "** argile et **" + need_mat + "** paille.").queue();
                         }
                         if (lang == command.Language.en) {
                             channel.sendMessage(":hammer_pick: You laboratory will be repair in **" + Nheures + "** hours and **" + Nminutes + "** minutes.\r\n" + ":tools: You can call a team of specialists for **" + need_money + "** money and **" + need_mat + "** stone, **" + need_mat + "** clay et **" + need_mat + "** straw.").queue();
@@ -523,7 +523,7 @@ public class Factory {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(":telescope: Votre laboratoire est d\u00e9j\u00e0 en parfait \u00e9tat.").queue();
+                    channel.sendMessage(":telescope: Votre laboratoire est déj\u00e0 en parfait état.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(":telescope: You laboratory is already in good condition.").queue();

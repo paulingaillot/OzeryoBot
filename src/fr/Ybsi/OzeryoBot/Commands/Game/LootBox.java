@@ -58,7 +58,7 @@ public class LootBox {
             int lb = data.getProfils().get(user.getId()).getLootbox();
             if (lb <= 0) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("D\u00e9sol\u00e9 mais vous n'avez plus de lootbox a ouvrir").queue();
+                    channel.sendMessage("Désolé mais vous n'avez plus de lootbox a ouvrir").queue();
                 }
                 if (lang != command.Language.en) return;
                 channel.sendMessage("Sorry but you don't have any lootbox to open").queue();
@@ -67,7 +67,7 @@ public class LootBox {
             data.getProfils().get(user.getId()).setLootbox(--lb);
             int Game_EXP = data.getProfils().get(user.getId()).getXp();
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
-            int struct = building.get("march\u00e9");
+            int struct = building.get("marché");
             int levelEcole = building.get("biblioth\u00e8que");
             int levelMine = building.get("mine");
             double bonus = Structure.entreprise(struct);
@@ -397,7 +397,7 @@ public class LootBox {
                     weapons.put("katana", null);
                     data.getProfils().get(user.getId()).setWeapons(weapons);
                 }
-                if (LootBox.test(user) <= building.get("march\u00e9") * 5 + 20) {
+                if (LootBox.test(user) <= building.get("marché") * 5 + 20) {
                     int aleaWeapons = 1 + (int)(Math.random() * 17.0);
                     String weapon = "epee";
                     switch (aleaWeapons) {
@@ -560,7 +560,7 @@ public class LootBox {
                     data.getProfils().get(user.getId()).setArmor(armors);
                 }
                 try {
-                    entrepot = building.get("march\u00e9");
+                    entrepot = building.get("marché");
                 }
                 catch (NullPointerException e) {
                     entrepot = 0;
@@ -701,7 +701,7 @@ public class LootBox {
                 }
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Votre lootbox a \u00e9t\u00e9 ouvert avec succes : Vous y avez gagn\u00e9 : \n" + mess).queue();
+                channel.sendMessage("Votre lootbox a été ouvert avec succes : Vous y avez gagné : \n" + mess).queue();
             }
             if (lang != command.Language.en) return;
             channel.sendMessage("Your lootbox oppened with success : You won : \n" + mess).queue();
@@ -746,7 +746,7 @@ public class LootBox {
                 data.getProfils().get(user.getId()).setLootboxPremium(true);
                 int Game_EXP = data.getProfils().get(user.getId()).getXp();
                 HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
-                int struct = building.get("march\u00e9");
+                int struct = building.get("marché");
                 int levelEcole = building.get("biblioth\u00e8que");
                 int levelMine = building.get("mine");
                 double bonus = Structure.entreprise(struct);
@@ -1076,7 +1076,7 @@ public class LootBox {
                         weapons.put("katana", null);
                         data.getProfils().get(user.getId()).setWeapons(weapons);
                     }
-                    if (LootBox.test(user) <= building.get("march\u00e9") * 5 + 20) {
+                    if (LootBox.test(user) <= building.get("marché") * 5 + 20) {
                         int aleaWeapons = 1 + (int)(Math.random() * 17.0);
                         String weapon = "epee";
                         switch (aleaWeapons) {
@@ -1239,7 +1239,7 @@ public class LootBox {
                         data.getProfils().get(user.getId()).setArmor(armors);
                     }
                     try {
-                        entrepot = building.get("march\u00e9");
+                        entrepot = building.get("marché");
                     }
                     catch (NullPointerException e) {
                         entrepot = 0;
@@ -1380,7 +1380,7 @@ public class LootBox {
                     }
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Votre lootbox a \u00e9t\u00e9 ouvert avec succes : Vous y avez gagn\u00e9 : \n" + mess).queue();
+                    channel.sendMessage("Votre lootbox a été ouvert avec succes : Vous y avez gagné : \n" + mess).queue();
                 }
                 if (lang != command.Language.en) return;
                 channel.sendMessage("Your lootbox oppened with success : You won : \n" + mess).queue();
@@ -1427,105 +1427,105 @@ public class LootBox {
             weapons.put("katana", null);
             DiscordBot.getData().getProfils().get(user.getId()).setWeapons(weapons);
         }
-        int quantit\u00e9 = 0;
+        int quantité = 0;
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("epee")).size();
+            quantité += ((ArrayList)weapons.get("epee")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("spectre")).size();
+            quantité += ((ArrayList)weapons.get("spectre")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("arc")).size();
+            quantité += ((ArrayList)weapons.get("arc")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("arbalete")).size();
+            quantité += ((ArrayList)weapons.get("arbalete")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("lance")).size();
+            quantité += ((ArrayList)weapons.get("lance")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("pelle de combat")).size();
+            quantité += ((ArrayList)weapons.get("pelle de combat")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("sarbacanne")).size();
+            quantité += ((ArrayList)weapons.get("sarbacanne")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("gourdin")).size();
+            quantité += ((ArrayList)weapons.get("gourdin")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("flechettes")).size();
+            quantité += ((ArrayList)weapons.get("flechettes")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("trident")).size();
+            quantité += ((ArrayList)weapons.get("trident")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("fleau")).size();
+            quantité += ((ArrayList)weapons.get("fleau")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("fouet")).size();
+            quantité += ((ArrayList)weapons.get("fouet")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("baton")).size();
+            quantité += ((ArrayList)weapons.get("baton")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("fourche")).size();
+            quantité += ((ArrayList)weapons.get("fourche")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("dague")).size();
+            quantité += ((ArrayList)weapons.get("dague")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("shuriken")).size();
+            quantité += ((ArrayList)weapons.get("shuriken")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)weapons.get("katana")).size();
+            quantité += ((ArrayList)weapons.get("katana")).size();
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
@@ -1555,108 +1555,108 @@ public class LootBox {
             DiscordBot.getData().getProfils().get(user.getId()).setArmor(armor);
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure obscure")).size();
+            quantité += ((ArrayList)armor.get("armure obscure")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure")).size();
+            quantité += ((ArrayList)armor.get("armure")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("bouclier")).size();
+            quantité += ((ArrayList)armor.get("bouclier")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure lumineuse")).size();
+            quantité += ((ArrayList)armor.get("armure lumineuse")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure royale")).size();
+            quantité += ((ArrayList)armor.get("armure royale")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure elfique")).size();
+            quantité += ((ArrayList)armor.get("armure elfique")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("tenue en soie")).size();
+            quantité += ((ArrayList)armor.get("tenue en soie")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure magique")).size();
+            quantité += ((ArrayList)armor.get("armure magique")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("bouclier reflechissant")).size();
+            quantité += ((ArrayList)armor.get("bouclier reflechissant")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure de vulcain")).size();
+            quantité += ((ArrayList)armor.get("armure de vulcain")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure aquatique")).size();
+            quantité += ((ArrayList)armor.get("armure aquatique")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure magenta")).size();
+            quantité += ((ArrayList)armor.get("armure magenta")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure de rubis")).size();
+            quantité += ((ArrayList)armor.get("armure de rubis")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("bouclier de cristal")).size();
+            quantité += ((ArrayList)armor.get("bouclier de cristal")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("bouclier de bois")).size();
+            quantité += ((ArrayList)armor.get("bouclier de bois")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure de cuire")).size();
+            quantité += ((ArrayList)armor.get("armure de cuire")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantit\u00e9 += ((ArrayList)armor.get("armure celeste")).size();
+            quantité += ((ArrayList)armor.get("armure celeste")).size();
         }
         catch (NullPointerException e) {
             // empty catch block
         }
-        return quantit\u00e9;
+        return quantité;
     }
 }
 

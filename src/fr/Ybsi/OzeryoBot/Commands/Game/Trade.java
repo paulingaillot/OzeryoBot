@@ -73,7 +73,7 @@ public class Trade {
                 y = 0;
             }
             try {
-                cible = jda.getUserById(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Map/" + x + "_" + y + "/name.txt"));
+                cible = jda.getUserById(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"));
             }
             catch (NumberFormatException e) {
                 // empty catch block
@@ -142,12 +142,12 @@ public class Trade {
         int yC = Integer.parseInt(strC[1]);
         double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
         System.out.println(operation);
-        double dur\u00e9e = Math.sqrt(operation);
-        System.out.println(dur\u00e9e);
-        int heure = (int)(dur\u00e9e * (double)temps / 3600000.0);
-        int minutes1 = (int)(dur\u00e9e * (double)temps / 3600000.0 * 60.0 % 60.0);
-        long DateFin = System.currentTimeMillis() + (long)(dur\u00e9e * (double)temps);
-        String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/prefix.txt");
+        double durée = Math.sqrt(operation);
+        System.out.println(durée);
+        int heure = (int)(durée * (double)temps / 3600000.0);
+        int minutes1 = (int)(durée * (double)temps / 3600000.0 * 60.0 % 60.0);
+        long DateFin = System.currentTimeMillis() + (long)(durée * (double)temps);
+        String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt");
         if (pref.equals("0")) {
             pref = "=";
         }
@@ -341,7 +341,7 @@ public class Trade {
             mess1 = String.valueOf(mess1) + c2 + " " + c1 + "\n";
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("Vous venez d'echanger avec " + cible.getName() + " : \n" + mess1 + " Votre echange sera effectu\u00e9 dans " + heure + "h" + minutes1).queue();
+            channel.sendMessage("Vous venez d'echanger avec " + cible.getName() + " : \n" + mess1 + " Votre echange sera effectué dans " + heure + "h" + minutes1).queue();
         }
         if (lang == command.Language.en) {
             channel.sendMessage("You jsut trade with " + cible.getName() + " : \n" + mess1 + " Your trade will be done in " + heure + "h" + minutes1).queue();
@@ -478,7 +478,7 @@ public class Trade {
             } else {
                 ArrayList<String> mail1 = new ArrayList<String>();
                 if (lang == command.Language.fr) {
-                    mail1.add("Ressources envoy\u00e9s a " + cible.getName());
+                    mail1.add("Ressources envoyés a " + cible.getName());
                 }
                 if (lang == command.Language.en) {
                     mail1.add("Ressources send to " + cible.getName());

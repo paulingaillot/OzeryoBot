@@ -48,9 +48,9 @@ public class Mana {
                 buder.append(str);
             }
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
-            Integer struct = building.get("march\u00e9");
+            Integer struct = building.get("marché");
             double bonus = Structure.entreprise(struct);
-            String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+            String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
             HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
             ArrayList<String> list;
 			try {
@@ -66,13 +66,13 @@ public class Mana {
             catch (NullPointerException e) {
                 Pet_EXP = 0;
             }
-            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + ActivePet);
+            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
             int operation = Pet_EXP / 10;
             double operation2 = Math.sqrt(operation);
             long Pet_Level = Math.round(operation2);
             double pet_bonus = 1.0 + 0.03 * Pet_Level;
             Integer levelEcole = building.get("biblioth\u00e8que");
-            String eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/eglise.txt");
+            String eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
             int Game_EXP = data.getProfils().get(user.getId()).getXp();
             int level;
 			try {
@@ -437,7 +437,7 @@ public class Mana {
            
             String c1 = buder.toString();
             String pays = data.getProfils().get(user.getId()).getCountry();
-            int point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pays/" + pays + "/points.txt"));
+            int point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/points.txt"));
             int level2 = point / 1000;
             double level3 = Math.sqrt(level2);
             long Plevel = Math.round(level3);
@@ -733,14 +733,14 @@ public class Mana {
             if (fer != 0.0) {
                 Quest.Quest("fer", user, channel, (int)fer);
             }
-            money2 = data.getProfils().get(user.getId()).getMoney_r\u00e9colt\u00e9();
+            money2 = data.getProfils().get(user.getId()).getMoney_récolté();
             money2 = (long)((double)money2 + money_win);
-            data.getProfils().get(user.getId()).setMoney_r\u00e9colt\u00e9(money2);
+            data.getProfils().get(user.getId()).setMoney_récolté(money2);
             premium2 = premium != false ? "[Premium]" : "";
             builder = new EmbedBuilder();
             builder.setAuthor(user.getName(), null, user.getAvatarUrl());
             builder.setFooter(guild.getName(), guild.getIconUrl());
-            builder.setDescription("Votre travail vous a apport\u00e9 :");
+            builder.setDescription("Votre travail vous a apporté :");
             builder.setColor(color.couleurAleatoire(user));
             builder.addField(":star: | **Xp** ", String.valueOf(EXP_win), true);
             if (lang == command.Language.fr) {
@@ -752,14 +752,14 @@ public class Mana {
             builder.addField(String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("gold", true).get(0).getAsMention()) + " | **Money** ", "+" + (int)money_win, true);
             builder.addBlankField(true);
             if (lang == command.Language.fr) {
-                builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + (int)fer, false);
+                builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + (int)fer, false);
             }
             if (lang == command.Language.en) {
-                builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + (int)fer, false);
+                builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + (int)fer, false);
             }
             builder.addBlankField(false);
             if (lang == command.Language.fr) {
-                builder.addField(":heart:  **Mana D\u00e9pens\u00e9** ", String.valueOf(Used_mana) + " " + premium2, true);
+                builder.addField(":heart:  **Mana Dépensé** ", String.valueOf(Used_mana) + " " + premium2, true);
             }
             if (lang == command.Language.en) {
                 builder.addField(":heart:  **Mana Spent** ", String.valueOf(Used_mana) + " " + premium2, true);
@@ -1012,14 +1012,14 @@ public class Mana {
         if (fer != 0.0) {
             Quest.Quest("fer", user, channel, (int)fer);
         }
-        money2 = data.getProfils().get(user.getId()).getMoney_r\u00e9colt\u00e9();
+        money2 = data.getProfils().get(user.getId()).getMoney_récolté();
         money2 = (long)((double)money2 + money_win);
-        data.getProfils().get(user.getId()).setMoney_r\u00e9colt\u00e9(money2);
+        data.getProfils().get(user.getId()).setMoney_récolté(money2);
         premium2 = premium != false ? "[Premium]" : "";
         builder = new EmbedBuilder();
         builder.setAuthor(user.getName(), null, user.getAvatarUrl());
         builder.setFooter(guild.getName(), guild.getIconUrl());
-        builder.setDescription("Votre travail vous a apport\u00e9 :");
+        builder.setDescription("Votre travail vous a apporté :");
         builder.setColor(color.couleurAleatoire(user));
         builder.addField(":star: | **Xp** ", String.valueOf(EXP_win), true);
         if (lang == command.Language.fr) {
@@ -1031,14 +1031,14 @@ public class Mana {
         builder.addField(String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("gold", true).get(0).getAsMention()) + " | **Money** ", "+" + (int)money_win, true);
         builder.addBlankField(true);
         if (lang == command.Language.fr) {
-            builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + (int)fer, false);
+            builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + (int)fer, false);
         }
         if (lang == command.Language.en) {
-            builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + (int)fer, false);
+            builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + (int)bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + (int)argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + (int)cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + (int)pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + (int)paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + (int)fer, false);
         }
         builder.addBlankField(false);
         if (lang == command.Language.fr) {
-            builder.addField(":heart:  **Mana D\u00e9pens\u00e9** ", String.valueOf(Used_mana) + " " + premium2, true);
+            builder.addField(":heart:  **Mana Dépensé** ", String.valueOf(Used_mana) + " " + premium2, true);
         }
         if (lang == command.Language.en) {
             builder.addField(":heart:  **Mana Spent** ", String.valueOf(Used_mana) + " " + premium2, true);
@@ -1052,10 +1052,10 @@ public class Mana {
         if (tuto != 4) return;
         data.getProfils().get(user.getId()).setTuto(5);
         if (lang == command.Language.fr) {
-            channel.sendMessage("\u00c0 pr\u00e9sent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le march\u00e9 comme exemple : =b march\u00e9 1.").queue();
+            channel.sendMessage("\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.").queue();
         }
         if (lang != command.Language.en) return;
-        channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b march\u00e9 1.").queue();
+        channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b marché 1.").queue();
         return;
     }
 }
@@ -1260,13 +1260,13 @@ public class Mana {
         if (fer != 0) {
             Quest.Quest("fer", user, channel, (int)(fer));
         }
-        money2 = data.getProfils().get(user.getId()).getMoney_r\u00e9colt\u00e9();
-        data.getProfils().get(user.getId()).setMoney_r\u00e9colt\u00e9(money2 += (long)money_win);
+        money2 = data.getProfils().get(user.getId()).getMoney_récolté();
+        data.getProfils().get(user.getId()).setMoney_récolté(money2 += (long)money_win);
         premium2 = premium != false ? "[Premium]" : "";
         builder = new EmbedBuilder();
         builder.setAuthor(user.getName(), null, user.getAvatarUrl());
         builder.setFooter(guild.getName(), guild.getIconUrl());
-        builder.setDescription("Votre travail vous a apport\u00e9 :");
+        builder.setDescription("Votre travail vous a apporté :");
         builder.setColor(color.couleurAleatoire(user));
         builder.addField(":star: | **Xp** ", String.valueOf(EXP_win), true);
         if (lang == command.Language.fr) {
@@ -1278,14 +1278,14 @@ public class Mana {
         builder.addField(String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("gold", true).get(0).getAsMention()) + " | **Money** ", "+" + money_win, true);
         builder.addBlankField(true);
         if (lang == command.Language.fr) {
-            builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + fer, false);
+            builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + "+" + bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **argile :** " + "+" + argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **cuir :** " + "+" + cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **pierre :** " + "+" + pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **paille :** " + "+" + paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **fer :** " + "+" + fer, false);
         }
         if (lang == command.Language.en) {
-            builder.addField("\ud83d\udc8e | **Mat\u00e9riaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + fer, false);
+            builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **wood :** " + "+" + bois + "\n " + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **clay :** " + "+" + argile + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **leather :** " + "+" + cuir + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **stone :** " + "+" + pierre + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **straw :** " + "+" + paille + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **iron :** " + "+" + fer, false);
         }
         builder.addBlankField(false);
         if (lang == command.Language.fr) {
-            builder.addField(":heart:  **Mana D\u00e9pens\u00e9** ", String.valueOf(Used_mana) + " " + premium2, true);
+            builder.addField(":heart:  **Mana Dépensé** ", String.valueOf(Used_mana) + " " + premium2, true);
         }
         if (lang == command.Language.en) {
             builder.addField(":heart:  **Mana Spent** ", String.valueOf(Used_mana) + " " + premium2, true);

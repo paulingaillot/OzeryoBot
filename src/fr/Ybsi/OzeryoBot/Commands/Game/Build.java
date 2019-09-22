@@ -67,8 +67,8 @@ public class Build {
         catch (NullPointerException e) {
             Glevel = 0;
         }
-        if (c1.equals("march\u00e9") || c1.equals("mar")) {
-            int level = building.get("march\u00e9");
+        if (c1.equals("marché") || c1.equals("mar")) {
+            int level = building.get("marché");
             long money = data.getProfils().get(user.getId()).getMoney();
             int level_up = level + 1;
             long need_money = 5000L;
@@ -199,7 +199,7 @@ public class Build {
             if (c2 == level + 1) {
                 if (level_up > 20 && level_up <= 25 && Glevel < 200) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous devez etre level 200 pour pouvoir ameliorer le march\u00e9.").queue();
+                        channel.sendMessage("Vous devez etre level 200 pour pouvoir ameliorer le marché.").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("You must be level 200 to upgrade the market").queue();
@@ -208,7 +208,7 @@ public class Build {
                 }
                 if (Glevel < 200 + (level_up - 25) * 50) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous devez etre niveau " + (200 + (level_up - 25) * 50) + " pour ameliorer le march\u00e9 .").queue();
+                        channel.sendMessage("Vous devez etre niveau " + (200 + (level_up - 25) * 50) + " pour ameliorer le marché .").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("You must be level " + (200 + (level_up - 25) * 50) + " to upgrade the market .").queue();
@@ -226,12 +226,12 @@ public class Build {
                     cuir -= need_cuir;
                     paille -= need_paille;
                     if (lang == command.Language.fr) {
-                        message.sendMessage(":up: Votre *march\u00e9* vient d'\u00eatre am\u00e9lior\u00e9e au niveau **" + level_up + "**").queue();
+                        message.sendMessage(":up: Votre *marché* vient d'\u00eatre améliorée au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage(":up: Your *market* is now level **" + level_up + "**").queue();
                     }
-                    building.put("march\u00e9", level_up);
+                    building.put("marché", level_up);
                     try {
                         data.getProfils().get(user.getId()).setBuilding(building);
                     }
@@ -274,10 +274,10 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *march\u00e9* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_cuir) + " cuir et " + Utils.format(need_paille) + " paille").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *marché* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_cuir) + " cuir et " + Utils.format(need_paille) + " paille").queue();
                 }
                 if (lang == command.Language.en) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *market* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_cuir) + " leather et " + Utils.format(need_paille) + " straw").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *market* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_cuir) + " leather et " + Utils.format(need_paille) + " straw").queue();
                 }
             }
         } else if (c1.equals("cirque")) {
@@ -413,7 +413,7 @@ public class Build {
                 if (money >= need_money) {
                     money -= need_money;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *cirque* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *cirque* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your *Circus* just upgraded to level **" + level_up + "**").queue();
@@ -443,7 +443,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *Cirque* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *Cirque* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *Circus* to level **" + level_up + "** for **" + Utils.format(need_money) + "$**").queue();
@@ -590,7 +590,7 @@ public class Build {
                 if (money >= need_money) {
                     money -= need_money;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *armurerie* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *armurerie* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your *armory* upgraded to level **" + level_up + "**").queue();
@@ -620,7 +620,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *armurerie* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *armurerie* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *armory* to level **" + level_up + "** for **" + Utils.format(need_money) + "$**").queue();
@@ -780,7 +780,7 @@ public class Build {
                     bois -= need_bois;
                     iron -= need_iron;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *centre commercial* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *centre commercial* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your *residentials* just upgraded to level **" + level_up + "**").queue();
@@ -819,7 +819,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *centre commercial* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois et " + need_iron + " p\u00e9trole.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *centre commercial* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois et " + need_iron + " pétrole.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *residetials* to level **" + level_up + "** for **" + Utils.format(need_money) + "$**, " + Utils.format(need_bois) + " wood and " + need_iron + " iron.").queue();
@@ -1010,7 +1010,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre auberge au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_argile) + " argile et " + Utils.format(need_pierre) + " paille.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre auberge au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_argile) + " argile et " + Utils.format(need_pierre) + " paille.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your inn to level **" + level_up + "** for **" + Utils.format(need_money) + "$**, " + Utils.format(need_argile) + " clay and " + Utils.format(need_pierre) + " stone.").queue();
@@ -1049,7 +1049,7 @@ public class Build {
                 cuir -= need_mat;
                 paille -= need_mat;
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Votre eglise vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                    message.sendMessage("Votre eglise vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("Your church just upgraded to level **" + level_up + "**").queue();
@@ -1120,7 +1120,7 @@ public class Build {
                 iron -= need_mat;
                 cuir -= need_mat;
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Votre golem vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                    message.sendMessage("Votre golem vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("Your golem just upgraded to level **" + level_up + "**").queue();
@@ -1199,7 +1199,7 @@ public class Build {
                 cuir -= need_mat;
                 paille -= need_mat;
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Votre forge vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                    message.sendMessage("Votre forge vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("Your wrought just upgraded to level **" + level_up + "**").queue();
@@ -1260,7 +1260,7 @@ public class Build {
                     cuir -= need_mat;
                     paille -= need_mat;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre biblioth\u00e8que vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre biblioth\u00e8que vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your library just upgraded to level **" + level_up + "**").queue();
@@ -1303,7 +1303,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre biblioth\u00e8que au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_mat) + "de chaque materiaux").queue();
+                    message.sendMessage("Vous pouvez améliorer votre biblioth\u00e8que au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_mat) + "de chaque materiaux").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade you library to level **" + level_up + "** for **" + Utils.format(need_money) + "$** and " + Utils.format(need_mat) + " of every materials").queue();
@@ -1513,7 +1513,7 @@ public class Build {
                     iron -= need_iron;
                     cuir -= need_cuir;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre camp vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre camp vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your training camp just upgraded to level **" + level_up + "**").queue();
@@ -1557,7 +1557,7 @@ public class Build {
                     }
                 } else {
                     if (lang == command.Language.fr) {
-                        message.sendMessage("\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " p\u00e9trole.").queue();
+                        message.sendMessage("\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " pétrole.").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("\ud83d\udcb8 You don't have enough money. For this upgrade, you need **" + Utils.format(need_money) + "$**, " + Utils.format(need_bois) + " wood, " + Utils.format(need_cuir) + " leather and " + need_iron + " iron.").queue();
@@ -1565,7 +1565,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre camp au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " p\u00e9trole.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre camp au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " pétrole.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your training camp to level**" + level_up + "** for **" + Utils.format(need_money) + "$**, " + Utils.format(need_bois) + " wood, " + Utils.format(need_cuir) + " leather and " + need_iron + " iron.").queue();
@@ -1743,7 +1743,7 @@ public class Build {
                     paille -= need_mat;
                     iron -= need_mat;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *mine* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *mine* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your *mine* just upgraded to level **" + level_up + "**").queue();
@@ -1786,7 +1786,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *mine* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de chaque materiau.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *mine* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de chaque materiau.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *mine* to level **" + level_up + "** for **" + Utils.format(need_money) + "$** and " + Utils.format(need_mat) + " of every materials.").queue();
@@ -1956,7 +1956,7 @@ public class Build {
                     argile -= need_mat;
                     paille -= need_mat;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *muraille* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *muraille* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("Your *wall* just upgraded to level **" + level_up + "**").queue();
@@ -1999,7 +1999,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *muraille* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de  paille, argile et paille.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *muraille* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de  paille, argile et paille.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *wall* to level **" + level_up + "** for **" + Utils.format(need_money) + "$** and " + Utils.format(need_mat) + " of  staw, clay et stone.").queue();
@@ -2183,7 +2183,7 @@ public class Build {
                     argile -= need_mat;
                     paille -= need_mat;
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Votre *tour de sorcier* vient d'\u00eatre amelior\u00e9 au niveau **" + level_up + "**").queue();
+                        message.sendMessage("Votre *tour de sorcier* vient d'\u00eatre amelioré au niveau **" + level_up + "**").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("your *wizard tower* just upgraded to level **" + level_up + "**").queue();
@@ -2226,7 +2226,7 @@ public class Build {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Vous pouvez am\u00e9liorer votre *tour de sorcier* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de pierre, paille et argile.").queue();
+                    message.sendMessage("Vous pouvez améliorer votre *tour de sorcier* au niveau **" + level_up + "** pour **" + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat) + " de pierre, paille et argile.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *wizard tower* to level **" + level_up + "** for **" + Utils.format(need_money) + "$** and " + Utils.format(need_mat) + " de pierre, paille et argile.").queue();
@@ -2264,10 +2264,10 @@ public class Build {
             }
             if (level + 1 == 4 && !c3.equals("zone de lancement")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous pouvez actuelement construire la fus\u00e9e pour 800.000.000$ et 5000 materiaux.").queue();
+                    channel.sendMessage("Vous pouvez actuelement construire la fusée pour 800.000.000$ et 5000 materiaux.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("You can actually build la fus\u00e9e for 800.000.000$ and 5000 of every materials.").queue();
+                    channel.sendMessage("You can actually build la fusée for 800.000.000$ and 5000 of every materials.").queue();
                 }
                 return;
             }
@@ -2383,10 +2383,10 @@ public class Build {
             }
         } else {
             if (lang == command.Language.fr) {
-                message.sendMessage("=build ``habitation``, ``auberge``, ``march\u00e9``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``").queue();
+                message.sendMessage("=build ``habitation``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``").queue();
             }
             if (lang == command.Language.en) {
-                message.sendMessage("=build ``habitation``, ``auberge``, ``march\u00e9``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``").queue();
+                message.sendMessage("=build ``habitation``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``").queue();
             }
         }
     }

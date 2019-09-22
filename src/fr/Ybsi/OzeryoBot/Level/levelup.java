@@ -68,7 +68,7 @@ implements EventListener {
             }
             if (EXP1 >= levelUp && EXP1 <= levelUp + 4) {
                 if (lang == command.Language.fr) {
-                    event.getChannel().sendMessage(":up: Level Up !!!:up: Tu es d\u00e9sormais au niveau " + level).queue();
+                    event.getChannel().sendMessage(":up: Level Up !!!:up: Tu es désormais au niveau " + level).queue();
                 }
                 if (lang == command.Language.en) {
                     event.getChannel().sendMessage(":up: Level Up !!!:up: You are now level " + level).queue();
@@ -93,7 +93,7 @@ implements EventListener {
             try {
                 if (GEXP >= GlevelUp && GEXP <= GlevelUp + 4) {
                     if (lang == command.Language.fr) {
-                        event.getChannel().sendMessage(":up: Level Up !!!:up: Votre guilde est d\u00e9sormais au niveau " + Glevel).queue();
+                        event.getChannel().sendMessage(":up: Level Up !!!:up: Votre guilde est désormais au niveau " + Glevel).queue();
                     }
                     if (lang == command.Language.en) {
                         event.getChannel().sendMessage(":up: Level Up !!!:up: Your Guild is now level " + Glevel).queue();

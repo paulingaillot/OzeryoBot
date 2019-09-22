@@ -118,15 +118,15 @@ implements EventListener {
     }
 
     private void onRolePermissionUpdate(RoleUpdatePermissionsEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Anciennes permissions", ((List)event.getOldValue()).toString(), false);
         builder.addField("Nouvelle permission", ((List)event.getNewValue()).toString(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -134,15 +134,15 @@ implements EventListener {
     }
 
     private void onRolePositionUpdate(RoleUpdatePositionEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Ancienne place", String.valueOf(((Integer)event.getOldValue()).toString()) + "e position", false);
         builder.addField("Nouvelle place", String.valueOf(((Integer)event.getNewValue()).toString()) + "e position", false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -150,17 +150,17 @@ implements EventListener {
     }
 
     private void onRoleHoistedUpdate(RoleUpdateHoistedEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
-        String mess = (Boolean)event.getOldValue() != false ? "separ\u00e9 des autres roles" : "Non s\u00e9par\u00e9 des autres roles";
-        String mess2 = (Boolean)event.getNewValue() != false ? "separ\u00e9 des autres roles" : "Non s\u00e9par\u00e9 des autres roles";
+        String mess = (Boolean)event.getOldValue() != false ? "separé des autres roles" : "Non séparé des autres roles";
+        String mess2 = (Boolean)event.getNewValue() != false ? "separé des autres roles" : "Non séparé des autres roles";
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Avant", mess, false);
         builder.addField("Desormais", mess2, false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -168,8 +168,8 @@ implements EventListener {
     }
 
     private void onRoleMentionalbeUpdate(RoleUpdateMentionableEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -178,7 +178,7 @@ implements EventListener {
         String mess = (Boolean)event.getOldValue() != false ? "Mentionable" : "Non-Mentionable";
         String mess2 = (Boolean)event.getNewValue() != false ? "Mentionable" : "Non-Mentionable";
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Avant", mess, false);
         builder.addField("Desormais", mess2, false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -186,15 +186,15 @@ implements EventListener {
     }
 
     private void onRoleNameUpdate(RoleUpdateNameEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Ancien nom", ((String)event.getOldValue()).toString(), false);
         builder.addField("Nouveau nom", ((String)event.getNewValue()).toString(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -202,15 +202,15 @@ implements EventListener {
     }
 
     private void onRoleColorUpdate(RoleUpdateColorEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " \u00e0 \u00e9t\u00e9 modifi\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " \u00e0 été modifié.\n ");
         builder.addField("Ancienne couleur", ((Integer)event.getOldValue()).toString(), false);
         builder.addField("Nouvelle couleur", ((Integer)event.getNewValue()).toString(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -218,8 +218,8 @@ implements EventListener {
     }
 
     private void onTextChannelUpdatePermission(TextChannelUpdatePermissionsEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -233,36 +233,36 @@ implements EventListener {
     }
 
     private void onRoleDelete(RoleDeleteEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 supprim\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été supprimé.\n ");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onRoleCreate(RoleCreateEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le role " + event.getRole().getAsMention() + " a \u00e9t\u00e9 cr\u00e9\u00e9.\n ");
+        builder.setDescription("Le role " + event.getRole().getAsMention() + " a été créé.\n ");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onVoiceChannelUpdatePermission(VoiceChannelUpdatePermissionsEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -276,154 +276,154 @@ implements EventListener {
     }
 
     private void onVoiceChannelDelete(VoiceChannelDeleteEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le channel vocal " + event.getChannel().getName() + " \u00e0 bien \u00e9t\u00e9 supprim\u00e9");
+        builder.setDescription("Le channel vocal " + event.getChannel().getName() + " \u00e0 bien été supprimé");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onVoiceChannelCreate(VoiceChannelCreateEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le channel vocal " + event.getChannel().getName() + " \u00e0 bien \u00e9t\u00e9 cr\u00e9\u00e9");
+        builder.setDescription("Le channel vocal " + event.getChannel().getName() + " \u00e0 bien été créé");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onTextChannelDelete(TextChannelDeleteEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le channel textuel " + event.getChannel().getAsMention() + " \u00e0 bien \u00e9t\u00e9 supprim\u00e9");
+        builder.setDescription("Le channel textuel " + event.getChannel().getAsMention() + " \u00e0 bien été supprimé");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onTextChannelCreate(TextChannelCreateEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Le channel textuel " + event.getChannel().getAsMention() + " \u00e0 bien \u00e9t\u00e9 cr\u00e9\u00e9");
+        builder.setDescription("Le channel textuel " + event.getChannel().getAsMention() + " \u00e0 bien été créé");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onmute(GuildVoiceMuteEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a \u00e9t\u00e9 mute dans le salon " + event.getVoiceState().getChannel().getName());
+        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a été mute dans le salon " + event.getVoiceState().getChannel().getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onRemoveAllEmote(GuildMessageReactionRemoveAllEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Tout les emojis ont \u00e9t\u00e9 retir\u00e9s d'un message dans le channel " + event.getChannel().getAsMention());
+        builder.setDescription("Tout les emojis ont été retirés d'un message dans le channel " + event.getChannel().getAsMention());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onUnban(GuildUnbanEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a \u00e9t\u00e9 ban du serveur");
+        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a été ban du serveur");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onBan(GuildBanEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a \u00e9t\u00e9 ban du serveur");
+        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a été ban du serveur");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onVoiceMove(GuildVoiceMoveEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " s'est deplac\u00e9 du salon " + event.getChannelLeft().getName() + " vers le salon " + event.getChannelJoined());
+        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " s'est deplacé du salon " + event.getChannelLeft().getName() + " vers le salon " + event.getChannelJoined());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onVoiceLeave(GuildVoiceLeaveEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a quitt\u00e9 un salon vocal : " + event.getChannelLeft().getName());
+        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a quitté un salon vocal : " + event.getChannelLeft().getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onVoiceJoin(GuildVoiceJoinEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -436,9 +436,9 @@ implements EventListener {
     }
 
     private void onModif(GuildMessageUpdateEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (event.getAuthor().isBot()) {
             return;
         }
@@ -448,7 +448,7 @@ implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getAuthor().getName(), null, event.getAuthor().getAvatarUrl());
-        builder.setDescription("Un message a \u00e9t\u00e9 edit\u00e9 dans le channel " + event.getChannel().getAsMention());
+        builder.setDescription("Un message a été edité dans le channel " + event.getChannel().getAsMention());
         builder.addField("**Avant**", " ??? " + event, false);
         builder.addField("**Apres**", String.valueOf(event.getMessage().getContentDisplay().toString()), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -456,31 +456,31 @@ implements EventListener {
     }
 
     private void onDelete(GuildMessageDeleteEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription("Un message a \u00e9t\u00e9 supprim\u00e9 dans le channel " + event.getChannel().getAsMention());
+        builder.setDescription("Un message a été supprimé dans le channel " + event.getChannel().getAsMention());
         builder.addField("Message : ", event.getClass().getName(), true);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onNick(GuildMemberNickChangeEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription("Un joueur a chang\u00e9 de pseudo");
+        builder.setDescription("Un joueur a changé de pseudo");
         builder.addField("**Ancien Pseudo**", event.getPrevNick(), false);
         builder.addField("**Nouveau Pseudo**", event.getNewNick(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
@@ -488,9 +488,9 @@ implements EventListener {
     }
 
     private void onJoin(GuildMemberJoinEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -503,24 +503,24 @@ implements EventListener {
     }
 
     private void onLeave(GuildMemberLeaveEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.addField("Leave", String.valueOf(event.getUser().getName()) + " a quitt\u00e9 le serveur", false);
+        builder.addField("Leave", String.valueOf(event.getUser().getName()) + " a quitté le serveur", false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
 
     private void onRoleAdd(GuildMemberRoleAddEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
@@ -533,16 +533,16 @@ implements EventListener {
     }
 
     private void onRoleRemove(GuildMemberRoleRemoveEvent event) {
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
-        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/log.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
+        String channel = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/log.txt");
         if (channel == "0") {
             return;
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " \u00e0 \u00e9t\u00e9 retir\u00e9 du role " + event.getRoles().get(0).getName());
+        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " \u00e0 été retiré du role " + event.getRoles().get(0).getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }

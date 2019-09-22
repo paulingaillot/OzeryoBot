@@ -46,7 +46,7 @@ public class Pub {
                     return;
                 }
                 DiscordBot.getGuilddata().getGuildProfil().get(guild.getId()).setPub(c2);
-                channel.sendMessage("Votre pub est d\u00e9sormais : " + c2 + "\n Faites ``=pub next`` pour voir a quel heure sera envoy\u00e9 la prochaine vague de pubs").queue();
+                channel.sendMessage("Votre pub est désormais : " + c2 + "\n Faites ``=pub next`` pour voir a quel heure sera envoyé la prochaine vague de pubs").queue();
             } else if (c1.equals("next")) {
                 long nextpub = Scheduler.nextPub;
                 long time = nextpub - System.currentTimeMillis();
@@ -58,7 +58,7 @@ public class Pub {
                 int mHour = calendar.get(11) - 1;
                 int mMinute = calendar.get(12);
                 int mSecond = calendar.get(13);
-                channel.sendMessage("La prochaine vague de pub sera envoy\u00e9 dans" + mHour + " heure et " + mMinute + " minutes.").queue();
+                channel.sendMessage("La prochaine vague de pub sera envoyé dans" + mHour + " heure et " + mMinute + " minutes.").queue();
             }
         } else {
             channel.sendMessage("Vous devez etre admin du serveur pour effectuer cet commande.").queue();

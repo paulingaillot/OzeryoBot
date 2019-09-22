@@ -48,7 +48,7 @@ public class NSFW {
         catch (ArrayIndexOutOfBoundsException e) {
             c1 = "hentai";
         }
-        if (channel.getId().contentEquals(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/NSFW.txt")) || channel1.isNSFW()) {
+        if (channel.getId().contentEquals(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/NSFW.txt")) || channel1.isNSFW()) {
             URL url;
             int page;
             if (c1.equals("yaoi")) {
@@ -226,7 +226,7 @@ public class NSFW {
             }
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez utiliser cette commande que sur un channel NSFW (=set NSFW)").queue();
+                channel.sendMessage("Désolé mais vous ne pouvez utiliser cette commande que sur un channel NSFW (=set NSFW)").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("Sorry but you can't use thsi commande on this channel (type =set NSFW to be able to use this command here)").queue();

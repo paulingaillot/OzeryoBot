@@ -55,10 +55,10 @@ implements Runnable {
     private boolean running;
 
     static {
-        Profildata = ProfilData.loadData(new File("/home/DiscordBot/Rasberry/donn\u00e9es/bot/profilData.json"));
-        Guilddata = GuildProfilData.loadData(new File("/home/DiscordBot/Rasberry/donn\u00e9es/bot/guildData.json"));
-        Leveldata = LevelProfilData.loadData(new File("/home/DiscordBot/Rasberry/donn\u00e9es/bot/levelData.json"));
-        Hypixeldata = HypixelData.loadData(new File("/home/DiscordBot/Rasberry/donn\u00e9es/bot/hypixelData.json"));
+        Profildata = ProfilData.loadData(new File("/home/DiscordBot/Rasberry/données/bot/profilData.json"));
+        Guilddata = GuildProfilData.loadData(new File("/home/DiscordBot/Rasberry/données/bot/guildData.json"));
+        Leveldata = LevelProfilData.loadData(new File("/home/DiscordBot/Rasberry/données/bot/levelData.json"));
+        Hypixeldata = HypixelData.loadData(new File("/home/DiscordBot/Rasberry/données/bot/hypixelData.json"));
     }
 
     public DiscordBot() throws LoginException, IllegalArgumentException, RateLimitedException {
@@ -74,13 +74,13 @@ implements Runnable {
         String heures = new SimpleDateFormat("HH", Locale.FRANCE).format(new Date());
         String jours = new SimpleDateFormat("dd", Locale.FRANCE).format(new Date());
         String mois = new SimpleDateFormat("MM", Locale.FRANCE).format(new Date());
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/");
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/bot/");
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/secondes.txt", secondes, 1);
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/minutes.txt", minutes, 1);
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/heures.txt", heures, 1);
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/jours.txt", jours, 1);
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/mois.txt", mois, 1);
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/");
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/secondes.txt", secondes, 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/minutes.txt", minutes, 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/heures.txt", heures, 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/jours.txt", jours, 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/mois.txt", mois, 1);
         System.out.println("----------------------------------------------------------------\n\n           Bot connected              \n          l'uptime commmence le " + jours + "/" + mois + " \ufffd " + heures + ":" + minutes + ":" + secondes + "\n\n----------------------------------------------------------------\n ");
         DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(DiscordBotKey).botId("399115724926484490").build();
         int serverCount = jda.getGuilds().size();
@@ -142,11 +142,11 @@ implements Runnable {
             if (!this.scanner.hasNextLine()) continue;
             this.commandMap.commandConsole(this.scanner.nextLine());
         }
-        String URL2 = "/home/DiscordBot/Rasberry/donn\u00e9es/bot";
+        String URL2 = "/home/DiscordBot/Rasberry/données/bot";
         ProfilData data = DiscordBot.getData();
-        System.out.println("Enregistrement des donn\u00e9es en cours ...");
+        System.out.println("Enregistrement des données en cours ...");
         data.saveData(URL2);
-        System.out.println("Donn\u00e9es enregistr\u00e9es");
+        System.out.println("Données enregistrées");
         this.scanner.close();
         System.out.println("bot stopped");
         jda.shutdown();
@@ -161,7 +161,7 @@ implements Runnable {
         catch (IllegalArgumentException | LoginException | RateLimitedException e) {
             e.printStackTrace();
             String txtDate = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ssaaaa : ", Locale.FRANCE).format(new Date());
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/log.txt", String.valueOf(txtDate) + " ERROR " + e.getMessage(), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/log.txt", String.valueOf(txtDate) + " ERROR " + e.getMessage(), 1);
         }
     }
 

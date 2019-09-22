@@ -57,15 +57,15 @@ public class Spy {
             }
             return;
         }
-        int Lday = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/spyday.txt"));
+        int Lday = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/spyday.txt"));
         GregorianCalendar calendar = new GregorianCalendar();
         int day = calendar.get(5);
         if (day != Lday) {
             point = (caserne - 25) * 2;
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/spy.txt", Integer.toString(point), 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/spyday.txt", Integer.toString(day), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/spy.txt", Integer.toString(point), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/spyday.txt", Integer.toString(day), 1);
         }
-        if ((point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/spy.txt"))) == 0) {
+        if ((point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/spy.txt"))) == 0) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Vous ne pouvez plus espionner personne aujourd'hui.").queue();
             }
@@ -203,7 +203,7 @@ public class Spy {
                 cible.openPrivateChannel().complete();
             }
             if (langc == command.Language.fr) {
-                ((UserImpl)cible).getPrivateChannel().sendMessage("\u26a0 Alerte \u26a0 \n Un espion a \u00e9t\u00e9 rep\u00e9r\u00e9 dans votre ville.").queue();
+                ((UserImpl)cible).getPrivateChannel().sendMessage("\u26a0 Alerte \u26a0 \n Un espion a été repéré dans votre ville.").queue();
             }
             if (langc == command.Language.en) {
                 ((UserImpl)cible).getPrivateChannel().sendMessage("\u26a0 Alert \u26a0 \n A spy has been discovered in your city.").queue();
@@ -218,7 +218,7 @@ public class Spy {
         if (lang == command.Language.en) {
             ((UserImpl)user).getPrivateChannel().sendMessage("\ud83d\udd75 Spying report \ud83d\udd75 \n You jsut spy " + cible.getName() + " city.\n there is between " + soldierMin + " and " + soldierMax + " soldiers in this city. " + messages).queue();
         }
-        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/spy.txt", Integer.toString(point - 1), 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/spy.txt", Integer.toString(point - 1), 1);
         if (lang == command.Language.fr) {
             channel.sendMessage("Votre mission d'espionnage est en cours... Consulter vos mp pour voir le rapport.").queue();
         }

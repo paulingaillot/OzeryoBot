@@ -28,7 +28,7 @@ public class Achivement {
         int Game_level;
         int ap;
         command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement");
         ProfilData data = DiscordBot.getData();
         HashMap<String, Long> map = data.getProfils().get(user.getId()).getAchievement();
         try {
@@ -287,7 +287,7 @@ public class Achivement {
             }
             return;
         }
-        long money = data.getProfils().get(user.getId()).getMoney_r\u00e9colt\u00e9();
+        long money = data.getProfils().get(user.getId()).getMoney_récolté();
         if (money > 100000000L && data.getProfils().get(user.getId()).getAchievement().get("Harvester I") == 0L) {
             map.put("Harvester I", System.currentTimeMillis());
             try {
@@ -363,7 +363,7 @@ public class Achivement {
             }
             return;
         }
-        int level = data.getProfils().get(user.getId()).getBuilding().get("march\u00e9");
+        int level = data.getProfils().get(user.getId()).getBuilding().get("marché");
         if (level >= 5 && data.getProfils().get(user.getId()).getAchievement().get("Entrepreneur I") == 0L) {
             map.put("Entrepreneur I", System.currentTimeMillis());
             try {
@@ -440,8 +440,8 @@ public class Achivement {
             return;
         }
         int atk = data.getProfils().get(user.getId()).getConquerant();
-        if (atk >= 10 && data.getProfils().get(user.getId()).getAchievement().get("Conqu\u00e9rant I") == 0L) {
-            map.put("Conqu\u00e9rant I", System.currentTimeMillis());
+        if (atk >= 10 && data.getProfils().get(user.getId()).getAchievement().get("Conquérant I") == 0L) {
+            map.put("Conquérant I", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -451,7 +451,7 @@ public class Achivement {
             }
             ++ap;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Conqu\u00e9rant I``. Vous gagnez 1 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Conquérant I``. Vous gagnez 1 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Conqueror I``. You won 1 Achievement point.").queue();
@@ -465,8 +465,8 @@ public class Achivement {
             }
             return;
         }
-        if (atk >= 100 && data.getProfils().get(user.getId()).getAchievement().get("Conqu\u00e9rant II") == 0L) {
-            map.put("Conqu\u00e9rant II", System.currentTimeMillis());
+        if (atk >= 100 && data.getProfils().get(user.getId()).getAchievement().get("Conquérant II") == 0L) {
+            map.put("Conquérant II", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -476,7 +476,7 @@ public class Achivement {
             }
             ap += 3;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Conqu\u00e9rant II``. Vous gagnez 3 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Conquérant II``. Vous gagnez 3 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Conqueror II``. You won 3 Achievement point.").queue();
@@ -490,8 +490,8 @@ public class Achivement {
             }
             return;
         }
-        if (atk >= 250 && data.getProfils().get(user.getId()).getAchievement().get("Conqu\u00e9rant III") == 0L) {
-            map.put("Conqu\u00e9rant III", System.currentTimeMillis());
+        if (atk >= 250 && data.getProfils().get(user.getId()).getAchievement().get("Conquérant III") == 0L) {
+            map.put("Conquérant III", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -501,7 +501,7 @@ public class Achivement {
             }
             ap += 5;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Conqu\u00e9rant III``. Vous gagnez 5 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Conquérant III``. Vous gagnez 5 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Conqueror III``. You won 5 Achievement point.").queue();
@@ -516,8 +516,8 @@ public class Achivement {
             return;
         }
         int def = data.getProfils().get(user.getId()).getDefenseur();
-        if (def >= 10 && data.getProfils().get(user.getId()).getAchievement().get("D\u00e9fenseur I") == 0L) {
-            map.put("D\u00e9fenseur I", System.currentTimeMillis());
+        if (def >= 10 && data.getProfils().get(user.getId()).getAchievement().get("Défenseur I") == 0L) {
+            map.put("Défenseur I", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -527,7 +527,7 @@ public class Achivement {
             }
             ++ap;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``D\u00e9fenseur I``. Vous gagnez 1 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Défenseur I``. Vous gagnez 1 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Defender I``. You won 1 Achievement point.").queue();
@@ -541,8 +541,8 @@ public class Achivement {
             }
             return;
         }
-        if (def >= 100 && data.getProfils().get(user.getId()).getAchievement().get("D\u00e9fenseur II") == 0L) {
-            map.put("D\u00e9fenseur II", System.currentTimeMillis());
+        if (def >= 100 && data.getProfils().get(user.getId()).getAchievement().get("Défenseur II") == 0L) {
+            map.put("Défenseur II", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -552,7 +552,7 @@ public class Achivement {
             }
             ap += 3;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``D\u00e9fenseur II``. Vous gagnez 3 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Défenseur II``. Vous gagnez 3 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Defender II``. You won 3 Achievement point.").queue();
@@ -566,8 +566,8 @@ public class Achivement {
             }
             return;
         }
-        if (def >= 250 && data.getProfils().get(user.getId()).getAchievement().get("D\u00e9fenseur III") == 0L) {
-            map.put("D\u00e9fenseur III", System.currentTimeMillis());
+        if (def >= 250 && data.getProfils().get(user.getId()).getAchievement().get("Défenseur III") == 0L) {
+            map.put("Défenseur III", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -577,7 +577,7 @@ public class Achivement {
             }
             ap += 5;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``D\u00e9fenseur I``. Vous gagnez 5 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Défenseur I``. Vous gagnez 5 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Defender I``. You won 5 Achievement point.").queue();
@@ -1063,9 +1063,9 @@ public class Achivement {
             }
             return;
         }
-        int daily = data.getProfils().get(user.getId()).getDaily_r\u00e9colt\u00e9();
-        if (daily >= 150 && data.getProfils().get(user.getId()).getAchievement().get("Toujours pr\u00e9sent") == 0L) {
-            map.put("Toujours pr\u00e9sent", System.currentTimeMillis());
+        int daily = data.getProfils().get(user.getId()).getDaily_récolté();
+        if (daily >= 150 && data.getProfils().get(user.getId()).getAchievement().get("Toujours présent") == 0L) {
+            map.put("Toujours présent", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -1075,7 +1075,7 @@ public class Achivement {
             }
             ap += 5;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Toujours pr\u00e9sent``. Vous gagnez 5 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Toujours présent``. Vous gagnez 5 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Always present``. You won 5 Achievement point.").queue();
@@ -1089,7 +1089,7 @@ public class Achivement {
             }
             return;
         }
-        int hourly2 = data.getProfils().get(user.getId()).getHourly_r\u00e9colt\u00e9();
+        int hourly2 = data.getProfils().get(user.getId()).getHourly_récolté();
         if (hourly2 >= 1000 && data.getProfils().get(user.getId()).getAchievement().get("Toujours debout") == 0L) {
             map.put("Toujours debout", System.currentTimeMillis());
             try {
@@ -1115,7 +1115,7 @@ public class Achivement {
             }
             return;
         }
-        int jetons = data.getProfils().get(user.getId()).getJetons_r\u00e9colt\u00e9();
+        int jetons = data.getProfils().get(user.getId()).getJetons_récolté();
         if (jetons > 2000 && data.getProfils().get(user.getId()).getAchievement().get("Fou des jeux") == 0L) {
             map.put("Fou des jeux", System.currentTimeMillis());
             try {
@@ -1281,7 +1281,7 @@ public class Achivement {
             }
             ap += 5;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Mineur confirm\u00e9``. Vous gagnez 5 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Mineur confirmé``. Vous gagnez 5 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Confirmed minor``. You won 5 Achievement point.").queue();
@@ -1602,8 +1602,8 @@ public class Achivement {
             return;
         }
         String pays = data.getProfils().get(user.getId()).getCountry();
-        if (!pays.equals("0") && !pays.equals("") && data.getProfils().get(user.getId()).getAchievement().get("Impliqu\u00e9") == 0L) {
-            map.put("Impliqu\u00e9", System.currentTimeMillis());
+        if (!pays.equals("0") && !pays.equals("") && data.getProfils().get(user.getId()).getAchievement().get("Impliqué") == 0L) {
+            map.put("Impliqué", System.currentTimeMillis());
             try {
                 data.getProfils().get(user.getId()).setAchievement(map);
             }
@@ -1613,7 +1613,7 @@ public class Achivement {
             }
             ++ap;
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous avez obtenu le succes ``Impliqu\u00e9``. Vous gagnez 1 achievement point.").queue();
+                channel.sendMessage("Vous avez obtenu le succes ``Impliqué``. Vous gagnez 1 achievement point.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You unlocked the success ``Involved``. You won 1 Achievement point.").queue();
@@ -1629,7 +1629,7 @@ public class Achivement {
         }
     }
 
-    @command(name="achievement", type=command.ExecutorType.ALL, descfr=" permet de voir votre progression dans les r\u00e9alisations que vous avez men\u00e9 dans le jeu", descen="lets see your progress in the achievements you have led in the game", topic=command.Topics.Game)
+    @command(name="achievement", type=command.ExecutorType.ALL, descfr=" permet de voir votre progression dans les réalisations que vous avez mené dans le jeu", descen="lets see your progress in the achievements you have led in the game", topic=command.Topics.Game)
     private void achievement(MessageChannel message, Guild guild, String[] args, User user, JDA jda, command.Language lang, ProfilData data) {
         int c1;
         try {
@@ -1692,47 +1692,47 @@ public class Achivement {
             calendar.setTimeInMillis(Long.parseLong(EntrepreneurIII));
             EntrepreneurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String Conqu\u00e9rantI = map.get("Conqu\u00e9rant I").toString();
-        if (Conqu\u00e9rantI.equals("0")) {
-            Conqu\u00e9rantI = ":negative_squared_cross_mark:";
+        String ConquérantI = map.get("Conquérant I").toString();
+        if (ConquérantI.equals("0")) {
+            ConquérantI = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(Conqu\u00e9rantI));
-            Conqu\u00e9rantI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(ConquérantI));
+            ConquérantI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String Conqu\u00e9rantII = map.get("Conqu\u00e9rant II").toString();
-        if (Conqu\u00e9rantII.equals("0")) {
-            Conqu\u00e9rantII = ":negative_squared_cross_mark:";
+        String ConquérantII = map.get("Conquérant II").toString();
+        if (ConquérantII.equals("0")) {
+            ConquérantII = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(Conqu\u00e9rantII));
-            Conqu\u00e9rantII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(ConquérantII));
+            ConquérantII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String Conqu\u00e9rantIII = map.get("Conqu\u00e9rant III").toString();
-        if (Conqu\u00e9rantIII.equals("0")) {
-            Conqu\u00e9rantIII = ":negative_squared_cross_mark:";
+        String ConquérantIII = map.get("Conquérant III").toString();
+        if (ConquérantIII.equals("0")) {
+            ConquérantIII = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(Conqu\u00e9rantIII));
-            Conqu\u00e9rantIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(ConquérantIII));
+            ConquérantIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String D\u00e9fenseurI = map.get("D\u00e9fenseur I").toString();
-        if (D\u00e9fenseurI.equals("0")) {
-            D\u00e9fenseurI = ":negative_squared_cross_mark:";
+        String DéfenseurI = map.get("Défenseur I").toString();
+        if (DéfenseurI.equals("0")) {
+            DéfenseurI = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(D\u00e9fenseurI));
-            D\u00e9fenseurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(DéfenseurI));
+            DéfenseurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String D\u00e9fenseurII = map.get("D\u00e9fenseur II").toString();
-        if (D\u00e9fenseurII.equals("0")) {
-            D\u00e9fenseurII = ":negative_squared_cross_mark:";
+        String DéfenseurII = map.get("Défenseur II").toString();
+        if (DéfenseurII.equals("0")) {
+            DéfenseurII = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(D\u00e9fenseurII));
-            D\u00e9fenseurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(DéfenseurII));
+            DéfenseurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String D\u00e9fenseurIII = map.get("D\u00e9fenseur III").toString();
-        if (D\u00e9fenseurIII.equals("0")) {
-            D\u00e9fenseurIII = ":negative_squared_cross_mark:";
+        String DéfenseurIII = map.get("Défenseur III").toString();
+        if (DéfenseurIII.equals("0")) {
+            DéfenseurIII = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(D\u00e9fenseurIII));
-            D\u00e9fenseurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(DéfenseurIII));
+            DéfenseurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EspionI = map.get("Espion I").toString();
         if (EspionI.equals("0")) {
@@ -1860,7 +1860,7 @@ public class Achivement {
             calendar.setTimeInMillis(Long.parseLong(ParrainDeLaMafia));
             ParrainDeLaMafia = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String ToujoursPresent = map.get("Toujours pr\u00e9sent").toString();
+        String ToujoursPresent = map.get("Toujours présent").toString();
         if (ToujoursPresent.equals("0")) {
             ToujoursPresent = ":negative_squared_cross_mark:";
         } else {
@@ -2000,12 +2000,12 @@ public class Achivement {
             calendar.setTimeInMillis(Long.parseLong(Useless));
             Useless = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
-        String Impliqu\u00e9 = map.get("Impliqu\u00e9").toString();
-        if (Impliqu\u00e9.equals("0")) {
-            Impliqu\u00e9 = ":negative_squared_cross_mark:";
+        String Impliqué = map.get("Impliqué").toString();
+        if (Impliqué.equals("0")) {
+            Impliqué = ":negative_squared_cross_mark:";
         } else {
-            calendar.setTimeInMillis(Long.parseLong(Impliqu\u00e9));
-            Impliqu\u00e9 = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
+            calendar.setTimeInMillis(Long.parseLong(Impliqué));
+            Impliqué = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Starter = map.get("Starter").toString();
         if (Starter.equals("0")) {
@@ -2100,11 +2100,11 @@ public class Achivement {
             if (c1 == 1) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 1", "Travailleur : " + travailleur + "\n" + "Collecteur I : " + CollecteurI + "\n" + "Collecteur II : " + CollecteurII + "\n" + "Collecteur III : " + CollecteurIII + "\n" + "Entrepreneur I : " + EntrepreneurI + "\n" + "Entrepreneur II : " + EntrepreneurII + "\n" + "Entrepreneur III : " + EntrepreneurIII + "\n" + "Conquerant I : " + Conqu\u00e9rantI + "\n" + "Conquerant II : " + Conqu\u00e9rantII + "\n" + "Conquerant III : " + Conqu\u00e9rantIII + "\n", true);
+                builder.addField("Page 1", "Travailleur : " + travailleur + "\n" + "Collecteur I : " + CollecteurI + "\n" + "Collecteur II : " + CollecteurII + "\n" + "Collecteur III : " + CollecteurIII + "\n" + "Entrepreneur I : " + EntrepreneurI + "\n" + "Entrepreneur II : " + EntrepreneurII + "\n" + "Entrepreneur III : " + EntrepreneurIII + "\n" + "Conquerant I : " + ConquérantI + "\n" + "Conquerant II : " + ConquérantII + "\n" + "Conquerant III : " + ConquérantIII + "\n", true);
             } else if (c1 == 2) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 2", "Defenseur I : " + D\u00e9fenseurI + "\n" + "Defenseur II : " + D\u00e9fenseurII + "\n" + "Defenseur III : " + D\u00e9fenseurIII + "\n" + "Espion I : " + EspionI + "\n" + "Espion II : " + EspionII + "\n" + "Espion III : " + EspionIII + "\n" + "Farmer I : " + FarmerI + "\n" + "Farmer II : " + FarmerII + "\n" + "Farmer III : " + FarmerIII + "\n" + "Instructeur : " + Instructeur + "\n", true);
+                builder.addField("Page 2", "Defenseur I : " + DéfenseurI + "\n" + "Defenseur II : " + DéfenseurII + "\n" + "Defenseur III : " + DéfenseurIII + "\n" + "Espion I : " + EspionI + "\n" + "Espion II : " + EspionII + "\n" + "Espion III : " + EspionIII + "\n" + "Farmer I : " + FarmerI + "\n" + "Farmer II : " + FarmerII + "\n" + "Farmer III : " + FarmerIII + "\n" + "Instructeur : " + Instructeur + "\n", true);
             } else if (c1 == 3) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
@@ -2112,7 +2112,7 @@ public class Achivement {
             } else if (c1 == 4) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 4", "Parrain de la mafia : " + ParrainDeLaMafia + "\n" + "Toujours present : " + ToujoursPresent + "\n" + "Toujours debout : " + ToujoursDebout + "\n" + "Fou des jeux : " + FouDesJeux + "\n" + "Croyant : " + Croyant + "\n" + "Loser : " + L + "\n" + "Investisseur I" + InvestisseurI + "\n" + "Investisseur II" + InvestisseurII + "\n" + "Investisseur III" + InvestisseurIII + "\n" + "Mineur confirm\u00e9 : " + MineurConfirme + "\n", true);
+                builder.addField("Page 4", "Parrain de la mafia : " + ParrainDeLaMafia + "\n" + "Toujours present : " + ToujoursPresent + "\n" + "Toujours debout : " + ToujoursDebout + "\n" + "Fou des jeux : " + FouDesJeux + "\n" + "Croyant : " + Croyant + "\n" + "Loser : " + L + "\n" + "Investisseur I" + InvestisseurI + "\n" + "Investisseur II" + InvestisseurII + "\n" + "Investisseur III" + InvestisseurIII + "\n" + "Mineur confirmé : " + MineurConfirme + "\n", true);
             } else if (c1 == 5) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
@@ -2120,7 +2120,7 @@ public class Achivement {
             } else if (c1 == 6) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 6", "Useless : " + Useless + "\n" + "Impliqu\u00e9 : " + Impliqu\u00e9 + "\n" + "Starter : " + Starter + "\n" + "Grinder I : " + GrinderI + "\n" + "Grinder II : " + GrinderII + "\n" + "Grinder III : " + GrinderIII + "\n" + "You'r special : " + Yourspecial + "\n" + "Catch them all : " + Catch_them_all + "\n" + "SwordMaster : " + SwordMaster + "\n" + "Armorer : " + Armorer + "\n" + "Collector I : " + CollectorI + "\n" + "Collector II : " + CollectorII + "\n" + "Collector III : " + CollectorIII + "\n" + "Melting : " + Melting, true);
+                builder.addField("Page 6", "Useless : " + Useless + "\n" + "Impliqué : " + Impliqué + "\n" + "Starter : " + Starter + "\n" + "Grinder I : " + GrinderI + "\n" + "Grinder II : " + GrinderII + "\n" + "Grinder III : " + GrinderIII + "\n" + "You'r special : " + Yourspecial + "\n" + "Catch them all : " + Catch_them_all + "\n" + "SwordMaster : " + SwordMaster + "\n" + "Armorer : " + Armorer + "\n" + "Collector I : " + CollectorI + "\n" + "Collector II : " + CollectorII + "\n" + "Collector III : " + CollectorIII + "\n" + "Melting : " + Melting, true);
             }
             builder.setFooter("Page " + c1 + " / 6", guild.getIconUrl());
         }
@@ -2128,11 +2128,11 @@ public class Achivement {
             if (c1 == 1) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 1", "Worker : " + travailleur + "\n" + "Collector I : " + CollecteurI + "\n" + "Collector II : " + CollecteurII + "\n" + "Collector III : " + CollecteurIII + "\n" + "Contractor I : " + EntrepreneurI + "\n" + "Contractor II : " + EntrepreneurII + "\n" + "Contractor III : " + EntrepreneurIII + "\n" + "Conqueror I : " + Conqu\u00e9rantI + "\n" + "Conqueror II : " + Conqu\u00e9rantII + "\n" + "Conqueror III : " + Conqu\u00e9rantIII + "\n", true);
+                builder.addField("Page 1", "Worker : " + travailleur + "\n" + "Collector I : " + CollecteurI + "\n" + "Collector II : " + CollecteurII + "\n" + "Collector III : " + CollecteurIII + "\n" + "Contractor I : " + EntrepreneurI + "\n" + "Contractor II : " + EntrepreneurII + "\n" + "Contractor III : " + EntrepreneurIII + "\n" + "Conqueror I : " + ConquérantI + "\n" + "Conqueror II : " + ConquérantII + "\n" + "Conqueror III : " + ConquérantIII + "\n", true);
             } else if (c1 == 2) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 2", "Defender I : " + D\u00e9fenseurI + "\n" + "Defender II : " + D\u00e9fenseurII + "\n" + "Defender III : " + D\u00e9fenseurIII + "\n" + "Spy I : " + EspionI + "\n" + "Spy II : " + EspionII + "\n" + "Spy III : " + EspionIII + "\n" + "Farmer I : " + FarmerI + "\n" + "Farmer II : " + FarmerII + "\n" + "Farmer III : " + FarmerIII + "\n" + "Instructor : " + Instructeur + "\n", true);
+                builder.addField("Page 2", "Defender I : " + DéfenseurI + "\n" + "Defender II : " + DéfenseurII + "\n" + "Defender III : " + DéfenseurIII + "\n" + "Spy I : " + EspionI + "\n" + "Spy II : " + EspionII + "\n" + "Spy III : " + EspionIII + "\n" + "Farmer I : " + FarmerI + "\n" + "Farmer II : " + FarmerII + "\n" + "Farmer III : " + FarmerIII + "\n" + "Instructor : " + Instructeur + "\n", true);
             } else if (c1 == 3) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
@@ -2148,7 +2148,7 @@ public class Achivement {
             } else if (c1 == 6) {
                 builder.setTitle("Achievement");
                 builder.setColor(color.couleurAleatoire(user));
-                builder.addField("Page 6", "Useless : " + Useless + "\n" + "Involved : " + Impliqu\u00e9 + "\n" + "Starter : " + Starter + "\n" + "Grinder I : " + GrinderI + "\n" + "Grinder II : " + GrinderII + "\n" + "Grinder III : " + GrinderIII + "\n" + "You'r special : " + Yourspecial + "\n" + "Catch them all : " + Catch_them_all + "\n" + "SwordMaster : " + SwordMaster + "\n" + "Armorer : " + Armorer + "\n" + "Collector I : " + CollectorI + "\n" + "Collector II : " + CollectorII + "\n" + "Collector III : " + CollectorIII + "\n" + "Melting : " + Melting, true);
+                builder.addField("Page 6", "Useless : " + Useless + "\n" + "Involved : " + Impliqué + "\n" + "Starter : " + Starter + "\n" + "Grinder I : " + GrinderI + "\n" + "Grinder II : " + GrinderII + "\n" + "Grinder III : " + GrinderIII + "\n" + "You'r special : " + Yourspecial + "\n" + "Catch them all : " + Catch_them_all + "\n" + "SwordMaster : " + SwordMaster + "\n" + "Armorer : " + Armorer + "\n" + "Collector I : " + CollectorI + "\n" + "Collector II : " + CollectorII + "\n" + "Collector III : " + CollectorIII + "\n" + "Melting : " + Melting, true);
             }
             builder.setFooter("Page " + c1 + " / 6", guild.getIconUrl());
         }

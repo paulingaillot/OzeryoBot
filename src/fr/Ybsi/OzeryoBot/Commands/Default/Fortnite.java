@@ -49,7 +49,7 @@ public class Fortnite {
         block60 : {
             String username;
             String plateforme;
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/");
+            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/");
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
                 if (str.equals(args[0]) || str.equals(args[1])) continue;
@@ -75,14 +75,14 @@ public class Fortnite {
             System.out.println(plateforme);
             System.out.println(c2);
             if (username.equals("") && plateforme.equals("") && c2.equals("")) {
-                username = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/username.txt");
-                plateforme = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/plateforme.txt");
+                username = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/username.txt");
+                plateforme = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/plateforme.txt");
                 c2 = "";
             } else if (username.equals("") && c2.equals("")) {
                 if (plateforme.equals("last") || plateforme.equals("solo") || plateforme.equals("duo") || plateforme.equals("section")) {
                     c2 = plateforme;
-                    plateforme = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/plateforme.txt");
-                    username = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/username.txt");
+                    plateforme = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/plateforme.txt");
+                    username = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/username.txt");
                 } else {
                     username = plateforme;
                     plateforme = "pc";
@@ -127,7 +127,7 @@ public class Fortnite {
                     buider.addField("\ud83c\udfc6 | Win % | \ud83c\udfc6", ((JsonObject)jsonObject.getAsJsonArray("lifeTimeStats").get(9)).get("value").toString().replace("\"", ""), true);
                     buider.addField("\ud83d\udcaf | Score | \ud83d\udcaf", ((JsonObject)jsonObject.getAsJsonArray("lifeTimeStats").get(6)).get("value").toString().replace("\"", ""), true);
                     if (lang == command.Language.fr) {
-                        buider.addField("\ud83c\udfae | Matchs Jou\u00e9s | \ud83c\udfae", ((JsonObject)jsonObject.getAsJsonArray("lifeTimeStats").get(7)).get("value").toString().replace("\"", ""), true);
+                        buider.addField("\ud83c\udfae | Matchs Joués | \ud83c\udfae", ((JsonObject)jsonObject.getAsJsonArray("lifeTimeStats").get(7)).get("value").toString().replace("\"", ""), true);
                     }
                     if (lang == command.Language.fr) {
                         buider.addField("\ud83c\udfae | Played Matches | \ud83c\udfae", ((JsonObject)jsonObject.getAsJsonArray("lifeTimeStats").get(7)).get("value").toString().replace("\"", ""), true);
@@ -227,12 +227,12 @@ public class Fortnite {
                     }
                     message.sendMessage(buider.build()).queue();
                 } else if (c2.equals("register")) {
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/");
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/");
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/plateforme.txt", plateforme, 1);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/fortnite/username.txt", username, 1);
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/");
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/");
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/plateforme.txt", plateforme, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/fortnite/username.txt", username, 1);
                     if (lang == command.Language.fr) {
-                        message.sendMessage("Vous etes d\u00e9sormais enregistr\u00e9 sous le nom de **" + username + "** sur la platerofme **" + plateforme + "**.").queue();
+                        message.sendMessage("Vous etes désormais enregistré sous le nom de **" + username + "** sur la platerofme **" + plateforme + "**.").queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("You are now registered on the username : **" + username + "** and on the platform : **" + plateforme + "**.").queue();
@@ -324,7 +324,7 @@ public class Fortnite {
             }
             catch (IOException e) {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("D\u00e9sol\u00e9 mais le joueur que vous recherchez ne semble pas exister").queue();
+                    message.sendMessage("Désolé mais le joueur que vous recherchez ne semble pas exister").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("Sorry but this player doesn't exist").queue();
@@ -333,7 +333,7 @@ public class Fortnite {
             }
             catch (NullPointerException ei) {
                 if (lang == command.Language.fr) {
-                    message.sendMessage("D\u00e9sol\u00e9 mais le joueur que vous recherchez ne semble pas exister").queue();
+                    message.sendMessage("Désolé mais le joueur que vous recherchez ne semble pas exister").queue();
                 }
                 if (lang != command.Language.en) break block60;
                 message.sendMessage("Sorry but this player doesn't exist").queue();

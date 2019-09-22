@@ -176,14 +176,14 @@ public class City {
                 }
             }
             int Game_EXP = data.getProfils().get(user.getId()).getXp();
-            String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+            String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
             try {
                 Pet_EXP = Integer.parseInt(data.getProfils().get(user.getId()).getPet().get(pet).get(1));
             }
             catch (NullPointerException e) {
                 Pet_EXP = 0;
             }
-            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + pet);
+            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + pet);
             double operation1 = Pet_EXP / 10;
             double operation2 = Math.sqrt(operation1);
             double Pet_Level = Math.round(operation2);
@@ -205,11 +205,11 @@ public class City {
                     pays = "any";
                 }
             }
-            int point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pays/" + pays + "/points.txt"));
+            int point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/points.txt"));
             double Glevel2 = point / 1000;
             double Glevel3 = Math.sqrt(Glevel2);
             int Glevel = (int)Math.round(Glevel3);
-            String eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/eglise.txt");
+            String eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
             cc = 500.0 + Math.pow(cc2 + 1, 2.0) * (double)(40 * level);
             long popmax = (int)Math.round(cc);
             if (eglise.equals("Hades")) {
@@ -452,7 +452,7 @@ public class City {
                 }
             }
             int auberge = (Integer)building.get("auberge");
-            int march\u00e9 = (Integer)building.get("march\u00e9");
+            int marché = (Integer)building.get("marché");
             int habitation = (Integer)building.get("habitations");
             long money = data.getProfils().get(user.getId()).getMoney();
             int A_bois = (Integer)res.get("bois");
@@ -473,15 +473,15 @@ public class City {
             int forge = (Integer)building.get("forge");
             int centrale = (Integer)building.get("centrale nucleaire");
             int leveltransport = (Integer)building.get("transport");
-            int troph\u00e9es = data.getProfils().get(user.getId()).getTrophy();
-            data.getProfils().get(user.getId()).setTrophy(troph\u00e9es);
+            int trophées = data.getProfils().get(user.getId()).getTrophy();
+            data.getProfils().get(user.getId()).setTrophy(trophées);
             try {
-                total = march\u00e9 + habitation + camp_entrainement + auberge + levelMine + sorcier + cirque + leveleglise + muraille + leveltransport + biblioth\u00e8que * 5;
+                total = marché + habitation + camp_entrainement + auberge + levelMine + sorcier + cirque + leveleglise + muraille + leveltransport + biblioth\u00e8que * 5;
             }
             catch (NumberFormatException e) {
                 total = 0;
             }
-            int IDH = troph\u00e9es / 25 + total + level + data.getProfils().get(user.getId()).getAp();
+            int IDH = trophées / 25 + total + level + data.getProfils().get(user.getId()).getAp();
             try {
                 data.getProfils().get(user.getId()).setIdh(IDH);
             }
@@ -489,7 +489,7 @@ public class City {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setIdh(IDH);
             }
-            String thumbail = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/logo.txt");
+            String thumbail = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo.txt");
             System.out.println(thumbail);
             if (!thumbail.equals("0")) {
                 builder.setThumbnail("http://ozeryo.sytes.net/logos/" + thumbail + ".png");
@@ -518,7 +518,7 @@ public class City {
                 emoji = ":rocket:";
                 nextupgrade = "";
             }
-            String titre = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/city.txt");
+            String titre = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/city.txt");
             if (titre.equals("0")) {
                 titre = String.valueOf(user.getName()) + "'s City";
             }
@@ -537,10 +537,10 @@ public class City {
             builder.addField("IDH", "" + IDH, true);
             builder.addBlankField(false);
             if (lang == command.Language.fr) {
-                builder.addField(":construction_site: | Construction ", ":convenience_store: **Habitations** : Tier " + habitation + " \n" + ":hospital: **Auberge** : Tier " + auberge + " \n" + ":office: **March\u00e9** : Tier " + march\u00e9 + " \n" + ":department_store: **Camp d'entrainement** : Tier " + camp_entrainement + " \n" + ":bear: **Cirque** : Tier " + cirque + " \n" + ":pick: **Mine** : Tier " + levelMine + " \n" + ":microscope: **Tour de Sorcier** : Tier " + sorcier + "\n" + ":classical_building: **Eglise** : Tier  " + eglise + " \n" + ":japanese_castle:  **Muraille** : Tier  " + muraille + " \n" + ":school: **Biblioth\u00e8que** : Tier  " + biblioth\u00e8que + "\n" + "\ud83c\udfea **Armurerie** : Tier " + armurerie + " \n" + "\ud83d\udd28 **Forge** : Tier " + forge + " \n" + emoji + " **" + nom + "** : Tier " + leveltransport + " (Next :" + nextupgrade + ") \n" + "**Centrale Nuclaire** : Tier " + centrale, false);
+                builder.addField(":construction_site: | Construction ", ":convenience_store: **Habitations** : Tier " + habitation + " \n" + ":hospital: **Auberge** : Tier " + auberge + " \n" + ":office: **Marché** : Tier " + marché + " \n" + ":department_store: **Camp d'entrainement** : Tier " + camp_entrainement + " \n" + ":bear: **Cirque** : Tier " + cirque + " \n" + ":pick: **Mine** : Tier " + levelMine + " \n" + ":microscope: **Tour de Sorcier** : Tier " + sorcier + "\n" + ":classical_building: **Eglise** : Tier  " + eglise + " \n" + ":japanese_castle:  **Muraille** : Tier  " + muraille + " \n" + ":school: **Biblioth\u00e8que** : Tier  " + biblioth\u00e8que + "\n" + "\ud83c\udfea **Armurerie** : Tier " + armurerie + " \n" + "\ud83d\udd28 **Forge** : Tier " + forge + " \n" + emoji + " **" + nom + "** : Tier " + leveltransport + " (Next :" + nextupgrade + ") \n" + "**Centrale Nuclaire** : Tier " + centrale, false);
             }
             if (lang == command.Language.en) {
-                builder.addField(":construction_site: | Buildings ", ":convenience_store: **Houses** : Tier " + habitation + " \n" + ":hospital: **Hostel** : Tier " + auberge + " \n" + ":office: **Market Place** : Tier " + march\u00e9 + " \n" + ":department_store: **training camp** : Tier " + camp_entrainement + " \n" + ":bear: **Circus** : Tier " + cirque + " \n" + ":pick: **Mine** : Tier " + levelMine + " \n" + ":microscope: **Wizard Tower** : Tier " + sorcier + "\n" + ":classical_building: **Church** : Tier  " + eglise + " \n" + ":japanese_castle:  **Wall** : Tier  " + muraille + " \n" + ":school: **Library** : Tier  " + biblioth\u00e8que + "\n" + "\ud83c\udfea **Armory** : Tier " + armurerie + " \n" + "\ud83d\udd28 **Wrought** : Tier " + forge + " \n" + emoji + " **" + nom + "** : Tier " + leveltransport + " (Next :" + nextupgrade + ")\n" + "**Centrale Nuclaire** : Tier " + centrale, false);
+                builder.addField(":construction_site: | Buildings ", ":convenience_store: **Houses** : Tier " + habitation + " \n" + ":hospital: **Hostel** : Tier " + auberge + " \n" + ":office: **Market Place** : Tier " + marché + " \n" + ":department_store: **training camp** : Tier " + camp_entrainement + " \n" + ":bear: **Circus** : Tier " + cirque + " \n" + ":pick: **Mine** : Tier " + levelMine + " \n" + ":microscope: **Wizard Tower** : Tier " + sorcier + "\n" + ":classical_building: **Church** : Tier  " + eglise + " \n" + ":japanese_castle:  **Wall** : Tier  " + muraille + " \n" + ":school: **Library** : Tier  " + biblioth\u00e8que + "\n" + "\ud83c\udfea **Armory** : Tier " + armurerie + " \n" + "\ud83d\udd28 **Wrought** : Tier " + forge + " \n" + emoji + " **" + nom + "** : Tier " + leveltransport + " (Next :" + nextupgrade + ")\n" + "**Centrale Nuclaire** : Tier " + centrale, false);
             }
             builder.addBlankField(false);
             if (lang == command.Language.fr) {
@@ -551,17 +551,17 @@ public class City {
             }
             builder.addBlankField(false);
             if (lang == command.Language.fr) {
-                builder.addField("\u2139 | Info ", ":house: **Habitations** = " + habitations + "\n" + "\u2694 **Force militaire** = " + Utils.format(soldier) + " \n\ud83d\udcb0  **Money** = " + Utils.format(money) + " $ \n\ud83d\uddfa  **Pays** = " + pays + " (*Level* " + Glevel + ") \n:trophy: **Troph\u00e9es** = " + Utils.format(troph\u00e9es) + " \n:house_with_garden: **Home** = " + home, false);
+                builder.addField("\u2139 | Info ", ":house: **Habitations** = " + habitations + "\n" + "\u2694 **Force militaire** = " + Utils.format(soldier) + " \n\ud83d\udcb0  **Money** = " + Utils.format(money) + " $ \n\ud83d\uddfa  **Pays** = " + pays + " (*Level* " + Glevel + ") \n:trophy: **Trophées** = " + Utils.format(trophées) + " \n:house_with_garden: **Home** = " + home, false);
             }
             if (lang == command.Language.en) {
-                builder.addField("\u2139 | Info ", ":house: **Residentials** = " + habitations + "\n" + "\u2694 **Military force** = " + Utils.format(soldier) + " \n\ud83d\udcb0  **Money** = " + Utils.format(money) + " $ \n\ud83d\uddfa  **Country** = " + pays + " (*Level* " + Glevel + ") \n:trophy: **Trophies** = " + Utils.format(troph\u00e9es) + " \n:house_with_garden: **Home** = " + home, false);
+                builder.addField("\u2139 | Info ", ":house: **Residentials** = " + habitations + "\n" + "\u2694 **Military force** = " + Utils.format(soldier) + " \n\ud83d\udcb0  **Money** = " + Utils.format(money) + " $ \n\ud83d\uddfa  **Country** = " + pays + " (*Level* " + Glevel + ") \n:trophy: **Trophies** = " + Utils.format(trophées) + " \n:house_with_garden: **Home** = " + home, false);
             }
             channel.sendMessage(builder.build()).queue();
             int tuto = data.getProfils().get(user.getId()).getTuto();
             if (tuto == 3) {
                 data.getProfils().get(user.getId()).setTuto(4);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous pouvez y voir votre exp, le niveau de vos constructions et vos r\u00e9serves de ressources. Le mana, affich\u00e9 en haut, vous permet de r\u00e9colter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.").queue();
+                    channel.sendMessage("Vous pouvez y voir votre exp, le niveau de vos constructions et vos réserves de ressources. Le mana, affiché en haut, vous permet de récolter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can see your exp, the level of your builds, and your resource reserves. The mana, shown at the top, allows you to collect resources using work command, try now with =work all.").queue();
@@ -569,7 +569,7 @@ public class City {
             } else if (tuto == 6) {
                 data.getProfils().get(user.getId()).setTuto(7);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux diff\u00e9rents mat\u00e9riaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.").queue();
+                    channel.sendMessage("Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux différents matériaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.").queue();
@@ -577,8 +577,8 @@ public class City {
             }
         } else if (c1.equals("logo")) {
             if (c2.equals("list")) {
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/logo/");
-                File[] files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/logo/");
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo/");
+                File[] files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo/");
                 EmbedBuilder builder = new EmbedBuilder();
                 for (File file : files) {
                     builder.addField(file.getName(), "=city logo " + file.getName(), true);
@@ -593,18 +593,18 @@ public class City {
                 builder.setFooter(guild.getName(), guild.getIconUrl());
                 channel.sendMessage(builder.build()).queue();
             } else {
-                String logo = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/logo/" + c2);
+                String logo = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo/" + c2);
                 if (!logo.equals("0")) {
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/logo.txt", c2, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo.txt", c2, 1);
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Votre logo est desormais le logo nomm\u00e9 " + c2).queue();
+                        channel.sendMessage("Votre logo est desormais le logo nommé " + c2).queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("Your logo is now " + c2).queue();
                     }
                 } else {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("D\u00e9sol\u00e9 mais vous n'avez pas debloqu\u00e9 ce logo.").queue();
+                        channel.sendMessage("Désolé mais vous n'avez pas debloqué ce logo.").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("Sorry but you don't unlocked this logo").queue();
@@ -613,7 +613,7 @@ public class City {
             }
         } else if (c1.equals("rename")) {
             String name = c3;
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/city.txt", name, 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/city.txt", name, 1);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Le nouveau nom de votre ville est : " + name).queue();
             }

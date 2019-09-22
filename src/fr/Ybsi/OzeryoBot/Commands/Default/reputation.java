@@ -47,14 +47,14 @@ public class reputation {
                 mMinute = (int)((delay2 %= 3600000L) / 60000L);
                 mSecond = (int)((delay2 %= 60000L) / 1000L);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous avez " + rep + " de R\u00e9putation. Vous pourrez en donner un dans " + (23 - mHour) + " heures " + (60 - mMinute) + " minutes " + (60 - mSecond) + " secondes.").queue();
+                    channel.sendMessage("Vous avez " + rep + " de Réputation. Vous pourrez en donner un dans " + (23 - mHour) + " heures " + (60 - mMinute) + " minutes " + (60 - mSecond) + " secondes.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You have " + rep + " reputation points. You will be able to give a reputation point in " + (23 - mHour) + " hours " + (59 - mMinute) + " minutes " + (59 - mSecond) + " seconds.").queue();
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous avez " + rep + " de R\u00e9putation. Vous pouvez donner un point de reputation").queue();
+                    channel.sendMessage("Vous avez " + rep + " de Réputation. Vous pouvez donner un point de reputation").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You have " + rep + " reputation points. You can give a reputation point to another player.").queue();

@@ -22,46 +22,46 @@ public class Quests {
         int totalpoints3;
         int totalpoints2;
         int totalpoints1;
-        String quest1 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest1.txt");
-        String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest2.txt");
-        String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest3.txt");
+        String quest1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest1.txt");
+        String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest2.txt");
+        String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest3.txt");
         int day = new Date().getDay();
         try {
-            totalpoints1 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/" + quest1));
+            totalpoints1 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + quest1));
         }
         catch (NumberFormatException e) {
             totalpoints1 = 0;
         }
         try {
-            totalpoints2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/" + quest2));
+            totalpoints2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + quest2));
         }
         catch (NumberFormatException e) {
             totalpoints2 = 0;
         }
         try {
-            totalpoints3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/" + quest3));
+            totalpoints3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + quest3));
         }
         catch (NumberFormatException e) {
             totalpoints3 = 0;
         }
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/");
         int points1 = 0;
         try {
-            points1 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + quest1 + ".txt"));
+            points1 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + quest1 + ".txt"));
         }
         catch (NumberFormatException e) {
             points1 = totalpoints1;
         }
         int points2 = 0;
         try {
-            points2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + quest2 + ".txt"));
+            points2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + quest2 + ".txt"));
         }
         catch (NumberFormatException e) {
             points2 = totalpoints2;
         }
         int points3 = 0;
         try {
-            points3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + quest3 + ".txt"));
+            points3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + quest3 + ".txt"));
         }
         catch (NumberFormatException e) {
             points3 = totalpoints3;

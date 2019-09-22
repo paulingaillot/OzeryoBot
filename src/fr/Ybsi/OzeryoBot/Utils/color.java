@@ -13,15 +13,15 @@ public class color {
         if (Premium.Premium(user)) {
             int b;
             int g;
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Premium/Color/");
-            int r = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Premium/Color/red.txt"));
+            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/");
+            int r = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/red.txt"));
             if (r == 0) {
                 r = (int)(Math.random() * 255.0);
             }
-            if ((g = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Premium/Color/green.txt"))) == 0) {
+            if ((g = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/green.txt"))) == 0) {
                 r = (int)(Math.random() * 255.0);
             }
-            if ((b = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Premium/Color/blue.txt"))) == 0) {
+            if ((b = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/blue.txt"))) == 0) {
                 r = (int)(Math.random() * 255.0);
             }
             Color couleur = new Color(r, g, b);

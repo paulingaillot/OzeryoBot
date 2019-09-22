@@ -47,7 +47,7 @@ public class Cosmetics {
             mess.editMessage(":sparkling_heart: ").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 70 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 70 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 70 rep to use this animated emoji").queue();
@@ -66,7 +66,7 @@ public class Cosmetics {
             mess.editMessage(":joy:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 60 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 60 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 60 rep to use this animated emoji").queue();
@@ -86,7 +86,7 @@ public class Cosmetics {
             mess.editMessage(":middle_finger:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 100 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 100 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 100 rep to use this animated emoji").queue();
@@ -107,7 +107,7 @@ public class Cosmetics {
             mess.editMessage(":beach:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 80 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 80 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 80 rep to use this animated emoji").queue();
@@ -126,7 +126,7 @@ public class Cosmetics {
             mess.editMessage(":umbrella:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 90 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 90 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 90 rep to use this animated emoji").queue();
@@ -144,7 +144,7 @@ public class Cosmetics {
             mess.editMessage(":surfer:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 120 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 120 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 120 rep to use this animated emoji").queue();
@@ -166,7 +166,7 @@ public class Cosmetics {
             mess.editMessage(":airplane_arriving:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 140 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 140 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 140 rep to use this animated emoji").queue();
@@ -193,7 +193,7 @@ public class Cosmetics {
             mess.editMessage(":man_dancing:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 160 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 160 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 160 rep to use this animated emoji").queue();
@@ -211,7 +211,7 @@ public class Cosmetics {
             mess.editMessage(":scream:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 180 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 180 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 180 rep to use this animated emoji").queue();
@@ -230,7 +230,7 @@ public class Cosmetics {
             mess.editMessage(":speak_no_evil:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 200 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 200 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 200 rep to use this animated emoji").queue();
@@ -253,7 +253,7 @@ public class Cosmetics {
             mess.editMessage(":waxing_gibbous_moon:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 240 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 240 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 240 rep to use this animated emoji").queue();
@@ -276,7 +276,7 @@ public class Cosmetics {
             mess.editMessage(":dizzy_face:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 280 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 280 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 280 rep to use this animated emoji").queue();
@@ -350,7 +350,7 @@ public class Cosmetics {
             mess.editMessage(":unlock:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez etre dans le top 5 des coffres fort pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez etre dans le top 5 des coffres fort pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must be at top 5 on the Cf LeaderBoard to use this animated emoji").queue();
@@ -369,7 +369,7 @@ public class Cosmetics {
             mess.editMessage(":mute:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 300 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 300 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 300 rep to use this animated emoji").queue();
@@ -396,7 +396,7 @@ public class Cosmetics {
             mess.editMessage(":clock12:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 500 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 500 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 500 rep to use this animated emoji").queue();
@@ -419,7 +419,7 @@ public class Cosmetics {
             mess.editMessage(":trophy:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez etre premium pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez etre premium pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must be premium to use this animated emoji").queue();
@@ -461,7 +461,7 @@ public class Cosmetics {
             mess.editMessage(":sleeping_accommodation:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez etre top 5 dans le toprep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez etre top 5 dans le toprep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must be top 5 on the Rep LeaderBoard to use this animated emoji").queue();
@@ -479,7 +479,7 @@ public class Cosmetics {
             mess.editMessage(":snowman2:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 350 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 350 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 350 rep to use this animated emoji.").queue();
@@ -505,7 +505,7 @@ public class Cosmetics {
             mess.editMessage(":kiss:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 400 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 400 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 400 rep to use this animated emoji.").queue();
@@ -524,7 +524,7 @@ public class Cosmetics {
             mess.editMessage(":volcano:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 10 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 10 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 10 rep to use this animated emoji.").queue();
@@ -543,7 +543,7 @@ public class Cosmetics {
             mess.editMessage(":rage:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 30 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 30 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 30 rep to use this animated emoji.").queue();
@@ -562,7 +562,7 @@ public class Cosmetics {
             mess.editMessage(":sob:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 20 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 20 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 20 rep to use this animated emoji.").queue();
@@ -582,7 +582,7 @@ public class Cosmetics {
             mess.editMessage(":skull_crossbones:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 40 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 40 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 40 rep to use this animated emoji.").queue();
@@ -604,7 +604,7 @@ public class Cosmetics {
             mess.editMessage(":thunder_cloud_rain:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez avoir 50 rep pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez avoir 50 rep pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 50 rep to use this animated emoji.").queue();
@@ -621,7 +621,7 @@ public class Cosmetics {
             mess.editMessage(":sweat_drops:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous devez etre admin pour utiliser cet emoji anim\u00e9").queue();
+                channel.sendMessage("Vous devez etre admin pour utiliser cet emoji animé").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You must have 50 rep to use this animated emoji.").queue();

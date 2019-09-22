@@ -42,8 +42,8 @@ implements EventListener {
         }
         Guild guild = event.getGuild();
         MessageChannel channel = event.getChannel();
-        String ChannelCible = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt");
-        String lastUser = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/countuser.txt");
+        String ChannelCible = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt");
+        String lastUser = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/countuser.txt");
         if (channel.getId().equals(ChannelCible)) {
             int counter;
             command.Language lang;
@@ -55,7 +55,7 @@ implements EventListener {
             }
             String message = event.getMessage().getContentRaw();
             try {
-                counter = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/counter.txt"));
+                counter = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/counter.txt"));
             }
             catch (NumberFormatException e) {
                 counter = 0;
@@ -67,19 +67,19 @@ implements EventListener {
             }
             catch (NumberFormatException e) {
                 if (args[0].equals("stop") || args[0].equals("remove") || args[0].equals("off")) {
-                    TextFileWriter.delete("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt");
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/counter.txt", "0", 1);
-                    TextFileWriter.delete("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/countuser.txt");
+                    TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt");
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/counter.txt", "0", 1);
+                    TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/countuser.txt");
                     return;
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Le combo a \u00e9t\u00e9 reinitialis\u00e9 ...").queue();
+                    channel.sendMessage("Le combo a été reinitialisé ...").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("The combo has been reset ...").queue();
                 }
                 channel.sendMessage("0").queue();
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/counter.txt", "0", 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/counter.txt", "0", 1);
                 return;
             }
             if (messageNumber == counter + 1 && !event.getAuthor().getId().equals(lastUser)) {
@@ -88,18 +88,18 @@ implements EventListener {
                 String deuxieme;
                 File[] files;
                 String troisieme;
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/counter.txt", Integer.toString(messageNumber), 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/countuser.txt", event.getAuthor().getId(), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/counter.txt", Integer.toString(messageNumber), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/countuser.txt", event.getAuthor().getId(), 1);
                 try {
-                    userPoint = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count/" + event.getAuthor().getId()));
+                    userPoint = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count/" + event.getAuthor().getId()));
                 }
                 catch (NumberFormatException e) {
                     userPoint = 0;
                 }
-                TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count");
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count/" + event.getAuthor().getId(), Integer.toString(++userPoint), 1);
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count");
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count/" + event.getAuthor().getId(), Integer.toString(++userPoint), 1);
                 HashMap<String, Integer> classement = new HashMap<String, Integer>();
-                for (File file : files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count/")) {
+                for (File file : files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count/")) {
                     String member;
                     try {
                         member = DiscordBot.getjda().getUserById(file.getName()).getName();
@@ -149,13 +149,13 @@ implements EventListener {
                 return;
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Le combo a \u00e9t\u00e9 reinitialis\u00e9 ...").queue();
+                channel.sendMessage("Le combo a été reinitialisé ...").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("The combo has been reset ...").queue();
             }
             channel.sendMessage("0").queue();
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/counter.txt", "0", 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/counter.txt", "0", 1);
             return;
         }
     }

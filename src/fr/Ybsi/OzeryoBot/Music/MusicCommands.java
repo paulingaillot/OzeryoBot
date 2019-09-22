@@ -71,7 +71,7 @@ public class MusicCommands {
             VoiceChannel voiceChannel = guild.getMember(user).getVoiceState().getChannel();
             if (voiceChannel == null) {
                 if (lang == command.Language.fr) {
-                    textChannel.sendMessage("Vous devez \u00eatre connect\u00e9 \u00e0 un salon vocal.").queue();
+                    textChannel.sendMessage("Vous devez \u00eatre connecté \u00e0 un salon vocal.").queue();
                 }
                 if (lang == command.Language.en) {
                     textChannel.sendMessage("You must be connected on a vocal channel.").queue();
@@ -95,7 +95,7 @@ public class MusicCommands {
             return;
         }
         manager.getPlayer(guild).skipTrack();
-        textChannel.sendMessage("La lecture est pass\u00e9 \u00e0 la piste suivante.").queue();
+        textChannel.sendMessage("La lecture est passé \u00e0 la piste suivante.").queue();
     }
 
     @command(name="Gplaylist", type=command.ExecutorType.USER, topic=command.Topics.Music)
@@ -175,7 +175,7 @@ public class MusicCommands {
         } else if (c1.equals("clear")) {
             data.getGuildProfil().get(guild.getId()).setGplaylist(new ArrayList<String>());
             if (lang == command.Language.fr) {
-                channel.sendMessage("La playlist de votre guilde a \u00e9t\u00e9 nettoy\u00e9e.").queue();
+                channel.sendMessage("La playlist de votre guilde a été nettoyée.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("Your Guild Playlist has been clear.").queue();
@@ -208,7 +208,7 @@ public class MusicCommands {
             }
             player.getAudioPlayer().setVolume(Integer.parseInt(builder.toString()));
             if (lang == command.Language.fr) {
-                channel.sendMessage("le volume a \u00e9t\u00e9 set a :" + builder.toString()).queue();
+                channel.sendMessage("le volume a été set a :" + builder.toString()).queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("The volume is set on :" + builder.toString()).queue();
@@ -231,7 +231,7 @@ public class MusicCommands {
         player.getAudioPlayer().destroy();
         guild.getAudioManager().closeAudioConnection();
         if (lang == command.Language.fr) {
-            channel.sendMessage("La musique a \u00e9t\u00e9 arret\u00e9e").queue();
+            channel.sendMessage("La musique a été arretée").queue();
         }
         if (lang == command.Language.en) {
             channel.sendMessage("The song stopped").queue();
@@ -269,7 +269,7 @@ public class MusicCommands {
             builder.addField("Title", player.getAudioPlayer().getPlayingTrack().getInfo().title, true);
         }
         if (lang == command.Language.fr) {
-            builder.addField("Dur\u00e9e", String.valueOf((double)player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0) + " minutes", true);
+            builder.addField("Durée", String.valueOf((double)player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0) + " minutes", true);
         }
         if (lang == command.Language.en) {
             builder.addField("Duration", String.valueOf((double)player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0) + " minutes", true);
@@ -292,7 +292,7 @@ public class MusicCommands {
         } else {
             player.getAudioPlayer().setPaused(true);
             if (lang == command.Language.fr) {
-                channel.sendMessage("La musique a \u00e9t\u00e9 mise en pause").queue();
+                channel.sendMessage("La musique a été mise en pause").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("The song is now paused").queue();
@@ -317,7 +317,7 @@ public class MusicCommands {
             }
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("La Liste de lecture a \u00e9t\u00e9 m\u00e9lang\u00e9.").queue();
+            channel.sendMessage("La Liste de lecture a été mélangé.").queue();
         }
         if (lang == command.Language.en) {
             channel.sendMessage("The music list has been shuffled.").queue();

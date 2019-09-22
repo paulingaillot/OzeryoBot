@@ -31,43 +31,43 @@ public class Shop {
         int Aleastock;
         int Vstock;
         try {
-            Bstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/bois.txt"));
+            Bstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/bois.txt"));
         }
         catch (NumberFormatException e) {
             Bstock = 0;
         }
         try {
-            Astock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/argile.txt"));
+            Astock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/argile.txt"));
         }
         catch (NumberFormatException e) {
             Astock = 0;
         }
         try {
-            cuirStock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/cuir.txt"));
+            cuirStock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/cuir.txt"));
         }
         catch (NumberFormatException e) {
             cuirStock = 0;
         }
         try {
-            Vstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/pierre.txt"));
+            Vstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/pierre.txt"));
         }
         catch (NumberFormatException e) {
             Vstock = 0;
         }
         try {
-            pailleStock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/paille.txt"));
+            pailleStock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/paille.txt"));
         }
         catch (NumberFormatException e) {
             pailleStock = 0;
         }
         try {
-            Pstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/fer.txt"));
+            Pstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/fer.txt"));
         }
         catch (NumberFormatException e) {
             Pstock = 0;
         }
         try {
-            Aleastock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/alea.txt"));
+            Aleastock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/alea.txt"));
         }
         catch (NumberFormatException e) {
             Aleastock = 0;
@@ -108,10 +108,10 @@ public class Shop {
             builder.addField(":five: Straw", "**price :** 5.000$ \n **Stock :** " + pailleStock, true);
         }
         if (lang == command.Language.fr) {
-            builder.addField(":six: P\u00e9trole", "**prix :** 5.000$ \n **Stock :** " + Pstock, true);
+            builder.addField(":six: Pétrole", "**prix :** 5.000$ \n **Stock :** " + Pstock, true);
         }
         if (lang == command.Language.en) {
-            builder.addField(":six: P\u00e9trole", "**price :** 5.000$ \n **Stock :** " + Pstock, true);
+            builder.addField(":six: Pétrole", "**price :** 5.000$ \n **Stock :** " + Pstock, true);
         }
         if (lang == command.Language.fr) {
             builder.addField(":seven: Materiaux aleatoire", "**prix :** 2.500$ \n **Stock :** " + Aleastock, true);
@@ -164,7 +164,7 @@ public class Shop {
         }
         if (c2 <= 0) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Syntaxe : ``=buy [numero] [quantit\u00e9]``.").queue();
+                channel.sendMessage("Syntaxe : ``=buy [numero] [quantité]``.").queue();
             }
             if (lang != command.Language.en) return;
             channel.sendMessage("Syntax : ``=buy [number] [amount]``.").queue();
@@ -174,7 +174,7 @@ public class Shop {
             int Bstock2;
             int bois = res.get("bois");
             try {
-                Bstock2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/bois.txt"));
+                Bstock2 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/bois.txt"));
             }
             catch (NumberFormatException e) {
                 Bstock2 = 0;
@@ -207,14 +207,14 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/bois.txt", Integer.toString(Bstock2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/bois.txt", Integer.toString(Bstock2), 1);
                 try {
-                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
                 }
                 catch (NumberFormatException e) {
                     Pigeon = 0;
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Bravo, Vous venez d'acheter " + c2 + " bois.").queue();
                 }
@@ -233,7 +233,7 @@ public class Shop {
             int Astock;
             int argile = res.get("argile");
             try {
-                Astock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/argile.txt"));
+                Astock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/argile.txt"));
             }
             catch (NumberFormatException e) {
                 Astock = 0;
@@ -266,14 +266,14 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/argile.txt", Integer.toString(Astock), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/argile.txt", Integer.toString(Astock), 1);
                 try {
-                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
                 }
                 catch (NumberFormatException e) {
                     Pigeon = 0;
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Bravo, Vous venez d'acheter " + c2 + " argile.").queue();
                 }
@@ -292,7 +292,7 @@ public class Shop {
             int Bstock3;
             int cuir = res.get("cuir");
             try {
-                Bstock3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/cuir.txt"));
+                Bstock3 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/cuir.txt"));
             }
             catch (NumberFormatException e) {
                 Bstock3 = 0;
@@ -325,14 +325,14 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/cuir.txt", Integer.toString(Bstock3), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/cuir.txt", Integer.toString(Bstock3), 1);
                 try {
-                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
                 }
                 catch (NumberFormatException e) {
                     Pigeon = 0;
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Bravo, Vous venez d'acheter " + c2 + " cuir.").queue();
                 }
@@ -351,7 +351,7 @@ public class Shop {
             int Vstock;
             int pierre = res.get("pierre");
             try {
-                Vstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/pierre.txt"));
+                Vstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/pierre.txt"));
             }
             catch (NumberFormatException e) {
                 Vstock = 0;
@@ -384,14 +384,14 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/pierre.txt", Integer.toString(Vstock), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/pierre.txt", Integer.toString(Vstock), 1);
                 try {
-                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
                 }
                 catch (NumberFormatException e) {
                     Pigeon = 0;
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Bravo, Vous venez d'acheter " + c2 + " pierre.").queue();
                 }
@@ -410,7 +410,7 @@ public class Shop {
             int Pstock;
             int paille = res.get("paille");
             try {
-                Pstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/paille.txt"));
+                Pstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/paille.txt"));
             }
             catch (NumberFormatException e) {
                 Pstock = 0;
@@ -443,14 +443,14 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/paille.txt", Integer.toString(Pstock), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/paille.txt", Integer.toString(Pstock), 1);
                 try {
-                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                    Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
                 }
                 catch (NumberFormatException e) {
                     Pigeon = 0;
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Bravo, Vous venez d'acheter " + c2 + " paille.").queue();
                 }
@@ -469,7 +469,7 @@ public class Shop {
             int Bstock4;
             int fer = res.get("petrole");
             try {
-                Bstock4 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/fer.txt"));
+                Bstock4 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/fer.txt"));
             }
             catch (NumberFormatException e) {
                 Bstock4 = 0;
@@ -501,7 +501,7 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/fer.txt", Integer.toString(Bstock4), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/fer.txt", Integer.toString(Bstock4), 1);
                 int Pigeon = data.getProfils().get(user.getId()).getPigeon();
                 data.getProfils().get(user.getId()).setPigeon(Pigeon += c2);
                 if (lang == command.Language.fr) {
@@ -520,7 +520,7 @@ public class Shop {
         }
         if (c1 != 7) return;
         try {
-            Bstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/alea.txt"));
+            Bstock = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/alea.txt"));
         }
         catch (NumberFormatException e) {
             Bstock = 0;
@@ -586,15 +586,15 @@ public class Shop {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setMoney(money);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Shop/alea.txt", Integer.toString(Bstock), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Shop/alea.txt", Integer.toString(Bstock), 1);
             }
             try {
-                Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
+                Pigeon = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt"));
             }
             catch (NumberFormatException e) {
                 Pigeon = 0;
             }
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Achievement/Pigeon.txt", Integer.toString(Pigeon += c2), 1);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Bravo, Vous venez d'acheter " + bois + " bois, " + argile + " argile, " + cuir + " cuir, " + pierre + " pierre, " + paille + " paille, " + fer + " fer.").queue();
             }

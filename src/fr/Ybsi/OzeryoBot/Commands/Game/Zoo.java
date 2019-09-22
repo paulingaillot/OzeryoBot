@@ -55,7 +55,7 @@ public class Zoo {
                 builder.setColor(color.couleurAleatoire(user));
                 HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
                 HashMap<String, ArrayList<String>> animaux = data.getProfils().get(user.getId()).getPet();
-                String Active_Pet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+                String Active_Pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
                 Integer levelZoo = building.get("cirque");
                 int i = 0;
                 try {
@@ -66,7 +66,7 @@ public class Zoo {
                         int EXP2;
                         if (!iterator.hasNext()) {
                             if (lang == command.Language.fr) {
-                                builder.setDescription("Faites ``=zoo select`` pour selectionner un pet. " + i + " / " + levelZoo + " places utilis\u00e9s.");
+                                builder.setDescription("Faites ``=zoo select`` pour selectionner un pet. " + i + " / " + levelZoo + " places utilisés.");
                             }
                             if (lang == command.Language.en) {
                                 builder.setDescription("Type ``=zoo select`` to select a pet. " + i + " / " + levelZoo + " used slot.");
@@ -77,7 +77,7 @@ public class Zoo {
                         String message1 = pet.get(1);
                         String nom = pet.get(0);
                         HashMap<String, ArrayList<String>> activePet = data.getProfils().get(user.getId()).getPet();
-                        String bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + nom.replace(".txt", ""));
+                        String bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + nom.replace(".txt", ""));
                         try {
                             list = data.getProfils().get(user.getId()).getPet().get(nom);
                         }
@@ -127,23 +127,23 @@ public class Zoo {
         }
         catch (NullPointerException e) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
+                channel.sendMessage("Désolé mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
             }
             if (lang != command.Language.en) return;
             channel.sendMessage("You can't select a pet you don't have.").queue();
             return;
         }
-        long last = Long.parseLong(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/lastselect.txt"));
+        long last = Long.parseLong(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lastselect.txt"));
         if (pet1 != 0) {
             if (last + 1800000L < System.currentTimeMillis()) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt", nom, 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt", nom, 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Votre pet actif est desormais : **" + nom + "**").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Your active pet is now : **" + nom + "**").queue();
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/lastselect.txt", "" + System.currentTimeMillis(), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lastselect.txt", "" + System.currentTimeMillis(), 1);
                 return;
             }
             long delay = last + 1800000L - System.currentTimeMillis();
@@ -156,7 +156,7 @@ public class Zoo {
             return;
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
+            channel.sendMessage("Désolé mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
         }
         if (lang != command.Language.en) return;
         channel.sendMessage("You can't select a pet you don't have.").queue();
@@ -186,9 +186,9 @@ public class Zoo {
             builder1.append(str);
         }
         String c2 = builder1.toString();
-        String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+        String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
         HashMap<String, ArrayList<String>> activePet = data.getProfils().get(user.getId()).getPet();
-        String bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + pet.replace(".txt", ""));
+        String bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + pet.replace(".txt", ""));
         try {
             ArrayList<String> list = data.getProfils().get(user.getId()).getPet().get(pet);
         }
@@ -205,7 +205,7 @@ public class Zoo {
             int level;
             if (activePet.equals("0")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous n'avez aucun pet selectionn\u00e9.").queue();
+                    channel.sendMessage("Vous n'avez aucun pet selectionné.").queue();
                 }
                 if (lang != command.Language.en) return;
                 channel.sendMessage("You don't have any pet selected.").queue();
@@ -239,7 +239,7 @@ public class Zoo {
             if (bonus.equals("regen")) {
                 bonus = "";
                 if (lang == command.Language.fr) {
-                    messages = "r\u00e9g\u00e9n\u00e9ration de mana";
+                    messages = "régénération de mana";
                 }
                 if (lang == command.Language.en) {
                     messages = "mana regeneration";
@@ -282,17 +282,17 @@ public class Zoo {
         }
         catch (NullPointerException e) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
+                channel.sendMessage("Désolé mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
             }
             if (lang != command.Language.en) return;
             channel.sendMessage("Sorry but you can't select a pet you don't have.").queue();
             return;
         }
-        long last = Long.parseLong(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/lastselect.txt"));
+        long last = Long.parseLong(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lastselect.txt"));
         if (pet1 != 0) {
             if (last + 1800000L < System.currentTimeMillis()) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt", nom, 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/lastselect.txt", Long.toString(System.currentTimeMillis()), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt", nom, 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lastselect.txt", Long.toString(System.currentTimeMillis()), 1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Votre pet actif est desormais : **" + nom + "**").queue();
                 }
@@ -310,7 +310,7 @@ public class Zoo {
             return;
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("D\u00e9sol\u00e9 mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
+            channel.sendMessage("Désolé mais vous ne pouvez selectionner un pet que vous ne possedez pas.").queue();
         }
         if (lang != command.Language.en) return;
         channel.sendMessage("Sorry but you can't select a pet you don't have.").queue();

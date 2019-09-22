@@ -41,7 +41,7 @@ public class mail {
             message.saveChanges();
             tr.sendMessage(message, message.getAllRecipients());
             tr.close();
-            System.out.println("message envoy\u00e9");
+            System.out.println("message envoyé");
         }
         catch (MessagingException e) {
             e.printStackTrace();

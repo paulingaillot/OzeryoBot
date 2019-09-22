@@ -22,21 +22,21 @@ public class CoolDown {
             boolean Cooldown2 = true;
             return Cooldown2;
         }
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/");
         try {
-            secondes = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/secondes.txt"));
+            secondes = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/secondes.txt"));
         }
         catch (NumberFormatException e) {
             secondes = 0;
         }
         try {
-            minutes = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/minutes.txt"));
+            minutes = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/minutes.txt"));
         }
         catch (NumberFormatException e) {
             minutes = 0;
         }
         try {
-            heures = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/heures.txt"));
+            heures = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/heures.txt"));
         }
         catch (NumberFormatException e) {
             heures = 0;
@@ -59,9 +59,9 @@ public class CoolDown {
         System.out.println(Lsecondes += 1440 * Lheures);
         if (Lsecondes > 1 || Lsecondes < 0) {
             Cooldown = true;
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/secondes.txt", Integer.toString(Nsecondes), 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/minutes.txt", Integer.toString(Nminutes), 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/Cooldown/heures.txt", Integer.toString(Nheures), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/secondes.txt", Integer.toString(Nsecondes), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/minutes.txt", Integer.toString(Nminutes), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Cooldown/heures.txt", Integer.toString(Nheures), 1);
         } else {
             Cooldown = false;
         }

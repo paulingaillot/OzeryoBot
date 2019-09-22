@@ -60,14 +60,14 @@ public class Profil {
     private int pallier = 0;
     private int bonus = 0;
     private int useless = 0;
-    private long money_r\u00e9colt\u00e9 = 0L;
+    private long money_récolté = 0L;
     private int Conquerant = 0;
     private int Defenseur = 0;
     private int espion = 0;
     private int Parieur = 0;
-    private int Daily_r\u00e9colt\u00e9 = 0;
-    private int hourly_r\u00e9colt\u00e9 = 0;
-    private int jetons_r\u00e9colt\u00e9 = 0;
+    private int Daily_récolté = 0;
+    private int hourly_récolté = 0;
+    private int jetons_récolté = 0;
     private int looser = 0;
     private int Investisseur = 0;
     private int Avant_poste = 0;
@@ -456,12 +456,12 @@ public class Profil {
         this.useless = useless;
     }
 
-    public long getMoney_r\u00e9colt\u00e9() {
-        return this.money_r\u00e9colt\u00e9;
+    public long getMoney_récolté() {
+        return this.money_récolté;
     }
 
-    public void setMoney_r\u00e9colt\u00e9(long money_r\u00e9colt\u00e9) {
-        this.money_r\u00e9colt\u00e9 = money_r\u00e9colt\u00e9;
+    public void setMoney_récolté(long money_récolté) {
+        this.money_récolté = money_récolté;
     }
 
     public int getConquerant() {
@@ -512,28 +512,28 @@ public class Profil {
         this.filleuls = filleuls;
     }
 
-    public int getDaily_r\u00e9colt\u00e9() {
-        return this.Daily_r\u00e9colt\u00e9;
+    public int getDaily_récolté() {
+        return this.Daily_récolté;
     }
 
-    public void setDaily_r\u00e9colt\u00e9(int daily_r\u00e9colt\u00e9) {
-        this.Daily_r\u00e9colt\u00e9 = daily_r\u00e9colt\u00e9;
+    public void setDaily_récolté(int daily_récolté) {
+        this.Daily_récolté = daily_récolté;
     }
 
-    public int getHourly_r\u00e9colt\u00e9() {
-        return this.hourly_r\u00e9colt\u00e9;
+    public int getHourly_récolté() {
+        return this.hourly_récolté;
     }
 
-    public void setHourly_r\u00e9colt\u00e9(int hourly_r\u00e9colt\u00e9) {
-        this.hourly_r\u00e9colt\u00e9 = hourly_r\u00e9colt\u00e9;
+    public void setHourly_récolté(int hourly_récolté) {
+        this.hourly_récolté = hourly_récolté;
     }
 
-    public int getJetons_r\u00e9colt\u00e9() {
-        return this.jetons_r\u00e9colt\u00e9;
+    public int getJetons_récolté() {
+        return this.jetons_récolté;
     }
 
-    public void setJetons_r\u00e9colt\u00e9(int jetons_r\u00e9colt\u00e9) {
-        this.jetons_r\u00e9colt\u00e9 = jetons_r\u00e9colt\u00e9;
+    public void setJetons_récolté(int jetons_récolté) {
+        this.jetons_récolté = jetons_récolté;
     }
 
     public int getLooser() {

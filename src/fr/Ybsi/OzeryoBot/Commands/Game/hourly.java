@@ -49,7 +49,7 @@ public class hourly {
                 level = 0;
             }
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
-            int struct = building.get("march\u00e9");
+            int struct = building.get("marché");
             String Halloween1 = "";
             if (Event.Summer()) {
                 int nbalea = 50 + (int)(Math.random() * 51.0);
@@ -59,7 +59,7 @@ public class hourly {
                 gain = (int)((double)nbalea * (1.0 + bonus1));
                 data.getProfils().get(user.getId()).setOzPassXp(xp += gain);
                 if (lang == command.Language.fr) {
-                    Halloween1 = " Vous avez aussi gagn\u00e9 " + gain + " OzXp";
+                    Halloween1 = " Vous avez aussi gagné " + gain + " OzXp";
                 }
                 if (lang == command.Language.en) {
                     Halloween1 = " You also won " + gain + " OzXp";
@@ -77,7 +77,7 @@ public class hourly {
             int pop_win2 = (int)((double)Alea_pop * (10.0 + (double)(15 * level) * bonus));
             pop_win = Math.round(pop_win2) + pop_win;
             EXP_win = 10 + (int)(Math.random() * 21.0);
-            String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+            String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
             HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
             try {
                 list = data.getProfils().get(user.getId()).getPet().get(ActivePet);
@@ -91,7 +91,7 @@ public class hourly {
             catch (NullPointerException e) {
                 Pet_EXP = 0;
             }
-            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + ActivePet);
+            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
             double operationpet = Pet_EXP / 10;
             double operationpet2 = Math.sqrt(operationpet);
             double Pet_Level = Math.round(operationpet2);
@@ -156,12 +156,12 @@ public class hourly {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setHabitants(pop);
             }
-            int hourly2 = data.getProfils().get(user.getId()).getHourly_r\u00e9colt\u00e9();
-            data.getProfils().get(user.getId()).setHourly_r\u00e9colt\u00e9(++hourly2);
-            int jetons = data.getProfils().get(user.getId()).getJetons_r\u00e9colt\u00e9();
-            data.getProfils().get(user.getId()).setJetons_r\u00e9colt\u00e9(++jetons);
+            int hourly2 = data.getProfils().get(user.getId()).getHourly_récolté();
+            data.getProfils().get(user.getId()).setHourly_récolté(++hourly2);
+            int jetons = data.getProfils().get(user.getId()).getJetons_récolté();
+            data.getProfils().get(user.getId()).setJetons_récolté(++jetons);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\ud83d\udd51 Votre hourly vous a rapport\u00e9 **" + pop_win + "** habitants, **" + money_win + "** money, **1** jetons et **" + EXP_win + "** EXP. " + Halloween1).queue();
+                channel.sendMessage("\ud83d\udd51 Votre hourly vous a rapporté **" + pop_win + "** habitants, **" + money_win + "** money, **1** jetons et **" + EXP_win + "** EXP. " + Halloween1).queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("\ud83d\udd51 Your hourly give you **" + pop_win + "** people, **" + money_win + "** money, **1** tokens et **" + EXP_win + "** Xp. " + Halloween1).queue();
@@ -179,7 +179,7 @@ public class hourly {
             int mMinute = (int)(delay / 60000L);
             int mSecond = (int)((delay %= 60000L) / 1000L);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\ud83d\udd59 Votre hourly pourra \u00eatre r\u00e9cup\u00e9r\u00e9 dans **" + (59 - mMinute) + "** minutes. ").queue();
+                channel.sendMessage("\ud83d\udd59 Votre hourly pourra \u00eatre récupéré dans **" + (59 - mMinute) + "** minutes. ").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("\ud83d\udd59 Your hourly will be recoverable in **" + (59 - mMinute) + "** minutes. ").queue();

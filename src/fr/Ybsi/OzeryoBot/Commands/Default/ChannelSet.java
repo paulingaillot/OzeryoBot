@@ -53,8 +53,8 @@ public class ChannelSet {
                         break block81;
                     }
                     if (c1.equals("Vmusique")) {
-                        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId());
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/Vmusique.txt", builder.toString(), 1);
+                        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId());
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/Vmusique.txt", builder.toString(), 1);
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Le channel vocal de musique est desormais : #" + builder.toString()).queue();
                         }
@@ -64,7 +64,7 @@ public class ChannelSet {
                         break block81;
                     }
                     if (c1.equals("count")) {
-                        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId());
+                        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId());
                         if (c2.equals("off") || c2.equals("false")) {
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Il n'y a desormais plus de channel textuel o\u00f9 compter a l'infini.").queue();
@@ -72,9 +72,9 @@ public class ChannelSet {
                             if (lang == command.Language.en) {
                                 channel.sendMessage("There is no more textchannel to count to infinity.").queue();
                             }
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt", "false", 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt", "false", 1);
                         } else {
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt", channel.getId(), 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt", channel.getId(), 1);
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Le channel textuel o\u00f9 compter est desormais : " + channel.getName()).queue();
                             }
@@ -105,8 +105,8 @@ public class ChannelSet {
                         break block81;
                     }
                     if (c1.equals("NSFW") || c1.equals("nsfw")) {
-                        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId());
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/NSFW.txt", channel.getId(), 1);
+                        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId());
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/NSFW.txt", channel.getId(), 1);
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Le channel NSFW est desormais : " + channel.getName()).queue();
                         }
@@ -117,8 +117,8 @@ public class ChannelSet {
                     }
                     if (c1.equals("log")) {
                         if (c2.equals("")) {
-                            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild" + guild.getId());
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/log.txt", channel.getId(), 1);
+                            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild" + guild.getId());
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/log.txt", channel.getId(), 1);
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Le channel log est desormais : " + channel.getId()).queue();
                             }
@@ -126,8 +126,8 @@ public class ChannelSet {
                                 channel.sendMessage("The log channel is now : " + channel.getId()).queue();
                             }
                         } else if (c2.equals("on") || c2.equals("true")) {
-                            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild" + guild.getId());
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/log.txt", channel.getId(), 1);
+                            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild" + guild.getId());
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/log.txt", channel.getId(), 1);
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Le channel log est desormais : " + channel.getId()).queue();
                             }
@@ -135,10 +135,10 @@ public class ChannelSet {
                                 channel.sendMessage("The log channel is now : " + channel.getId()).queue();
                             }
                         } else if (c2.equals("off") || c2.equals("false")) {
-                            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild" + guild.getId());
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/log.txt", "false", 1);
+                            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild" + guild.getId());
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/log.txt", "false", 1);
                             if (lang == command.Language.fr) {
-                                channel.sendMessage("Le channel log est desormais d\u00e9sactiv\u00e9").queue();
+                                channel.sendMessage("Le channel log est desormais désactivé").queue();
                             }
                             if (lang == command.Language.en) {
                                 channel.sendMessage("The log channel is now disable").queue();
@@ -148,7 +148,7 @@ public class ChannelSet {
                     }
                     if (c1.equals("language")) {
                         if (c2.equals("on") || c2.equals("true")) {
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/setBadWords.txt", "true", 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/setBadWords.txt", "true", 1);
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Je vais desormais suveiller le tchat de ce serveur.").queue();
                             }
@@ -156,7 +156,7 @@ public class ChannelSet {
                                 channel.sendMessage("I will monitor swearwords on your server. ").queue();
                             }
                         } else if (c2.equals("off") || c2.equals("false")) {
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/setBadWords.txt", "false", 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/setBadWords.txt", "false", 1);
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("je ne vais desormais plus surveillez le tchat de ce serveur.").queue();
                             }
@@ -187,7 +187,7 @@ public class ChannelSet {
                         if (c2.equals("off") || c2.equals("false")) {
                             DiscordBot.getGuilddata().getGuildProfil().get(guild.getId()).setWelcomeMessage("\ud83c\udf89\ud83c\udf89 Tu es desormais en compagnie de {players} users.\n Passe un bon moment ici. \ud83c\udf89\ud83c\udf89");
                             if (lang == command.Language.fr) {
-                                channel.sendMessage("Le message de bienvenue a \u00e9t\u00e9 remis par defaut").queue();
+                                channel.sendMessage("Le message de bienvenue a été remis par defaut").queue();
                             }
                             if (lang == command.Language.en) {
                                 channel.sendMessage("The welcome message was reset by default").queue();
@@ -198,7 +198,7 @@ public class ChannelSet {
                     if (c1.equals("autoAFK")) {
                         if (c2.equals("false") || c2.equals("off")) {
                             if (lang == command.Language.fr) {
-                                channel.sendMessage("AutoAFK d\u00e9sactiv\u00e9").queue();
+                                channel.sendMessage("AutoAFK désactivé").queue();
                             }
                             if (lang == command.Language.en) {
                                 channel.sendMessage("AutoAFK disable").queue();
@@ -211,15 +211,15 @@ public class ChannelSet {
                         }
                         catch (NumberFormatException e) {
                             if (lang == command.Language.fr) {
-                                channel.sendMessage("Syntaxe : ``=set autoAFK [dur\u00e9e]``").queue();
+                                channel.sendMessage("Syntaxe : ``=set autoAFK [durée]``").queue();
                             }
                             if (lang == command.Language.en) {
                                 channel.sendMessage("Syntax : ``=set autoAFK [duration]``").queue();
                             }
                             return;
                         }
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/AutoAFK.txt", Integer.toString(minutes), 1);
-                        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/AutoAFK/");
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK.txt", Integer.toString(minutes), 1);
+                        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/");
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Vous serez desormais mit AFK au bout de " + c2 + " minutes apres votre dernier message").queue();
                         }
@@ -231,16 +231,16 @@ public class ChannelSet {
                     if (c1.equals("GlobalChat")) {
                         if (c2.equals("false") || c2.equals("off")) {
                             if (lang == command.Language.fr) {
-                                channel.sendMessage("Global Chat desactiv\u00e9").queue();
+                                channel.sendMessage("Global Chat desactivé").queue();
                             }
                             if (lang == command.Language.en) {
                                 channel.sendMessage("Global Chat disable").queue();
                             }
                             return;
                         }
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/GlobalChat.txt", channel.getId(), 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/GlobalChat.txt", channel.getId(), 1);
                         if (lang == command.Language.fr) {
-                            channel.sendMessage("Global Chat d\u00e9sormais activ\u00e9 sur ce salon").queue();
+                            channel.sendMessage("Global Chat désormais activé sur ce salon").queue();
                         }
                         if (lang == command.Language.en) {
                             channel.sendMessage("Global Chat is now enable on this channel").queue();
@@ -249,7 +249,7 @@ public class ChannelSet {
                     break block81;
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("D\u00e9sol\u00e9 mais vous n'avez pas la permission d'effectuer cette action").queue();
+                    channel.sendMessage("Désolé mais vous n'avez pas la permission d'effectuer cette action").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Sorry but you don't have the permission to perform this command").queue();
@@ -282,7 +282,7 @@ public class ChannelSet {
                 String c1 = args[0];
                 String c2 = builder.toString();
                 if (c1.equals("count")) {
-                    TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId());
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId());
                     if (c2.equals("off") || c2.equals("false")) {
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Il n'y a desormais plus de channel textuel o\u00f9 compter a l'infini.").queue();
@@ -290,9 +290,9 @@ public class ChannelSet {
                         if (lang == command.Language.en) {
                             channel.sendMessage("There is no more textchannel to count to infinity.").queue();
                         }
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt", "false", 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt", "false", 1);
                     } else {
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/count.txt", channel.getId(), 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/count.txt", channel.getId(), 1);
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Le channel textuel o\u00f9 compter est desormais : " + channel.getName()).queue();
                         }

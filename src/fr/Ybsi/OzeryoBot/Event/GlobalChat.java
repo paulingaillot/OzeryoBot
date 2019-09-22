@@ -37,8 +37,8 @@ implements EventListener {
 
     private void onMessage(MessageReceivedEvent event) {
         try {
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getMember().getUser().getId());
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId());
+            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
+            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
         }
         catch (NullPointerException nullPointerException) {
             // empty catch block
@@ -46,7 +46,7 @@ implements EventListener {
         if (event.getAuthor().isBot()) {
             return;
         }
-        String globalChat = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + event.getGuild().getId() + "/GlobalChat.txt");
+        String globalChat = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/GlobalChat.txt");
         String channel = event.getChannel().getId();
         if (channel.equals(globalChat)) {
             if (event.getMessage().getContentRaw().contains("https://") || event.getMessage().getContentRaw().contains("http://")) {
@@ -61,11 +61,11 @@ implements EventListener {
                 try {
                     int Levels;
                     Guild guild = DiscordBot.getjda().getGuilds().get(i);
-                    String ChannelId2 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Guild/" + guild.getId() + "/GlobalChat.txt");
+                    String ChannelId2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/GlobalChat.txt");
                     String content = message;
                     String Role2 = "LvL" + Level.level(event.getAuthor().getId());
-                    if (Premium.Premium(event.getAuthor()) && !TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getAuthor().getId() + "/grade.txt").equals("0")) {
-                        Role2 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + event.getAuthor().getId() + "/grade.txt");
+                    if (Premium.Premium(event.getAuthor()) && !TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt").equals("0")) {
+                        Role2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt");
                     }
                     try {
                         Levels = Level.Glevel(guild1.getId());

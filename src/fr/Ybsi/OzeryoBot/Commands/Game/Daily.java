@@ -43,7 +43,7 @@ public class Daily {
             int Game_EXP = data.getProfils().get(user.getId()).getXp();
             long pop = data.getProfils().get(user.getId()).getHabitants();
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
-            int struct = building.get("march\u00e9");
+            int struct = building.get("marché");
             double bonus = Structure.entreprise(struct);
             try {
                 double math = Math.sqrt(Game_EXP);
@@ -71,7 +71,7 @@ public class Daily {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setTokens(jetons1);
             }
-            String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/pet.txt");
+            String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
             HashMap<String, ArrayList<String>> activePet = data.getProfils().get(user.getId()).getPet();
             try {
                 list = data.getProfils().get(user.getId()).getPet().get(pet);
@@ -106,7 +106,7 @@ public class Daily {
             if (list != null) {
                 activePet.put(pet, list);
             }
-            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pets/" + pet);
+            String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + pet);
             double operation = Pet_EXP / 10;
             double operation2 = Math.sqrt(operation);
             double Pet_Level = Math.round(operation2);
@@ -136,7 +136,7 @@ public class Daily {
                 gain = (int)((double)nbalea * (1.0 + bonus1));
                 data.getProfils().get(user.getId()).setOzPassXp(xp += gain);
                 if (lang == command.Language.fr) {
-                    Halloween1 = " Vous avez aussi gagn\u00e9 " + gain + " OzXp";
+                    Halloween1 = " Vous avez aussi gagné " + gain + " OzXp";
                 }
                 if (lang == command.Language.en) {
                     Halloween1 = "You also won " + gain + " OzXp";
@@ -164,12 +164,12 @@ public class Daily {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setHabitants(pop);
             }
-            int daily = data.getProfils().get(user.getId()).getDaily_r\u00e9colt\u00e9();
-            data.getProfils().get(user.getId()).setDaily_r\u00e9colt\u00e9(++daily);
-            int jetons = data.getProfils().get(user.getId()).getJetons_r\u00e9colt\u00e9();
-            data.getProfils().get(user.getId()).setJetons_r\u00e9colt\u00e9(jetons += 5);
+            int daily = data.getProfils().get(user.getId()).getDaily_récolté();
+            data.getProfils().get(user.getId()).setDaily_récolté(++daily);
+            int jetons = data.getProfils().get(user.getId()).getJetons_récolté();
+            data.getProfils().get(user.getId()).setJetons_récolté(jetons += 5);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\u23f0 Votre daily vous a rapport\u00e9 **" + pop_win + "** habitants, **" + money_win + "** money, **5** jetons et **" + EXP_win + "** EXP." + Halloween1).queue();
+                channel.sendMessage("\u23f0 Votre daily vous a rapporté **" + pop_win + "** habitants, **" + money_win + "** money, **5** jetons et **" + EXP_win + "** EXP." + Halloween1).queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("\u23f0 Thank to your daily you won **" + pop_win + "** people, **" + money_win + "** $, **5** tokens and **" + EXP_win + "** Xp." + Halloween1).queue();
@@ -187,7 +187,7 @@ public class Daily {
             int mHour = (int)(delay / 3600000L);
             int mMinute = (int)((delay %= 3600000L) / 60000L);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\u23f0 Votre daily sera r\u00e9cup\u00e9rable dans **" + (23 - mHour) + "** heures **" + (59 - mMinute) + "** minutes.").queue();
+                channel.sendMessage("\u23f0 Votre daily sera récupérable dans **" + (23 - mHour) + "** heures **" + (59 - mMinute) + "** minutes.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("\u23f0 You daily will be recoverable in **" + (23 - mHour) + "** hours and **" + (59 - mMinute) + "** minutes.").queue();

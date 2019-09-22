@@ -22,11 +22,11 @@ public class Quest {
         command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
         ProfilData data = DiscordBot.getData();
         int day = new Date().getDay();
-        String quest1 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest1.txt");
-        String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest2.txt");
-        String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/quest3.txt");
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/");
-        for (File file : files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/")) {
+        String quest1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest1.txt");
+        String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest2.txt");
+        String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest3.txt");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/");
+        for (File file : files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/")) {
             if (file.getName().equals(String.valueOf(day) + "|" + quest1 + ".txt") || file.getName().equals(String.valueOf(day) + "|" + quest2 + ".txt") || Premium.Premium(user) && file.getName().equals(String.valueOf(day) + "|" + quest3 + ".txt")) continue;
             TextFileWriter.delete(file.getAbsolutePath());
         }
@@ -34,15 +34,15 @@ public class Quest {
             int maxpoints;
             int lastpts = 0;
             try {
-                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt"));
+                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt"));
             }
             catch (NumberFormatException e) {
                 return;
             }
             points = lastpts + points;
-            TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", Integer.toString(points), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", Integer.toString(points), 1);
             try {
-                maxpoints = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Quests/" + name));
+                maxpoints = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + name));
             }
             catch (NumberFormatException e) {
                 maxpoints = 0;
@@ -171,7 +171,7 @@ public class Quest {
                 }
                 int Game_EXP = data.getProfils().get(user.getId()).getXp();
                 data.getProfils().get(user.getId()).setXp(Game_EXP += 75);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", "true", 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", "true", 1);
             }
         } else {
             return;

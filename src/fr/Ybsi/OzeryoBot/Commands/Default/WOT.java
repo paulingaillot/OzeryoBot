@@ -153,13 +153,13 @@ public class WOT {
                 builder1.addField("\ud83d\udca5 Damage per game", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("avg_damage_assisted").toString(), true);
             }
             if (lang == command.Language.fr) {
-                builder1.addField("\ud83d\udca5 Degat moyen bloqu\u00e9s par partie", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("avg_damage_blocked").toString(), true);
+                builder1.addField("\ud83d\udca5 Degat moyen bloqués par partie", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("avg_damage_blocked").toString(), true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ud83d\udca5 Average damage blocked per game", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("avg_damage_blocked").toString(), true);
             }
             if (lang == command.Language.fr) {
-                builder1.addField("\ud83c\udfae Parties jou\u00e9s", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("battles").toString(), true);
+                builder1.addField("\ud83c\udfae Parties joués", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("battles").toString(), true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ud83c\udfae Games played", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("battles").toString(), true);
@@ -171,7 +171,7 @@ public class WOT {
                 builder1.addField("% of shot on goal", String.valueOf(jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("hits_percents").toString()) + "%", true);
             }
             if (lang == command.Language.fr) {
-                builder1.addField("\ud83c\udfc6 Parties gagn\u00e9s", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("wins").toString(), true);
+                builder1.addField("\ud83c\udfc6 Parties gagnés", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("wins").toString(), true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ud83c\udfc6 Games win", jsonObject.getAsJsonObject("data").getAsJsonObject(id).getAsJsonObject("statistics").getAsJsonObject("all").get("wins").toString(), true);
@@ -192,7 +192,7 @@ public class WOT {
             ratio = partiesSurvived / games;
             ratio = Utils.arrondi(2, ratio);
             if (lang == command.Language.fr) {
-                builder1.addField("\ufffd?\ufffd Ratio Parties survecues/ Parties jou\u00e9s", ratio + "%", true);
+                builder1.addField("\ufffd?\ufffd Ratio Parties survecues/ Parties joués", ratio + "%", true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ufffd?\ufffd Ratio Survived games/ Games played", ratio + "%", true);
