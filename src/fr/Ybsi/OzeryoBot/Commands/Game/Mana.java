@@ -364,7 +364,8 @@ public class Mana {
                 long lastHourly1 = data.getProfils().get(user.getId()).getLastPerte();
                 long delay1 = System.currentTimeMillis() - lastHourly1;
                 delay1 /= 3600000L;
-                if (habitant > (long)popmax) {
+                int a;
+				if (habitant > (long)popmax) {
                     habitant -= (long)popmax;
                     a = 0;
                     while ((long)a < delay1) {
@@ -377,9 +378,9 @@ public class Mana {
                     habitant = popmax;
                 }
                 if ((double)soldier > 0.25 * (double)habitant) {
-                    i = 0;
+                    int i = 0;
                     while ((long)i < delay1) {
-                        for (b = 0; b < 24; ++b) {
+                        for (int b = 0; b < 24; ++b) {
                             soldier = (int)((double)soldier * perte);
                         }
                         ++i;
@@ -412,13 +413,13 @@ public class Mana {
                     data.getProfils().get(user.getId()).setLastPerte(System.currentTimeMillis());
                 }
             }
-            premium = Premium.Premium(user);
-            res = new HashMap<String, Integer>();
+            boolean premium = Premium.Premium(user);
+            HashMap<String, Integer> res = new HashMap<String, Integer>();
             try {
                 res = data.getProfils().get(user.getId()).getRes();
             }
             catch (NullPointerException e) {
-                res = new HashMap<K, V>();
+                res = new HashMap<String, Integer>();
                 res.put("bois", 0);
                 res.put("argile", 0);
                 res.put("cuir", 0);
@@ -427,21 +428,21 @@ public class Mana {
                 res.put("fer", 0);
                 data.getProfils().get(user.getId()).setRes(res);
             }
-            A_bois = (Integer)res.get("bois");
-            A_argile = (Integer)res.get("argile");
-            A_cuir = (Integer)res.get("cuir");
-            A_pierre = (Integer)res.get("pierre");
-            A_paille = (Integer)res.get("paille");
-            A_fer = (Integer)res.get("fer");
-            gift = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/Users/" + user.getId() + "/gift.txt"));
-            c1 = buder.toString();
-            pays = data.getProfils().get(user.getId()).getCountry();
-            point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pays/" + pays + "/points.txt"));
-            level2 = point / 1000;
-            level3 = Math.sqrt(level2);
-            Plevel = Math.round(level3);
-            mineLevel = building.get("mine");
-            min = 1;
+            Integer A_bois = (Integer)res.get("bois");
+            Integer A_argile = (Integer)res.get("argile");
+            Integer A_cuir = (Integer)res.get("cuir");
+            Integer A_pierre = (Integer)res.get("pierre");
+            Integer A_paille = (Integer)res.get("paille");
+            Integer A_fer = (Integer)res.get("fer");
+           
+            String c1 = buder.toString();
+            String pays = data.getProfils().get(user.getId()).getCountry();
+            int point = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/donn\u00e9es/bot/Pays/" + pays + "/points.txt"));
+            int level2 = point / 1000;
+            double level3 = Math.sqrt(level2);
+            long Plevel = Math.round(level3);
+            Integer mineLevel = building.get("mine");
+            int min = 1;
             if (mineLevel < 10) {
                 min = 1;
             } else if (mineLevel > 10 && mineLevel < 20) {
@@ -449,8 +450,8 @@ public class Mana {
             } else if (mineLevel >= 20) {
                 min = 10;
             }
-            max = mineLevel + 1;
-            Max_mana = 10 + level;
+            int max = mineLevel + 1;
+            int Max_mana = 10 + level;
             if (mana < 0) {
                 mana = Max_mana;
             }
@@ -464,16 +465,16 @@ public class Mana {
             if (mana > Max_mana) {
                 mana = Max_mana;
             }
-            Used_mana = 0;
-            EXP_win = 0;
-            money_win = 0.0;
-            pop_win = 0.0;
-            bois = 0.0;
-            argile = 0.0;
-            cuir = 0.0;
-            pierre = 0.0;
-            paille = 0.0;
-            fer = 0.0;
+            int Used_mana = 0;
+            int EXP_win = 0;
+            double money_win = 0.0;
+            double pop_win = 0.0;
+            double bois = 0.0;
+            double argile = 0.0;
+            double cuir = 0.0;
+            double pierre = 0.0;
+            double paille = 0.0;
+            double fer = 0.0;
             if (mana == 0) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous n'avez plus de mana RIP.").queue();
@@ -483,7 +484,26 @@ public class Mana {
                 return;
             }
 
-        if (c1.equals("")) {
+        int alea1;
+		int gift;
+		double money_win2;
+		double pop_win2;
+		int materiau_alea;
+		int nombre_alea;
+		int bois_Total;
+		int argile_Total;
+		int cuir_Total;
+		int pierre_Total;
+		int fer_Total;
+		int paille_Total;
+		long money;
+		long pop;
+		int petGain;
+		int gain;
+		int xp;
+		double bonus1;
+		double op;
+		if (c1.equals("")) {
             if (Pet_Bonus.equals("mana")) {
                 Max_mana += (int)(Pet_Level * 3.0);
             }
@@ -625,8 +645,8 @@ public class Mana {
             pop = data.getProfils().get(user.getId()).getHabitants();
             money = data.getProfils().get(user.getId()).getMoney();
             mana -= Used_mana;
-            pop = (long)((double)pop.longValue() + pop_win);
-            money = (long)((double)money.longValue() + money_win);
+            pop = (long)(pop+ pop_win);
+            money = (long)(money + money_win);
             Game_EXP += EXP_win;
             petGain = EXP_win / 10;
             if (list != null) {
