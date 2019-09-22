@@ -1138,7 +1138,7 @@ public class Mana {
             paille = (int)((double)paille * (1.0 + 0.05 * Pet_Level));
             fer = (int)((double)fer * (1.0 + 0.05 * Pet_Level));
         }
-        bois_Total = bois + A_bois;
+        bois_Total = (int) (bois + A_bois);
         argile_Total = argile + A_argile;
         cuir_Total = cuir + A_cuir;
         pierre_Total = pierre + A_pierre;
