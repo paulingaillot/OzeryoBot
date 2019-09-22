@@ -1048,7 +1048,7 @@ public class Mana {
             builder.addField("OzPass Xp", String.valueOf(gain) + " :beach: ", true);
         }
         channel.sendMessage(builder.build()).queue();
-        tuto = data.getProfils().get(user.getId()).getTuto();
+        int tuto = data.getProfils().get(user.getId()).getTuto();
         if (tuto != 4) return;
         data.getProfils().get(user.getId()).setTuto(5);
         if (lang == command.Language.fr) {
@@ -1057,7 +1057,7 @@ public class Mana {
         if (lang != command.Language.en) return;
         channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b march\u00e9 1.").queue();
         return;
-lbl-1000: // 1 sources:
+
         {
             ++Used_mana;
             alea1 = (int)(2.0 + Math.random() * 4.0);
