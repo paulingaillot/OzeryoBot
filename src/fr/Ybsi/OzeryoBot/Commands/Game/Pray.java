@@ -71,8 +71,8 @@ public class Pray {
                                             }
 
                                             String dieu = c1.toLowerCase();
-                                            switch (dieu.hashCode()) {
-                                                case -1407612381: {
+                                            switch (dieu) {
+                                                case "athena": {
                                                     if (!dieu.equals("athena")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Athena", 1);
                                                         if (lang == command.Language.fr) {
@@ -86,7 +86,7 @@ public class Pray {
                                                     }
 
                                                 
-                                                case -1220755802: {
+                                                case "hermes": {
                                                     if (!dieu.equals("hermes")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Hermes", 1);
                                 if (lang == command.Language.fr) {
@@ -98,7 +98,7 @@ public class Pray {
                             
                             }
                                                     }
-                                                case 3002527: {
+                                                case "ares": {
                                                     if (!dieu.equals("ares")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Ares", 1);
                                                         if (lang == command.Language.fr) {
@@ -111,7 +111,7 @@ public class Pray {
                                                     }
                                                     }
 
-                                                case 3198956: {
+                                                case "hera": {
                                                     if (!dieu.equals("hera")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Hera", 1);
                                         if (lang == command.Language.fr) {
@@ -123,7 +123,7 @@ public class Pray {
                                     }
                                                     }
 
-                                                case 3735305: {
+                                                case "zeus": {
                                                     if (!dieu.equals("zeus")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Zeus", 1);
                                                         if (lang == command.Language.fr) {
@@ -134,7 +134,7 @@ public class Pray {
                                                         }
                                                     }
                                                 }
-                                                case 99035257: {
+                                                case "hades": {
                                                     if (!dieu.equals("hades")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Hades", 1);
                                                         if (lang == command.Language.fr) {
@@ -147,7 +147,7 @@ public class Pray {
                                                     }
                                                     }
 
-                                                case 743778379: {
+                                                case "poseidon": {
                                                     if (!dieu.equals("poseidon")) {
                                                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Poseidon", 1);
                             if (lang == command.Language.fr) {
