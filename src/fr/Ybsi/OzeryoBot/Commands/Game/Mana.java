@@ -503,6 +503,9 @@ public class Mana {
 		int xp;
 		double bonus1;
 		double op;
+		long money2;
+		Object premium2;
+		EmbedBuilder builder;
 		if (c1.equals("")) {
             if (Pet_Bonus.equals("mana")) {
                 Max_mana += (int)(Pet_Level * 3.0);
@@ -722,7 +725,7 @@ public class Mana {
                 Quest.Quest("cuir", user, channel, (int)cuir);
             }
             if (pierre != 0.0) {
-                Quest.Quest("pierre", user, channel, (int)pierre);
+                Quest.Quest("pierre" , user, channel, (int)pierre);
             }
             if (paille != 0.0) {
                 Quest.Quest("paille", user, channel, (int)paille);
@@ -768,7 +771,7 @@ public class Mana {
             channel.sendMessage(builder.build()).queue();
             return;
         }
-        nombre = 1;
+        int nombre = 1;
         try {
             nombre = Integer.parseInt(c1);
         }
@@ -802,8 +805,7 @@ public class Mana {
         pierre = 0;
         paille = 0;
         fer = 0;
-        i = 0;
-        i = 0;
+        int i = 0;
 
 
          while (mana > 0) {
@@ -936,8 +938,8 @@ public class Mana {
         }
         pop = data.getProfils().get(user.getId()).getHabitants();
         money = data.getProfils().get(user.getId()).getMoney();
-        pop = (long)((double)pop.longValue() + pop_win);
-        money = (long)((double)money.longValue() + money_win);
+        pop = (long)(pop + pop_win);
+        money = (long)(money + money_win);
         Game_EXP += EXP_win;
         petGain = EXP_win / 10;
         if (list != null) {
