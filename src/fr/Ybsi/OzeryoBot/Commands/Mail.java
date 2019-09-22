@@ -24,37 +24,44 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
 public class Mail {
-    @command(name="mail", type=command.ExecutorType.ALL, descfr="Affiche le level d'un joueur", topic=command.Topics.Social)
-    private void mail(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "mail", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Social)
+    private void mail(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         String c1;
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = "";
         }
         if (c1.equals("on")) {
             data.getProfils().get(user.getId()).setMail(true);
             if (lang == command.Language.fr) {
-                channel.sendMessage(":mailbox: Vous recevrez desormais des mails au lieux de mp. Pour lire vos mail faites ``=mail list``").queue();
+                channel.sendMessage(
+                        ":mailbox: Vous recevrez desormais des mails au lieux de mp. Pour lire vos mail faites ``=mail list``")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage(":mailbox:You will receive mails on the bot instead of private messages. To read your mails type ``=mail list``").queue();
+                channel.sendMessage(
+                        ":mailbox:You will receive mails on the bot instead of private messages. To read your mails type ``=mail list``")
+                        .queue();
             }
         } else if (c1.equals("off")) {
             data.getProfils().get(user.getId()).setMail(false);
             if (lang == command.Language.fr) {
-                channel.sendMessage(":mailbox: Vous ne recevrez desormais des mails au lieux de mp. Pour lire vos mail faites ``=mail list``").queue();
+                channel.sendMessage(
+                        ":mailbox: Vous ne recevrez desormais des mails au lieux de mp. Pour lire vos mail faites ``=mail list``")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage(":mailbox: You will not reveive mail on the bot instead of private message anymore. To read your mails type ``=mail list``").queue();
+                channel.sendMessage(
+                        ":mailbox: You will not reveive mail on the bot instead of private message anymore. To read your mails type ``=mail list``")
+                        .queue();
             }
         } else if (c1.equals("list")) {
             int c2;
             try {
                 c2 = Integer.parseInt(args[1]);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 c2 = 1;
             }
             ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
@@ -72,16 +79,17 @@ public class Mail {
                     boolean read = mail2.get(2).equals("true");
                     if (read) {
                         ++read1;
-                        emoji = jda.getGuildById("326345972739473410").getEmoteById("552558087152730226").getAsMention();
+                        emoji = jda.getGuildById("326345972739473410").getEmoteById("552558087152730226")
+                                .getAsMention();
                     } else {
                         ++unread;
                         emoji = "\ud83d\udd34";
                     }
-                    if (i < min || i > max) continue;
+                    if (i < min || i > max)
+                        continue;
                     mess = String.valueOf(mess) + "**[" + emoji + i + "]** : " + objet + " \n";
                 }
-            }
-            catch (NullPointerException mail2) {
+            } catch (NullPointerException mail2) {
                 // empty catch block
             }
             if (mess.equals("")) {
@@ -102,21 +110,23 @@ public class Mail {
             builder.setColor(color.couleurAleatoire(user));
             builder.setAuthor(user.getName(), null, user.getAvatarUrl());
             if (lang == command.Language.fr) {
-                builder.setDescription(":inbox_tray: E-mail non lus : " + unread + "\n" + ":outbox_tray: E-mail lus : " + read1 + "\n\n" + mess);
+                builder.setDescription(":inbox_tray: E-mail non lus : " + unread + "\n" + ":outbox_tray: E-mail lus : "
+                        + read1 + "\n\n" + mess);
             }
             if (lang == command.Language.en) {
-                builder.setDescription(":inbox_tray: Unread mails : " + unread + "\n" + ":outbox_tray: Mails read : " + read1 + "\n\n" + mess);
+                builder.setDescription(":inbox_tray: Unread mails : " + unread + "\n" + ":outbox_tray: Mails read : "
+                        + read1 + "\n\n" + mess);
             }
             channel.sendMessage(builder.build()).queue();
         } else if (c1.equals("send")) {
             User cible;
             try {
                 cible = message.getMentionedUsers().get(0);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 cible = jda.getUserById(args[0]);
             }
-            String pref = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt");
+            String pref = TextFileWriter
+                    .read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt");
             if (pref.equals("0")) {
                 pref = "=";
             }
@@ -153,11 +163,10 @@ public class Mail {
             String mess;
             String contenu;
             String objet;
-            block65 : {
+            block65: {
                 try {
                     c2 = Integer.parseInt(args[1]) - 1;
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     c2 = 0;
                 }
                 mails = data.getProfils().get(user.getId()).getListMail();
@@ -177,17 +186,19 @@ public class Mail {
                     int mMinute = calendar.get(12);
                     int mSecond = calendar.get(13);
                     if (lang == command.Language.fr) {
-                        mess = "**Re\u00e7u le : ** " + mday + "/" + mmonth + "/" + myear + " a " + mHour + ":" + mMinute + ":" + mSecond;
+                        mess = "**Re\u00e7u le : ** " + mday + "/" + mmonth + "/" + myear + " a " + mHour + ":"
+                                + mMinute + ":" + mSecond;
                     }
                     if (lang == command.Language.en) {
-                        mess = "**Received on : ** " + mday + "/" + mmonth + "/" + myear + " a " + mHour + ":" + mMinute + ":" + mSecond;
+                        mess = "**Received on : ** " + mday + "/" + mmonth + "/" + myear + " a " + mHour + ":" + mMinute
+                                + ":" + mSecond;
                     }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     if (lang == command.Language.fr) {
                         mess = "Date de reception inconnu";
                     }
-                    if (lang != command.Language.en) break block65;
+                    if (lang != command.Language.en)
+                        break block65;
                     mess = "Unknown received date";
                 }
             }
@@ -214,8 +225,7 @@ public class Mail {
             int c2;
             try {
                 c2 = Integer.parseInt(args[1]) - 1;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 c2 = 0;
             }
             ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
@@ -259,4 +269,3 @@ public class Mail {
         }
     }
 }
-

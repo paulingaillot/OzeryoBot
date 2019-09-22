@@ -42,10 +42,8 @@ public class mail {
             tr.sendMessage(message, message.getAllRecipients());
             tr.close();
             System.out.println("message envoyé");
-        }
-        catch (MessagingException e) {
+        } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
 }
-

@@ -16,12 +16,11 @@ import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 
-public class EXP
-implements EventListener {
+public class EXP implements EventListener {
     @Override
     public void onEvent(Event event) {
         if (event instanceof MessageReceivedEvent) {
-            this.EXP((MessageReceivedEvent)event);
+            this.EXP((MessageReceivedEvent) event);
         }
     }
 
@@ -32,25 +31,25 @@ implements EventListener {
         }
         try {
             lastmessage = DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId()).getLastmessage();
-        }
-        catch (NullPointerException e) {
-            DiscordBot.getLeveldata().getLevelProfil().put(event.getAuthor().getId(), new LevelProfil(event.getAuthor().getId()));
+        } catch (NullPointerException e) {
+            DiscordBot.getLeveldata().getLevelProfil().put(event.getAuthor().getId(),
+                    new LevelProfil(event.getAuthor().getId()));
             lastmessage = 0L;
         }
         long dif = System.currentTimeMillis() - lastmessage;
         if (dif >= 60000L) {
-            DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId()).setLastmessage(System.currentTimeMillis());
+            DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId())
+                    .setLastmessage(System.currentTimeMillis());
             if (event.getAuthor().isBot()) {
                 return;
             }
             int xp = 0;
             try {
                 xp = DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).getXp();
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
                 // empty catch block
             }
-            int alea = 1 + (int)(Math.random() * 5.0);
+            int alea = 1 + (int) (Math.random() * 5.0);
             DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).setXp(xp += alea);
             if (event.getAuthor().isBot()) {
                 return;
@@ -58,11 +57,11 @@ implements EventListener {
             xp = 0;
             try {
                 xp = DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId()).getXp();
+            } catch (NullPointerException e) {
+                DiscordBot.getLeveldata().getLevelProfil().put(event.getAuthor().getId(),
+                        new LevelProfil(event.getAuthor().getId()));
             }
-            catch (NullPointerException e) {
-                DiscordBot.getLeveldata().getLevelProfil().put(event.getAuthor().getId(), new LevelProfil(event.getAuthor().getId()));
-            }
-            alea = 1 + (int)(Math.random() * 5.0);
+            alea = 1 + (int) (Math.random() * 5.0);
             DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId()).setXp(xp += alea);
         }
     }
@@ -135,4 +134,3 @@ implements EventListener {
         return EXPUp;
     }
 }
-

@@ -49,8 +49,7 @@ import net.dv8tion.jda.core.requests.RestAction;
 import net.dv8tion.jda.core.requests.restaction.AuditableRestAction;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
-public class BotListener
-implements EventListener {
+public class BotListener implements EventListener {
     private final CommandMap commandMap;
     public static int messages = 0;
 
@@ -61,21 +60,21 @@ implements EventListener {
     @Override
     public void onEvent(Event event) {
         if (event instanceof MessageReceivedEvent) {
-            this.onMessage((MessageReceivedEvent)event);
+            this.onMessage((MessageReceivedEvent) event);
         } else if (event instanceof GuildMemberJoinEvent) {
-            this.onGuildMemberJoin((GuildMemberJoinEvent)event);
+            this.onGuildMemberJoin((GuildMemberJoinEvent) event);
         } else if (event instanceof GuildMemberLeaveEvent) {
-            this.onGuildMemberLeave((GuildMemberLeaveEvent)event);
+            this.onGuildMemberLeave((GuildMemberLeaveEvent) event);
         } else if (event instanceof GuildVoiceJoinEvent) {
-            this.onUserJoinVoiceChannel((GuildVoiceJoinEvent)event);
+            this.onUserJoinVoiceChannel((GuildVoiceJoinEvent) event);
         } else if (event instanceof GuildVoiceLeaveEvent) {
-            this.onUserLeaveVoiceChannel((GuildVoiceLeaveEvent)event);
+            this.onUserLeaveVoiceChannel((GuildVoiceLeaveEvent) event);
         } else if (event instanceof GuildVoiceMoveEvent) {
-            this.onUserMoveVoiceChannel((GuildVoiceMoveEvent)event);
+            this.onUserMoveVoiceChannel((GuildVoiceMoveEvent) event);
         } else if (event instanceof UserUpdateOnlineStatusEvent) {
-            this.Onconection((UserUpdateOnlineStatusEvent)event);
+            this.Onconection((UserUpdateOnlineStatusEvent) event);
         } else if (event instanceof UserUpdateGameEvent) {
-            this.Ongame((UserUpdateGameEvent)event);
+            this.Ongame((UserUpdateGameEvent) event);
         }
     }
 
@@ -83,25 +82,28 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
-        if (event.getChannelLeft().getName().equals(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
+        if (event.getChannelLeft().getName().equals(TextFileWriter
+                .read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
             List<Member> members = event.getChannelLeft().getMembers();
             int connectes = 0;
             for (Member member : members) {
-                if (member.getUser().isBot()) continue;
+                if (member.getUser().isBot())
+                    continue;
                 ++connectes;
             }
             if (connectes == 0) {
                 MusicCommands.MusicStop(event.getGuild());
             }
         }
-        if (event.getChannelJoined().getName().equals(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
+        if (event.getChannelJoined().getName().equals(TextFileWriter
+                .read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
             Boolean musique = true;
             for (Member member : event.getChannelJoined().getMembers()) {
-                if (!member.getUser().isBot()) continue;
+                if (!member.getUser().isBot())
+                    continue;
                 musique = false;
             }
             if (musique.booleanValue()) {
@@ -114,14 +116,14 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         List<Member> members = event.getChannelLeft().getMembers();
         int connectes = 0;
         for (Member member : members) {
-            if (member.getUser().isBot()) continue;
+            if (member.getUser().isBot())
+                continue;
             ++connectes;
         }
         if (connectes == 0) {
@@ -136,17 +138,18 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         GuildProfilData data = DiscordBot.getGuilddata();
         try {
             String string = data.getGuildProfil().get(event.getGuild().getId()).getId();
-        }
-        catch (NullPointerException e) {
-            data.getGuildProfil().put(event.getGuild().getId(), new GuildProfil(event.getGuild().getId(), event.getGuild().getName()));
-            CommandMap.PublicLog("\ud83d\udfe2 OzeryoBot a été ajouté sur le serveur " + event.getGuild().getName() + ".", event.getJDA());
+        } catch (NullPointerException e) {
+            data.getGuildProfil().put(event.getGuild().getId(),
+                    new GuildProfil(event.getGuild().getId(), event.getGuild().getName()));
+            CommandMap.PublicLog(
+                    "\ud83d\udfe2 OzeryoBot a été ajouté sur le serveur " + event.getGuild().getName() + ".",
+                    event.getJDA());
         }
         if (data.getGuildProfil().get(event.getGuild().getId()).getName().equals("")) {
             data.getGuildProfil().get(event.getGuild().getId()).setName(event.getGuild().getName());
@@ -161,38 +164,56 @@ implements EventListener {
         int minutes = Integer.parseInt(new SimpleDateFormat("mm", Locale.FRANCE).format(new Date()));
         int heures = Integer.parseInt(new SimpleDateFormat("HH", Locale.FRANCE).format(new Date()));
         int jours = Integer.parseInt(new SimpleDateFormat("dd", Locale.FRANCE).format(new Date()));
-        int AutoAFK = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK.txt"));
+        int AutoAFK = Integer.parseInt(TextFileWriter
+                .read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK.txt"));
         if (AutoAFK != 0) {
-            TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt");
-            TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/heures.txt");
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/heures.txt", Integer.toString(heures), 1);
-            TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/jours.txt");
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/jours.txt", Integer.toString(jours), 1);
-            TextFileWriter.delete("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt");
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt", Integer.toString(minutes), 1);
+            TextFileWriter.folder(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt");
+            TextFileWriter.delete(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/heures.txt");
+            TextFileWriter.write(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/heures.txt",
+                    Integer.toString(heures), 1);
+            TextFileWriter.delete(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/jours.txt");
+            TextFileWriter.write(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/jours.txt",
+                    Integer.toString(jours), 1);
+            TextFileWriter.delete(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt");
+            TextFileWriter.write(
+                    "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AutoAFK/minutes.txt",
+                    Integer.toString(minutes), 1);
         }
         try {
             lang = DiscordBot.getData().getProfils().get(event.getAuthor().getId()).getLanguage();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             lang = command.Language.en;
         }
         if (event.getMessage().getMentionedUsers().size() >= 1) {
             for (int i = 0; i < event.getMessage().getMentionedUsers().size(); ++i) {
                 User user = event.getMessage().getMentionedUsers().get(i);
-                AutoAFK = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK.txt"));
-                if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AFK.txt").equals("true")) {
+                AutoAFK = Integer.parseInt(TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK.txt"));
+                if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AFK.txt")
+                        .equals("true")) {
                     if (lang == command.Language.fr) {
-                        event.getChannel().sendMessage("Désolé mais la personne que vous tenter de mentionnez est AFK").queue();
+                        event.getChannel().sendMessage("Désolé mais la personne que vous tenter de mentionnez est AFK")
+                                .queue();
                     }
-                    if (lang != command.Language.en) continue;
+                    if (lang != command.Language.en)
+                        continue;
                     event.getChannel().sendMessage("Sorry but the person you want to mention is AFK").queue();
                     continue;
                 }
-                if (AutoAFK == 0) continue;
-                String message_minutes = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/minutes.txt");
-                String message_heures = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/heures.txt");
-                String message_jours = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/jours.txt");
+                if (AutoAFK == 0)
+                    continue;
+                String message_minutes = TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/minutes.txt");
+                String message_heures = TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/heures.txt");
+                String message_jours = TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AutoAFK/jours.txt");
                 if (message_minutes == null) {
                     message_minutes = new SimpleDateFormat("mm", Locale.FRANCE).format(new Date());
                 }
@@ -214,16 +235,21 @@ implements EventListener {
                     --Njours;
                 }
                 Nminutes += Nheures * 60;
-                if ((Nminutes += Njours * 1440) < AutoAFK || AutoAFK == 0) continue;
+                if ((Nminutes += Njours * 1440) < AutoAFK || AutoAFK == 0)
+                    continue;
                 if (lang == command.Language.fr) {
-                    event.getChannel().sendMessage("Désolé mais la personne que vous tenter de mentionnez est AFK").queue();
+                    event.getChannel().sendMessage("Désolé mais la personne que vous tenter de mentionnez est AFK")
+                            .queue();
                 }
-                if (lang != command.Language.en) continue;
+                if (lang != command.Language.en)
+                    continue;
                 event.getChannel().sendMessage("Sorry but the person you want to mention is AFK").queue();
             }
         }
-        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AFK.txt").equals("true")) {
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AFK.txt", "false", 1);
+        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AFK.txt")
+                .equals("true")) {
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/AFK.txt",
+                    "false", 1);
             if (lang == command.Language.fr) {
                 event.getChannel().sendMessage("Vous n'etes plus AFK").queue();
             }
@@ -237,20 +263,26 @@ implements EventListener {
         if (event.getMessage().getContentDisplay().isEmpty()) {
             return;
         }
-        if (event.getMessage().getContentDisplay().startsWith(String.valueOf(this.commandMap.getPrefix(event.getGuild())) + "say") || event.getMessage().getContentDisplay().startsWith(String.valueOf(this.commandMap.getTag()) + "say")) {
+        if (event.getMessage().getContentDisplay()
+                .startsWith(String.valueOf(this.commandMap.getPrefix(event.getGuild())) + "say")
+                || event.getMessage().getContentDisplay()
+                        .startsWith(String.valueOf(this.commandMap.getTag()) + "say")) {
             event.getMessage().delete().queue();
         }
         if ((message = event.getMessage().getContentRaw()).startsWith(event.getJDA().getSelfUser().getAsMention())) {
             message = message.replaceFirst(String.valueOf(event.getJDA().getSelfUser().getAsMention()) + " ", "");
-            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(), event.getGuild());
+            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(),
+                    event.getGuild());
         }
         if (message.startsWith(this.commandMap.getPrefix(event.getGuild()))) {
             message = message.replaceFirst(this.commandMap.getPrefix(event.getGuild()), "");
-            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(), event.getGuild());
+            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(),
+                    event.getGuild());
         }
         if (message.toLowerCase().startsWith(this.commandMap.getTag2())) {
             message = message.toLowerCase().replaceFirst(this.commandMap.getTag2(), "");
-            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(), event.getGuild());
+            CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(),
+                    event.getGuild());
         }
         if (!event.getChannel().getId().equals("541620777087402004")) {
             return;
@@ -268,7 +300,8 @@ implements EventListener {
                 return;
             }
             if (!DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).getGeneral().equals("")) {
-                String mess = DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).getWelcomeMessage();
+                String mess = DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId())
+                        .getWelcomeMessage();
                 mess = mess.replace("{players}", String.valueOf(event.getGuild().getMembers().size()));
                 mess = mess.replace("{guild}", event.getGuild().getName());
                 mess = mess.replace("{user}", event.getUser().getName());
@@ -278,10 +311,12 @@ implements EventListener {
                 builder.setColor(Color.green);
                 builder.setFooter(event.getGuild().getName(), event.getGuild().getIconUrl());
                 builder.setDescription(mess);
-                event.getGuild().getTextChannelById(DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).getGeneral()).sendMessage(builder.build()).queue();
+                event.getGuild()
+                        .getTextChannelById(
+                                DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).getGeneral())
+                        .sendMessage(builder.build()).queue();
             }
-        }
-        catch (NullPointerException mess) {
+        } catch (NullPointerException mess) {
             // empty catch block
         }
     }
@@ -290,8 +325,7 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
@@ -302,17 +336,21 @@ implements EventListener {
             if (event.getMember().getUser().isBot()) {
                 return;
             }
-            if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/general.txt") != null) {
+            if (TextFileWriter.read(
+                    "/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/general.txt") != null) {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setTitle("Au revoir **" + event.getUser().getName() + "** de " + event.getGuild().getName());
                 builder.setThumbnail(event.getUser().getAvatarUrl());
                 builder.setColor(Color.green);
                 builder.setFooter(event.getGuild().getName(), event.getGuild().getIconUrl());
-                builder.setDescription("\ud83d\udc4b\ud83d\udc4b Tu vas manquer au " + event.getGuild().getMembers().size() + " users du serveur. \ud83d\udc4b\ud83d\udc4b");
-                event.getGuild().getTextChannelById(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/general.txt")).sendMessage(builder.build()).queue();
+                builder.setDescription("\ud83d\udc4b\ud83d\udc4b Tu vas manquer au "
+                        + event.getGuild().getMembers().size() + " users du serveur. \ud83d\udc4b\ud83d\udc4b");
+                event.getGuild()
+                        .getTextChannelById(TextFileWriter.read(
+                                "/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/general.txt"))
+                        .sendMessage(builder.build()).queue();
             }
-        }
-        catch (NullPointerException builder) {
+        } catch (NullPointerException builder) {
             // empty catch block
         }
     }
@@ -321,14 +359,15 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
-        if (event.getChannelJoined().getName().equals(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
+        if (event.getChannelJoined().getName().equals(TextFileWriter
+                .read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/Vmusique.txt"))) {
             Boolean musique = true;
             for (Member member : event.getChannelJoined().getMembers()) {
-                if (!member.getUser().isBot()) continue;
+                if (!member.getUser().isBot())
+                    continue;
                 musique = false;
             }
             if (musique.booleanValue()) {
@@ -341,8 +380,7 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
     }
@@ -351,16 +389,14 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         if (event.getGuild().getId().equals("326345972739473410")) {
             String jeu;
             try {
                 jeu = event.getNewGame().toString();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 jeu = "";
             }
             if (jeu.contains("Minecraft")) {
@@ -382,4 +418,3 @@ implements EventListener {
         }
     }
 }
-

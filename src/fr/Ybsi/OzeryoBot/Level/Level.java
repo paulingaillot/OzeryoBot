@@ -13,8 +13,7 @@ public class Level {
         int EXP2 = 0;
         try {
             EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(id).getXp();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             DiscordBot.getLeveldata().getLevelProfil().put(id, new LevelProfil(id));
         }
         int level_test = 1;
@@ -37,8 +36,7 @@ public class Level {
         int EXP2 = 0;
         try {
             EXP2 = DiscordBot.getGuilddata().getGuildProfil().get(id).getXp();
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         int level_test = 1;
@@ -57,4 +55,3 @@ public class Level {
         return level_test;
     }
 }
-

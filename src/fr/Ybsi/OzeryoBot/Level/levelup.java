@@ -22,16 +22,14 @@ import net.dv8tion.jda.core.exceptions.PermissionException;
 import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
-public class levelup
-implements EventListener {
+public class levelup implements EventListener {
     @Override
     public void onEvent(Event event) {
         try {
             if (event instanceof MessageReceivedEvent) {
-                this.levelup((MessageReceivedEvent)event);
+                this.levelup((MessageReceivedEvent) event);
             }
-        }
-        catch (PermissionException permissionException) {
+        } catch (PermissionException permissionException) {
             // empty catch block
         }
     }
@@ -42,8 +40,7 @@ implements EventListener {
             int EXP1;
             try {
                 lang = DiscordBot.getData().getProfils().get(event.getAuthor().getId()).getLanguage();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 lang = command.Language.en;
             }
             if (DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).isSilence()) {
@@ -62,8 +59,7 @@ implements EventListener {
             int levelUp = EXP.LevelUp(event.getAuthor(), -1);
             try {
                 EXP1 = DiscordBot.getLeveldata().getLevelProfil().get(event.getAuthor().getId()).getXp();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 EXP1 = 0;
             }
             if (EXP1 >= levelUp && EXP1 <= levelUp + 4) {
@@ -93,21 +89,21 @@ implements EventListener {
             try {
                 if (GEXP >= GlevelUp && GEXP <= GlevelUp + 4) {
                     if (lang == command.Language.fr) {
-                        event.getChannel().sendMessage(":up: Level Up !!!:up: Votre guilde est désormais au niveau " + Glevel).queue();
+                        event.getChannel()
+                                .sendMessage(":up: Level Up !!!:up: Votre guilde est désormais au niveau " + Glevel)
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        event.getChannel().sendMessage(":up: Level Up !!!:up: Your Guild is now level " + Glevel).queue();
+                        event.getChannel().sendMessage(":up: Level Up !!!:up: Your Guild is now level " + Glevel)
+                                .queue();
                     }
                     DiscordBot.getGuilddata().getGuildProfil().get(event.getGuild().getId()).setXp(EXP1 + 5);
                 }
+            } catch (NumberFormatException numberFormatException) {
             }
-            catch (NumberFormatException numberFormatException) {}
-        }
-        catch (NullPointerException lang) {
-        }
-        catch (NumberFormatException lang) {
+        } catch (NullPointerException lang) {
+        } catch (NumberFormatException lang) {
             // empty catch block
         }
     }
 }
-

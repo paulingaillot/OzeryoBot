@@ -34,4 +34,3 @@ public class LevelProfilData {
         return this.levelProfil;
     }
 }
-

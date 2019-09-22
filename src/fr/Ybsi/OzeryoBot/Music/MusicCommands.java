@@ -52,17 +52,18 @@ public class MusicCommands {
                     manager.loadTrack(null, track, guild);
                     continue;
                 }
-                TextChannel channel2 = guild.getTextChannelById(DiscordBot.getGuilddata().getGuildProfil().get(guild.getId()).getTmusique());
+                TextChannel channel2 = guild.getTextChannelById(
+                        DiscordBot.getGuilddata().getGuildProfil().get(guild.getId()).getTmusique());
                 manager.loadTrack(guild.getTextChannelById(channel2.getId()), track, guild);
             }
-        }
-        catch (NullPointerException e) {
-            manager.loadTrack(null, "https://www.youtube.com/watch?v=pMarN41uJqE&list=PLRBp0Fe2GpgnIh0AiYKh7o7HnYAej-5ph", guild);
+        } catch (NullPointerException e) {
+            manager.loadTrack(null,
+                    "https://www.youtube.com/watch?v=pMarN41uJqE&list=PLRBp0Fe2GpgnIh0AiYKh7o7HnYAej-5ph", guild);
             return;
         }
     }
 
-    @command(name="play", type=command.ExecutorType.USER, topic=command.Topics.Music)
+    @command(name = "play", type = command.ExecutorType.USER, topic = command.Topics.Music)
     private void play(Guild guild, TextChannel textChannel, User user, String command2, command.Language lang) {
         if (guild == null) {
             return;
@@ -83,7 +84,7 @@ public class MusicCommands {
         manager.loadTrack(textChannel, command2.replaceFirst("play ", ""), guild);
     }
 
-    @command(name="skip", type=command.ExecutorType.USER, topic=command.Topics.Music)
+    @command(name = "skip", type = command.ExecutorType.USER, topic = command.Topics.Music)
     private void skip(Guild guild, TextChannel textChannel, command.Language lang) {
         if (!guild.getAudioManager().isConnected() && !guild.getAudioManager().isAttemptingToConnect()) {
             if (lang == command.Language.fr) {
@@ -98,8 +99,9 @@ public class MusicCommands {
         textChannel.sendMessage("La lecture est passé \u00e0 la piste suivante.").queue();
     }
 
-    @command(name="Gplaylist", type=command.ExecutorType.USER, topic=command.Topics.Music)
-    private void Gplaylist(MessageChannel channel, String[] args, Guild guild, User user, String command2, command.Language lang) {
+    @command(name = "Gplaylist", type = command.ExecutorType.USER, topic = command.Topics.Music)
+    private void Gplaylist(MessageChannel channel, String[] args, Guild guild, User user, String command2,
+            command.Language lang) {
         String message;
         String c2;
         ArrayList<String> list;
@@ -107,13 +109,13 @@ public class MusicCommands {
         GuildProfilData data = DiscordBot.getGuilddata();
         StringBuilder builder = new StringBuilder();
         for (String str : args) {
-            if (str.equals(args[0])) continue;
+            if (str.equals(args[0]))
+                continue;
             builder.append(String.valueOf(str));
         }
         try {
             c1 = args[0];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=Gplaylist [play/add] [URL]``.").queue();
             }
@@ -124,8 +126,7 @@ public class MusicCommands {
         }
         try {
             c2 = builder.toString();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             c2 = "";
         }
         if (c1.equals("add")) {
@@ -159,10 +160,12 @@ public class MusicCommands {
                     ++i;
                 }
                 if (lang == command.Language.fr) {
-                    message = String.valueOf(message) + " **Veuillez indiquer le numero de la musique a supprimer de la playlist.**";
+                    message = String.valueOf(message)
+                            + " **Veuillez indiquer le numero de la musique a supprimer de la playlist.**";
                 }
                 if (lang == command.Language.en) {
-                    message = String.valueOf(message) + " **You must indicate the number of the song you want to remove from the playlist.**";
+                    message = String.valueOf(message)
+                            + " **You must indicate the number of the song you want to remove from the playlist.**";
                 }
                 channel.sendMessage(message).queue();
             }
@@ -183,7 +186,7 @@ public class MusicCommands {
         }
     }
 
-    @command(name="volume", type=command.ExecutorType.USER, topic=command.Topics.Music)
+    @command(name = "volume", type = command.ExecutorType.USER, topic = command.Topics.Music)
     private void volume(TextChannel textChannel, MessageChannel channel, String[] args, command.Language lang) {
         StringBuilder builder = new StringBuilder();
         for (String str : args) {
@@ -196,10 +199,11 @@ public class MusicCommands {
             MusicPlayer player = null;
             try {
                 player = manager.getPlayer(textChannel.getGuild());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous devez etre en train d'ecouter de la musique avec le bot pour pouvoir utiliser cet commande.").queue();
+                    channel.sendMessage(
+                            "Vous devez etre en train d'ecouter de la musique avec le bot pour pouvoir utiliser cet commande.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You must be listening music with the bot to use this command.").queue();
@@ -223,8 +227,9 @@ public class MusicCommands {
         }
     }
 
-    @command(name="stop", type=command.ExecutorType.USER, topic=command.Topics.Music)
-    private void stop(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice, Guild guild, User user, command.Language lang) {
+    @command(name = "stop", type = command.ExecutorType.USER, topic = command.Topics.Music)
+    private void stop(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice, Guild guild,
+            User user, command.Language lang) {
         MusicPlayer player = manager.getPlayer(textChannel.getGuild());
         player.getListener().getTracks().clear();
         player.getAudioPlayer().stopTrack();
@@ -238,18 +243,20 @@ public class MusicCommands {
         }
     }
 
-    @command(name="song", type=command.ExecutorType.USER, topic=command.Topics.Music)
+    @command(name = "song", type = command.ExecutorType.USER, topic = command.Topics.Music)
     private void song(TextChannel textChannel, MessageChannel channel, User user, command.Language lang) {
         MusicPlayer player;
         try {
             player = manager.getPlayer(textChannel.getGuild());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous ne pouvez pas utiliser cet commande si vous n'ecoutez pas de musique avec le bot actuelement.").queue();
+                channel.sendMessage(
+                        "Vous ne pouvez pas utiliser cet commande si vous n'ecoutez pas de musique avec le bot actuelement.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("You can't use this command if you'renot listening music with the bot actually.").queue();
+                channel.sendMessage("You can't use this command if you'renot listening music with the bot actually.")
+                        .queue();
             }
             return;
         }
@@ -269,17 +276,24 @@ public class MusicCommands {
             builder.addField("Title", player.getAudioPlayer().getPlayingTrack().getInfo().title, true);
         }
         if (lang == command.Language.fr) {
-            builder.addField("Durée", String.valueOf((double)player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0) + " minutes", true);
+            builder.addField("Durée",
+                    String.valueOf((double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0)
+                            + " minutes",
+                    true);
         }
         if (lang == command.Language.en) {
-            builder.addField("Duration", String.valueOf((double)player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0) + " minutes", true);
+            builder.addField("Duration",
+                    String.valueOf((double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0)
+                            + " minutes",
+                    true);
         }
         builder.addField("URL", player.getAudioPlayer().getPlayingTrack().getInfo().uri, true);
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name="pause", type=command.ExecutorType.USER, topic=command.Topics.Music)
-    private void pause(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice, Guild guild, User user, command.Language lang) {
+    @command(name = "pause", type = command.ExecutorType.USER, topic = command.Topics.Music)
+    private void pause(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice, Guild guild,
+            User user, command.Language lang) {
         MusicPlayer player = manager.getPlayer(textChannel.getGuild());
         if (player.getAudioPlayer().isPaused()) {
             player.getAudioPlayer().setPaused(false);
@@ -300,14 +314,15 @@ public class MusicCommands {
         }
     }
 
-    @command(name="shuffle", type=command.ExecutorType.USER, topic=command.Topics.Music)
-    private void shuffle(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice, Guild guild, User user, JDA jda, command.Language lang) {
+    @command(name = "shuffle", type = command.ExecutorType.USER, topic = command.Topics.Music)
+    private void shuffle(TextChannel textChannel, MessageChannel channel, String[] args, VoiceChannel voice,
+            Guild guild, User user, JDA jda, command.Language lang) {
         MusicPlayer player = manager.getPlayer(textChannel.getGuild());
         BlockingQueue<AudioTrack> tracks = player.getListener().getTracks();
         for (AudioTrack Track2 : tracks) {
             ArrayList<String> list = new ArrayList<String>();
             String url = Track2.getInfo().uri;
-            int alea = 0 + (int)(Math.random() * (double)(list.size() - 1 - 0 + 1));
+            int alea = 0 + (int) (Math.random() * (double) (list.size() - 1 - 0 + 1));
             list.add(alea, url);
             player.getListener().getTracks().clear();
             player.getAudioPlayer().stopTrack();
@@ -324,4 +339,3 @@ public class MusicCommands {
         }
     }
 }
-

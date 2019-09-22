@@ -9,8 +9,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value={ElementType.METHOD})
-@Retention(value=RetentionPolicy.RUNTIME)
+@Target(value = { ElementType.METHOD })
+@Retention(value = RetentionPolicy.RUNTIME)
 public @interface command {
     public String name();
 
@@ -31,28 +31,18 @@ public @interface command {
     public int power() default 0;
 
     public static enum ExecutorType {
-        ALL,
-        USER,
-        CONSOLE;
-        
+        ALL, USER, CONSOLE;
+
     }
 
     public static enum Language {
-        fr,
-        en;
-        
+        fr, en;
+
     }
 
     public static enum Topics {
-        Util,
-        Game,
-        Admin,
-        Social,
-        Stories,
-        Music,
-        Modo;
-        
+        Util, Game, Admin, Social, Stories, Music, Modo;
+
     }
 
 }
-

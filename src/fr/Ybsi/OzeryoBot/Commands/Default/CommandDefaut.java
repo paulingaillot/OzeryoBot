@@ -97,20 +97,22 @@ public class CommandDefaut {
         this.DiscordBot = DiscordBot2;
     }
 
-    @command(name="Bstop", type=command.ExecutorType.CONSOLE)
+    @command(name = "Bstop", type = command.ExecutorType.CONSOLE)
     private void Bstop() {
         this.DiscordBot.setrunning(false);
     }
 
-    @command(name="ram", type=command.ExecutorType.ALL, descfr="Permet de voir toutes les informations sur l'utilisation de la ram par le bot", descen="Lets see all the information on the use of the ram by the bot.", rank=1, topic=command.Topics.Admin)
+    @command(name = "ram", type = command.ExecutorType.ALL, descfr = "Permet de voir toutes les informations sur l'utilisation de la ram par le bot", descen = "Lets see all the information on the use of the ram by the bot.", rank = 1, topic = command.Topics.Admin)
     private void ram(User user, MessageChannel Channel2, Guild guild, JDA jda) {
         long totalram = Runtime.getRuntime().totalMemory();
         long maxram = Runtime.getRuntime().maxMemory();
         long freeram = Runtime.getRuntime().freeMemory();
-        Channel2.sendMessage("TotalRam : " + (totalram /= 1000000L) + "\n" + "MaxRam : " + (maxram /= 1000000L) + "\n" + "FreeRam : " + (freeram /= 1000000L) + "\n" + "TotalRam - FreeRam : " + (totalram - freeram) + "\n" + "MaxRam - FreeRam : " + (maxram - freeram) + "\n").queue();
+        Channel2.sendMessage("TotalRam : " + (totalram /= 1000000L) + "\n" + "MaxRam : " + (maxram /= 1000000L) + "\n"
+                + "FreeRam : " + (freeram /= 1000000L) + "\n" + "TotalRam - FreeRam : " + (totalram - freeram) + "\n"
+                + "MaxRam - FreeRam : " + (maxram - freeram) + "\n").queue();
     }
 
-    @command(name="info", type=command.ExecutorType.ALL, descfr="Permet de voir toute les informations sur le bot.", descen="Lets see all the information about the bot.", rank=1)
+    @command(name = "info", type = command.ExecutorType.ALL, descfr = "Permet de voir toute les informations sur le bot.", descen = "Lets see all the information about the bot.", rank = 1)
     private void info(User user, MessageChannel Channel2, Guild guild, JDA jda, command.Language lang) {
         long ping;
         long ram1 = Runtime.getRuntime().totalMemory();
@@ -149,7 +151,9 @@ public class CommandDefaut {
             Ujours += 30;
             --Umois;
         }
-        String logo = (ping = jda.getPing()) <= 150L ? "\ud83d\udcd8" : (ping > 150L && ping <= 200L ? "\ud83d\udcd7" : (ping > 200L && ping <= 500L ? "\ud83d\udcd9" : "\ud83d\udcd5"));
+        String logo = (ping = jda.getPing()) <= 150L ? "\ud83d\udcd8"
+                : (ping > 150L && ping <= 200L ? "\ud83d\udcd7"
+                        : (ping > 200L && ping <= 500L ? "\ud83d\udcd9" : "\ud83d\udcd5"));
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(user.getName(), String.valueOf(user.getAvatarUrl()) + "?size=256");
         builder.setTitle("Information");
@@ -172,35 +176,46 @@ public class CommandDefaut {
         builder.addField("\ud83c\udf10 " + website + " \ud83c\udf10", "http://ozeryo.xyz", true);
         builder.addField("\u23f0 ping \u23f0", String.valueOf(user.getJDA().getPing()) + "ms " + logo, true);
         builder.addField("\ud83d\udcbb RAM \ud83d\udcbb", String.valueOf(ram1) + "Mo", true);
-        builder.addField("\ud83d\udd05 Uptime \ud83d\udd05", String.valueOf(Ujours) + "j" + Uheures + "h" + Uminutes + "m" + Usecondes + "s", true);
-        builder.addField("\ud83d\udd37 Guilds \ud83d\udd37", String.valueOf(user.getJDA().getGuilds().size()) + " guilds", true);
+        builder.addField("\ud83d\udd05 Uptime \ud83d\udd05",
+                String.valueOf(Ujours) + "j" + Uheures + "h" + Uminutes + "m" + Usecondes + "s", true);
+        builder.addField("\ud83d\udd37 Guilds \ud83d\udd37",
+                String.valueOf(user.getJDA().getGuilds().size()) + " guilds", true);
         builder.addField("Shard", "Shard " + shard + " / " + user.getJDA().getShardInfo().getShardTotal(), true);
-        builder.addField("\ud83d\udd36 Users \ud83d\udd36", String.valueOf(user.getJDA().getUsers().size()) + " users", true);
+        builder.addField("\ud83d\udd36 Users \ud83d\udd36", String.valueOf(user.getJDA().getUsers().size()) + " users",
+                true);
         builder.addField("Messages", String.valueOf(BotListener.messages), true);
         builder.addField("Commands", String.valueOf(CommandMap.commands1), true);
         Channel2.sendMessage(builder.build()).queue();
     }
 
-    @command(name="invite", type=command.ExecutorType.ALL, descfr="invite OzeryoBot sur ton serveur !!!", descen=" lets invite the bot on your server")
+    @command(name = "invite", type = command.ExecutorType.ALL, descfr = "invite OzeryoBot sur ton serveur !!!", descen = " lets invite the bot on your server")
     private void invite(User user, MessageChannel Channel2, command.Language lang) {
         if (lang == command.Language.fr) {
-            Channel2.sendMessage("Pour obtenir OzeryoBot sur ton serveur : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ").complete();
+            Channel2.sendMessage(
+                    "Pour obtenir OzeryoBot sur ton serveur : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ")
+                    .complete();
         } else if (lang == command.Language.en) {
-            Channel2.sendMessage(" Click here to get OzeryoBot on your server : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ").complete();
+            Channel2.sendMessage(
+                    " Click here to get OzeryoBot on your server : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ")
+                    .complete();
         }
         System.out.println("La commande serveur a été utilisé par : " + user.getName());
     }
 
-    @command(name="serveur", type=command.ExecutorType.ALL, descfr="Permet de rejoindre le serveur officiel d'OzeryoBot", descen="allows to join the official OzeryoBot server")
+    @command(name = "serveur", type = command.ExecutorType.ALL, descfr = "Permet de rejoindre le serveur officiel d'OzeryoBot", descen = "allows to join the official OzeryoBot server")
     private void serveur(User user, MessageChannel Channel2, command.Language lang) {
         if (lang == command.Language.fr) {
-            Channel2.sendMessage(":boom: :boom: :boom:   Rejoint vite notre serveur !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2").complete();
+            Channel2.sendMessage(
+                    ":boom: :boom: :boom:   Rejoint vite notre serveur !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2")
+                    .complete();
         } else if (lang == command.Language.en) {
-            Channel2.sendMessage(":boom: :boom: :boom: Join our Main Server !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2").complete();
+            Channel2.sendMessage(
+                    ":boom: :boom: :boom: Join our Main Server !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2")
+                    .complete();
         }
     }
 
-    @command(name="say", type=command.ExecutorType.ALL, descfr=" usage : =say [message]\n Le bot repete ton message", descen="use : =say [message]\n The bot will repeat your message")
+    @command(name = "say", type = command.ExecutorType.ALL, descfr = " usage : =say [message]\n Le bot repete ton message", descen = "use : =say [message]\n The bot will repeat your message")
     private void say(String[] args, MessageChannel channel, User user, Message messages) {
         String message = messages.getContentRaw().replace("=say ", "");
         if (message.contains("@everyone")) {
@@ -213,7 +228,7 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="prefix", power=100, type=command.ExecutorType.ALL, descfr="change le prefix du bot", descen="allows you to edit the bot prefix", topic=command.Topics.Modo)
+    @command(name = "prefix", power = 100, type = command.ExecutorType.ALL, descfr = "change le prefix du bot", descen = "allows you to edit the bot prefix", topic = command.Topics.Modo)
     private void prefix(String[] args, MessageChannel channel, User user, Guild guild, command.Language lang) {
         if (guild.getMember(user).hasPermission(Permission.ADMINISTRATOR)) {
             StringBuilder builder = new StringBuilder();
@@ -231,7 +246,8 @@ public class CommandDefaut {
                 }
                 return;
             }
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt", builder.toString(), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt",
+                    builder.toString(), 1);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Le prefix est désormais : " + builder.toString()).queue();
             } else if (lang == command.Language.en) {
@@ -247,13 +263,14 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="spam", type=command.ExecutorType.ALL, descfr="Te permet de spam un message ", descen="Allow you to spam a message", topic=command.Topics.Admin)
+    @command(name = "spam", type = command.ExecutorType.ALL, descfr = "Te permet de spam un message ", descen = "Allow you to spam a message", topic = command.Topics.Admin)
     private void spam(String[] args, MessageChannel channel, User user, int[] arg, Guild guild, command.Language lang) {
         if (user.getId().equals("102108573298851840")) {
             String string = "";
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
-                if (str.equals(args[0])) continue;
+                if (str.equals(args[0]))
+                    continue;
                 builder.append(String.valueOf(str) + " ");
             }
             int c1 = Integer.parseInt(args[0]) + 1;
@@ -270,11 +287,12 @@ public class CommandDefaut {
         } else if (lang == command.Language.fr) {
             channel.sendMessage("Cette commande a déja fait trop de dommage donc reve pour avoir l'acces !!").queue();
         } else if (lang == command.Language.en) {
-            channel.sendMessage("This command make has already done too much demage so she is no longer available").queue();
+            channel.sendMessage("This command make has already done too much demage so she is no longer available")
+                    .queue();
         }
     }
 
-    @command(name="choix", type=command.ExecutorType.ALL, descfr="usage : =choix [choix 1] / [choix 2]\n Je choisit a ta place", descen=" use ``=choix [choix 1] / [choix 2] \n The bot will choose for you")
+    @command(name = "choix", type = command.ExecutorType.ALL, descfr = "usage : =choix [choix 1] / [choix 2]\n Je choisit a ta place", descen = " use ``=choix [choix 1] / [choix 2] \n The bot will choose for you")
     public void choix(String[] args, MessageChannel channel, Message message, command.Language lang, String mess) {
         try {
             mess.replace("choix", "");
@@ -298,24 +316,22 @@ public class CommandDefaut {
             } else if (lang == command.Language.en) {
                 channel.sendMessage("I choose : " + c2).queue();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             channel.sendMessage("Usage incorrect, Il faut faire : =choix <CHOIX_1> / <CHOIX_2> ").queue();
             return;
         }
     }
 
-    @command(name="stats", type=command.ExecutorType.ALL, descfr="Affiche le level d'un joueur", descen="Shows the level of a player", topic=command.Topics.Social)
-    private void stats(MessageChannel channel, Message message, String[] args, User user, Guild guild, ProfilData data, command.Language lang, JDA jda) {
+    @command(name = "stats", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = command.Topics.Social)
+    private void stats(MessageChannel channel, Message message, String[] args, User user, Guild guild, ProfilData data,
+            command.Language lang, JDA jda) {
         User cible;
         try {
             cible = message.getMentionedUsers().get(0);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             try {
                 cible = jda.getUserById(args[0]);
-            }
-            catch (Exception e1) {
+            } catch (Exception e1) {
                 cible = user;
             }
         }
@@ -325,15 +341,17 @@ public class CommandDefaut {
         builder.setColor(color.couleurAleatoire(cible));
         builder.setFooter(guild.getName(), guild.getIconUrl());
         if (lang == command.Language.fr) {
-            builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName() + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
+            builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName()
+                    + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
         }
         if (lang == command.Language.en) {
-            builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName() + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
+            builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName()
+                    + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
         }
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name="level", type=command.ExecutorType.ALL, descfr="Affiche le level d'un joueur", descen="Shows the level of a player", topic=command.Topics.Social)
+    @command(name = "level", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = command.Topics.Social)
     private void level(MessageChannel message, User user, ProfilData data, command.Language lang) {
         int level = Level.level(user.getId());
         int EXPUp = EXP.LevelUp(user, -1);
@@ -341,7 +359,28 @@ public class CommandDefaut {
         int EXPMax = EXP.LevelUp(user, 0);
         int EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(user.getId()).getXp();
         int avancement = (EXP2 - EXPUp) * 100 / EXPUp2;
-        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement != 0 && avancement <= 10 ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 10 && avancement <= 20 ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 20 && avancement <= 30 ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 30 && avancement <= 40 ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 40 && avancement <= 50 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 50 && avancement <= 60 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 60 && avancement <= 70 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b" : (avancement > 70 && avancement <= 80 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b" : (avancement > 80 && avancement <= 90 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b" : (avancement > 90 && avancement <= 100 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705" : " "))))))))));
+        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                : (avancement != 0 && avancement <= 10 ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                        : (avancement > 10 && avancement <= 20
+                                ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                : (avancement > 20 && avancement <= 30
+                                        ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                        : (avancement > 30 && avancement <= 40
+                                                ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                : (avancement > 40 && avancement <= 50
+                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                        : (avancement > 50 && avancement <= 60
+                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                                : (avancement > 60 && avancement <= 70
+                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b"
+                                                                        : (avancement > 70 && avancement <= 80
+                                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b"
+                                                                                : (avancement > 80 && avancement <= 90
+                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b"
+                                                                                        : (avancement > 90
+                                                                                                && avancement <= 100
+                                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705"
+                                                                                                        : " "))))))))));
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
@@ -358,7 +397,7 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name="rank", type=command.ExecutorType.ALL, descfr="Affiche le level d'un joueur.", descen="Show the level of a player.", topic=command.Topics.Social)
+    @command(name = "rank", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur.", descen = "Show the level of a player.", topic = command.Topics.Social)
     private void rank(MessageChannel message, User user, command.Language lang, ProfilData data) {
         int level = Level.level(user.getId());
         int EXPUp = EXP.LevelUp(user, -1);
@@ -366,7 +405,28 @@ public class CommandDefaut {
         int EXPMax = EXP.LevelUp(user, 0);
         int EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(user.getId()).getXp();
         int avancement = (EXP2 - EXPUp) * 100 / EXPUp2;
-        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement != 0 && avancement <= 10 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 10 && avancement <= 20 ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 20 && avancement <= 30 ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 30 && avancement <= 40 ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 40 && avancement <= 50 ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 50 && avancement <= 60 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 60 && avancement <= 70 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 70 && avancement <= 80 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b" : (avancement > 80 && avancement <= 90 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b" : (avancement > 90 && avancement <= 100 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b" : " "))))))))));
+        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                : (avancement != 0 && avancement <= 10 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                        : (avancement > 10 && avancement <= 20
+                                ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                : (avancement > 20 && avancement <= 30
+                                        ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                        : (avancement > 30 && avancement <= 40
+                                                ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                : (avancement > 40 && avancement <= 50
+                                                        ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                        : (avancement > 50 && avancement <= 60
+                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                                : (avancement > 60 && avancement <= 70
+                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                                        : (avancement > 70 && avancement <= 80
+                                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b"
+                                                                                : (avancement > 80 && avancement <= 90
+                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b"
+                                                                                        : (avancement > 90
+                                                                                                && avancement <= 100
+                                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b"
+                                                                                                        : " "))))))))));
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
@@ -383,40 +443,38 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name="top", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs en fonction de leur IDH !", descen="Show the IDH players leaderboard.", topic=command.Topics.Game)
+    @command(name = "top", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur IDH !", descen = "Show the IDH players leaderboard.", topic = command.Topics.Game)
     private void top(MessageChannel channel, Guild guild, String[] args, JDA jda, command.Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
             String user;
             try {
                 user = jda.getUserById(profil.getId()).getName();
-            }
-            catch (NullPointerException e) {
-                user = lang == command.Language.fr ? "Une personne invisible" : (lang == command.Language.en ? "An invisible person" : "An invisible person");
+            } catch (NullPointerException e) {
+                user = lang == command.Language.fr ? "Une personne invisible"
+                        : (lang == command.Language.en ? "An invisible person" : "An invisible person");
             }
             int point = profil.getIdh();
             classement.put(user, point);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
                 return e1.getValue().compareTo(e2.getValue());
             }
         });
-        int max = (Integer)((Map.Entry)entries.get(0)).getValue();
+        int max = (Integer) ((Map.Entry) entries.get(0)).getValue();
         if (c1 > entries.size()) {
             c1 = entries.size();
         }
@@ -424,13 +482,21 @@ public class CommandDefaut {
         int o = 1;
         messages = ":trophy:  Leaderboard :trophy: :\n";
         for (Entry entry : entries) {
-            String rank = o == 1 ? ":first_place:" : (o == 2 ? ":second_place:" : (o == 3 ? ":third_place:" : (lang == command.Language.fr ? String.valueOf(o) + "\u00e8me" : (lang == command.Language.en ? String.valueOf(o) + "e" : "e"))));
-            if ((messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + " points (" + (Integer)entry.getValue() * 100 / (max + max / 10) + "%)\n").length() > 1900 || ++o > c1) break;
+            String rank = o == 1 ? ":first_place:"
+                    : (o == 2 ? ":second_place:"
+                            : (o == 3 ? ":third_place:"
+                                    : (lang == command.Language.fr ? String.valueOf(o) + "\u00e8me"
+                                            : (lang == command.Language.en ? String.valueOf(o) + "e" : "e"))));
+            if ((messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + " points (" + (Integer) entry.getValue() * 100 / (max + max / 10) + "%)\n")
+                            .length() > 1900
+                    || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
-    @command(name="Glevel", type=command.ExecutorType.ALL, descfr="Affiche le level d'une guilde !", descen=" Show the level of a server.", topic=command.Topics.Social)
+    @command(name = "Glevel", type = command.ExecutorType.ALL, descfr = "Affiche le level d'une guilde !", descen = " Show the level of a server.", topic = command.Topics.Social)
     private void Glevel(MessageChannel message, Guild guild, User user, ProfilData data, command.Language lang) {
         int level = Level.Glevel(guild.getId());
         int EXPUp = EXP.GLevelUp(guild, -1);
@@ -438,7 +504,28 @@ public class CommandDefaut {
         int EXPUp2 = EXP.GLevelUp2(guild);
         int GEXP = DiscordBot.getGuilddata().getGuildProfil().get(guild.getId()).getXp();
         int avancement = (GEXP - EXPUp) * 100 / EXPUp2;
-        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement != 0 && avancement <= 10 ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 10 && avancement <= 20 ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 20 && avancement <= 30 ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 30 && avancement <= 40 ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 40 && avancement <= 50 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 50 && avancement <= 60 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b" : (avancement > 60 && avancement <= 70 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b" : (avancement > 70 && avancement <= 80 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b" : (avancement > 80 && avancement <= 90 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b" : (avancement > 90 && avancement <= 100 ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705" : " "))))))))));
+        String mess = avancement == 0 ? "\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                : (avancement != 0 && avancement <= 10 ? "\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                        : (avancement > 10 && avancement <= 20
+                                ? "\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                : (avancement > 20 && avancement <= 30
+                                        ? "\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                        : (avancement > 30 && avancement <= 40
+                                                ? "\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                : (avancement > 40 && avancement <= 50
+                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                        : (avancement > 50 && avancement <= 60
+                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b\u2b1b"
+                                                                : (avancement > 60 && avancement <= 70
+                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b\u2b1b"
+                                                                        : (avancement > 70 && avancement <= 80
+                                                                                ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b\u2b1b"
+                                                                                : (avancement > 80 && avancement <= 90
+                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705\u2b1b"
+                                                                                        : (avancement > 90
+                                                                                                && avancement <= 100
+                                                                                                        ? "\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2b1c\u2705"
+                                                                                                        : " "))))))))));
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
@@ -455,7 +542,7 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name="report", type=command.ExecutorType.ALL, descfr="usage : =report [command] [raison] . \n donnes des idées pour les futures maj du bot grace a cette commande !!!", descen="User: =report [command] [reason]. \n give ideas for the future maj of the bot thanks to this command !!!")
+    @command(name = "report", type = command.ExecutorType.ALL, descfr = "usage : =report [command] [raison] . \n donnes des idées pour les futures maj du bot grace a cette commande !!!", descen = "User: =report [command] [reason]. \n give ideas for the future maj of the bot thanks to this command !!!")
     private void report(MessageChannel message, Guild guild, String[] args, User user, command.Language lang) {
         StringBuilder builder = new StringBuilder();
         for (String str : args) {
@@ -466,11 +553,11 @@ public class CommandDefaut {
         }
         String txtDate = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ssaaaa : ", Locale.FRANCE).format(new Date());
         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/");
-        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/report.txt", String.valueOf(txtDate) + " " + user.getName() + " : " + builder.toString(), 1);
+        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/report.txt",
+                String.valueOf(txtDate) + " " + user.getName() + " : " + builder.toString(), 1);
         try {
             mail.main("report", builder.toString());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         if (lang == command.Language.fr) {
@@ -483,8 +570,9 @@ public class CommandDefaut {
     /*
      * WARNING - void declaration
      */
-    @command(name="profile", type=command.ExecutorType.ALL, descfr="Affiche le profil d'un joueur", descen="Show the player profile", topic=command.Topics.Social)
-    private void profile(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, command.Language lang) {
+    @command(name = "profile", type = command.ExecutorType.ALL, descfr = "Affiche le profil d'un joueur", descen = "Show the player profile", topic = command.Topics.Social)
+    private void profile(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            command.Language lang) {
         String rank;
         int LevelOzr;
         ProfilData data;
@@ -493,16 +581,14 @@ public class CommandDefaut {
         int vote;
         int level;
         User cible;
-        block50 : {
+        block50: {
             data = DiscordBot.getData();
             try {
                 cible = message.getMentionedUsers().get(0);
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 try {
                     cible = jda.getUserById(args[0]);
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     cible = user;
                 }
             }
@@ -510,68 +596,67 @@ public class CommandDefaut {
             vote = 0;
             try {
                 vote = data.getProfils().get(cible.getId()).getVote();
-            }
-            catch (NullPointerException e4) {
+            } catch (NullPointerException e4) {
                 e4.printStackTrace();
             }
             rank = "Default";
             if (Premium.Premium(cible)) {
                 rank = "Premium";
             }
-            if (cible.getId().equals("102108573298851840") || cible.getId().equals("249987060365000704") || cible.getId().equals("502535486691082279")) {
+            if (cible.getId().equals("102108573298851840") || cible.getId().equals("249987060365000704")
+                    || cible.getId().equals("502535486691082279")) {
                 rank = "Admin";
             }
             int XpOzr = 0;
             try {
                 XpOzr = data.getProfils().get(cible.getId()).getXp();
-            }
-            catch (NullPointerException e3) {
+            } catch (NullPointerException e3) {
                 e3.printStackTrace();
             }
             try {
                 double operation = 3 * XpOzr / 4;
                 double math = Math.sqrt(operation);
-                LevelOzr = (int)Math.round(math);
-            }
-            catch (NullPointerException e) {
+                LevelOzr = (int) Math.round(math);
+            } catch (NullPointerException e) {
                 LevelOzr = 0;
             }
             pays = "None";
             try {
                 pays = data.getProfils().get(cible.getId()).getCountry();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 if (lang == command.Language.fr) {
                     pays = "Aucun";
                 }
-                if (lang != command.Language.en) break block50;
+                if (lang != command.Language.en)
+                    break block50;
                 pays = "None";
             }
         }
         String rankPays = "member";
         try {
-            for (File file1 : TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles")) {
-                if (!TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles/" + file1.getName() + "/" + cible.getId()).equals("true")) continue;
+            for (File file1 : TextFileWriter
+                    .folderlist("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles")) {
+                if (!TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles/"
+                        + file1.getName() + "/" + cible.getId()).equals("true"))
+                    continue;
                 rankPays = file1.getName().replaceAll("_", " ");
             }
-        }
-        catch (NullPointerException file1) {
+        } catch (NullPointerException file1) {
             // empty catch block
         }
-        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/owner.txt").equals(cible.getId())) {
+        if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/owner.txt")
+                .equals(cible.getId())) {
             rankPays = "Owner";
         }
         int reputation2 = 0;
         try {
             reputation2 = data.getProfils().get(cible.getId()).getRep();
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
             desc = data.getProfils().get(cible.getId()).getDescription();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             desc = null;
         }
         if (desc == null) {
@@ -585,22 +670,21 @@ public class CommandDefaut {
         for (Profil profil : data.getProfils().values()) {
             String user15;
             try {
-                 user15 = jda.getUserById(profil.getId()).getName();
-            }
-            catch (NullPointerException e) {
+                user15 = jda.getUserById(profil.getId()).getName();
+            } catch (NullPointerException e) {
                 if (lang == command.Language.fr) {
-                     user15 = "Une personne invisible";
+                    user15 = "Une personne invisible";
                 }
                 if (lang == command.Language.en) {
-                     user15 = "An invisible person";
+                    user15 = "An invisible person";
                 }
-                 user15 = "An invisible person";
+                user15 = "An invisible person";
             }
             int point = profil.getIdh();
             classement.put(user15, point);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -610,7 +694,8 @@ public class CommandDefaut {
         int topOzr = 0;
         for (Map.Entry entry : entries) {
             ++topOzr;
-            if (((String)entry.getKey()).equals(cible.getName())) break;
+            if (((String) entry.getKey()).equals(cible.getName()))
+                break;
         }
         HashMap<String, Integer> classement1 = new HashMap<String, Integer>();
         File repertoire = new File("/home/DiscordBot/Rasberry/données/bot/Pays/");
@@ -619,20 +704,19 @@ public class CommandDefaut {
             try {
                 int Game_EXP = 0;
                 try {
-                    Game_EXP = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + file.getName() + "/points.txt"));
-                }
-                catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+                    Game_EXP = Integer.parseInt(TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Pays/" + file.getName() + "/points.txt"));
+                } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
                     // empty catch block
                 }
                 String member = file.getName();
                 classement1.put(member, Game_EXP);
-            }
-            catch (IndexOutOfBoundsException Game_EXP) {
+            } catch (IndexOutOfBoundsException Game_EXP) {
                 // empty catch block
             }
         }
         ArrayList<Entry<String, Integer>> entries1 = new ArrayList(classement1.entrySet());
-        Collections.sort(entries1, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries1, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e3, Map.Entry<String, Integer> e4) {
@@ -642,8 +726,9 @@ public class CommandDefaut {
         int topPays = 0;
         for (Map.Entry entry1 : entries1) {
             ++topPays;
-            System.out.println((String)entry1.getKey());
-            if (((String)entry1.getKey()).equals(pays)) break;
+            System.out.println((String) entry1.getKey());
+            if (((String) entry1.getKey()).equals(pays))
+                break;
         }
         String emoji = "";
         if (LevelOzr >= 200 && LevelOzr < 300) {
@@ -669,24 +754,35 @@ public class CommandDefaut {
         if (lang == command.Language.en) {
             country = "Country";
         }
-        builder.setDescription(":mortar_board: Level : " + level + "\t\t      |      :incoming_envelope: Vote : " + vote + "\n\n" + ":beginner: Rank : " + rank + "\n\n" + ":star: Level Ozeryo : " + LevelOzr + (String)emoji + "\t | :medal: Top Ozeryo : " + topOzr + "\n\n" + ":earth_americas: " + country + " Ozeryo : " + pays + "\t | :medal: Top " + country + " : " + topPays + "\n" + ":tickets: Rank " + country + " : " + rankPays + "\n\n" + ":100: Reputation : " + reputation2 + "\n\n" + ":pen_ballpoint: Description : ``" + desc + "``");
+        builder.setDescription(":mortar_board: Level : " + level + "\t\t      |      :incoming_envelope: Vote : " + vote
+                + "\n\n" + ":beginner: Rank : " + rank + "\n\n" + ":star: Level Ozeryo : " + LevelOzr + (String) emoji
+                + "\t | :medal: Top Ozeryo : " + topOzr + "\n\n" + ":earth_americas: " + country + " Ozeryo : " + pays
+                + "\t | :medal: Top " + country + " : " + topPays + "\n" + ":tickets: Rank " + country + " : "
+                + rankPays + "\n\n" + ":100: Reputation : " + reputation2 + "\n\n" + ":pen_ballpoint: Description : ``"
+                + desc + "``");
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name="vote", type=command.ExecutorType.ALL, descfr="Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen="Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic=command.Topics.Social)
+    @command(name = "vote", type = command.ExecutorType.ALL, descfr = "Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen = "Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic = command.Topics.Social)
     private void vote(MessageChannel message, Guild guild, String[] args, User user, JDA jda, command.Language lang) {
         ProfilData data = DiscordBot.getData();
         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/");
-        DiscordBotListAPI api = new DiscordBotListAPI.Builder().token("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5OTExNTcyNDkyNjQ4NDQ5MCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIyMTY1OTQ2fQ.9ZdP4Mk5yxZdvN2eZE7aLYyh6pVaofUI5t3sgQHMizg").botId("399115724926484490").build();
+        DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5OTExNTcyNDkyNjQ4NDQ5MCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTIyMTY1OTQ2fQ.9ZdP4Mk5yxZdvN2eZE7aLYyh6pVaofUI5t3sgQHMizg")
+                .botId("399115724926484490").build();
         String userIds = user.getId();
         api.hasVoted(userIds).whenComplete((hasVoted, e) -> {
             String reponse = "";
             if (hasVoted.booleanValue()) {
                 TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/");
-                int sec = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt"));
-                int min = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt"));
-                int hr = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt"));
-                int day = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt"));
+                int sec = Integer.parseInt(TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt"));
+                int min = Integer.parseInt(TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt"));
+                int hr = Integer.parseInt(TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt"));
+                int day = Integer.parseInt(TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt"));
                 String secondes = new SimpleDateFormat("ss", Locale.FRANCE).format(new Date());
                 String minutes = new SimpleDateFormat("mm", Locale.FRANCE).format(new Date());
                 String heures = new SimpleDateFormat("HH", Locale.FRANCE).format(new Date());
@@ -713,7 +809,7 @@ public class CommandDefaut {
                     int level;
                     String reponse2 = "";
                     if (Event.Summer()) {
-                        int nbalea = 250 + (int)(Math.random() * 251.0);
+                        int nbalea = 250 + (int) (Math.random() * 251.0);
                         int gain = 0;
                         int xp = data.getProfils().get(user.getId()).getOzPassXp();
                         int bonus1 = data.getProfils().get(user.getId()).getBonus() / 100;
@@ -727,18 +823,17 @@ public class CommandDefaut {
                     }
                     int jetons = data.getProfils().get(user.getId()).getTokens();
                     data.getProfils().get(user.getId()).setTokens(jetons += 5);
-                    String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
+                    String ActivePet = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
                     HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
                     try {
                         list = data.getProfils().get(user.getId()).getPet().get(ActivePet);
-                    }
-                    catch (NullPointerException e1) {
+                    } catch (NullPointerException e1) {
                         list = null;
                     }
                     try {
                         Pet_EXP = Integer.parseInt(data.getProfils().get(user.getId()).getPet().get(ActivePet).get(1));
-                    }
-                    catch (NullPointerException e1) {
+                    } catch (NullPointerException e1) {
                         Pet_EXP = 0;
                     }
                     String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
@@ -747,9 +842,9 @@ public class CommandDefaut {
                     double Pet_Level = Math.round(operationpet2);
                     double pet_bonus = 1.0 + 0.1 * Pet_Level;
                     int Game_EXP = data.getProfils().get(user.getId()).getXp();
-                    int Alea_EXP = 50 + (int)(Math.random() * 51.0);
+                    int Alea_EXP = 50 + (int) (Math.random() * 51.0);
                     if (Pet_Bonus.equals("resHr")) {
-                        Alea_EXP = (int)((double)Alea_EXP * pet_bonus);
+                        Alea_EXP = (int) ((double) Alea_EXP * pet_bonus);
                     }
                     data.getProfils().get(user.getId()).setXp(Game_EXP += Alea_EXP);
                     if (!ActivePet.equals("0")) {
@@ -766,67 +861,73 @@ public class CommandDefaut {
                     }
                     try {
                         data.getProfils().get(user.getId()).setPet(pet);
-                    }
-                    catch (NullPointerException e1) {
+                    } catch (NullPointerException e1) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setPet(pet);
                     }
                     try {
                         double operation = 3 * Game_EXP / 4;
                         double math = Math.sqrt(operation);
-                        level = (int)Math.round(math);
-                    }
-                    catch (NullPointerException np) {
+                        level = (int) Math.round(math);
+                    } catch (NullPointerException np) {
                         level = 0;
                     }
                     HashMap<String, Integer> building = new HashMap();
                     building = data.getProfils().get(user.getId()).getBuilding();
-                    int bonus = (Integer)building.get("marché");
+                    int bonus = (Integer) building.get("marché");
                     long money = data.getProfils().get(user.getId()).getMoney();
-                    int Alea_money = 20 + (int)(Math.random() * 31.0);
+                    int Alea_money = 20 + (int) (Math.random() * 31.0);
                     int money_win2 = Alea_money * (100 + 10 * level * bonus);
                     if (Pet_Bonus.equals("resHr")) {
-                        money_win2 = (int)((double)money_win2 * pet_bonus);
+                        money_win2 = (int) ((double) money_win2 * pet_bonus);
                     }
-                    data.getProfils().get(user.getId()).setMoney(money += (long)money_win2);
+                    data.getProfils().get(user.getId()).setMoney(money += (long) money_win2);
                     long pop = data.getProfils().get(user.getId()).getHabitants();
-                    int Alea_pop = 20 + (int)(Math.random() * 31.0);
+                    int Alea_pop = 20 + (int) (Math.random() * 31.0);
                     int pop_win2 = Alea_pop * (10 + 15 * level * bonus);
                     if (Pet_Bonus.equals("resHr")) {
-                        pop_win2 = (int)((double)pop_win2 * pet_bonus);
+                        pop_win2 = (int) ((double) pop_win2 * pet_bonus);
                     }
-                    data.getProfils().get(user.getId()).setHabitants(pop += (long)pop_win2);
+                    data.getProfils().get(user.getId()).setHabitants(pop += (long) pop_win2);
                     Quest.Quest("vote", user, message, 1);
                     Quest.Quest("jetons", user, message, 5);
                     int jeton = data.getProfils().get(user.getId()).getJetons_récolté();
                     jeton += 5;
                     data.getProfils().get(user.getId()).getJetons_récolté();
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt", secondes, 1);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt", minutes, 1);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt", heures, 1);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt", jours, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt",
+                            secondes, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt",
+                            minutes, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt",
+                            heures, 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt",
+                            jours, 1);
                     int vote = data.getProfils().get(user.getId()).getVote() + 1;
                     try {
                         data.getProfils().get(user.getId()).setVote(vote);
-                    }
-                    catch (NullPointerException e1) {
+                    } catch (NullPointerException e1) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setVote(vote);
                     }
                     if (lang == command.Language.fr) {
-                        reponse = "Vous venez de gagner  " + Alea_EXP + "EXP, " + money_win2 + "$, " + pop_win2 + " habitants ainsi que 5 jetons. " + reponse2;
+                        reponse = "Vous venez de gagner  " + Alea_EXP + "EXP, " + money_win2 + "$, " + pop_win2
+                                + " habitants ainsi que 5 jetons. " + reponse2;
                     } else if (lang == command.Language.en) {
-                        reponse = "You won " + Alea_EXP + "Xp, " + money_win2 + "$, " + pop_win2 + " people and 5 tokens. " + reponse2;
+                        reponse = "You won " + Alea_EXP + "Xp, " + money_win2 + "$, " + pop_win2
+                                + " people and 5 tokens. " + reponse2;
                     }
-                    CommandMap.PublicLog("\ud83d\udce8 " + user.getName() + " a voté pour OzeryoBot. Merci a lui.", jda);
+                    CommandMap.PublicLog("\ud83d\udce8 " + user.getName() + " a voté pour OzeryoBot. Merci a lui.",
+                            jda);
                 } else {
                     Uheures = 11 - Uheures;
                     Uminutes = 60 - Uminutes;
                     Usecondes = 60 - Usecondes;
                     if (lang == command.Language.fr) {
-                        reponse = "Vous devez attendre " + Uheures + " heures " + Uminutes + " minutes " + Usecondes + " secondes avant de pouvoir de nouveau voter";
+                        reponse = "Vous devez attendre " + Uheures + " heures " + Uminutes + " minutes " + Usecondes
+                                + " secondes avant de pouvoir de nouveau voter";
                     } else if (lang == command.Language.fr) {
-                        reponse = "You must wait " + Uheures + " hours " + Uminutes + " minutes " + Usecondes + " seconds to be able to vote for OzeryoBot again";
+                        reponse = "You must wait " + Uheures + " hours " + Uminutes + " minutes " + Usecondes
+                                + " seconds to be able to vote for OzeryoBot again";
                     }
                 }
             } else {
@@ -840,9 +941,11 @@ public class CommandDefaut {
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTitle("Vote");
             if (lang == command.Language.fr) {
-                builder.setDescription("Clique sur ce lien afin d'acceder a la page de vote : https://discordbots.org/bot/399115724926484490/vote");
+                builder.setDescription(
+                        "Clique sur ce lien afin d'acceder a la page de vote : https://discordbots.org/bot/399115724926484490/vote");
             } else if (lang == command.Language.en) {
-                builder.setDescription("Click on the link to go to the voting page : https://discordbots.org/bot/399115724926484490/vote");
+                builder.setDescription(
+                        "Click on the link to go to the voting page : https://discordbots.org/bot/399115724926484490/vote");
             }
             builder.setColor(color.couleurAleatoire(user));
             if (lang == command.Language.fr) {
@@ -856,12 +959,14 @@ public class CommandDefaut {
         });
     }
 
-    @command(name="game", type=command.ExecutorType.ALL, descfr="Met a jour le jeu du bot", descen="Update the bot game", topic=command.Topics.Admin)
+    @command(name = "game", type = command.ExecutorType.ALL, descfr = "Met a jour le jeu du bot", descen = "Update the bot game", topic = command.Topics.Admin)
     private void game(MessageChannel message, Guild guild, String[] args, User user, JDA jda, command.Language lang) {
         if (user.getId().equals("102108573298851840")) {
-            jda.getPresence().setGame(Game.playing("try =help | " + jda.getGuilds().size() + " guilds " + jda.getUsers().size() + " users"));
+            jda.getPresence().setGame(Game
+                    .playing("try =help | " + jda.getGuilds().size() + " guilds " + jda.getUsers().size() + " users"));
             String DiscordBotKey = TextFileWriter.read("/home/DiscordBot/Rasberry/key/DiscordBotKey.txt");
-            DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(DiscordBotKey).botId("399115724926484490").build();
+            DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(DiscordBotKey).botId("399115724926484490")
+                    .build();
             int serverCount = jda.getGuilds().size();
             api.setStats(serverCount);
             message.sendMessage("Le jeu a bien été mis a jours").queue();
@@ -870,12 +975,13 @@ public class CommandDefaut {
                 message.sendMessage("désolé mais vous n'avez pas la permission necessaire pour faire cela").queue();
             }
             if (lang == command.Language.en) {
-                message.sendMessage("Sorry but you don't have the necessary permission to perform this command.").queue();
+                message.sendMessage("Sorry but you don't have the necessary permission to perform this command.")
+                        .queue();
             }
         }
     }
 
-    @command(name="bruh", type=command.ExecutorType.ALL, descfr="BRUHHH", descen=" BRUHHHHHHH")
+    @command(name = "bruh", type = command.ExecutorType.ALL, descfr = "BRUHHH", descen = " BRUHHHHHHH")
     private void bruh(MessageChannel message, Guild guild, String[] args, User user, JDA jda) {
         EmbedBuilder bruh = new EmbedBuilder();
         bruh.setImage("https://media.giphy.com/media/NrqabhEpXWsGA/giphy.gif");
@@ -884,12 +990,14 @@ public class CommandDefaut {
         message.sendMessage(bruh.build()).queue();
     }
 
-    @command(name="kick", type=command.ExecutorType.ALL, descfr="Permet de kick un joueur de votre serveur ", descen=" allow you to kick a player from your server", topic=command.Topics.Modo)
-    private void kick(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, command.Language lang) {
+    @command(name = "kick", type = command.ExecutorType.ALL, descfr = "Permet de kick un joueur de votre serveur ", descen = " allow you to kick a player from your server", topic = command.Topics.Modo)
+    private void kick(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
+            command.Language lang) {
         if (guild.getMember(user).hasPermission(Permission.KICK_MEMBERS)) {
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
-                if (str.equals(args[0])) continue;
+                if (str.equals(args[0]))
+                    continue;
                 if (builder.length() > 0) {
                     builder.append(" ");
                 }
@@ -901,10 +1009,13 @@ public class CommandDefaut {
             command.Language langk = data.getProfils().get(userk.getId()).getLanguage();
             userk.openPrivateChannel().complete();
             if (langk == command.Language.fr) {
-                ((UserImpl)userk).getPrivateChannel().sendMessage("Vous avez été kick du serveur " + guild.getName() + "\n ***Raison*** :" + c1).queue();
+                ((UserImpl) userk).getPrivateChannel()
+                        .sendMessage("Vous avez été kick du serveur " + guild.getName() + "\n ***Raison*** :" + c1)
+                        .queue();
             }
             if (langk == command.Language.en) {
-                ((UserImpl)userk).getPrivateChannel().sendMessage("You have been kicked from " + guild.getName() + "\n ***Reason*** :" + c1).queue();
+                ((UserImpl) userk).getPrivateChannel()
+                        .sendMessage("You have been kicked from " + guild.getName() + "\n ***Reason*** :" + c1).queue();
             }
             if (lang == command.Language.fr) {
                 channel.sendMessage(String.valueOf(userk.getName()) + " a bien été kick.").queue();
@@ -922,8 +1033,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="ban", type=command.ExecutorType.ALL, descfr="Permet de bannir un joueur de votre serveur", descen=" Allow you to ban a player from your server", topic=command.Topics.Modo)
-    private void ban(Message message, Guild guild, String[] args, User user, MessageChannel channel, command.Language lang) {
+    @command(name = "ban", type = command.ExecutorType.ALL, descfr = "Permet de bannir un joueur de votre serveur", descen = " Allow you to ban a player from your server", topic = command.Topics.Modo)
+    private void ban(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            command.Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.BAN_MEMBERS)) {
                 String c1 = args[1];
@@ -944,8 +1056,7 @@ public class CommandDefaut {
                     channel.sendMessage("Sorry but you don't have the necessary permissions to ban a player.").queue();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=ban [jours] [mention]``").queue();
             }
@@ -956,8 +1067,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="unban", type=command.ExecutorType.ALL, descfr="Permet de debannir un joueur de votre serveur", descen="Allow you to unban a player from your server", topic=command.Topics.Modo)
-    private void unban(Message message, Guild guild, String[] args, User user, MessageChannel channel, command.Language lang) {
+    @command(name = "unban", type = command.ExecutorType.ALL, descfr = "Permet de debannir un joueur de votre serveur", descen = "Allow you to unban a player from your server", topic = command.Topics.Modo)
+    private void unban(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            command.Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.BAN_MEMBERS)) {
                 String c1 = args[0];
@@ -973,11 +1085,11 @@ public class CommandDefaut {
                     channel.sendMessage("Desolé mias vous n'avez pas la permission de ban un joueur.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("Sorry but you don't have the necessary permissions to unban a player.").queue();
+                    channel.sendMessage("Sorry but you don't have the necessary permissions to unban a player.")
+                            .queue();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=unban [id]``").queue();
             }
@@ -988,14 +1100,16 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="warn", type=command.ExecutorType.ALL, descfr="Permet de warn un joueur", descen=" Allow you to warn a player", topic=command.Topics.Modo)
-    private void warn(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, command.Language lang) {
+    @command(name = "warn", type = command.ExecutorType.ALL, descfr = "Permet de warn un joueur", descen = " Allow you to warn a player", topic = command.Topics.Modo)
+    private void warn(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
+            command.Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.MANAGE_CHANNEL)) {
                 User userk = message.getMentionedUsers().get(0);
                 StringBuilder builder = new StringBuilder();
                 for (String str : args) {
-                    if (str.equals(args[0])) continue;
+                    if (str.equals(args[0]))
+                        continue;
                     if (builder.length() > 0) {
                         builder.append(" ");
                     }
@@ -1005,10 +1119,14 @@ public class CommandDefaut {
                 command.Language langk = data.getProfils().get(userk.getId()).getLanguage();
                 userk.openPrivateChannel().complete();
                 if (langk == command.Language.fr) {
-                    ((UserImpl)userk).getPrivateChannel().sendMessage("Vous avez été warn sur le serveur " + guild.getName() + "\n __***Raison***__ : " + c1).queue();
+                    ((UserImpl) userk).getPrivateChannel().sendMessage(
+                            "Vous avez été warn sur le serveur " + guild.getName() + "\n __***Raison***__ : " + c1)
+                            .queue();
                 }
                 if (langk == command.Language.en) {
-                    ((UserImpl)userk).getPrivateChannel().sendMessage("You have been warn on " + guild.getName() + "\n __***Reason***__ : " + c1).queue();
+                    ((UserImpl) userk).getPrivateChannel()
+                            .sendMessage("You have been warn on " + guild.getName() + "\n __***Reason***__ : " + c1)
+                            .queue();
                 }
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été warn !!").queue();
@@ -1024,8 +1142,7 @@ public class CommandDefaut {
                     channel.sendMessage("You don't have the necessarry permissions to perform this command.").queue();
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=warn [mention]``").queue();
             }
@@ -1036,8 +1153,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="nick", type=command.ExecutorType.ALL, descfr="Permet de nick le bot", descen="Allow you to nick the bot")
-    private void nick(Message message, Guild guild, String[] args, User user, MessageChannel channel, command.Language lang) {
+    @command(name = "nick", type = command.ExecutorType.ALL, descfr = "Permet de nick le bot", descen = "Allow you to nick the bot")
+    private void nick(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            command.Language lang) {
         if (guild.getMember(user).hasPermission(Permission.NICKNAME_CHANGE)) {
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
@@ -1067,23 +1185,24 @@ public class CommandDefaut {
         }
     }
 
-    @command(name="mute", type=command.ExecutorType.ALL, descfr="Permet de rendre muet un joueur", descen=" Allow you to mute a player", topic=command.Topics.Admin)
-    private void mute(Message message, Guild guild, String[] args, User user, MessageChannel channel, Channel chanel, command.Language lang) {
-        block21 : {
+    @command(name = "mute", type = command.ExecutorType.ALL, descfr = "Permet de rendre muet un joueur", descen = " Allow you to mute a player", topic = command.Topics.Admin)
+    private void mute(Message message, Guild guild, String[] args, User user, MessageChannel channel, Channel chanel,
+            command.Language lang) {
+        block21: {
             try {
                 if (guild.getMember(user).hasPermission(Permission.ADMINISTRATOR)) {
                     int mute_time;
                     try {
                         mute_time = Integer.parseInt(args[args.length - 1]);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         mute_time = 5;
                     }
                     System.out.println("1");
                     User userk = message.getMentionedUsers().get(0);
                     if (guild.getRolesByName("Muted", true).isEmpty()) {
                         System.out.println("2");
-                        guild.getController().createRole().setName("Muted").setColor(color.couleurAleatoire(user)).setHoisted(false).queue();
+                        guild.getController().createRole().setName("Muted").setColor(color.couleurAleatoire(user))
+                                .setHoisted(false).queue();
                         System.out.println("2bis");
                         List<Role> role = guild.getRolesByName("Muted", true);
                         Role role2 = role.get(0);
@@ -1096,18 +1215,19 @@ public class CommandDefaut {
                             try {
                                 chanel2.createPermissionOverride(role2).setPermissions(null, deny).queue();
                                 continue;
-                            }
-                            catch (IllegalStateException illegalStateException) {
+                            } catch (IllegalStateException illegalStateException) {
                                 // empty catch block
                             }
                         }
                         System.out.println("6");
                         guild.getController().addSingleRoleToMember(guild.getMember(userk), role2).queue();
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour " + mute_time + " minutes").queue();
+                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
+                                    + mute_time + " minutes").queue();
                         }
                         if (lang == command.Language.en) {
-                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for " + mute_time + " minutes").queue();
+                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for "
+                                    + mute_time + " minutes").queue();
                         }
                     } else {
                         System.out.println("7");
@@ -1123,18 +1243,19 @@ public class CommandDefaut {
                             try {
                                 chanel2.createPermissionOverride(role2).setPermissions(null, deny).queue();
                                 continue;
-                            }
-                            catch (IllegalStateException illegalStateException) {
+                            } catch (IllegalStateException illegalStateException) {
                                 // empty catch block
                             }
                         }
                         System.out.println("11");
                         guild.getController().addSingleRoleToMember(guild.getMember(userk), role2).queue();
                         if (lang == command.Language.fr) {
-                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour " + mute_time + " minutes").queue();
+                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
+                                    + mute_time + " minutes").queue();
                         }
                         if (lang == command.Language.en) {
-                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for " + mute_time + " minutes").queue();
+                            channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for "
+                                    + mute_time + " minutes").queue();
                         }
                     }
                     Scheduler.Mute(userk, mute_time, channel, guild);
@@ -1146,8 +1267,7 @@ public class CommandDefaut {
                 if (lang == command.Language.en) {
                     channel.sendMessage("You don't have the necessay permission to perform this action.").queue();
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Syntaxe : ``=mute [mention] [durée]``.").queue();
                 }
@@ -1160,29 +1280,26 @@ public class CommandDefaut {
     }
 
     /*
-     * Unable to fully structure code
-     * Enabled aggressive block sorting
-     * Enabled unnecessary exception pruning
-     * Enabled aggressive exception aggregation
-     * Lifted jumps to return sites
+     * Unable to fully structure code Enabled aggressive block sorting Enabled
+     * unnecessary exception pruning Enabled aggressive exception aggregation Lifted
+     * jumps to return sites
      */
-    @command(name="sethome", type=command.ExecutorType.ALL, descfr="Permet de set son home", descen="Allow you to set your home", topic=command.Topics.Game)
-    private void sethome(Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "sethome", type = command.ExecutorType.ALL, descfr = "Permet de set son home", descen = "Allow you to set your home", topic = command.Topics.Game)
+    private void sethome(Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data,
+            command.Language lang) {
         int x = 1;
         int y = 1;
         String message = "";
-		int places = 0;
-		try {
+        int places = 0;
+        try {
             x = Integer.parseInt(args[0]);
             y = Integer.parseInt(args[1]);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             message = "";
             places = 0;
             x = -10;
-           return;
-        }
-        catch (NumberFormatException e) {
+            return;
+        } catch (NumberFormatException e) {
             message = "";
             places = 0;
             x = -10;
@@ -1192,28 +1309,33 @@ public class CommandDefaut {
             if (lang == command.Language.fr) {
                 channel.sendMessage("x et y doivent etre compris entre -10 et 10").queue();
             }
-            if (lang != command.Language.en) return;
+            if (lang != command.Language.en)
+                return;
             channel.sendMessage("x and y must be between -10 and 10").queue();
             return;
         }
-        long lastsetHome = Long.parseLong(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt"));
+        long lastsetHome = Long.parseLong(
+                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt"));
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(lastsetHome);
-        int dif = (int)((System.currentTimeMillis() - lastsetHome) / 86400000L);
+        int dif = (int) ((System.currentTimeMillis() - lastsetHome) / 86400000L);
         if (dif >= 1) {
             String home;
-			try {
+            try {
                 home = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 home = "0";
             }
             if (!home.equals("0")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Désolé mais cet emplacement est deja occupé veuillez utilisez de nouvelles coordonnées").queue();
+                    channel.sendMessage(
+                            "Désolé mais cet emplacement est deja occupé veuillez utilisez de nouvelles coordonnées")
+                            .queue();
                 }
-                if (lang != command.Language.en) return;
-                channel.sendMessage("Sorry but this location is already taken, please use another coordinates.").queue();
+                if (lang != command.Language.en)
+                    return;
+                channel.sendMessage("Sorry but this location is already taken, please use another coordinates.")
+                        .queue();
                 return;
             }
             String lastHome = data.getProfils().get(user.getId()).getHome();
@@ -1224,28 +1346,33 @@ public class CommandDefaut {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas vous deplacer aussi loin pour le moment.").queue();
                 }
-                if (lang != command.Language.en) return;
-                channel.sendMessage("You can't go so far for the moment, you can only move from 1 block per days (combinable).").queue();
+                if (lang != command.Language.en)
+                    return;
+                channel.sendMessage(
+                        "You can't go so far for the moment, you can only move from 1 block per days (combinable).")
+                        .queue();
                 return;
             }
             try {
                 TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/bot/Map/" + lastHome));
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             System.out.println(1);
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
             System.out.println(2);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt", user.getId(), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt", user.getId(),
+                    1);
             System.out.println(3);
             data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
             System.out.println(4);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt", Long.toString(System.currentTimeMillis()), 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt",
+                    Long.toString(System.currentTimeMillis()), 1);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Votre nouveau home est désormais en " + x + "," + y + ".").queue();
             }
-            if (lang != command.Language.en) return;
+            if (lang != command.Language.en)
+                return;
             channel.sendMessage("Your new home is now on " + x + "," + y + ".").queue();
             return;
         }
@@ -1253,80 +1380,88 @@ public class CommandDefaut {
             channel.sendMessage("Vous ne pouvez changer de home qu'une fois par jour.").queue();
         }
         if (lang != command.Language.en) {
-        channel.sendMessage("You can only move from 1 block per day.").queue();
-        return;
+            channel.sendMessage("You can only move from 1 block per day.").queue();
+            return;
         }
         for (x = -10; x <= 10; ++x) {
             for (y = -10; y <= 10; ++y) {
                 String name;
-				try {
-                    name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                }
-                catch (IllegalArgumentException e1) {
+                try {
+                    name = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
+                } catch (IllegalArgumentException e1) {
                     name = "0";
                 }
                 System.out.println(name);
                 if (name.equals("0")) {
-                    message = places == 4 ? String.valueOf(message) + " ``(" + x + "," + y + ")``" : String.valueOf(message) + " ``(" + x + "," + y + ")`` | ";
+                    message = places == 4 ? String.valueOf(message) + " ``(" + x + "," + y + ")``"
+                            : String.valueOf(message) + " ``(" + x + "," + y + ")`` | ";
                     ++places;
                 }
-                if (places >= 5) break;
+                if (places >= 5)
+                    break;
             }
-            if (places >= 5) break;
+            if (places >= 5)
+                break;
             ++x;
         }
-        
+
         if (lang == command.Language.fr) {
-            channel.sendMessage("Vous devez indiquez les coordonnées x et y de votre nouveau home. Vous pouvez vous placer par exemple sur ces coordonnées : " + message).queue();
+            channel.sendMessage(
+                    "Vous devez indiquez les coordonnées x et y de votre nouveau home. Vous pouvez vous placer par exemple sur ces coordonnées : "
+                            + message)
+                    .queue();
         }
         if (lang != command.Language.en) {
-        channel.sendMessage("You must indicate the coordinate x and y of your new home. You can, for exemple, go on this coordinates : " + message).queue();
-        return;
+            channel.sendMessage(
+                    "You must indicate the coordinate x and y of your new home. You can, for exemple, go on this coordinates : "
+                            + message)
+                    .queue();
+            return;
         }
-        
-    }	
-    @command(name="map", type=command.ExecutorType.ALL, descfr="permet d'afficher la carte du jeu ", descen=" Allow you to see the game map", topic=command.Topics.Game)
-    private void map(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data, command.Language lang) {
+
+    }
+
+    @command(name = "map", type = command.ExecutorType.ALL, descfr = "permet d'afficher la carte du jeu ", descen = " Allow you to see the game map", topic = command.Topics.Game)
+    private void map(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            ProfilData data, command.Language lang) {
         int x = 1;
         int y = 1;
         String[] coord;
-		try {
+        try {
             x = Integer.parseInt(args[0]);
             y = Integer.parseInt(args[1]);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             try {
                 coord = data.getProfils().get(user.getId()).getHome().split("_");
                 x = Integer.parseInt(coord[0]);
                 y = Integer.parseInt(coord[1]);
-            }
-            catch (Exception e2) {
+            } catch (Exception e2) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous devez indiquez les coordonnées x et y de la map a afficher.").queue();
                 }
-                if (lang != command.Language.en) return;
+                if (lang != command.Language.en)
+                    return;
                 channel.sendMessage("You must indicate the coordinate x and y of the map to show.").queue();
                 return;
             }
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             try {
                 User cible = null;
                 try {
                     cible = message.getMentionedUsers().get(0);
-                }
-                catch (IndexOutOfBoundsException e1) {
+                } catch (IndexOutOfBoundsException e1) {
                     cible = jda.getUserById(args[0]);
                 }
                 coord = data.getProfils().get(cible.getId()).getHome().split("_");
                 x = Integer.parseInt(coord[0]);
                 y = Integer.parseInt(coord[1]);
-            }
-            catch (Exception e2) {
+            } catch (Exception e2) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous devez indiquez les coordonnées x et y de la map a afficher.").queue();
                 }
-                if (lang != command.Language.en) return;
+                if (lang != command.Language.en)
+                    return;
                 channel.sendMessage("You must indicate the coordinate x and y of the map to show.").queue();
                 return;
             }
@@ -1336,66 +1471,70 @@ public class CommandDefaut {
             if (lang == command.Language.fr) {
                 channel.sendMessage("x et y doivent etre compris entre -10 et 10.").queue();
             }
-            if (lang != command.Language.en) return;
+            if (lang != command.Language.en)
+                return;
             channel.sendMessage("The coordinates x and y must be between -10 and 10.").queue();
             return;
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-        
+        }
 
-        
         BufferedImage image = null;
         try {
             image = ImageIO.read(new File("/home/DiscordBot/Rasberry/données/bot/map1.png"));
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        
         Graphics2D g1 = image.createGraphics();
         g1.create();
         g1.setColor(Color.black);
 
-        int xi=0;
-        int yi=0;
-        for(x= (x-2); x<(x+2); x++){
+        int xi = 0;
+        int yi = 0;
+        for (x = (x - 2); x < (x + 2); x++) {
             xi++;
-            for(y=(y-2); y<(y+2); y++){
-                yi++
-                ;
+            for (y = (y - 2); y < (y + 2); y++) {
+                yi++;
                 String Case = "";
                 String Soldier = "";
                 String Owner = "";
                 String Level = "";
 
                 try {
-                    Case = jda.getUserById(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x+ "_" + y + "/name.txt")).getName();
-                }
-                catch (NullPointerException e) {
-                    Case = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
+                    Case = jda
+                            .getUserById(TextFileWriter
+                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"))
+                            .getName();
+                } catch (NullPointerException e) {
+                    Case = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                     if (Case.equals("0")) {
                         Case = "personne";
                     }
-                }
-                catch (NumberFormatException e) {
-                    Case = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" +y+ "/name.txt");
+                } catch (NumberFormatException e) {
+                    Case = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                     if (Case.equals("dungeon")) {
-                        Owner = "Level : " + TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x+ "_" + y + "/bosslevel.txt");
+                        Owner = "Level : " + TextFileWriter
+                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
                         Soldier = "";
-                        Level = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
+                        Level = TextFileWriter
+                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
                     }
-                    Soldier = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x+ "_" + y + "/soldier.txt");
+                    Soldier = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
                     Owner = "";
                     try {
-                        Owner = jda.getUserById(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/owner.txt")).getName();
-                    }
-                    catch (NullPointerException e1) {
+                        Owner = jda
+                                .getUserById(TextFileWriter.read(
+                                        "/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/owner.txt"))
+                                .getName();
+                    } catch (NullPointerException e1) {
                         Owner = "personne";
                     }
-                    int res = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/"+ x + "_" +y + "/res.txt"));
-                    Level = res+"";
-                }
-                catch (IllegalArgumentException e) {
+                    int res = Integer.parseInt(TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/res.txt"));
+                    Level = res + "";
+                } catch (IllegalArgumentException e) {
                     Case = "personne";
                 }
 
@@ -1403,81 +1542,77 @@ public class CommandDefaut {
                 if (!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")
                         && !Case.equals("Bétail") && !Case.equals("Carri\u00e8re") && !Case.equals("Champs")
                         && !Case.equals("Mine") && !Case.equals("personne") && !Case.equals("dungeon")) {
-                            couleur = Color.white;
-        }else {
+                    couleur = Color.white;
+                } else {
 
-
-            String operation = Case;
+                    String operation = Case;
                     if (!operation.equals("personne")) {
                         couleur = Color.lightGray;
                     }
-    
+
                     else if (!operation.equals("dungeon")) {
                         couleur = Color.DARK_GRAY;
                     }
-    
-                   else couleur = Color.orange;
 
+                    else
+                        couleur = Color.orange;
+
+                }
+
+                g1.setColor(couleur);
+                g1.fillRect(1 + 160 * (xi - 1), 1 + 160 * (yi - 1), 155, 155);
+                g1.setColor(Color.black);
+
+                if (x <= max && y <= max) {
+                    g1.drawString("(" + (xi + 2) + "," + (y + 1) + ")", 90 + (60 * (xi - 1)), 140 + (160 * (yi - 1)));
+
+                    Font font = new Font("Dialog", 1, 18);
+                    g1.setFont(font);
+                    g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (150 * (yi - 1)));
+
+                    g1.drawString(Soldier, 50 + 135 * (xi - 1), 100 + 170 * (yi - 1));
+                    g1.drawString(Owner, 50 + 135 * (xi - 1), 80 + 170 * (yi - 1));
+                    g1.drawString(Level, 50 + 135 * (xi - 1), 120 + 170 * (yi - 1));
+                }
+            }
         }
 
-g1.setColor(couleur);
-g1.fillRect(1+160*(xi-1), 1+160*(yi-1), 155, 155);
-g1.setColor(Color.black);
+        g1.setBackground(Color.white);
+        g1.dispose();
+        try {
+            ImageIO.write((RenderedImage) image, "png", new File("/home/DiscordBot/Rasberry/données/bot/map.png"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).queue();
 
+    }
 
-if (x <= max && y <= max) {
-    g1.drawString("(" + (xi + 2) + "," + (y + 1) + ")", 90+(60*(xi-1)), 140+(160*(yi-1)));
-
-
-                Font font = new Font("Dialog", 1, 18);
-    g1.setFont(font);
-    g1.drawString(Case, 50+(150*(xi-1)),50+(150*(yi-1)));
-
-    g1.drawString(Soldier, 50+135*(xi-1), 100+170*(yi-1));
-    g1.drawString(Owner, 50+135*(xi-1), 80+170*(yi-1));
-    g1.drawString(Level, 50+135*(xi-1), 120+170*(yi-1));
-}
-}
-}
-
-g1.setBackground(Color.white);
-g1.dispose();
-try {
-    ImageIO.write((RenderedImage)image, "png", new File("/home/DiscordBot/Rasberry/données/bot/map.png"));
-}
-catch (Exception ex) {
-    ex.printStackTrace();
-}
-channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).queue();
-
-
-}
-
-
-    @command(name="Gtop", type=command.ExecutorType.ALL, descfr="permet d'afficher le classement des serveur ", descen="Show the Server Leaderboard", topic=command.Topics.Social)
-    private void Gtop(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, command.Language lang) {
+    @command(name = "Gtop", type = command.ExecutorType.ALL, descfr = "permet d'afficher le classement des serveur ", descen = "Show the Server Leaderboard", topic = command.Topics.Social)
+    private void Gtop(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
+            command.Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = "10";
         }
         for (int i = 0; i < guild.getMembers().size(); ++i) {
             try {
-                int EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(guild.getMembers().get(i).getUser().getId()).getXp();
+                int EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(guild.getMembers().get(i).getUser().getId())
+                        .getXp();
                 String member = guild.getMembers().get(i).getUser().getName();
-                member = String.valueOf(member) + "| **Level** : " + Level.level(guild.getMembers().get(i).getUser().getId()) + " | **Xp** : ";
+                member = String.valueOf(member) + "| **Level** : "
+                        + Level.level(guild.getMembers().get(i).getUser().getId()) + " | **Xp** : ";
                 classement.put(member, EXP2);
                 continue;
-            }
-            catch (NumberFormatException EXP2) {
+            } catch (NumberFormatException EXP2) {
                 // empty catch block
             }
         }
         ArrayList entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
@@ -1491,47 +1626,51 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             channel.sendMessage(messages).queue();
         } else {
-            channel.sendMessage(":trophy:  Leaderboard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1) + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3) + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5) + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7) + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9) + "\n 10e : " + entries.get(entries.size() - 10)).queue();
+            channel.sendMessage(":trophy:  Leaderboard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1)
+                    + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3)
+                    + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5)
+                    + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7)
+                    + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9)
+                    + "\n 10e : " + entries.get(entries.size() - 10)).queue();
         }
     }
 
-    @command(name="toplevel", type=command.ExecutorType.ALL, descfr="Affiche le classement en fonction du niveau social ", descen="Show the Social Level Leaderboard", topic=command.Topics.Social)
-    private void toplevel(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, JDA jda, command.Language lang) {
+    @command(name = "toplevel", type = command.ExecutorType.ALL, descfr = "Affiche le classement en fonction du niveau social ", descen = "Show the Social Level Leaderboard", topic = command.Topics.Social)
+    private void toplevel(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            ProfilData data, JDA jda, command.Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = "10";
         }
         for (LevelProfil levelProfil : DiscordBot.getLeveldata().getLevelProfil().values()) {
             try {
                 int EXP2;
                 String member;
-                block11 : {
+                block11: {
                     EXP2 = DiscordBot.getLeveldata().getLevelProfil().get(levelProfil.getId()).getXp();
                     member = "unknwon";
                     try {
                         member = jda.getUserById(levelProfil.getId()).getName();
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         if (lang == command.Language.fr) {
                             member = "inconnu";
                         }
-                        if (lang != command.Language.en) break block11;
+                        if (lang != command.Language.en)
+                            break block11;
                         member = "unknown";
                     }
                 }
                 member = String.valueOf(member) + "| **Level** : " + Level.level(levelProfil.getId()) + " | **Xp** : ";
                 classement.put(member, EXP2);
-            }
-            catch (NumberFormatException EXP2) {
+            } catch (NumberFormatException EXP2) {
                 // empty catch block
             }
         }
         ArrayList entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
@@ -1545,19 +1684,24 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             channel.sendMessage(messages).queue();
         } else {
-            channel.sendMessage(":trophy:  LeaderBoard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1) + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3) + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5) + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7) + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9) + "\n 10e : " + entries.get(entries.size() - 10)).queue();
+            channel.sendMessage(":trophy:  LeaderBoard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1)
+                    + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3)
+                    + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5)
+                    + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7)
+                    + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9)
+                    + "\n 10e : " + entries.get(entries.size() - 10)).queue();
         }
     }
 
-    @command(name="toprep", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs en fonction de la reputation ", descen=" Show the Reputation Players Leaderboard", topic=command.Topics.Social)
-    private void toprep(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, command.Language lang) {
+    @command(name = "toprep", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de la reputation ", descen = " Show the Reputation Players Leaderboard", topic = command.Topics.Social)
+    private void toprep(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            command.Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
@@ -1576,14 +1720,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 if (lang == command.Language.en) {
                     member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **reputation** ";
                 }
-            }
-            catch (NullPointerException nullPointerException) {
+            } catch (NullPointerException nullPointerException) {
                 // empty catch block
             }
             classement.put(member, rep);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -1610,14 +1753,17 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
-            messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + "\n";
-            if (messages.length() > 1900 || ++o > c1) break;
+            messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + "\n";
+            if (messages.length() > 1900 || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
-    @command(name="badword", type=command.ExecutorType.ALL, descfr="Affiche les statistiques des gros mots supprimés par le bot", descen="Show statistics about badwords tha bot have deleted")
-    private void badword(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, command.Language lang) {
+    @command(name = "badword", type = command.ExecutorType.ALL, descfr = "Affiche les statistiques des gros mots supprimés par le bot", descen = "Show statistics about badwords tha bot have deleted")
+    private void badword(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            command.Language lang) {
         int tg = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Tg.txt"));
         int ntm = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Ntm.txt"));
         int fdp = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Fdp.txt"));
@@ -1629,21 +1775,29 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         int ptn = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Ptn.txt"));
         int pd = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Pd.txt"));
         if (lang == command.Language.fr) {
-            channel.sendMessage("\ud83d\udcdbSuppression :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm + "**\n" + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n" + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **" + ptn + "**\n" + "pd = **" + pd + "**\n" + "\n Vous deriez faire attention a votre langage !!!").queue();
+            channel.sendMessage("\ud83d\udcdbSuppression :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm
+                    + "**\n" + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n"
+                    + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **"
+                    + ptn + "**\n" + "pd = **" + pd + "**\n" + "\n Vous deriez faire attention a votre langage !!!")
+                    .queue();
         }
         if (lang == command.Language.en) {
-            channel.sendMessage("\ud83d\udcdbRemoval :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm + "**\n" + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n" + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **" + ptn + "**\n" + "pd = **" + pd + "**\n" + "\n You should take attention to your language !!!").queue();
+            channel.sendMessage("\ud83d\udcdbRemoval :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm + "**\n"
+                    + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n"
+                    + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **"
+                    + ptn + "**\n" + "pd = **" + pd + "**\n" + "\n You should take attention to your language !!!")
+                    .queue();
         }
     }
 
-    @command(name="topG", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs du serveur ", descen=" Show the Guild Players Leaderboard", topic=command.Topics.Social)
-    private void topG(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "topG", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs du serveur ", descen = " Show the Guild Players Leaderboard", topic = command.Topics.Social)
+    private void topG(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            ProfilData data, command.Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = "10";
         }
         for (GuildProfil guildProfil : DiscordBot.getGuilddata().getGuildProfil().values()) {
@@ -1659,19 +1813,17 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     Guildname = jda.getGuildById(guildProfil.getId()).getName();
-                }
-                catch (NullPointerException nullPointerException) {
+                } catch (NullPointerException nullPointerException) {
                     // empty catch block
                 }
                 String member = String.valueOf(Guildname) + " | **Level** : " + level;
                 classement.put(member, EXP2);
-            }
-            catch (NumberFormatException EXP2) {
+            } catch (NumberFormatException EXP2) {
                 // empty catch block
             }
         }
         ArrayList entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
@@ -1681,16 +1833,23 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         if (c1 != "0" && Integer.parseInt(c1) < entries.size() - 1) {
             String messages = ":trophy: LeaderBoard :trophy: :\n";
             for (int i = 1; i <= Integer.parseInt(c1); ++i) {
-                messages = String.valueOf(messages) + "__***" + i + "er***__ : " + entries.get(entries.size() - i) + "\n";
+                messages = String.valueOf(messages) + "__***" + i + "er***__ : " + entries.get(entries.size() - i)
+                        + "\n";
             }
             channel.sendMessage(messages).queue();
         } else {
-            channel.sendMessage(":trophy:  LeaderBoard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1) + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3) + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5) + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7) + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9) + "\n 10e : " + entries.get(entries.size() - 10)).queue();
+            channel.sendMessage(":trophy:  LeaderBoard :trophy: : \n __***1er***__ : " + entries.get(entries.size() - 1)
+                    + "\n **2e** : " + entries.get(entries.size() - 2) + "\n *3e* : " + entries.get(entries.size() - 3)
+                    + "\n 4e : " + entries.get(entries.size() - 4) + "\n 5e : " + entries.get(entries.size() - 5)
+                    + "\n 6e : " + entries.get(entries.size() - 6) + "\n 7e : " + entries.get(entries.size() - 7)
+                    + "\n 8e : " + entries.get(entries.size() - 8) + "\n 9e : " + entries.get(entries.size() - 9)
+                    + "\n 10e : " + entries.get(entries.size() - 10)).queue();
         }
     }
 
-    @command(name="silence", type=command.ExecutorType.ALL, descfr="Permet d'activer/desactiver les messages de level up sur votre serveur.", descen="Allow you to enable/disable level up message on your server", topic=command.Topics.Modo)
-    private void silence(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, command.Language lang) {
+    @command(name = "silence", type = command.ExecutorType.ALL, descfr = "Permet d'activer/desactiver les messages de level up sur votre serveur.", descen = "Allow you to enable/disable level up message on your server", topic = command.Topics.Modo)
+    private void silence(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            ProfilData data, command.Language lang) {
         GuildProfilData guilddata = DiscordBot.getGuilddata();
         Boolean silence = guilddata.getGuildProfil().get(guild.getId()).isSilence();
         if (!silence.booleanValue()) {
@@ -1698,7 +1857,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 channel.sendMessage("Le bot a été mit en sourdine. (il ne previendra plus des level up)").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)").queue();
+                channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)")
+                        .queue();
             }
             guilddata.getGuildProfil().get(guild.getId()).setSilence(true);
         } else if (silence.booleanValue()) {
@@ -1714,14 +1874,16 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 channel.sendMessage("Le bot a été mit en sourdine. (il ne previendra plus des level up)").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)").queue();
+                channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)")
+                        .queue();
             }
             guilddata.getGuildProfil().get(guild.getId()).setSilence(true);
         }
     }
 
-    @command(name="AFK", type=command.ExecutorType.ALL, descfr="Permet de se definir comme AFK ", descen="Allow you to set yourself AFK", topic=command.Topics.Util)
-    private void AFK(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, command.Language lang) {
+    @command(name = "AFK", type = command.ExecutorType.ALL, descfr = "Permet de se definir comme AFK ", descen = "Allow you to set yourself AFK", topic = command.Topics.Util)
+    private void AFK(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
+            command.Language lang) {
         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AFK.txt", "true", 1);
         if (lang == command.Language.fr) {
             channel.sendMessage("Vous etes desormais AFK. ").queue();
@@ -1731,8 +1893,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="premium", type=command.ExecutorType.ALL, descfr="Affiche la durée restante de votre Premium", descen="Show you the remaining duration of your Premium", topic=command.Topics.Util)
-    private void premium(MessageChannel channel, User user, String[] args, Message message, command.Language lang, ProfilData data) {
+    @command(name = "premium", type = command.ExecutorType.ALL, descfr = "Affiche la durée restante de votre Premium", descen = "Show you the remaining duration of your Premium", topic = command.Topics.Util)
+    private void premium(MessageChannel channel, User user, String[] args, Message message, command.Language lang,
+            ProfilData data) {
         if (user.getId().equals("102108573298851840")) {
             if (message.getMentionedUsers().size() <= 0) {
                 return;
@@ -1769,7 +1932,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="color", type=command.ExecutorType.ALL, descfr="Permet de definir une couleur pour tout vos commandes (Premium Uniquement)", descen="Allow you to set a color for your commands (Only for Premium users)")
+    @command(name = "color", type = command.ExecutorType.ALL, descfr = "Permet de definir une couleur pour tout vos commandes (Premium Uniquement)", descen = "Allow you to set a color for your commands (Only for Premium users)")
     private void color(MessageChannel channel, User user, String[] args, Message message, command.Language lang) {
         if (Premium.Premium(user)) {
             String g;
@@ -1777,26 +1940,26 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             String r;
             try {
                 r = args[0];
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 r = "0";
             }
             try {
                 g = args[1];
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 g = "0";
             }
             try {
                 b = args[2];
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 b = "0";
             }
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/");
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/red.txt", r, 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/green.txt", g, 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/blue.txt", b, 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/red.txt",
+                    r, 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/green.txt",
+                    g, 1);
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/blue.txt",
+                    b, 1);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Votre couleur est desormais RGB(" + r + "," + g + "," + b + ")").queue();
             }
@@ -1813,7 +1976,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="rmd", type=command.ExecutorType.ALL, descfr="Permet de vous alerter au bout d'un certain temps", descen="Alert you after a while")
+    @command(name = "rmd", type = command.ExecutorType.ALL, descfr = "Permet de vous alerter au bout d'un certain temps", descen = "Alert you after a while")
     private void rmd(MessageChannel channel, User user, String[] args, Message message, command.Language lang) {
         try {
             int rmd;
@@ -1821,13 +1984,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             ProfilData data = DiscordBot.getData();
             try {
                 arg = args[0];
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 arg = "5m";
             }
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
-                if (str.equals(args[0])) continue;
+                if (str.equals(args[0]))
+                    continue;
                 builder.append(String.valueOf(str) + " ");
             }
             String messages = "minutes";
@@ -1841,8 +2004,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     rmd = Integer.parseInt(arg);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     rmd = 5;
                 }
                 rmd *= 1000;
@@ -1856,8 +2018,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     rmd = Integer.parseInt(arg);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     rmd = 5;
                 }
                 rmd *= 60000;
@@ -1871,8 +2032,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     rmd = Integer.parseInt(arg);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     rmd = 5;
                 }
                 rmd *= 3600000;
@@ -1886,8 +2046,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     rmd = Integer.parseInt(arg);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     rmd = 5;
                 }
                 rmd *= 86400000;
@@ -1900,13 +2059,12 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 try {
                     rmd = Integer.parseInt(arg);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     rmd = 5;
                 }
                 rmd *= 60000;
             }
-            long DateFin = System.currentTimeMillis() + (long)rmd;
+            long DateFin = System.currentTimeMillis() + (long) rmd;
             ArrayList<String> list = new ArrayList<String>();
             list.add(Long.toString(DateFin));
             list.add(builder.toString());
@@ -1914,26 +2072,25 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             try {
                 map = data.getProfils().get(user.getId()).getRMD();
                 map.put(DateFin, list);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 map = new HashMap();
                 map.put(DateFin, list);
             }
             try {
                 data.getProfils().get(user.getId()).setRMD(map);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setRMD(map);
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Je vous previendrai dans " + Integer.parseInt(arg) + " " + messages + "\n Raison : " + builder.toString()).queue();
+                channel.sendMessage("Je vous previendrai dans " + Integer.parseInt(arg) + " " + messages
+                        + "\n Raison : " + builder.toString()).queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("I will remind you in " + Integer.parseInt(arg) + " " + messages + "\n Reason : " + builder.toString()).queue();
+                channel.sendMessage("I will remind you in " + Integer.parseInt(arg) + " " + messages + "\n Reason : "
+                        + builder.toString()).queue();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=rmd [30s/10m/1h/2d/...] [raison]``").queue();
             }
@@ -1944,22 +2101,21 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="CoffreFort", abbrev="cf", type=command.ExecutorType.ALL, descfr="permet de récupérer un coffre fort. Ceux-ci apparaissent au bout d'un certain temps mais attention les autres joueurs les réclameront aussi !", descen=" Allow you to recolt a treasure. Treasure appear after a while but be carefull because other users will also try to recolt it.", topic=command.Topics.Game)
-    private void cf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "CoffreFort", abbrev = "cf", type = command.ExecutorType.ALL, descfr = "permet de récupérer un coffre fort. Ceux-ci apparaissent au bout d'un certain temps mais attention les autres joueurs les réclameront aussi !", descen = " Allow you to recolt a treasure. Treasure appear after a while but be carefull because other users will also try to recolt it.", topic = command.Topics.Game)
+    private void cf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         ArrayList<String> list;
         int Pet_EXP;
         String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
         HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
         try {
             list = data.getProfils().get(user.getId()).getPet().get(ActivePet);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             list = null;
         }
         try {
             Pet_EXP = Integer.parseInt(data.getProfils().get(user.getId()).getPet().get(ActivePet).get(1));
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             Pet_EXP = 0;
         }
         String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
@@ -1976,8 +2132,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             int i;
             int materiau2;
             int i2;
-            int tr = 300 + (int)(Math.random() * 1501.0);
-            long nextCf = System.currentTimeMillis() + (long)(tr * 1000);
+            int tr = 300 + (int) (Math.random() * 1501.0);
+            long nextCf = System.currentTimeMillis() + (long) (tr * 1000);
             data.setNextcf(nextCf);
             double alea = Math.random();
             if (alea <= 0.75) {
@@ -1996,11 +2152,11 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             int Combos = data.getProfils().get(user.getId()).getCf();
             String Halloween1 = "";
             if (Event.Summer()) {
-                int nbalea = 30 + (int)(Math.random() * 31.0);
+                int nbalea = 30 + (int) (Math.random() * 31.0);
                 int gain = 0;
                 int xp = data.getProfils().get(user.getId()).getOzPassXp();
-                double bonus1 = (double)data.getProfils().get(user.getId()).getBonus() / 100.0;
-                gain = (int)((double)nbalea * (1.0 + bonus1));
+                double bonus1 = (double) data.getProfils().get(user.getId()).getBonus() / 100.0;
+                gain = (int) ((double) nbalea * (1.0 + bonus1));
                 data.getProfils().get(user.getId()).setOzPassXp(xp += gain);
                 Halloween1 = " Vous avez aussi gagné " + gain + " OzXp";
             }
@@ -2027,10 +2183,10 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             Double combos2 = new Double(Combos);
             Double operation1 = combos2 / 100.0;
-            Double operation2 = operation1 * (double)rarity2;
+            Double operation2 = operation1 * (double) rarity2;
             Double operation3 = operation2 + 1.0;
             Double operation = operation3 * 5.0 * bonus;
-            int gain = (int)Math.round(operation);
+            int gain = (int) Math.round(operation);
             System.out.println("" + gain);
             int bois = 0;
             int acier = 0;
@@ -2039,7 +2195,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             int pierre = 0;
             int plastique = 0;
             if (rarity.equals("common")) {
-                materiau = 1 + (int)(Math.random() * 6.0);
+                materiau = 1 + (int) (Math.random() * 6.0);
                 if (materiau == 1) {
                     bois += gain;
                 } else if (materiau == 2) {
@@ -2055,7 +2211,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
             } else if (rarity.equals("rare")) {
                 for (i2 = 0; i2 < 2; ++i2) {
-                    materiau2 = 1 + (int)(Math.random() * 6.0);
+                    materiau2 = 1 + (int) (Math.random() * 6.0);
                     if (materiau2 == 1) {
                         bois += gain;
                         continue;
@@ -2076,12 +2232,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                         pierre += gain;
                         continue;
                     }
-                    if (materiau2 != 6) continue;
+                    if (materiau2 != 6)
+                        continue;
                     plastique += gain;
                 }
             } else if (rarity.equals("epic")) {
                 for (i2 = 0; i2 < 3; ++i2) {
-                    materiau2 = 1 + (int)(Math.random() * 6.0);
+                    materiau2 = 1 + (int) (Math.random() * 6.0);
                     if (materiau2 == 1) {
                         bois += gain;
                         continue;
@@ -2102,12 +2259,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                         pierre += gain;
                         continue;
                     }
-                    if (materiau2 != 6) continue;
+                    if (materiau2 != 6)
+                        continue;
                     plastique += gain;
                 }
             } else if (rarity.equals("legendary")) {
                 for (i2 = 0; i2 < 4; ++i2) {
-                    materiau2 = 1 + (int)(Math.random() * 6.0);
+                    materiau2 = 1 + (int) (Math.random() * 6.0);
                     if (materiau2 == 1) {
                         bois += gain;
                         continue;
@@ -2128,11 +2286,12 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                         pierre += gain;
                         continue;
                     }
-                    if (materiau2 != 6) continue;
+                    if (materiau2 != 6)
+                        continue;
                     plastique += gain;
                 }
             } else {
-                materiau = 1 + (int)(Math.random() * 6.0);
+                materiau = 1 + (int) (Math.random() * 6.0);
                 if (materiau == 1) {
                     bois += gain;
                 } else if (materiau == 2) {
@@ -2151,53 +2310,69 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             if (lang == command.Language.fr) {
                 for (i = 1; i <= 6; ++i) {
                     if (i == 1 && bois != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + bois;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("wood", true).get(0).getAsMention() + " **Bois :** " + bois;
                         continue;
                     }
                     if (i == 2 && acier != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **Argile :** " + acier;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("clay", true).get(0).getAsMention() + " **Argile :** " + acier;
                         continue;
                     }
                     if (i == 3 && beton != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **Cuir :** " + beton;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Cuir :** " + beton;
                         continue;
                     }
                     if (i == 4 && verre != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **Paille :** " + verre;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Paille :** " + verre;
                         continue;
                     }
                     if (i == 5 && pierre != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **Pierre :** " + pierre;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Pierre :** " + pierre;
                         continue;
                     }
-                    if (i != 6 || plastique == 0) continue;
-                    gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **Fer :** " + plastique;
+                    if (i != 6 || plastique == 0)
+                        continue;
+                    gains = String.valueOf(gains) + "\n"
+                            + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
+                            + " **Fer :** " + plastique;
                 }
             }
             if (lang == command.Language.en) {
                 for (i = 1; i <= 6; ++i) {
                     if (i == 1 && bois != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention() + " **Wood :** " + bois;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("wood", true).get(0).getAsMention() + " **Wood :** " + bois;
                         continue;
                     }
                     if (i == 2 && acier != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention() + " **Clay :** " + acier;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("clay", true).get(0).getAsMention() + " **Clay :** " + acier;
                         continue;
                     }
                     if (i == 3 && beton != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention() + " **Leather :** " + beton;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Leather :** " + beton;
                         continue;
                     }
                     if (i == 4 && verre != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention() + " **Straw :** " + verre;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Straw :** " + verre;
                         continue;
                     }
                     if (i == 5 && pierre != 0) {
-                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention() + " **Stone :** " + pierre;
+                        gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
+                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Stone :** " + pierre;
                         continue;
                     }
-                    if (i != 6 || plastique == 0) continue;
-                    gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention() + " **Iron :** " + plastique;
+                    if (i != 6 || plastique == 0)
+                        continue;
+                    gains = String.valueOf(gains) + "\n"
+                            + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
+                            + " **Iron :** " + plastique;
                 }
             }
             int bois_Total = bois + A_bois;
@@ -2217,16 +2392,15 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 rarity3 = 13;
             }
             int Game_EXP = data.getProfils().get(user.getId()).getXp();
-            Double operation4 = 5.0 + (double)rarity3 * combos2 / 100.0;
-            Game_EXP = (int)((long)Game_EXP + Math.round(operation4));
+            Double operation4 = 5.0 + (double) rarity3 * combos2 / 100.0;
+            Game_EXP = (int) ((long) Game_EXP + Math.round(operation4));
             try {
                 data.getProfils().get(user.getId()).setXp(Game_EXP);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setXp(Game_EXP);
             }
-            Pet_EXP = (int)((long)Pet_EXP + Math.round(operation4 / 10.0));
+            Pet_EXP = (int) ((long) Pet_EXP + Math.round(operation4 / 10.0));
             if (list != null) {
                 list.remove(1);
             }
@@ -2238,12 +2412,11 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             try {
                 data.getProfils().get(user.getId()).setPet(pet);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setPet(pet);
             }
-            Quest.Quest("exp", user, channel, (int)Math.round(operation4));
+            Quest.Quest("exp", user, channel, (int) Math.round(operation4));
             Quest.Quest("tr", user, channel, 1);
             Quest.Quest("materiau", user, channel, bois + acier + beton + verre + pierre + plastique);
             if (bois != 0) {
@@ -2272,24 +2445,28 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             res.put("fer", plastique_Total);
             try {
                 data.getProfils().get(user.getId()).setRes(res);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setRes(res);
             }
             ++Combos;
             try {
                 data.getProfils().get(user.getId()).setCf(Combos);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setCf(Combos);
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("\ud83d\udd13 Bravo " + user.getAsMention() + ".Vous avez remporté un Coffre Fort **" + rarity + "** (*Combo : " + Combos + "*). \n Il y avait \u00e0 l'intérieur " + Math.round(operation4) + " EXP et : \n" + gains + " \n" + Halloween1).queue();
+                channel.sendMessage(
+                        "\ud83d\udd13 Bravo " + user.getAsMention() + ".Vous avez remporté un Coffre Fort **" + rarity
+                                + "** (*Combo : " + Combos + "*). \n Il y avait \u00e0 l'intérieur "
+                                + Math.round(operation4) + " EXP et : \n" + gains + " \n" + Halloween1)
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("\ud83d\udd13 Great " + user.getAsMention() + ".You won a strongbox **" + rarity + "** (*Combo : " + Combos + "*). \n You found in it " + Math.round(operation4) + " Xp and : \n" + gains + " \n" + Halloween1).queue();
+                channel.sendMessage("\ud83d\udd13 Great " + user.getAsMention() + ".You won a strongbox **" + rarity
+                        + "** (*Combo : " + Combos + "*). \n You found in it " + Math.round(operation4) + " Xp and : \n"
+                        + gains + " \n" + Halloween1).queue();
             }
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Treasure/user.txt", user.getId(), 1);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Treasure/server.txt", guild.getId(), 1);
@@ -2302,24 +2479,29 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             User Ucible = jda.getUserById(lastUser);
             Guild SCible = jda.getGuildById(lastServer);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\ud83d\udd12   Le dernier coffre fort a été récupéré par **" + Ucible.getName() + "** sur le serveur **" + SCible.getName() + "**. \r\n" + "Il sera \u00e0 nouveau récupérable dans : " + mMinute + " minutes et " + mSecond + " secondes.").queue();
+                channel.sendMessage("\ud83d\udd12   Le dernier coffre fort a été récupéré par **" + Ucible.getName()
+                        + "** sur le serveur **" + SCible.getName() + "**. \r\n"
+                        + "Il sera \u00e0 nouveau récupérable dans : " + mMinute + " minutes et " + mSecond
+                        + " secondes.").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("\ud83d\udd12  The last StrongBox was collected by  **" + Ucible.getName() + "** on **" + SCible.getName() + "**. \r\n" + "The next StrongBox will be available in  " + mMinute + " minutes and " + mSecond + " seconds.").queue();
+                channel.sendMessage("\ud83d\udd12  The last StrongBox was collected by  **" + Ucible.getName()
+                        + "** on **" + SCible.getName() + "**. \r\n" + "The next StrongBox will be available in  "
+                        + mMinute + " minutes and " + mSecond + " seconds.").queue();
             }
         }
     }
 
-    @command(name="clean", type=command.ExecutorType.ALL, descfr="Permet de supprimer un certain nombre de message sur le channel", descen="Allow you to delete some messages on the channel", topic=command.Topics.Modo)
-    private void clean(MessageChannel channel, User user, String[] args, Message message, Guild guild, command.Language lang) {
-        block13 : {
+    @command(name = "clean", type = command.ExecutorType.ALL, descfr = "Permet de supprimer un certain nombre de message sur le channel", descen = "Allow you to delete some messages on the channel", topic = command.Topics.Modo)
+    private void clean(MessageChannel channel, User user, String[] args, Message message, Guild guild,
+            command.Language lang) {
+        block13: {
             try {
                 if (guild.getMember(user).hasPermission(Permission.MESSAGE_MANAGE)) {
                     int message2;
                     try {
                         message2 = Integer.parseInt(args[0]);
-                    }
-                    catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         boolean message22 = false;
                         if (lang == command.Language.fr) {
                             channel.sendMessage("Vous devez ecrire un nombre valide").queue();
@@ -2344,8 +2526,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 if (lang == command.Language.en) {
                     channel.sendMessage("You don't have the necessary permission to perform this command.").queue();
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Syntaxe : ``=clean [nombre]``.").queue();
                 }
@@ -2357,15 +2538,15 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="topEXP", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs en fonctions de leur Xp", descen=" Show the Xp Players LeaderBoard", topic=command.Topics.Game)
-    private void topEXP(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "topEXP", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonctions de leur Xp", descen = " Show the Xp Players LeaderBoard", topic = command.Topics.Game)
+    private void topEXP(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
@@ -2374,9 +2555,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             try {
                 double operation = 3 * Game_EXP / 4;
                 double math = Math.sqrt(operation);
-                level = (int)Math.round(math);
-            }
-            catch (NullPointerException e) {
+                level = (int) Math.round(math);
+            } catch (NullPointerException e) {
                 level = 0;
             }
             Object emoji = "";
@@ -2393,21 +2573,21 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             String member = "";
             if (lang == command.Language.fr) {
-                member = "Une personne discr\u00e8te | **Level** : " + level + (String)emoji + " | **Xp** ";
+                member = "Une personne discr\u00e8te | **Level** : " + level + (String) emoji + " | **Xp** ";
             }
             if (lang == command.Language.en) {
-                member = "An invisible person | **Level** : " + level + (String)emoji + " | **Xp** ";
+                member = "An invisible person | **Level** : " + level + (String) emoji + " | **Xp** ";
             }
             try {
-                member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Level** : " + level + (String)emoji + " | **Xp** ";
-            }
-            catch (NullPointerException math) {
+                member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Level** : " + level
+                        + (String) emoji + " | **Xp** ";
+            } catch (NullPointerException math) {
                 // empty catch block
             }
             classement.put(member, Game_EXP);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -2434,22 +2614,24 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
-            messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + "\n";
-            if (messages.length() > 1900 || ++o > c1) break;
+            messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + "\n";
+            if (messages.length() > 1900 || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
-    @command(name="topPays", type=command.ExecutorType.ALL, descfr="Affiche le classement des Pays", descen="Show the Country's LeaderBoard", topic=command.Topics.Game)
-    private void topPays(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "topPays", type = command.ExecutorType.ALL, descfr = "Affiche le classement des Pays", descen = "Show the Country's LeaderBoard", topic = command.Topics.Game)
+    private void topPays(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         String c1;
         int i;
         File[] files;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = "10";
         }
         File repertoire = new File("/home/DiscordBot/Rasberry/données/bot/Pays/");
@@ -2457,23 +2639,22 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             try {
                 int Game_EXP = 0;
                 try {
-                    Game_EXP = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + file.getName() + "/points.txt"));
-                }
-                catch (IndexOutOfBoundsException e) {
+                    Game_EXP = Integer.parseInt(TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Pays/" + file.getName() + "/points.txt"));
+                } catch (IndexOutOfBoundsException e) {
                     c1 = "10";
                 }
                 double level2 = Game_EXP / 1000;
                 double level3 = Math.sqrt(level2);
-                int level = (int)Math.round(level3);
+                int level = (int) Math.round(level3);
                 String member = String.valueOf(file.getName()) + " | **Level** : " + level;
                 classement.put(member, Game_EXP);
-            }
-            catch (IndexOutOfBoundsException Game_EXP) {
+            } catch (IndexOutOfBoundsException Game_EXP) {
                 // empty catch block
             }
         }
         ArrayList entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
@@ -2483,19 +2664,21 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         if (c1 != "0" && Integer.parseInt(c1) < entries.size() - 1) {
             String messages = ":trophy:  Classement :trophy: :\n";
             for (i = 1; i <= Integer.parseInt(c1); ++i) {
-                messages = String.valueOf(messages) + "__***" + i + "e***__ : " + entries.get(entries.size() - i) + "\n";
+                messages = String.valueOf(messages) + "__***" + i + "e***__ : " + entries.get(entries.size() - i)
+                        + "\n";
             }
             channel.sendMessage(messages).queue();
         } else {
             String messages = ":trophy:  Classement :trophy: :\n";
             for (i = 1; i <= 10 && i < entries.size(); ++i) {
-                messages = String.valueOf(messages) + "__***" + i + "e***__ : " + entries.get(entries.size() - i) + "\n";
+                messages = String.valueOf(messages) + "__***" + i + "e***__ : " + entries.get(entries.size() - i)
+                        + "\n";
             }
             channel.sendMessage(messages).queue();
         }
     }
 
-    @command(name="server", type=command.ExecutorType.CONSOLE)
+    @command(name = "server", type = command.ExecutorType.CONSOLE)
     private void server() {
         JDA jda = DiscordBot.getjda();
         List<Guild> guilds = jda.getGuilds();
@@ -2506,7 +2689,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         System.out.println(message);
     }
 
-    @command(name="region", type=command.ExecutorType.CONSOLE)
+    @command(name = "region", type = command.ExecutorType.CONSOLE)
     private void region() {
         JDA jda = DiscordBot.getjda();
         int amsterdam = 0;
@@ -2526,90 +2709,96 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         int us_west = 0;
         int us_east = 0;
         int unknow = 0;
-        block18 : for (int i = 0; i < jda.getGuilds().size(); ++i) {
+        block18: for (int i = 0; i < jda.getGuilds().size(); ++i) {
             Guild guild = jda.getGuilds().get(i);
             Region reg = guild.getRegion();
             switch (CommandDefaut.$SWITCH_TABLE$net$dv8tion$jda$core$Region()[reg.ordinal()]) {
-                case 1: {
-                    ++amsterdam;
-                    continue block18;
-                }
-                case 2: {
-                    ++brazil;
-                    continue block18;
-                }
-                case 3: {
-                    ++eu_central;
-                    continue block18;
-                }
-                case 4: {
-                    ++eu_west;
-                    continue block18;
-                }
-                case 5: {
-                    ++frankfurt;
-                    continue block18;
-                }
-                case 6: {
-                    ++hong_kong;
-                    continue block18;
-                }
-                case 7: {
-                    ++japan;
-                    continue block18;
-                }
-                case 8: {
-                    ++london;
-                    continue block18;
-                }
-                case 9: {
-                    ++russia;
-                    continue block18;
-                }
-                case 10: {
-                    ++singapore;
-                    continue block18;
-                }
-                case 11: {
-                    ++south_africa;
-                    continue block18;
-                }
-                case 12: {
-                    ++sydney;
-                    continue block18;
-                }
-                case 13: {
-                    ++us_central;
-                    continue block18;
-                }
-                case 14: {
-                    ++us_east;
-                    continue block18;
-                }
-                case 15: {
-                    ++us_south;
-                    continue block18;
-                }
-                case 16: {
-                    ++us_west;
-                    continue block18;
-                }
-                default: {
-                    ++unknow;
-                }
+            case 1: {
+                ++amsterdam;
+                continue block18;
+            }
+            case 2: {
+                ++brazil;
+                continue block18;
+            }
+            case 3: {
+                ++eu_central;
+                continue block18;
+            }
+            case 4: {
+                ++eu_west;
+                continue block18;
+            }
+            case 5: {
+                ++frankfurt;
+                continue block18;
+            }
+            case 6: {
+                ++hong_kong;
+                continue block18;
+            }
+            case 7: {
+                ++japan;
+                continue block18;
+            }
+            case 8: {
+                ++london;
+                continue block18;
+            }
+            case 9: {
+                ++russia;
+                continue block18;
+            }
+            case 10: {
+                ++singapore;
+                continue block18;
+            }
+            case 11: {
+                ++south_africa;
+                continue block18;
+            }
+            case 12: {
+                ++sydney;
+                continue block18;
+            }
+            case 13: {
+                ++us_central;
+                continue block18;
+            }
+            case 14: {
+                ++us_east;
+                continue block18;
+            }
+            case 15: {
+                ++us_south;
+                continue block18;
+            }
+            case 16: {
+                ++us_west;
+                continue block18;
+            }
+            default: {
+                ++unknow;
+            }
             }
         }
-        System.out.println("Voici la liste des regions des serveur : \nAmsterdam : " + amsterdam + "\n" + "Brazil : " + brazil + "\n" + "EU Central : " + eu_central + "\n" + "EU West : " + eu_west + "\n" + "Franfurt : " + frankfurt + "\n" + "Hong Kong : " + hong_kong + "\n" + "Japan : " + japan + "\n" + "London : " + london + "\n" + "Russia : " + russia + "\n" + "Singapore : " + singapore + "\n" + "South Africa : " + south_africa + "\n" + "Sydney : " + sydney + "\n" + "US Central : " + us_central + "\n" + "US East : " + us_east + "\n" + "US South : " + us_south + "\n" + "US West : " + us_west + "\n" + "Unknow : " + unknow);
+        System.out.println("Voici la liste des regions des serveur : \nAmsterdam : " + amsterdam + "\n" + "Brazil : "
+                + brazil + "\n" + "EU Central : " + eu_central + "\n" + "EU West : " + eu_west + "\n" + "Franfurt : "
+                + frankfurt + "\n" + "Hong Kong : " + hong_kong + "\n" + "Japan : " + japan + "\n" + "London : "
+                + london + "\n" + "Russia : " + russia + "\n" + "Singapore : " + singapore + "\n" + "South Africa : "
+                + south_africa + "\n" + "Sydney : " + sydney + "\n" + "US Central : " + us_central + "\n" + "US East : "
+                + us_east + "\n" + "US South : " + us_south + "\n" + "US West : " + us_west + "\n" + "Unknow : "
+                + unknow);
     }
 
-    @command(name="topCf", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs en fonction du nombre de cf recupérés", descen=" Show the Cf players LeaderBoard", topic=command.Topics.Game)
-    private void topCf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "topCf", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction du nombre de cf recupérés", descen = " Show the Cf players LeaderBoard", topic = command.Topics.Game)
+    private void topCf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         int c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
@@ -2623,14 +2812,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             try {
                 member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Combo**  ";
-            }
-            catch (NullPointerException nullPointerException) {
+            } catch (NullPointerException nullPointerException) {
                 // empty catch block
             }
             classement.put(member, combo);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -2657,34 +2845,38 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
-            messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + "\n";
-            if (messages.length() > 1900 || ++o > c1) break;
+            messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + "\n";
+            if (messages.length() > 1900 || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
     /*
-     * Enabled force condition propagation
-     * Lifted jumps to return sites
+     * Enabled force condition propagation Lifted jumps to return sites
      */
-    @command(name="setgrade", type=command.ExecutorType.ALL, descfr="Permet de modifier son grade (premium uniquement)", descen="Allow you to modifiy your rank (Premium only)")
-    private void setgrade(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "setgrade", type = command.ExecutorType.ALL, descfr = "Permet de modifier son grade (premium uniquement)", descen = "Allow you to modifiy your rank (Premium only)")
+    private void setgrade(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         if (Premium.Premium(user)) {
             try {
                 String grade = args[0];
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/grade.txt", grade, 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/grade.txt", grade,
+                        1);
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Votre grade est desormais " + grade).queue();
                 }
-                if (lang != command.Language.en) return;
+                if (lang != command.Language.en)
+                    return;
                 channel.sendMessage("Your personal rank is now " + grade).queue();
                 return;
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous devez indiquer le grade que vous souhaitez avoir.").queue();
                 }
-                if (lang != command.Language.en) return;
+                if (lang != command.Language.en)
+                    return;
                 channel.sendMessage("You must indicate the personal rank you would have").queue();
                 return;
             }
@@ -2692,13 +2884,15 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             if (lang == command.Language.fr) {
                 channel.sendMessage("Désolé mais vous devez etre premium pour acceder a cette fonctionalité.").queue();
             }
-            if (lang != command.Language.en) return;
+            if (lang != command.Language.en)
+                return;
             channel.sendMessage("Sorry but you must be Premium to access to this command.").queue();
         }
     }
 
-    @command(name="unmute", type=command.ExecutorType.ALL, descfr="Permet d'unmute un joueur", descen="Allow you to unmute a player", topic=command.Topics.Modo)
-    private void unmute(MessageChannel channel, User user, String[] args, Message message, Guild guild, command.Language lang) {
+    @command(name = "unmute", type = command.ExecutorType.ALL, descfr = "Permet d'unmute un joueur", descen = "Allow you to unmute a player", topic = command.Topics.Modo)
+    private void unmute(MessageChannel channel, User user, String[] args, Message message, Guild guild,
+            command.Language lang) {
         try {
             List<Role> role = guild.getRolesByName("Muted", true);
             Role role2 = role.get(0);
@@ -2710,8 +2904,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             if (lang == command.Language.en) {
                 channel.sendMessage(String.valueOf(cible.getName()) + " has been unmute.").queue();
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Syntaxe : ``=unmute [mention]``.").queue();
             }
@@ -2722,14 +2915,14 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="slowmode", type=command.ExecutorType.ALL, descfr="Permet de definir un delai entre deux messages consecutif sur un channel", descen="Define a delay between two consecutive messages on a channel", topic=command.Topics.Modo)
-    private void slowmode(TextChannel channel, User user, String[] args, MessageChannel message, Guild guild, command.Language lang) {
+    @command(name = "slowmode", type = command.ExecutorType.ALL, descfr = "Permet de definir un delai entre deux messages consecutif sur un channel", descen = "Define a delay between two consecutive messages on a channel", topic = command.Topics.Modo)
+    private void slowmode(TextChannel channel, User user, String[] args, MessageChannel message, Guild guild,
+            command.Language lang) {
         if (guild.getMember(user).hasPermission(Permission.MANAGE_CHANNEL)) {
             int c1;
             try {
                 c1 = Integer.parseInt(args[0]);
-            }
-            catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Syntaxe : ``=slowmode [durée]``.").queue();
                 }
@@ -2737,8 +2930,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     channel.sendMessage("Syntax : ``=slowmode [duration]``.").queue();
                 }
                 return;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Syntaxe : ``=slowmode [durée]``.").queue();
                 }
@@ -2774,8 +2966,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="partenaires", abbrev="partners", type=command.ExecutorType.ALL, descfr="Affiche la liste des partnaires OzeryoBot", descen="Show the OzeryoBot Partner List")
-    private void partenaire(Message message, User user, String[] args, MessageChannel channel, Guild guild, command.Language lang) {
+    @command(name = "partenaires", abbrev = "partners", type = command.ExecutorType.ALL, descfr = "Affiche la liste des partnaires OzeryoBot", descen = "Show the OzeryoBot Partner List")
+    private void partenaire(Message message, User user, String[] args, MessageChannel channel, Guild guild,
+            command.Language lang) {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(user.getName(), null, user.getAvatarUrl());
         builder.setColor(color.couleurAleatoire(user));
@@ -2788,18 +2981,18 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name="CPU", type=command.ExecutorType.ALL, descfr="Affiche les information processeur du bot", descen=" Allow you to see the CPU informations", topic=command.Topics.Admin)
+    @command(name = "CPU", type = command.ExecutorType.ALL, descfr = "Affiche les information processeur du bot", descen = " Allow you to see the CPU informations", topic = command.Topics.Admin)
     private void CPU(Message message, User user, String[] args, MessageChannel channel, Guild guild) {
         OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
         String message1 = "";
         for (Method method : operatingSystemMXBean.getClass().getDeclaredMethods()) {
             Object value;
             method.setAccessible(true);
-            if (!method.getName().startsWith("get") || !Modifier.isPublic(method.getModifiers())) continue;
+            if (!method.getName().startsWith("get") || !Modifier.isPublic(method.getModifiers()))
+                continue;
             try {
                 value = method.invoke(operatingSystemMXBean, new Object[0]);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 value = e;
             }
             message1 = String.valueOf(method.getName()) + " = " + value + "\n";
@@ -2807,23 +3000,22 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         channel.sendMessage(String.valueOf(message1)).queue();
     }
 
-    @command(name="parrain", type=command.ExecutorType.ALL, descfr="Permet de parrainer un joueur", descen="Allow you to choose your sponsor")
-    private void parrain(Message message, User user, String[] args, MessageChannel channel, Guild guild, ProfilData data, command.Language lang) {
+    @command(name = "parrain", type = command.ExecutorType.ALL, descfr = "Permet de parrainer un joueur", descen = "Allow you to choose your sponsor")
+    private void parrain(Message message, User user, String[] args, MessageChannel channel, Guild guild,
+            ProfilData data, command.Language lang) {
         String c1;
         int level;
         try {
             c1 = args[0];
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             c1 = "";
         }
         int Game_EXP = data.getProfils().get(user.getId()).getXp();
         try {
             double operation = 3 * Game_EXP / 4;
             double math = Math.sqrt(operation);
-            level = (int)Math.round(math);
-        }
-        catch (NullPointerException e) {
+            level = (int) Math.round(math);
+        } catch (NullPointerException e) {
             level = 0;
         }
         int Ufilleuls = data.getProfils().get(user.getId()).getFilleuls();
@@ -2834,7 +3026,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 emoji = ":x:";
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage(String.valueOf(emoji) + " | Vous avez actuelement " + Ufilleuls + " filleuls.").queue();
+                channel.sendMessage(String.valueOf(emoji) + " | Vous avez actuelement " + Ufilleuls + " filleuls.")
+                        .queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage(String.valueOf(emoji) + " | You actualy have " + Ufilleuls + " godson.").queue();
@@ -2842,20 +3035,22 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         } else {
             if (level < 30) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous devez atteindre le niveau 30 du jeu pour pouvoir choisir votre parrain.").queue();
+                    channel.sendMessage("Vous devez atteindre le niveau 30 du jeu pour pouvoir choisir votre parrain.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("You must reach level 30 of the game to be able to choose your sponsor.").queue();
+                    channel.sendMessage("You must reach level 30 of the game to be able to choose your sponsor.")
+                            .queue();
                 }
                 return;
             }
             User cible = null;
             try {
                 cible = message.getMentionedUsers().get(0);
-            }
-            catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Veuillez mentionner le joueur que vous voulez designer comme votre parrain.").queue();
+                    channel.sendMessage("Veuillez mentionner le joueur que vous voulez designer comme votre parrain.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Please mention the player you want to designate as your sponsor.").queue();
@@ -2904,20 +3099,28 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 cible.openPrivateChannel().complete();
             }
             if (langcible == command.Language.fr) {
-                ((UserImpl)cible).getPrivateChannel().sendMessage("Vous venez de gagner un nouveau filleul. Vous avez actuelement " + Cfilleuls + " filleuls.").queue();
+                ((UserImpl) cible).getPrivateChannel().sendMessage(
+                        "Vous venez de gagner un nouveau filleul. Vous avez actuelement " + Cfilleuls + " filleuls.")
+                        .queue();
             }
             if (langcible == command.Language.en) {
-                ((UserImpl)cible).getPrivateChannel().sendMessage("You won a new godson. You have actually " + Cfilleuls + " godson.").queue();
+                ((UserImpl) cible).getPrivateChannel()
+                        .sendMessage("You won a new godson. You have actually " + Cfilleuls + " godson.").queue();
             }
             if (Cfilleuls % 3 == 0 && Cfilleuls != 0) {
                 if (!cible.hasPrivateChannel()) {
                     cible.openPrivateChannel().complete();
                 }
                 if (langcible == command.Language.fr) {
-                    ((UserImpl)cible).getPrivateChannel().sendMessage("Bravo vous avez " + Cfilleuls + " filleuls, vous remportez donc un premium d'un mois.").queue();
+                    ((UserImpl) cible).getPrivateChannel().sendMessage(
+                            "Bravo vous avez " + Cfilleuls + " filleuls, vous remportez donc un premium d'un mois.")
+                            .queue();
                 }
                 if (langcible == command.Language.en) {
-                    ((UserImpl)cible).getPrivateChannel().sendMessage("Great you have " + Cfilleuls + " godson, So you win one month of Ozeryo Premium.").queue();
+                    ((UserImpl) cible).getPrivateChannel()
+                            .sendMessage(
+                                    "Great you have " + Cfilleuls + " godson, So you win one month of Ozeryo Premium.")
+                            .queue();
                 }
                 if (Premium.Premium(cible)) {
                     long premium = data.getProfils().get(cible.getId()).getPremium();
@@ -2930,8 +3133,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="math", type=command.ExecutorType.ALL, descfr="Permet d'effectuer un calcul mathematique, c'est fantastique !", descen=" Allow you to execute a mathematical calculation, it's fantastic !")
-    private void math(Message message, User user, String arg, MessageChannel channel, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "math", type = command.ExecutorType.ALL, descfr = "Permet d'effectuer un calcul mathematique, c'est fantastique !", descen = " Allow you to execute a mathematical calculation, it's fantastic !")
+    private void math(Message message, User user, String arg, MessageChannel channel, Guild guild, JDA jda,
+            command.Language lang) {
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
         System.out.println(message.getContentRaw());
@@ -2948,8 +3152,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
             }
             channel.sendMessage("``" + foo + "`` = " + engine.eval(foo)).queue();
-        }
-        catch (ScriptException e) {
+        } catch (ScriptException e) {
             System.out.println("Error");
             if (lang == command.Language.fr) {
                 channel.sendMessage("Erreur Math : " + arg).queue();
@@ -2961,16 +3164,15 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="bid", type=command.ExecutorType.ALL, descfr="Permet d'encherir sur l'objet du jour en vente", descen="Allow you to bet on the daily object on sale", topic=command.Topics.Game)
-    private void bid(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "bid", type = command.ExecutorType.ALL, descfr = "Permet d'encherir sur l'objet du jour en vente", descen = "Allow you to bet on the daily object on sale", topic = command.Topics.Game)
+    private void bid(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         int c1;
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             c1 = 0;
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             c1 = 0;
         }
         if (c1 == 0) {
@@ -2981,14 +3183,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             String cible1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/biduser.txt");
             try {
                 cible = jda.getUserById(cible1).getName();
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 cible = "personne";
             }
             try {
-                jetons = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt"));
-            }
-            catch (NumberFormatException e) {
+                jetons = Integer
+                        .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt"));
+            } catch (NumberFormatException e) {
                 jetons = 0;
             }
             int jetons1 = data.getProfils().get(user.getId()).getTokens();
@@ -2998,17 +3199,22 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 mess = " de niveau **" + level + "**";
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("\u2696 Vous avez **" + jetons1 + "** jetons\r\n" + "L'ench\u00e8re du jour est **" + object2 + "**" + mess + ". **" + cible + "** a enchérit dessus pour **" + jetons + "** jetons.").queue();
+                channel.sendMessage(
+                        "\u2696 Vous avez **" + jetons1 + "** jetons\r\n" + "L'ench\u00e8re du jour est **" + object2
+                                + "**" + mess + ". **" + cible + "** a enchérit dessus pour **" + jetons + "** jetons.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("\u2696 You have **" + jetons1 + "** tokens\r\n" + "The bid of the day is **" + object2 + "**" + mess + ". **" + cible + "** who has bid on for **" + jetons + "** tokens.").queue();
+                channel.sendMessage("\u2696 You have **" + jetons1 + "** tokens\r\n" + "The bid of the day is **"
+                        + object2 + "**" + mess + ". **" + cible + "** who has bid on for **" + jetons + "** tokens.")
+                        .queue();
             }
         } else {
             int Ljetons;
             try {
-                Ljetons = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt"));
-            }
-            catch (NumberFormatException e) {
+                Ljetons = Integer
+                        .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt"));
+            } catch (NumberFormatException e) {
                 Ljetons = 0;
             }
             int jetons = data.getProfils().get(user.getId()).getTokens();
@@ -3023,7 +3229,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             if (c1 <= Ljetons) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous ne pouvez pas misez un nombre inferieur de jetons a celui actuel.").queue();
+                    channel.sendMessage("Vous ne pouvez pas misez un nombre inferieur de jetons a celui actuel.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can't bet a lower number of tokens than the current one .").queue();
@@ -3036,23 +3243,25 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt", Integer.toString(c1), 1);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Bid/biduser.txt", user.getId(), 1);
             if (lang == command.Language.fr) {
-                channel.sendMessage("\u2696 Vous venez de miser **" + c1 + "** jetons pour **" + object2 + "**.\r\n" + "Si vous remportez celle-ci, vous serez informé aux alentours de minuit (UTC+2).").queue();
+                channel.sendMessage("\u2696 Vous venez de miser **" + c1 + "** jetons pour **" + object2 + "**.\r\n"
+                        + "Si vous remportez celle-ci, vous serez informé aux alentours de minuit (UTC+2).").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("\u2696 you have just bet **" + c1 + "** tokens for **" + object2 + "**.\r\n" + "If you win the bid, you will be inform around midnight (UTC+2).").queue();
+                channel.sendMessage("\u2696 you have just bet **" + c1 + "** tokens for **" + object2 + "**.\r\n"
+                        + "If you win the bid, you will be inform around midnight (UTC+2).").queue();
             }
         }
     }
 
-    @command(name="topTrophy", type=command.ExecutorType.ALL, descfr="Affiche le top des joueurs en fonction de leurs trophées", descen=" Show the Trophy player top", topic=command.Topics.Game)
-    private void topTrophy(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "topTrophy", type = command.ExecutorType.ALL, descfr = "Affiche le top des joueurs en fonction de leurs trophées", descen = " Show the Trophy player top", topic = command.Topics.Game)
+    private void topTrophy(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
@@ -3067,19 +3276,20 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             try {
                 if (lang == command.Language.fr) {
-                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank + " | **Trophées**  ";
+                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank
+                            + " | **Trophées**  ";
                 }
                 if (lang == command.Language.en) {
-                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank + " | **Trophies**  ";
+                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank
+                            + " | **Trophies**  ";
                 }
-            }
-            catch (NullPointerException nullPointerException) {
+            } catch (NullPointerException nullPointerException) {
                 // empty catch block
             }
-            classement.put((String)member, trophees);
+            classement.put((String) member, trophees);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -3106,14 +3316,17 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 }
                 rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
-            messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + "\n";
-            if (messages.length() > 1900 || ++o > c1) break;
+            messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + "\n";
+            if (messages.length() > 1900 || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
-    @command(name="setdescription", type=command.ExecutorType.ALL, descfr="Permet de definir une description de profil (Premium only)", descen=" Allow you to set your profile description ( Premium only)")
-    private void setdescription(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "setdescription", type = command.ExecutorType.ALL, descfr = "Permet de definir une description de profil (Premium only)", descen = " Allow you to set your profile description ( Premium only)")
+    private void setdescription(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         if (Premium.Premium(user)) {
             ProfilData data = DiscordBot.getData();
             String desc = message.getContentRaw();
@@ -3121,8 +3334,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             try {
                 data.getProfils().get(user.getId()).setDescription(desc);
                 data.getProfils().get(user.getId()).setId(user.getId());
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setDescription(desc);
             }
@@ -3142,8 +3354,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="timerpanel", type=command.ExecutorType.ALL, descfr="Affiche la liste de vos operations en cours", descen=" Show you the list of all your operation in progress")
-    private void timerpanel(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "timerpanel", type = command.ExecutorType.ALL, descfr = "Affiche la liste de vos operations en cours", descen = " Show you the list of all your operation in progress")
+    private void timerpanel(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         String rep;
         int mMinute;
         int Pet_EXP;
@@ -3158,9 +3371,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         if (delay > 86400000L) {
             daily = ":white_check_mark:";
         } else {
-            int mHour = (int)(delay / 3600000L);
-            int mMinute2 = (int)((delay %= 3600000L) / 60000L);
-            int mSecond2 = (int)((delay %= 60000L) / 1000L);
+            int mHour = (int) (delay / 3600000L);
+            int mMinute2 = (int) ((delay %= 3600000L) / 60000L);
+            int mSecond2 = (int) ((delay %= 60000L) / 1000L);
             daily = String.valueOf(23 - mHour) + "h" + (59 - mMinute2) + "m" + (59 - mSecond2) + "s";
         }
         long lastrep = data.getProfils().get(user.getId()).getLastRep();
@@ -3168,9 +3381,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         if (delay >= 86400000L) {
             rep = ":white_check_mark: ";
         } else {
-            int mHour = (int)(delay / 3600000L);
-            mMinute = (int)((delay %= 3600000L) / 60000L);
-            mSecond = (int)((delay %= 60000L) / 1000L);
+            int mHour = (int) (delay / 3600000L);
+            mMinute = (int) ((delay %= 3600000L) / 60000L);
+            mSecond = (int) ((delay %= 60000L) / 1000L);
             rep = String.valueOf(23 - mHour) + "h" + (59 - mMinute) + "m" + (59 - mSecond) + "s";
         }
         lastHourly = data.getProfils().get(user.getId()).getLastHourly();
@@ -3178,24 +3391,24 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         if (delay >= 3600000L) {
             hourly2 = ":white_check_mark: ";
         } else {
-            mMinute = (int)(delay / 60000L);
-            mSecond = (int)((delay %= 60000L) / 1000L);
+            mMinute = (int) (delay / 60000L);
+            mSecond = (int) ((delay %= 60000L) / 1000L);
             hourly2 = String.valueOf(59 - mMinute) + "m" + (59 - mSecond) + "s";
         }
         String RMD = "";
         try {
             for (ArrayList<String> rmd : data.getProfils().get(user.getId()).getRMD().values()) {
                 Object timer = Long.parseLong(rmd.get(0));
-                timer = (Long)timer - System.currentTimeMillis();
+                timer = (Long) timer - System.currentTimeMillis();
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis((Long)timer);
+                calendar.setTimeInMillis((Long) timer);
                 int mHour = calendar.get(11) - 1;
                 int mMinute3 = calendar.get(12);
                 int mSecond3 = calendar.get(13);
-                RMD = String.valueOf(RMD) + "**" + mHour + "h" + mMinute3 + "m" + mSecond3 + "s** : " + rmd.get(1) + "\n";
+                RMD = String.valueOf(RMD) + "**" + mHour + "h" + mMinute3 + "m" + mSecond3 + "s** : " + rmd.get(1)
+                        + "\n";
             }
-        }
-        catch (NullPointerException rmd) {
+        } catch (NullPointerException rmd) {
             // empty catch block
         }
         String Attack2 = "";
@@ -3203,22 +3416,22 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             for (ArrayList<String> atk : data.getProfils().get(user.getId()).getAttack().values()) {
                 String cible;
                 Object timer = Long.parseLong(atk.get(0));
-                timer = (Long)timer - System.currentTimeMillis();
+                timer = (Long) timer - System.currentTimeMillis();
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis((Long)timer);
+                calendar.setTimeInMillis((Long) timer);
                 int mHour = calendar.get(11) - 1;
                 int mMinute4 = calendar.get(12);
                 int mSecond4 = calendar.get(13);
                 try {
                     cible = jda.getUserById(atk.get(1)).getName();
+                } catch (NumberFormatException e) {
+                    cible = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + atk.get(1) + "/name.txt")
+                            .equals("dungeon") ? "attaque de donjon" : "zone de ressource";
                 }
-                catch (NumberFormatException e) {
-                    cible = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + atk.get(1) + "/name.txt").equals("dungeon") ? "attaque de donjon" : "zone de ressource";
-                }
-                Attack2 = String.valueOf(Attack2) + "**" + mHour + "h" + mMinute4 + "m" + mSecond4 + "s** : " + cible + " \n";
+                Attack2 = String.valueOf(Attack2) + "**" + mHour + "h" + mMinute4 + "m" + mSecond4 + "s** : " + cible
+                        + " \n";
             }
-        }
-        catch (NullPointerException atk) {
+        } catch (NullPointerException atk) {
             // empty catch block
         }
         String Give = "";
@@ -3231,18 +3444,17 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 int mHour = calendar.get(11) - 1;
                 int mMinute5 = calendar.get(12);
                 int mSecond5 = calendar.get(13);
-                Give = String.valueOf(Give) + "**" + mHour + "h" + mMinute5 + "m" + mSecond5 + "s** : " + jda.getUserById(give.get(1)).getName() + " \n";
+                Give = String.valueOf(Give) + "**" + mHour + "h" + mMinute5 + "m" + mSecond5 + "s** : "
+                        + jda.getUserById(give.get(1)).getName() + " \n";
             }
-        }
-        catch (NullPointerException give) {
+        } catch (NullPointerException give) {
             // empty catch block
         }
         String temple = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/temple.txt");
         String pet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
         try {
             Pet_EXP = Integer.parseInt(data.getProfils().get(user.getId()).getPet().get(pet).get(1));
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             Pet_EXP = 0;
         }
         String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + pet);
@@ -3253,9 +3465,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         try {
             double operation = 3 * Game_EXP / 4;
             double math = Math.sqrt(operation);
-            level = (int)Math.round(math);
-        }
-        catch (NullPointerException e) {
+            level = (int) Math.round(math);
+        } catch (NullPointerException e) {
             level = 0;
         }
         int mana = 10;
@@ -3263,22 +3474,21 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         long lastmana = data.getProfils().get(user.getId()).getLastMana();
         delay = System.currentTimeMillis() - lastmana;
         delay /= 1000L;
-        int regen = Pet_Bonus.equals("regen") ? 300 - (int)(Pet_Level * 3.0) : 300;
+        int regen = Pet_Bonus.equals("regen") ? 300 - (int) (Pet_Level * 3.0) : 300;
         if (temple.equals("Hermes")) {
             regen -= 60;
         }
         if (regen < 150) {
             regen = 150;
         }
-        if (delay > (long)regen) {
-            while (delay > (long)regen) {
+        if (delay > (long) regen) {
+            while (delay > (long) regen) {
                 ++mana;
-                delay -= (long)regen;
+                delay -= (long) regen;
             }
             try {
                 data.getProfils().get(user.getId()).setLastMana(System.currentTimeMillis() - delay);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setLastMana(System.currentTimeMillis());
             }
@@ -3288,10 +3498,10 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             Mana_Max = 200;
         }
         if (Pet_Bonus.equals("mana")) {
-            Mana_Max += (int)(Pet_Level * 3.0);
+            Mana_Max += (int) (Pet_Level * 3.0);
         }
         if (temple.equals("Athena")) {
-            Mana_Max = (int)((double)Mana_Max * 1.25);
+            Mana_Max = (int) ((double) Mana_Max * 1.25);
         }
         if (mana > Mana_Max) {
             mana = Mana_Max;
@@ -3301,8 +3511,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
         try {
             data.getProfils().get(user.getId()).setMana(mana);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             data.getProfils().put(user.getId(), new Profil(user.getId()));
             data.getProfils().get(user.getId()).setMana(mana);
         }
@@ -3317,10 +3526,14 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             int secondes = timerestant - minutes * 60 - heures * 60 * 60;
             mana1 = String.valueOf(heures) + "h" + minutes + "m" + secondes + "s";
         }
-        int sec = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt"));
-        int min = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt"));
-        int hr = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt"));
-        int day = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt"));
+        int sec = Integer.parseInt(
+                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/sec.txt"));
+        int min = Integer.parseInt(
+                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/min.txt"));
+        int hr = Integer.parseInt(
+                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/hr.txt"));
+        int day = Integer.parseInt(
+                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/day.txt"));
         String secondes11 = new SimpleDateFormat("ss", Locale.FRANCE).format(new Date());
         String minutes11 = new SimpleDateFormat("mm", Locale.FRANCE).format(new Date());
         String heures11 = new SimpleDateFormat("HH", Locale.FRANCE).format(new Date());
@@ -3358,14 +3571,16 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         builder.addField(":sunny: Daily", daily, true);
         builder.addField(":e_mail: Rep", rep, true);
         builder.addField(":incoming_envelope: Vote ", vote, true);
-        builder.addField(String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("lab", true).get(0).getAsMention()) + " Work All ", mana1, true);
+        builder.addField(String
+                .valueOf(jda.getGuildById("326345972739473410").getEmotesByName("lab", true).get(0).getAsMention())
+                + " Work All ", mana1, true);
         builder.addField(":crossed_swords: Attack", Attack2, true);
         builder.addField(":notepad_spiral: RMD", RMD, true);
         builder.addField(":currency_exchange:  Give", Give, true);
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name="test", type=command.ExecutorType.ALL, descfr="Affiche la proportion de la carte utilisé", descen="Show the map statistic", topic=command.Topics.Admin)
+    @command(name = "test", type = command.ExecutorType.ALL, descfr = "Affiche la proportion de la carte utilisé", descen = "Show the map statistic", topic = command.Topics.Admin)
     private void test(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
         int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
         String message2 = String.valueOf(taille) + " joueurs  (" + taille * 100 / 441 + ")\n";
@@ -3373,37 +3588,39 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             int x = 0;
             int y = 0;
             int places = 0;
-            int alea = 1 + (int)(Math.random() * (double)(441 - taille - 1 + 1));
+            int alea = 1 + (int) (Math.random() * (double) (441 - taille - 1 + 1));
             for (x = -10; x <= 10; ++x) {
                 for (y = -10; y <= 10; ++y) {
                     String name;
                     try {
-                        name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                    }
-                    catch (IllegalArgumentException e1) {
+                        name = TextFileWriter
+                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
+                    } catch (IllegalArgumentException e1) {
                         name = "0";
                     }
                     if (name.equals("0")) {
                         ++places;
                     }
-                    if (places >= alea) break;
+                    if (places >= alea)
+                        break;
                 }
-                if (places >= alea) break;
+                if (places >= alea)
+                    break;
             }
             message2 = String.valueOf(message2) + "\n **alea :** " + alea + " | " + x + " | " + y;
         }
         channel.sendMessage(message2).queue();
     }
 
-    @command(name="topap", type=command.ExecutorType.ALL, descfr="Affiche le classement des joueurs en fonction de leur nombre d'Achievement Point", descen="Show the Achievement Point Player's LeaderBoard", topic=command.Topics.Game)
-    private void topap(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "topap", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur nombre d'Achievement Point", descen = "Show the Achievement Point Player's LeaderBoard", topic = command.Topics.Game)
+    private void topap(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            command.Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
             c1 = Integer.parseInt(args[0]);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             c1 = 10;
         }
         for (Profil profil : data.getProfils().values()) {
@@ -3417,14 +3634,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
             try {
                 member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Achievement Points** ";
-            }
-            catch (NullPointerException nullPointerException) {
+            } catch (NullPointerException nullPointerException) {
                 // empty catch block
             }
             classement.put(member, rep);
         }
         ArrayList<Entry<String, Integer>> entries = new ArrayList(classement.entrySet());
-        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>(){
+        Collections.sort(entries, new Comparator<Map.Entry<String, Integer>>() {
 
             @Override
             public int compare(Map.Entry<String, Integer> e2, Map.Entry<String, Integer> e1) {
@@ -3453,20 +3669,26 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     rank = String.valueOf(o) + "e";
                 }
             }
-            messages = String.valueOf(messages) + "**" + rank + "** : " + (String)entry.getKey() + " : " + entry.getValue() + "\n";
-            if (messages.length() > 1900 || ++o > c1) break;
+            messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
+                    + entry.getValue() + "\n";
+            if (messages.length() > 1900 || ++o > c1)
+                break;
         }
         channel.sendMessage(messages).queue();
     }
 
-    @command(name="helpstories", type=command.ExecutorType.ALL, descfr="Affiche la liste des Stories", descen="Show the list of all sotries")
+    @command(name = "helpstories", type = command.ExecutorType.ALL, descfr = "Affiche la liste des Stories", descen = "Show the list of all sotries")
     private void helpstories(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        channel.sendMessage("**Stories** \ud83c\udf93 \r\n\r\n**=vulcain** : 10reps\r\n**=cry** :  20reps\r\n**=rage** :  30reps\r\n**=grow** : 40reps\r\n**=nop** : 50reps\r\n**=lol** : 60reps\r\n**=hearts** :  70reps\r\n**=travel** : 80reps\r\n**=rain** : 90reps\r\n**=lf** :  100reps\r\n**=surf** : 120reps\r\n**=travelplane** : 140reps\r\n**=thug** : 160reps\r\n**=ghost** : 180 reps\r\n**=singe** : 200reps\r\n**=moon** : 240reps\r\n**=fight** : 280reps\r\n**=soundover** : 300reps\r\n**=hiver** : 350reps\r\n**=women** : 400reps\r\n**=timeislong** : 500reps\r\n**=sick** : 550reps\r\n**=fp** : 600reps\r\n**=nm** : 650reps\r\n**=hey** : 700reps\r\n**=pic** : 750reps\r\n\r\n**Spéciaux** \ud83d\udc51 \r\n\r\n**=topreprec** : top 5 reps\r\n**=cfez** : top 5cfs\r\n").queue();
+        channel.sendMessage(
+                "**Stories** \ud83c\udf93 \r\n\r\n**=vulcain** : 10reps\r\n**=cry** :  20reps\r\n**=rage** :  30reps\r\n**=grow** : 40reps\r\n**=nop** : 50reps\r\n**=lol** : 60reps\r\n**=hearts** :  70reps\r\n**=travel** : 80reps\r\n**=rain** : 90reps\r\n**=lf** :  100reps\r\n**=surf** : 120reps\r\n**=travelplane** : 140reps\r\n**=thug** : 160reps\r\n**=ghost** : 180 reps\r\n**=singe** : 200reps\r\n**=moon** : 240reps\r\n**=fight** : 280reps\r\n**=soundover** : 300reps\r\n**=hiver** : 350reps\r\n**=women** : 400reps\r\n**=timeislong** : 500reps\r\n**=sick** : 550reps\r\n**=fp** : 600reps\r\n**=nm** : 650reps\r\n**=hey** : 700reps\r\n**=pic** : 750reps\r\n\r\n**Spéciaux** \ud83d\udc51 \r\n\r\n**=topreprec** : top 5 reps\r\n**=cfez** : top 5cfs\r\n")
+                .queue();
     }
 
-    @command(name="herodebug", type=command.ExecutorType.ALL, descfr="debug le hero d'un joueur", topic=command.Topics.Admin)
-    private void herodebug(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda, ProfilData data, command.Language lang) {
-        if (!(user.getId().equals("102108573298851840") || user.getId().equals("502535486691082279") || user.getId().equals("249987060365000704"))) {
+    @command(name = "herodebug", type = command.ExecutorType.ALL, descfr = "debug le hero d'un joueur", topic = command.Topics.Admin)
+    private void herodebug(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
+        if (!(user.getId().equals("102108573298851840") || user.getId().equals("502535486691082279")
+                || user.getId().equals("249987060365000704"))) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Vous n'avez pas la permission d'executer cette action").queue();
             }
@@ -3485,20 +3707,24 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         channel.sendMessage("Le hero de " + cible.getName() + " a été réparé.").queue();
     }
 
-    @command(name="mapdebug", type=command.ExecutorType.ALL, descfr="Clean la map", topic=command.Topics.Admin)
-    private void mapdebug(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "mapdebug", type = command.ExecutorType.ALL, descfr = "Clean la map", topic = command.Topics.Admin)
+    private void mapdebug(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         if (user.getId().equals("102108573298851840")) {
             int y = -10;
             int x = -10;
             for (x = -10; x <= 10; ++x) {
                 for (y = -10; y <= 10; ++y) {
-                    String name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                    if (name.equals("dungeon") || name.equals("Miroiterie") || name.equals("Scierie") || name.equals("Carriere") || name.equals("Raffinerie") || name.equals("Chantier") || name.equals("Fonderie")) continue;
+                    String name = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
+                    if (name.equals("dungeon") || name.equals("Miroiterie") || name.equals("Scierie")
+                            || name.equals("Carriere") || name.equals("Raffinerie") || name.equals("Chantier")
+                            || name.equals("Fonderie"))
+                        continue;
                     try {
                         String string = jda.getUserById(name).getName();
                         continue;
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         TextFileWriter.folder_delete("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
                     }
                 }
@@ -3515,8 +3741,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         channel.sendMessage("La map a été clear.").queue();
     }
 
-    @command(name="Ozpass", type=command.ExecutorType.ALL, descfr="Affiche votre progression dans la pass OzeryoBot", descen=" Show your progression in the OzeryoBot Pass", topic=command.Topics.Game)
-    private void Ozpass(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, command.Language lang) {
+    @command(name = "Ozpass", type = command.ExecutorType.ALL, descfr = "Affiche votre progression dans la pass OzeryoBot", descen = " Show your progression in the OzeryoBot Pass", topic = command.Topics.Game)
+    private void Ozpass(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
+            ProfilData data, command.Language lang) {
         if (Event.Summer() || user.getId().equals("102108573298851840")) {
             int xp = data.getProfils().get(user.getId()).getOzPassXp();
             int pallier = xp / 1000;
@@ -3527,8 +3754,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             BufferedImage image = null;
             try {
                 image = ImageIO.read(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/OzPass.png"));
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             Graphics2D g1 = image.createGraphics();
@@ -3590,8 +3816,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 BufferedImage img = null;
                 try {
                     img = ImageIO.read(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/" + imagelink));
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 if (i <= pallier) {
@@ -3600,26 +3825,30 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     g1.setColor(Color.black);
                 }
                 ImageObserver observer = null;
-                g1.drawImage(img, 10 + 160 * o, 50, 140 + 160 * o, 160, 0, 0, img.getHeight(), img.getWidth(), observer);
+                g1.drawImage(img, 10 + 160 * o, 50, 140 + 160 * o, 160, 0, 0, img.getHeight(), img.getWidth(),
+                        observer);
                 ++o;
             }
             try {
-                ImageIO.write((RenderedImage)image, "png", new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png"));
-            }
-            catch (Exception ex) {
+                ImageIO.write((RenderedImage) image, "png",
+                        new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png"));
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("``Vous avez actuelement " + (xp - pallier * 1000) + " / 1000 OzXp``").addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
+                channel.sendMessage("``Vous avez actuelement " + (xp - pallier * 1000) + " / 1000 OzXp``")
+                        .addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("``You have actually " + (xp - pallier * 1000) + " / 1000 OzXp``").addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
+                channel.sendMessage("``You have actually " + (xp - pallier * 1000) + " / 1000 OzXp``")
+                        .addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
             }
         }
     }
 
-    @command(name="apDebug", type=command.ExecutorType.ALL, descfr="Debug des achievement points des joueurs", topic=command.Topics.Admin)
-    private void apDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "apDebug", type = command.ExecutorType.ALL, descfr = "Debug des achievement points des joueurs", topic = command.Topics.Admin)
+    private void apDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         int o;
         if (user.getId().equals("102108573298851840")) {
             o = 0;
@@ -3628,8 +3857,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 HashMap<String, Long> map = new HashMap<String, Long>();
                 try {
                     map = data.getProfils().get(profil.getId()).getAchievement();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     map = new HashMap();
                     map.put("Travailleur", 0L);
                     map.put("Collecteur I", 0L);
@@ -3698,8 +3926,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     map.put("Melting", 0L);
                     try {
                         data.getProfils().get(profil.getId()).setAchievement(map);
-                    }
-                    catch (NullPointerException e1) {
+                    } catch (NullPointerException e1) {
                         data.getProfils().put(profil.getId(), new Profil(profil.getId()));
                         data.getProfils().get(profil.getId()).setAchievement(map);
                     }
@@ -3707,9 +3934,8 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 try {
                     String travailleur;
                     try {
-                        travailleur = ((Long)map.get("Travailleur")).toString();
-                    }
-                    catch (NullPointerException e) {
+                        travailleur = ((Long) map.get("Travailleur")).toString();
+                    } catch (NullPointerException e) {
                         travailleur = "0";
                         map = data.getProfils().get(profil.getId()).getAchievement();
                     }
@@ -3718,386 +3944,385 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     } else {
                         ++ap;
                     }
-                    String CollecteurI = ((Long)map.get("Collecteur I")).toString();
+                    String CollecteurI = ((Long) map.get("Collecteur I")).toString();
                     if (CollecteurI.equals("0")) {
                         CollecteurI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String CollecteurII = ((Long)map.get("Collecteur II")).toString();
+                    String CollecteurII = ((Long) map.get("Collecteur II")).toString();
                     if (CollecteurII.equals("0")) {
                         CollecteurII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String CollecteurIII = ((Long)map.get("Collecteur III")).toString();
+                    String CollecteurIII = ((Long) map.get("Collecteur III")).toString();
                     if (CollecteurIII.equals("0")) {
                         CollecteurIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String EntrepreneurI = ((Long)map.get("Entrepreneur I")).toString();
+                    String EntrepreneurI = ((Long) map.get("Entrepreneur I")).toString();
                     if (EntrepreneurI.equals("0")) {
                         EntrepreneurI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String EntrepreneurII = ((Long)map.get("Entrepreneur II")).toString();
+                    String EntrepreneurII = ((Long) map.get("Entrepreneur II")).toString();
                     if (EntrepreneurII.equals("0")) {
                         EntrepreneurII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String EntrepreneurIII = ((Long)map.get("Entrepreneur III")).toString();
+                    String EntrepreneurIII = ((Long) map.get("Entrepreneur III")).toString();
                     if (EntrepreneurIII.equals("0")) {
                         EntrepreneurIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String ConquérantI = ((Long)map.get("Conquérant I")).toString();
+                    String ConquérantI = ((Long) map.get("Conquérant I")).toString();
                     if (ConquérantI.equals("0")) {
                         ConquérantI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String ConquérantII = ((Long)map.get("Conquérant II")).toString();
+                    String ConquérantII = ((Long) map.get("Conquérant II")).toString();
                     if (ConquérantII.equals("0")) {
                         ConquérantII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String ConquérantIII = ((Long)map.get("Conquérant III")).toString();
+                    String ConquérantIII = ((Long) map.get("Conquérant III")).toString();
                     if (ConquérantIII.equals("0")) {
                         ConquérantIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String DéfenseurI = ((Long)map.get("Défenseur I")).toString();
+                    String DéfenseurI = ((Long) map.get("Défenseur I")).toString();
                     if (DéfenseurI.equals("0")) {
                         DéfenseurI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String DéfenseurII = ((Long)map.get("Défenseur II")).toString();
+                    String DéfenseurII = ((Long) map.get("Défenseur II")).toString();
                     if (DéfenseurII.equals("0")) {
                         DéfenseurII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String DéfenseurIII = ((Long)map.get("Défenseur III")).toString();
+                    String DéfenseurIII = ((Long) map.get("Défenseur III")).toString();
                     if (DéfenseurIII.equals("0")) {
                         DéfenseurIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String EspionI = ((Long)map.get("Espion I")).toString();
+                    String EspionI = ((Long) map.get("Espion I")).toString();
                     if (EspionI.equals("0")) {
                         EspionI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String EspionII = ((Long)map.get("Espion II")).toString();
+                    String EspionII = ((Long) map.get("Espion II")).toString();
                     if (EspionII.equals("0")) {
                         EspionII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String EspionIII = ((Long)map.get("Espion III")).toString();
+                    String EspionIII = ((Long) map.get("Espion III")).toString();
                     if (EspionIII.equals("0")) {
                         EspionIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String FarmerI = ((Long)map.get("Farmer I")).toString();
+                    String FarmerI = ((Long) map.get("Farmer I")).toString();
                     if (FarmerI.equals("0")) {
                         FarmerI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String FarmerII = ((Long)map.get("Farmer II")).toString();
+                    String FarmerII = ((Long) map.get("Farmer II")).toString();
                     if (FarmerII.equals("0")) {
                         FarmerII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String FarmerIII = ((Long)map.get("Farmer III")).toString();
+                    String FarmerIII = ((Long) map.get("Farmer III")).toString();
                     if (FarmerIII.equals("0")) {
                         FarmerIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Instructeur = ((Long)map.get("Instructeur")).toString();
+                    String Instructeur = ((Long) map.get("Instructeur")).toString();
                     if (Instructeur.equals("0")) {
                         Instructeur = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String ZoologueI = ((Long)map.get("Zoologue I")).toString();
+                    String ZoologueI = ((Long) map.get("Zoologue I")).toString();
                     if (ZoologueI.equals("0")) {
                         ZoologueI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String ZoologueII = ((Long)map.get("Zoologue II")).toString();
+                    String ZoologueII = ((Long) map.get("Zoologue II")).toString();
                     if (ZoologueII.equals("0")) {
                         ZoologueII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String ZoologueIII = ((Long)map.get("Zoologue III")).toString();
+                    String ZoologueIII = ((Long) map.get("Zoologue III")).toString();
                     if (ZoologueIII.equals("0")) {
                         ZoologueIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Parieur = ((Long)map.get("Parieur")).toString();
+                    String Parieur = ((Long) map.get("Parieur")).toString();
                     if (Parieur.equals("0")) {
                         Parieur = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String thxdudeI = ((Long)map.get("Thx dude I")).toString();
+                    String thxdudeI = ((Long) map.get("Thx dude I")).toString();
                     if (thxdudeI.equals("0")) {
                         thxdudeI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String thxdudeII = ((Long)map.get("Thx dude II")).toString();
+                    String thxdudeII = ((Long) map.get("Thx dude II")).toString();
                     if (thxdudeII.equals("0")) {
                         thxdudeII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String thxdudeIII = ((Long)map.get("Thx dude III")).toString();
+                    String thxdudeIII = ((Long) map.get("Thx dude III")).toString();
                     if (thxdudeIII.equals("0")) {
                         thxdudeIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String BraquerI = ((Long)map.get("Braquer I")).toString();
+                    String BraquerI = ((Long) map.get("Braquer I")).toString();
                     if (BraquerI.equals("0")) {
                         BraquerI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String BraquerII = ((Long)map.get("Braquer II")).toString();
+                    String BraquerII = ((Long) map.get("Braquer II")).toString();
                     if (BraquerII.equals("0")) {
                         BraquerII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String BraquerIII = ((Long)map.get("Braquer III")).toString();
+                    String BraquerIII = ((Long) map.get("Braquer III")).toString();
                     if (BraquerIII.equals("0")) {
                         BraquerIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String ParrainDeLaMafia = ((Long)map.get("Parrain de la mafia")).toString();
+                    String ParrainDeLaMafia = ((Long) map.get("Parrain de la mafia")).toString();
                     if (ParrainDeLaMafia.equals("0")) {
                         ParrainDeLaMafia = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String ToujoursPresent = ((Long)map.get("Toujours présent")).toString();
+                    String ToujoursPresent = ((Long) map.get("Toujours présent")).toString();
                     if (ToujoursPresent.equals("0")) {
                         ToujoursPresent = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String ToujoursDebout = ((Long)map.get("Toujours debout")).toString();
+                    String ToujoursDebout = ((Long) map.get("Toujours debout")).toString();
                     if (ToujoursDebout.equals("0")) {
                         ToujoursDebout = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String FouDesJeux = ((Long)map.get("Fou des jeux")).toString();
+                    String FouDesJeux = ((Long) map.get("Fou des jeux")).toString();
                     if (FouDesJeux.equals("0")) {
                         FouDesJeux = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String Croyant = ((Long)map.get("Croyant")).toString();
+                    String Croyant = ((Long) map.get("Croyant")).toString();
                     if (Croyant.equals("0")) {
                         Croyant = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String L = ((Long)map.get("L")).toString();
+                    String L = ((Long) map.get("L")).toString();
                     if (L.equals("0")) {
                         L = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String InvestisseurI = ((Long)map.get("Investisseur I")).toString();
+                    String InvestisseurI = ((Long) map.get("Investisseur I")).toString();
                     if (InvestisseurI.equals("0")) {
                         InvestisseurI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String InvestisseurII = ((Long)map.get("Investisseur II")).toString();
+                    String InvestisseurII = ((Long) map.get("Investisseur II")).toString();
                     if (InvestisseurII.equals("0")) {
                         InvestisseurII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String InvestisseurIII = ((Long)map.get("Investisseur III")).toString();
+                    String InvestisseurIII = ((Long) map.get("Investisseur III")).toString();
                     if (InvestisseurIII.equals("0")) {
                         InvestisseurIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String MineurConfirme = ((Long)map.get("Mineur confirme")).toString();
+                    String MineurConfirme = ((Long) map.get("Mineur confirme")).toString();
                     if (MineurConfirme.equals("0")) {
                         MineurConfirme = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String AvantPoste = ((Long)map.get("Avant poste")).toString();
+                    String AvantPoste = ((Long) map.get("Avant poste")).toString();
                     if (AvantPoste.equals("0")) {
                         AvantPoste = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Pigeon = ((Long)map.get("Pigeon")).toString();
+                    String Pigeon = ((Long) map.get("Pigeon")).toString();
                     if (Pigeon.equals("0")) {
                         Pigeon = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Famous = ((Long)map.get("Famous")).toString();
+                    String Famous = ((Long) map.get("Famous")).toString();
                     if (Famous.equals("0")) {
                         Famous = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String Scientifique = ((Long)map.get("Scientifique")).toString();
+                    String Scientifique = ((Long) map.get("Scientifique")).toString();
                     if (Scientifique.equals("0")) {
                         Scientifique = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Megalopole = ((Long)map.get("Megalopole")).toString();
+                    String Megalopole = ((Long) map.get("Megalopole")).toString();
                     if (Megalopole.equals("0")) {
                         Megalopole = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String VilleTouristique = ((Long)map.get("Ville touristique")).toString();
+                    String VilleTouristique = ((Long) map.get("Ville touristique")).toString();
                     if (VilleTouristique.equals("0")) {
                         VilleTouristique = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Magicien = ((Long)map.get("Magicien")).toString();
+                    String Magicien = ((Long) map.get("Magicien")).toString();
                     if (Magicien.equals("0")) {
                         Magicien = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String WhatALuck = ((Long)map.get("What a luck")).toString();
+                    String WhatALuck = ((Long) map.get("What a luck")).toString();
                     if (WhatALuck.equals("0")) {
                         WhatALuck = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String AGoodPlayer = ((Long)map.get("A good player")).toString();
+                    String AGoodPlayer = ((Long) map.get("A good player")).toString();
                     if (AGoodPlayer.equals("0")) {
                         AGoodPlayer = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String VilleAttractive = ((Long)map.get("Ville attractive")).toString();
+                    String VilleAttractive = ((Long) map.get("Ville attractive")).toString();
                     if (VilleAttractive.equals("0")) {
                         VilleAttractive = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Useless = ((Long)map.get("Useless")).toString();
+                    String Useless = ((Long) map.get("Useless")).toString();
                     if (Useless.equals("0")) {
                         Useless = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Impliqué = ((Long)map.get("Impliqué")).toString();
+                    String Impliqué = ((Long) map.get("Impliqué")).toString();
                     if (Impliqué.equals("0")) {
                         Impliqué = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Starter = ((Long)map.get("Starter")).toString();
+                    String Starter = ((Long) map.get("Starter")).toString();
                     if (Starter.equals("0")) {
                         Starter = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String GrinderI = ((Long)map.get("Grinder I")).toString();
+                    String GrinderI = ((Long) map.get("Grinder I")).toString();
                     if (GrinderI.equals("0")) {
                         GrinderI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String GrinderII = ((Long)map.get("Grinder II")).toString();
+                    String GrinderII = ((Long) map.get("Grinder II")).toString();
                     if (GrinderII.equals("0")) {
                         GrinderII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String GrinderIII = ((Long)map.get("Grinder III")).toString();
+                    String GrinderIII = ((Long) map.get("Grinder III")).toString();
                     if (GrinderIII.equals("0")) {
                         GrinderIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Yourspecial = ((Long)map.get("You'r special")).toString();
+                    String Yourspecial = ((Long) map.get("You'r special")).toString();
                     if (Yourspecial.equals("0")) {
                         Yourspecial = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Catch_them_all = ((Long)map.get("Catch them all")).toString();
+                    String Catch_them_all = ((Long) map.get("Catch them all")).toString();
                     if (Catch_them_all.equals("0")) {
                         Catch_them_all = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String SwordMaster = ((Long)map.get("SwordMaster")).toString();
+                    String SwordMaster = ((Long) map.get("SwordMaster")).toString();
                     if (SwordMaster.equals("0")) {
                         SwordMaster = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String Armorer = ((Long)map.get("Armorer")).toString();
+                    String Armorer = ((Long) map.get("Armorer")).toString();
                     if (Armorer.equals("0")) {
                         Armorer = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String CollectorI = ((Long)map.get("Collector I")).toString();
+                    String CollectorI = ((Long) map.get("Collector I")).toString();
                     if (CollectorI.equals("0")) {
                         CollectorI = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                    String CollectorII = ((Long)map.get("Collector II")).toString();
+                    String CollectorII = ((Long) map.get("Collector II")).toString();
                     if (CollectorII.equals("0")) {
                         CollectorII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 3;
                     }
-                    String CollectorIII = ((Long)map.get("Collector III")).toString();
+                    String CollectorIII = ((Long) map.get("Collector III")).toString();
                     if (CollectorIII.equals("0")) {
                         CollectorIII = ":negative_squared_cross_mark:";
                     } else {
                         ap += 5;
                     }
-                    String Melting = ((Long)map.get("Melting")).toString();
+                    String Melting = ((Long) map.get("Melting")).toString();
                     if (Melting.equals("0")) {
                         Melting = ":negative_squared_cross_mark:";
                     } else {
                         ++ap;
                     }
-                }
-                catch (NullPointerException travailleur) {
+                } catch (NullPointerException travailleur) {
                     // empty catch block
                 }
                 data.getProfils().get(profil.getId()).setAp(ap);
@@ -4115,8 +4340,9 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         channel.sendMessage("Les ap des joueurs ont été mis a jours. (" + o + " joueurs)").queue();
     }
 
-    @command(name="site", type=command.ExecutorType.ALL, descfr="Lien vers le site web", descen="Website URL ", topic=command.Topics.Util)
-    private void site(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "site", type = command.ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = command.Topics.Util)
+    private void site(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         if (lang == command.Language.fr) {
             channel.sendMessage("**Site OzeryoBot** : http://ozeryo.xyz").queue();
         }
@@ -4125,30 +4351,28 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="debug", type=command.ExecutorType.ALL, descfr="Lien vers le site web", descen="Website URL ", topic=command.Topics.Admin)
-    private void debug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "debug", type = command.ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = command.Topics.Admin)
+    private void debug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         for (Profil profil : data.getProfils().values()) {
             try {
                 HashMap<String, Long> achievement = profil.getAchievement();
                 long h1 = 0L;
                 try {
                     h1 = achievement.get("Harvester I");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 long h2 = 0L;
                 try {
                     h2 = achievement.get("Harvester II");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 long h3 = 0L;
                 try {
                     h3 = achievement.get("Harvester III");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 achievement.remove("Harvester I");
@@ -4160,22 +4384,19 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 long c1 = 0L;
                 try {
                     h1 = achievement.get("Collecteur I");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 long c2 = 0L;
                 try {
                     h2 = achievement.get("Collecteur II");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 long c3 = 0L;
                 try {
                     h3 = achievement.get("Collecteur III");
-                }
-                catch (Exception exception) {
+                } catch (Exception exception) {
                     // empty catch block
                 }
                 achievement.remove("Collecteur I");
@@ -4185,16 +4406,16 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                 achievement.put("Harvester II", c2);
                 achievement.put("Harvester III", c3);
                 data.getProfils().get(profil.getId()).setAchievement(achievement);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         channel.sendMessage("Update des achievement des joueurs").queue();
     }
 
-    @command(name="tuto", type=command.ExecutorType.ALL, descfr="Permet de vous aider a debuter le jeu", descen="Help you to start the game", topic=command.Topics.Game)
-    private void tuto(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "tuto", type = command.ExecutorType.ALL, descfr = "Permet de vous aider a debuter le jeu", descen = "Help you to start the game", topic = command.Topics.Game)
+    private void tuto(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         int tuto = data.getProfils().get(user.getId()).getTuto();
         String c1 = args[0];
         if (c1.equals("confirm") && tuto == 0) {
@@ -4202,17 +4423,23 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             DiscordBot.getData().getProfils().get(user.getId()).setTuto(i);
             tuto = data.getProfils().get(user.getId()).getTuto();
             System.out.println("Tuto : " + tuto);
-            channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.").queue();
+            channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.")
+                    .queue();
         } else if (tuto == 0) {
             if (lang == command.Language.fr) {
-                channel.sendMessage(":mouse_three_button: Le tutoriel va commencer, il durera environ 2 minutes, soyez sur de pouvoir le terminer ( =tuto confirm ).").queue();
+                channel.sendMessage(
+                        ":mouse_three_button: Le tutoriel va commencer, il durera environ 2 minutes, soyez sur de pouvoir le terminer ( =tuto confirm ).")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage(":mouse_three_button: The tutorial will start, it will last about 2 minutes, be sure to finish it ( =tuto confirm ).").queue();
+                channel.sendMessage(
+                        ":mouse_three_button: The tutorial will start, it will last about 2 minutes, be sure to finish it ( =tuto confirm ).")
+                        .queue();
             }
         } else if (tuto == 1) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.").queue();
+                channel.sendMessage(
+                        "Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("Well, start by collecting your daily reward with the =daily command.").queue();
@@ -4233,45 +4460,67 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
             }
         } else if (tuto == 4) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous pouvez y voir votre exp, le niveau de vos constructions et vos réserves de ressources. Le mana, affiché en haut, vous permet de récolter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.").queue();
+                channel.sendMessage(
+                        "Vous pouvez y voir votre exp, le niveau de vos constructions et vos réserves de ressources. Le mana, affiché en haut, vous permet de récolter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("You can see your exp, the level of your builds, and your resource reserves. The mana, shown at the top, allows you to collect resources using work command, try now with =work all.").queue();
+                channel.sendMessage(
+                        "You can see your exp, the level of your builds, and your resource reserves. The mana, shown at the top, allows you to collect resources using work command, try now with =work all.")
+                        .queue();
             }
         } else if (tuto == 5) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.").queue();
+                channel.sendMessage(
+                        "\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("Now you can build your first building! Let's start with the company as an example: = b marché 1.").queue();
+                channel.sendMessage(
+                        "Now you can build your first building! Let's start with the company as an example: = b marché 1.")
+                        .queue();
             }
         } else if (tuto == 6) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Bravo, vous avez obtenu votre premi\u00e8re construction, celle-ci permet d'augmenter vos gains de money lors de vos commandes. Vous pouvez reconsulter votre ville maintenant =city.").queue();
+                channel.sendMessage(
+                        "Bravo, vous avez obtenu votre premi\u00e8re construction, celle-ci permet d'augmenter vos gains de money lors de vos commandes. Vous pouvez reconsulter votre ville maintenant =city.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("Congratulations, you got your first build, it increases your money gains during your commands. You can consult again your city now =city.").queue();
+                channel.sendMessage(
+                        "Congratulations, you got your first build, it increases your money gains during your commands. You can consult again your city now =city.")
+                        .queue();
             }
         } else if (tuto == 7) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux différents matériaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.").queue();
+                channel.sendMessage(
+                        "Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux différents matériaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.").queue();
+                channel.sendMessage(
+                        "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.")
+                        .queue();
             }
         } else if (tuto == 8) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous pouvez maintenant entrainer des soldats, faites le avec la commande =soldier train 15.").queue();
+                channel.sendMessage(
+                        "Vous pouvez maintenant entrainer des soldats, faites le avec la commande =soldier train 15.")
+                        .queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage("You can now train soldiers, do it with the command =soldier train 15.").queue();
             }
         } else if (tuto == 9) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonnés d'un joueur. Testons maintenant : =a Ozeryo 15.").queue();
+                channel.sendMessage(
+                        "Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonnés d'un joueur. Testons maintenant : =a Ozeryo 15.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("To launch an attack you can check the map and use a player's id, tag, or coordinates. Now, let's test: =a Ozeryo 15.").queue();
+                channel.sendMessage(
+                        "To launch an attack you can check the map and use a player's id, tag, or coordinates. Now, let's test: =a Ozeryo 15.")
+                        .queue();
             }
         } else if (tuto == 10) {
             if (lang == command.Language.fr) {
@@ -4290,7 +4539,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="save", type=command.ExecutorType.CONSOLE, descfr="Permet de s'enregistrer pour la v3 d'OzeryoBot", descen=" Allow you to register yourself to the V3 of OzeryoBot", topic=command.Topics.Util)
+    @command(name = "save", type = command.ExecutorType.CONSOLE, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
     private void save() {
         long debut = System.currentTimeMillis();
         System.out.println("Eregistrement en cours");
@@ -4300,12 +4549,13 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         DiscordBot.getHypixeldata().saveData(URL2);
         DiscordBot.getLeveldata().saveData(URL2);
         long fin = System.currentTimeMillis();
-        double dif = (double)(fin - debut) / 1000.0;
+        double dif = (double) (fin - debut) / 1000.0;
         System.out.println("Données enregistrés en " + dif + " secondes");
     }
 
-    @command(name="attackDebug", type=command.ExecutorType.ALL, descfr="Permet de s'enregistrer pour la v3 d'OzeryoBot", descen=" Allow you to register yourself to the V3 of OzeryoBot", topic=command.Topics.Util)
-    private void attackDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "attackDebug", type = command.ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
+    private void attackDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda,
+            ProfilData data, User user, command.Language lang) {
         if (user.getId().equals("102108573298851840")) {
             HashMap<Long, ArrayList<String>> attack = data.getProfils().get(user.getId()).getAttack();
             ArrayList<String> atk2 = null;
@@ -4321,19 +4571,21 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="UpdateV3", type=command.ExecutorType.ALL, descfr="Permet de s'enregistrer pour la v3 d'OzeryoBot", descen=" Allow you to register yourself to the V3 of OzeryoBot", topic=command.Topics.Util)
-    private void UpdateV3(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "UpdateV3", type = command.ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
+    private void UpdateV3(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         if (user.getId().equals("102108573298851840")) {
             for (Profil profil : data.getProfils().values()) {
                 try {
                     long premium;
                     try {
-                        TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/Users/" + profil.getId()));
-                    }
-                    catch (IOException e) {
+                        TextFileWriter
+                                .recursifDelete(new File("/home/DiscordBot/Rasberry/données/Users/" + profil.getId()));
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if (!data.getProfils().get(profil.getId()).isRegister()) continue;
+                    if (!data.getProfils().get(profil.getId()).isRegister())
+                        continue;
                     User User_Premium = jda.getUserById(profil.getId());
                     TextFileWriter.folder("/home/DiscordBot/données/Users/" + User_Premium);
                     if (Premium.Premium(User_Premium)) {
@@ -4351,8 +4603,7 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
                     ArrayList<ArrayList<String>> mails = data.getProfils().get(profil.getId()).getListMail();
                     mails.add(0, list);
                     data.getProfils().get(profil.getId()).setListMail(mails);
-                }
-                catch (Exception User_Premium) {
+                } catch (Exception User_Premium) {
                     // empty catch block
                 }
             }
@@ -4360,19 +4611,20 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
         }
     }
 
-    @command(name="language", type=command.ExecutorType.ALL, descfr="Permet de selectionner la langue du bot", descen="Allow you to select the bot language", topic=command.Topics.Admin)
-    private void language(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user, command.Language lang) {
+    @command(name = "language", type = command.ExecutorType.ALL, descfr = "Permet de selectionner la langue du bot", descen = "Allow you to select the bot language", topic = command.Topics.Admin)
+    private void language(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
+            User user, command.Language lang) {
         String c1;
-        block9 : {
+        block9: {
             c1 = "";
             try {
                 c1 = args[0];
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("``Syntaxe :`` =language [fr/en].").queue();
                 }
-                if (lang != command.Language.en) break block9;
+                if (lang != command.Language.en)
+                    break block9;
                 channel.sendMessage("``Syntax :`` =language [fr/en].").queue();
             }
         }
@@ -4398,131 +4650,130 @@ channel.sendFile(new File("/home/DiscordBot/Rasberry/données/bot/map.png")).que
 
         try {
             arrn[Region.AMSTERDAM.ordinal()] = 1;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.BRAZIL.ordinal()] = 2;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.EU_CENTRAL.ordinal()] = 3;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.EU_WEST.ordinal()] = 4;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.FRANKFURT.ordinal()] = 5;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.HONG_KONG.ordinal()] = 6;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.JAPAN.ordinal()] = 7;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.LONDON.ordinal()] = 8;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.RUSSIA.ordinal()] = 9;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.SINGAPORE.ordinal()] = 10;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.SOUTH_AFRICA.ordinal()] = 11;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.SYDNEY.ordinal()] = 12;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.UNKNOWN.ordinal()] = 31;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.US_CENTRAL.ordinal()] = 13;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.US_EAST.ordinal()] = 14;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.US_SOUTH.ordinal()] = 15;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.US_WEST.ordinal()] = 16;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_AMSTERDAM.ordinal()] = 17;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_BRAZIL.ordinal()] = 18;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_EU_CENTRAL.ordinal()] = 19;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_EU_WEST.ordinal()] = 20;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_FRANKFURT.ordinal()] = 21;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_JAPAN.ordinal()] = 22;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_LONDON.ordinal()] = 23;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_SINGAPORE.ordinal()] = 24;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_SOUTH_AFRICA.ordinal()] = 25;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_SYDNEY.ordinal()] = 26;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_US_CENTRAL.ordinal()] = 27;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_US_EAST.ordinal()] = 28;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_US_SOUTH.ordinal()] = 29;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         try {
             arrn[Region.VIP_US_WEST.ordinal()] = 30;
+        } catch (NoSuchFieldError noSuchFieldError) {
         }
-        catch (NoSuchFieldError noSuchFieldError) {}
         $SWITCH_TABLE$net$dv8tion$jda$core$Region = arrn;
         return $SWITCH_TABLE$net$dv8tion$jda$core$Region;
     }
 
 }
-

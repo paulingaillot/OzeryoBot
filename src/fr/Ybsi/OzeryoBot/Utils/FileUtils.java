@@ -25,8 +25,7 @@ public class FileUtils {
             fw.write(text);
             fw.flush();
             fw.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,12 +41,10 @@ public class FileUtils {
                 }
                 reader.close();
                 return text.toString();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return "";
     }
 }
-

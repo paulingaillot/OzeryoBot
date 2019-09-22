@@ -27,21 +27,19 @@ public class TextFileWriter {
                 }
                 bw.write(text);
                 bw.close();
-            }
-            catch (IOException i) {
+            } catch (IOException i) {
                 try {
                     bw.close();
                     fileWriter.close();
+                } catch (IOException iOException) {
                 }
-                catch (IOException iOException) {}
             }
-        }
-        finally {
+        } finally {
             try {
                 bw.close();
                 fileWriter.close();
+            } catch (IOException iOException) {
             }
-            catch (IOException iOException) {}
         }
     }
 
@@ -59,8 +57,7 @@ public class TextFileWriter {
             fileWriter = new FileWriter(file, true);
             bw = new BufferedWriter(fileWriter);
             bw.close();
-        }
-        catch (IOException iOException) {
+        } catch (IOException iOException) {
             // empty catch block
         }
     }
@@ -93,16 +90,17 @@ public class TextFileWriter {
         String text = "0";
         try {
             String line;
-            BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream)new FileInputStream(file), "UTF-8"));
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
             text = line = reader.readLine();
             while (line != null) {
                 line = reader.readLine();
-                if (line == null) continue;
+                if (line == null)
+                    continue;
                 text = line;
             }
             reader.close();
-        }
-        catch (IOException reader) {
+        } catch (IOException reader) {
             // empty catch block
         }
         return text;
@@ -112,14 +110,14 @@ public class TextFileWriter {
         String text = "0";
         try {
             String content;
-            BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream)new FileInputStream(file), "UTF-8"));
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
             text = content = reader.readLine();
             for (int i = 1; i < line; ++i) {
                 text = content = reader.readLine();
             }
             reader.close();
-        }
-        catch (IOException reader) {
+        } catch (IOException reader) {
             // empty catch block
         }
         return text;
@@ -128,17 +126,18 @@ public class TextFileWriter {
     public static int readint(String file) {
         int text = 0;
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream)new FileInputStream(file), "UTF-8"));
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
             String line = reader.readLine();
             text = Integer.parseInt(line);
             while (line != null) {
                 line = reader.readLine();
-                if (line == null) continue;
+                if (line == null)
+                    continue;
                 text = Integer.parseInt(line);
             }
             reader.close();
-        }
-        catch (IOException reader) {
+        } catch (IOException reader) {
             // empty catch block
         }
         return text;
@@ -153,8 +152,7 @@ public class TextFileWriter {
         File file_delete = new File(file);
         try {
             TextFileWriter.recursifDelete(file_delete);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -176,4 +174,3 @@ public class TextFileWriter {
         }
     }
 }
-

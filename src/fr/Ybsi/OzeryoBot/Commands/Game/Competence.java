@@ -19,14 +19,14 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
 public class Competence {
-    @command(name="competence", type=command.ExecutorType.ALL, descfr="Affiche le level d'un joueur", topic=command.Topics.Game)
-    private void competence(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data, User user) {
+    @command(name = "competence", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Game)
+    private void competence(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda,
+            ProfilData data, User user) {
         HashMap<String, Integer> competence;
         int level;
         try {
             competence = data.getProfils().get(user.getId()).getCompetence();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             competence = new HashMap<String, Integer>();
             competence.put("guerre", 0);
             competence.put("ville", 0);
@@ -40,22 +40,20 @@ public class Competence {
         try {
             double operation = 3 * Game_EXP / 4;
             double math = Math.sqrt(operation);
-            level = (int)Math.round(math);
-        }
-        catch (NullPointerException e) {
+            level = (int) Math.round(math);
+        } catch (NullPointerException e) {
             level = 0;
         }
-        int points = (int)Math.floor(level / 100);
+        int points = (int) Math.floor(level / 100);
         Iterator<Integer> math = competence.values().iterator();
         while (math.hasNext()) {
-            int used_point = (Integer)math.next();
+            int used_point = (Integer) math.next();
             points -= used_point;
         }
         String c1 = "";
         try {
             c1 = args[0];
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             c1 = "";
         }
         if (c1.equals("")) {
@@ -73,4 +71,3 @@ public class Competence {
         }
     }
 }
-

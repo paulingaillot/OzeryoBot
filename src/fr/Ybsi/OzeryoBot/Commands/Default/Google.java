@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
 public class Google {
-    @command(name="google", type=command.ExecutorType.ALL)
+    @command(name = "google", type = command.ExecutorType.ALL)
     private void google(String[] arg, MessageChannel channel, User user, command.Language lang) {
         StringBuilder builder = new StringBuilder();
         for (String str : arg) {
@@ -19,11 +19,12 @@ public class Google {
             builder.append(str);
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("**Recherche Google** : https://www.google.fr/search?gXS7ayYCw&q=" + builder.toString()).queue();
+            channel.sendMessage("**Recherche Google** : https://www.google.fr/search?gXS7ayYCw&q=" + builder.toString())
+                    .queue();
         }
         if (lang == command.Language.en) {
-            channel.sendMessage("**Google Search** : https://www.google.fr/search?gXS7ayYCw&q=" + builder.toString()).queue();
+            channel.sendMessage("**Google Search** : https://www.google.fr/search?gXS7ayYCw&q=" + builder.toString())
+                    .queue();
         }
     }
 }
-

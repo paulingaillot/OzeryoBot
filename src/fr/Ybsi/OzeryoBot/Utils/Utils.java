@@ -19,22 +19,21 @@ public class Utils {
         double operation;
         String nombre = "" + value;
         if (value > 1000L) {
-            operation = (double)value / 1000.0;
+            operation = (double) value / 1000.0;
             nombre = Utils.arrondi(3, operation) + "k";
         }
         if (value > 1000000L) {
-            operation = (double)value / 1000000.0;
+            operation = (double) value / 1000000.0;
             nombre = Utils.arrondi(3, operation) + "M";
         }
         if (value > 1000000000L) {
-            operation = (double)value / 1.0E9;
+            operation = (double) value / 1.0E9;
             nombre = Utils.arrondi(3, operation) + "G";
         }
         if (value > 1000000000000L) {
-            operation = (double)value / 1.0E12;
+            operation = (double) value / 1.0E12;
             nombre = Utils.arrondi(3, operation) + "T";
         }
         return nombre;
     }
 }
-

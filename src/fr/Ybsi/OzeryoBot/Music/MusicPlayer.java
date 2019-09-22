@@ -49,4 +49,3 @@ public class MusicPlayer {
         this.listener.nextTrack();
     }
 }
-

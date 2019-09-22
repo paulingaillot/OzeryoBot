@@ -22,4 +22,3 @@ public class Event {
         return dateA.before(dateC) && dateA.after(dateB);
     }
 }
-

@@ -61,4 +61,3 @@ public class ProfilData {
         this.nextcf = nextcf;
     }
 }
-

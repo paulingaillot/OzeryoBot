@@ -18,11 +18,9 @@ public class habitants {
         long bonus_caserne2;
         try {
             bonus_caserne2 = DiscordBot.getData().getProfils().get(user.getId()).getSoldiers();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             bonus_caserne2 = 0L;
         }
         return bonus_caserne2;
     }
 }
-

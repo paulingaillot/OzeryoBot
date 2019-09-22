@@ -34,15 +34,17 @@ public class HelpCommand {
         this.commandMap = commandMap;
     }
 
-    @command(name="help", type=command.ExecutorType.USER, descfr="affiche la liste des commandes")
-    private void help(User user, TextChannel channel, Guild guild, String[] args, Message message, JDA jda, command.Language lang) {
+    @command(name = "help", type = command.ExecutorType.USER, descfr = "affiche la liste des commandes")
+    private void help(User user, TextChannel channel, Guild guild, String[] args, Message message, JDA jda,
+            command.Language lang) {
         EmbedBuilder builder1;
         StringBuilder buider = new StringBuilder();
         String[] arrstring = args;
         int n = arrstring.length;
         for (int i = 0; i < n; ++i) {
             String str = arrstring[i];
-            if (str.equals(args[0])) continue;
+            if (str.equals(args[0]))
+                continue;
             if (buider.length() > 0) {
                 buider.append(" ");
             }
@@ -67,7 +69,7 @@ public class HelpCommand {
             builder12.addField(":zap: Util help", "**=help util**", true);
             builder12.addField(":unicorn: Stories help", "**=help stories**", true);
             builder12.addField("\ud83c\udf0e General help", "**=help all**", true);
-            Message mess = (Message)channel.sendMessage(builder12.build()).complete();
+            Message mess = (Message) channel.sendMessage(builder12.build()).complete();
             mess.addReaction("\ud83d\udc51").queue();
             mess.addReaction("\ud83c\udfae").queue();
             mess.addReaction("\ud83c\udfb5").queue();
@@ -82,7 +84,9 @@ public class HelpCommand {
         } else if (c1.equals("admin")) {
             String admin = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Modo) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Modo)
+                    continue;
                 admin = String.valueOf(admin) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -91,11 +95,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e", new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
+            builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
+                    new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -107,7 +112,9 @@ public class HelpCommand {
         } else if (c1.equals("util")) {
             String util = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Util) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Util)
+                    continue;
                 util = String.valueOf(util) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -116,11 +123,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\u26a1  **Util** \u26a1", new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
+            builder1.addField("\u26a1  **Util** \u26a1",
+                    new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -132,7 +140,9 @@ public class HelpCommand {
         } else if (c1.equals("music")) {
             String music = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Music) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Music)
+                    continue;
                 music = String.valueOf(music) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -141,11 +151,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83c\udfb5 **Music** \ud83c\udfb5", new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
+            builder1.addField("\ud83c\udfb5 **Music** \ud83c\udfb5",
+                    new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -157,7 +168,9 @@ public class HelpCommand {
         } else if (c1.equals("game")) {
             String game = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName()) || command2.getTopic() != command.Topics.Game) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName())
+                        || command2.getTopic() != command.Topics.Game)
+                    continue;
                 game = String.valueOf(game) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -166,11 +179,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83c\udfae **Game ** \ud83c\udfae", new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
+            builder1.addField("\ud83c\udfae **Game ** \ud83c\udfae",
+                    new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -182,7 +196,9 @@ public class HelpCommand {
         } else if (c1.equals("social")) {
             String social = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Social) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Social)
+                    continue;
                 social = String.valueOf(social) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -191,11 +207,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25", new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
+            builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25",
+                    new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -207,7 +224,9 @@ public class HelpCommand {
         } else if (c1.equals("stories")) {
             String stories = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Stories) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Stories)
+                    continue;
                 stories = String.valueOf(stories) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -216,11 +235,12 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84", new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
+            builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
+                    new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder1.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -237,7 +257,8 @@ public class HelpCommand {
             String social = "";
             String stories = "";
             for (SimpleCommand command3 : this.commandMap.getCommands()) {
-                if (command3.getExecutorType() == command.ExecutorType.CONSOLE) continue;
+                if (command3.getExecutorType() == command.ExecutorType.CONSOLE)
+                    continue;
                 if (command3.getTopic() == command.Topics.Game) {
                     game = String.valueOf(game) + "``" + command3.getName() + "``, ";
                     continue;
@@ -258,7 +279,8 @@ public class HelpCommand {
                     social = String.valueOf(social) + "``" + command3.getName() + "``, ";
                     continue;
                 }
-                if (command3.getTopic() != command.Topics.Stories) continue;
+                if (command3.getTopic() != command.Topics.Stories)
+                    continue;
                 stories = String.valueOf(stories) + "``" + command3.getName() + "``, ";
             }
             EmbedBuilder builder13 = new EmbedBuilder();
@@ -267,16 +289,22 @@ public class HelpCommand {
             builder13.setAuthor(user.getName());
             builder13.setFooter(guild.getName(), guild.getIconUrl());
             builder13.setTimestamp(Instant.now());
-            builder13.addField("\ud83c\udfae **Game** \ud83c\udfae", new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
-            builder13.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e", new StringBuilder((String)admin).deleteCharAt(((String)admin).length() - 2).toString(), false);
-            builder13.addField("\ud83c\udfb5 **Music** \ud83c\udfb5", new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
-            builder13.addField("\u26a1  **Util** \u26a1", new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
-            builder13.addField("\ud83e\udd84 **Stories** \ud83e\udd84", new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
-            builder13.addField("\ud83d\udd25 **Social** \ud83d\udd25", new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
+            builder13.addField("\ud83c\udfae **Game** \ud83c\udfae",
+                    new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
+            builder13.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
+                    new StringBuilder((String) admin).deleteCharAt(((String) admin).length() - 2).toString(), false);
+            builder13.addField("\ud83c\udfb5 **Music** \ud83c\udfb5",
+                    new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
+            builder13.addField("\u26a1  **Util** \u26a1",
+                    new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
+            builder13.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
+                    new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
+            builder13.addField("\ud83d\udd25 **Social** \ud83d\udd25",
+                    new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
             if (!user.hasPrivateChannel()) {
                 user.openPrivateChannel().complete();
             }
-            ((UserImpl)user).getPrivateChannel().sendMessage(builder13.build()).queue();
+            ((UserImpl) user).getPrivateChannel().sendMessage(builder13.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
@@ -287,7 +315,8 @@ public class HelpCommand {
             }
         } else {
             for (SimpleCommand command4 : this.commandMap.getCommands2()) {
-                if (!command4.getName().equals(c1)) continue;
+                if (!command4.getName().equals(c1))
+                    continue;
                 String name = command4.getName();
                 String abbrev = command4.getAbbrev();
                 if (abbrev.equals("donotusethiscommand")) {
@@ -299,7 +328,8 @@ public class HelpCommand {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setColor(color.couleurAleatoire(user));
                 builder.setAuthor(user.getName());
-                builder.setThumbnail("https://vignette.wikia.nocookie.net/mixedmartialarts/images/8/89/Help_logo.png/revision/latest?cb=20100314171646");
+                builder.setThumbnail(
+                        "https://vignette.wikia.nocookie.net/mixedmartialarts/images/8/89/Help_logo.png/revision/latest?cb=20100314171646");
                 builder.setFooter(guild.getName(), guild.getIconUrl());
                 builder.addField("**Name**", name, true);
                 builder.addField("**Categorie**", command4.getTopic().toString(), true);
@@ -319,10 +349,11 @@ public class HelpCommand {
                 if (!user.hasPrivateChannel()) {
                     user.openPrivateChannel().complete();
                 }
-                ((UserImpl)user).getPrivateChannel().sendMessage(builder.build()).queue();
+                ((UserImpl) user).getPrivateChannel().sendMessage(builder.build()).queue();
                 if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                        channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
@@ -339,7 +370,7 @@ public class HelpCommand {
         }
     }
 
-    @command(name="hh", type=command.ExecutorType.USER, descfr="affiche la liste des commandes")
+    @command(name = "hh", type = command.ExecutorType.USER, descfr = "affiche la liste des commandes")
     private void hh(User user, MessageChannel channel, Guild guild, String[] args, command.Language lang) {
         EmbedBuilder builder1;
         StringBuilder buider = new StringBuilder();
@@ -347,7 +378,8 @@ public class HelpCommand {
         int n = arrstring.length;
         for (int i = 0; i < n; ++i) {
             String str = arrstring[i];
-            if (str.equals(args[0])) continue;
+            if (str.equals(args[0]))
+                continue;
             if (buider.length() > 0) {
                 buider.append(" ");
             }
@@ -376,7 +408,9 @@ public class HelpCommand {
         } else if (c1.equals("admin")) {
             String admin = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Modo) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Modo)
+                    continue;
                 admin = String.valueOf(admin) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -385,12 +419,15 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e", new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
+            builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
+                    new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("util")) {
             String util = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Util) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Util)
+                    continue;
                 util = String.valueOf(util) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -399,12 +436,15 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\u26a1  **Utilitaire** \u26a1", new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
+            builder1.addField("\u26a1  **Utilitaire** \u26a1",
+                    new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("music")) {
             String music = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Music) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Music)
+                    continue;
                 music = String.valueOf(music) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -413,12 +453,15 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83c\udfb5 **Musique** \ud83c\udfb5", new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
+            builder1.addField("\ud83c\udfb5 **Musique** \ud83c\udfb5",
+                    new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("game")) {
             String game = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName()) || command2.getTopic() != command.Topics.Game) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName())
+                        || command2.getTopic() != command.Topics.Game)
+                    continue;
                 game = String.valueOf(game) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -427,12 +470,15 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83c\udfae **Jeu** \ud83c\udfae", new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
+            builder1.addField("\ud83c\udfae **Jeu** \ud83c\udfae",
+                    new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("social")) {
             String social = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Social) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Social)
+                    continue;
                 social = String.valueOf(social) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -441,12 +487,15 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25", new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
+            builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25",
+                    new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("stories")) {
             String stories = "";
             for (SimpleCommand command2 : this.commandMap.getCommands()) {
-                if (command2.getExecutorType() == command.ExecutorType.CONSOLE || command2.getTopic() != command.Topics.Stories) continue;
+                if (command2.getExecutorType() == command.ExecutorType.CONSOLE
+                        || command2.getTopic() != command.Topics.Stories)
+                    continue;
                 stories = String.valueOf(stories) + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
@@ -455,7 +504,8 @@ public class HelpCommand {
             builder1.setAuthor(user.getName());
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             builder1.setTimestamp(Instant.now());
-            builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84", new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
+            builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
+                    new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("all")) {
             String game = "";
@@ -465,7 +515,8 @@ public class HelpCommand {
             String social = "";
             String stories = "";
             for (SimpleCommand command3 : this.commandMap.getCommands()) {
-                if (command3.getExecutorType() == command.ExecutorType.CONSOLE) continue;
+                if (command3.getExecutorType() == command.ExecutorType.CONSOLE)
+                    continue;
                 if (command3.getTopic() == command.Topics.Game) {
                     game = String.valueOf(game) + "``" + command3.getName() + "``, ";
                     continue;
@@ -486,7 +537,8 @@ public class HelpCommand {
                     social = String.valueOf(social) + "``" + command3.getName() + "``, ";
                     continue;
                 }
-                if (command3.getTopic() != command.Topics.Stories) continue;
+                if (command3.getTopic() != command.Topics.Stories)
+                    continue;
                 stories = String.valueOf(stories) + "``" + command3.getName() + "``, ";
             }
             EmbedBuilder builder13 = new EmbedBuilder();
@@ -495,16 +547,23 @@ public class HelpCommand {
             builder13.setAuthor(user.getName());
             builder13.setFooter(guild.getName(), guild.getIconUrl());
             builder13.setTimestamp(Instant.now());
-            builder13.addField("\ud83c\udfae ***Game** \ud83c\udfae", new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
-            builder13.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e", new StringBuilder((String)admin).deleteCharAt(((String)admin).length() - 2).toString(), false);
-            builder13.addField("\ud83c\udfb5 **Music** \ud83c\udfb5", new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
-            builder13.addField("\u26a1  **Util** \u26a1", new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
-            builder13.addField("\ud83e\udd84 **Stories** \ud83e\udd84", new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
-            builder13.addField("\ud83d\udd25 **Social** \ud83d\udd25", new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
+            builder13.addField("\ud83c\udfae ***Game** \ud83c\udfae",
+                    new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
+            builder13.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
+                    new StringBuilder((String) admin).deleteCharAt(((String) admin).length() - 2).toString(), false);
+            builder13.addField("\ud83c\udfb5 **Music** \ud83c\udfb5",
+                    new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
+            builder13.addField("\u26a1  **Util** \u26a1",
+                    new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
+            builder13.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
+                    new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
+            builder13.addField("\ud83d\udd25 **Social** \ud83d\udd25",
+                    new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
             channel.sendMessage(builder13.build()).queue();
         } else {
             for (SimpleCommand command4 : this.commandMap.getCommands()) {
-                if (!command4.getName().equals(c1)) continue;
+                if (!command4.getName().equals(c1))
+                    continue;
                 String name = command4.getName();
                 String abbrev = command4.getAbbrev();
                 if (abbrev.equals("donotusethiscommand")) {
@@ -516,7 +575,8 @@ public class HelpCommand {
                 EmbedBuilder builder = new EmbedBuilder();
                 builder.setColor(color.couleurAleatoire(user));
                 builder.setAuthor(user.getName());
-                builder.setThumbnail("https://vignette.wikia.nocookie.net/mixedmartialarts/images/8/89/Help_logo.png/revision/latest?cb=20100314171646");
+                builder.setThumbnail(
+                        "https://vignette.wikia.nocookie.net/mixedmartialarts/images/8/89/Help_logo.png/revision/latest?cb=20100314171646");
                 builder.setFooter(guild.getName(), guild.getIconUrl());
                 builder.addField("**Name**", name, true);
                 builder.addField("**Categorie**", command4.getTopic().toString(), true);
@@ -545,4 +605,3 @@ public class HelpCommand {
         }
     }
 }
-

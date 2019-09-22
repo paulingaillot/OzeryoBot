@@ -26,12 +26,11 @@ import net.dv8tion.jda.core.hooks.EventListener;
 import net.dv8tion.jda.core.requests.restaction.AuditableRestAction;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
-public class GlobalChat
-implements EventListener {
+public class GlobalChat implements EventListener {
     @Override
     public void onEvent(Event event) {
         if (event instanceof MessageReceivedEvent) {
-            this.onMessage((MessageReceivedEvent)event);
+            this.onMessage((MessageReceivedEvent) event);
         }
     }
 
@@ -39,17 +38,18 @@ implements EventListener {
         try {
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + event.getMember().getUser().getId());
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId());
-        }
-        catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         if (event.getAuthor().isBot()) {
             return;
         }
-        String globalChat = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/GlobalChat.txt");
+        String globalChat = TextFileWriter
+                .read("/home/DiscordBot/Rasberry/données/Guild/" + event.getGuild().getId() + "/GlobalChat.txt");
         String channel = event.getChannel().getId();
         if (channel.equals(globalChat)) {
-            if (event.getMessage().getContentRaw().contains("https://") || event.getMessage().getContentRaw().contains("http://")) {
+            if (event.getMessage().getContentRaw().contains("https://")
+                    || event.getMessage().getContentRaw().contains("http://")) {
                 event.getMessage().delete().queue();
                 return;
             }
@@ -61,16 +61,19 @@ implements EventListener {
                 try {
                     int Levels;
                     Guild guild = DiscordBot.getjda().getGuilds().get(i);
-                    String ChannelId2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/GlobalChat.txt");
+                    String ChannelId2 = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/GlobalChat.txt");
                     String content = message;
                     String Role2 = "LvL" + Level.level(event.getAuthor().getId());
-                    if (Premium.Premium(event.getAuthor()) && !TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt").equals("0")) {
-                        Role2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt");
+                    if (Premium.Premium(event.getAuthor()) && !TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt")
+                            .equals("0")) {
+                        Role2 = TextFileWriter.read(
+                                "/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt");
                     }
                     try {
                         Levels = Level.Glevel(guild1.getId());
-                    }
-                    catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         Levels = 0;
                     }
                     EmbedBuilder builder = new EmbedBuilder();
@@ -80,13 +83,13 @@ implements EventListener {
                     if (fichier.size() > 0) {
                         builder.setImage(fichier.get(0).getUrl());
                     }
-                    builder.setFooter(String.valueOf(event.getGuild().getName()) + " | Level : " + Levels, event.getGuild().getIconUrl());
+                    builder.setFooter(String.valueOf(event.getGuild().getName()) + " | Level : " + Levels,
+                            event.getGuild().getIconUrl());
                     builder.setTimestamp(Instant.now());
                     builder.setColor(color.couleurAleatoire(event.getAuthor()));
                     guild.getTextChannelById(ChannelId2).sendMessage(builder.build()).queue();
                     continue;
-                }
-                catch (NullPointerException guild) {
+                } catch (NullPointerException guild) {
                     // empty catch block
                 }
             }
@@ -96,4 +99,3 @@ implements EventListener {
         event.getMessage().delete().queue();
     }
 }
-

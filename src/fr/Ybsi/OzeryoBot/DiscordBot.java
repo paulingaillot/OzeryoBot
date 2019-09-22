@@ -41,8 +41,7 @@ import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import org.discordbots.api.client.DiscordBotListAPI;
 
-public class DiscordBot
-implements Runnable {
+public class DiscordBot implements Runnable {
     private static JDA jda;
     private final JDABuilder ShardBuilder;
     private final CommandMap commandMap = new CommandMap(this);
@@ -65,9 +64,11 @@ implements Runnable {
         String DiscordKey = TextFileWriter.read("/home/DiscordBot/Rasberry/key/DiscordKey.txt");
         String DiscordBotKey = TextFileWriter.read("/home/DiscordBot/Rasberry/key/DiscordBotKey.txt");
         this.ShardBuilder = new JDABuilder(AccountType.BOT);
-        this.ShardBuilder.addEventListener(new BotListener(this.commandMap), new BadWords(), new EXP(), new levelup(), new Log(), new GlobalChat(), new count());
+        this.ShardBuilder.addEventListener(new BotListener(this.commandMap), new BadWords(), new EXP(), new levelup(),
+                new Log(), new GlobalChat(), new count());
         for (int i = 0; i < 1; ++i) {
-            jda = this.ShardBuilder.setToken(DiscordKey).useSharding(i, 1).setGame(Game.playing("Probl\u00e8mes de connexion ?")).build();
+            jda = this.ShardBuilder.setToken(DiscordKey).useSharding(i, 1)
+                    .setGame(Game.playing("Probl\u00e8mes de connexion ?")).build();
         }
         String secondes = new SimpleDateFormat("ss", Locale.FRANCE).format(new Date());
         String minutes = new SimpleDateFormat("mm", Locale.FRANCE).format(new Date());
@@ -81,8 +82,12 @@ implements Runnable {
         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/heures.txt", heures, 1);
         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/jours.txt", jours, 1);
         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/mois.txt", mois, 1);
-        System.out.println("----------------------------------------------------------------\n\n           Bot connected              \n          l'uptime commmence le " + jours + "/" + mois + " \ufffd " + heures + ":" + minutes + ":" + secondes + "\n\n----------------------------------------------------------------\n ");
-        DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(DiscordBotKey).botId("399115724926484490").build();
+        System.out.println(
+                "----------------------------------------------------------------\n\n           Bot connected              \n          l'uptime commmence le "
+                        + jours + "/" + mois + " \ufffd " + heures + ":" + minutes + ":" + secondes
+                        + "\n\n----------------------------------------------------------------\n ");
+        DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(DiscordBotKey).botId("399115724926484490")
+                .build();
         int serverCount = jda.getGuilds().size();
         api.setStats(serverCount);
         Scheduler.Bid(jda);
@@ -98,7 +103,7 @@ implements Runnable {
         Scheduler.Save(jda);
         Scheduler.Uptime(jda);
         Scheduler.hypixelStats(jda);
-      //  Scheduler.WebMap(jda);
+        Scheduler.WebMap(jda);
         Scheduler.WebLeaderBoard(jda);
         Scheduler.Guildtest(jda);
         Scheduler.Pub(jda);
@@ -106,19 +111,17 @@ implements Runnable {
         HttpURLConnection con = null;
         try {
             String key = TextFileWriter.read("/home/DiscordBot/Rasberry/key/DiscordBotFrKey.txt");
-            url = new URL("https://discordbots.fr/api/v1/bot/399115724926484490?api_key=" + key + "&shard=" + 2 + "&serveurs=" + jda.getGuilds().size());
-            con = (HttpURLConnection)url.openConnection();
+            url = new URL("https://discordbots.fr/api/v1/bot/399115724926484490?api_key=" + key + "&shard=" + 2
+                    + "&serveurs=" + jda.getGuilds().size());
+            con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("User-Agent", "Java client");
             con.setRequestProperty("Content-Type", "application/json");
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-        catch (ProtocolException e) {
+        } catch (ProtocolException e) {
             e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -139,7 +142,8 @@ implements Runnable {
     public void run() {
         this.running = true;
         while (this.running) {
-            if (!this.scanner.hasNextLine()) continue;
+            if (!this.scanner.hasNextLine())
+                continue;
             this.commandMap.commandConsole(this.scanner.nextLine());
         }
         String URL2 = "/home/DiscordBot/Rasberry/données/bot";
@@ -156,12 +160,12 @@ implements Runnable {
     public static void main(String[] args) {
         try {
             DiscordBot DiscordBot2 = new DiscordBot();
-            new Thread((Runnable)DiscordBot2, "Ozeryo").start();
-        }
-        catch (IllegalArgumentException | LoginException | RateLimitedException e) {
+            new Thread((Runnable) DiscordBot2, "Ozeryo").start();
+        } catch (IllegalArgumentException | LoginException | RateLimitedException e) {
             e.printStackTrace();
-            String txtDate = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ssaaaa : ", Locale.FRANCE).format(new Date());
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/log.txt", String.valueOf(txtDate) + " ERROR " + e.getMessage(), 1);
+            String txtDate = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss", Locale.FRANCE).format(new Date());
+            TextFileWriter.write("/home/DiscordBot/Rasberry/données/log.txt",
+                    String.valueOf(txtDate) + " ERROR " + e.getMessage(), 1);
         }
     }
 
@@ -181,4 +185,3 @@ implements Runnable {
         return Hypixeldata;
     }
 }
-

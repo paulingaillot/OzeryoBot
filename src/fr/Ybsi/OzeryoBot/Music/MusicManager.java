@@ -43,14 +43,13 @@ public class MusicManager {
     public void loadTrack(final MessageChannel channel, final String source, Guild guild) {
         final MusicPlayer player = this.getPlayer(guild);
         guild.getAudioManager().setSendingHandler(player.getAudioHandler());
-        this.manager.loadItemOrdered(player, source, new AudioLoadResultHandler(){
+        this.manager.loadItemOrdered(player, source, new AudioLoadResultHandler() {
 
             @Override
             public void trackLoaded(AudioTrack track) {
                 try {
                     channel.sendMessage("Adding the track " + track.getInfo().title + ".").queue();
-                }
-                catch (NullPointerException nullPointerException) {
+                } catch (NullPointerException nullPointerException) {
                     // empty catch block
                 }
                 player.playTrack(track);
@@ -72,8 +71,7 @@ public class MusicManager {
                 }
                 try {
                     channel.sendMessage(builder.toString()).queue();
-                }
-                catch (NullPointerException i) {
+                } catch (NullPointerException i) {
                     // empty catch block
                 }
             }
@@ -82,8 +80,7 @@ public class MusicManager {
             public void noMatches() {
                 try {
                     channel.sendMessage("The song" + source + " was not found.").queue();
-                }
-                catch (NullPointerException nullPointerException) {
+                } catch (NullPointerException nullPointerException) {
                     // empty catch block
                 }
             }
@@ -92,8 +89,7 @@ public class MusicManager {
             public void loadFailed(FriendlyException exception) {
                 try {
                     channel.sendMessage("Impossible to play the track (reason:" + exception.getMessage() + ")").queue();
-                }
-                catch (NullPointerException nullPointerException) {
+                } catch (NullPointerException nullPointerException) {
                     // empty catch block
                 }
             }
@@ -101,4 +97,3 @@ public class MusicManager {
     }
 
 }
-

@@ -30,8 +30,9 @@ import net.dv8tion.jda.core.requests.RestAction;
 import net.dv8tion.jda.core.requests.restaction.MessageAction;
 
 public class Attack {
-    @command(name="attack", abbrev="a", type=command.ExecutorType.ALL, topic=command.Topics.Game)
-    private void attack(Message message, Guild guild, String[] args, User user, MessageChannel channel, String arg, JDA jda, command.Language lang) {
+    @command(name = "attack", abbrev = "a", type = command.ExecutorType.ALL, topic = command.Topics.Game)
+    private void attack(Message message, Guild guild, String[] args, User user, MessageChannel channel, String arg,
+            JDA jda, command.Language lang) {
         int Pet_EXP;
         String c1;
         ArrayList<String> listpet;
@@ -42,22 +43,29 @@ public class Attack {
             data.getProfils().get(user.getId()).setMoney(data.getProfils().get(user.getId()).getMoney() + 10000L);
             data.getProfils().get(user.getId()).setTuto(10);
             if (lang == command.Language.fr) {
-                channel.sendMessage("Bravo ! Vous venez de gagner ! Vous remportez 20 trophées ainsi que 10000 Ozecoins. Vous \u00eates dorénavant pr\u00eat pour commencer votre aventure sur le bot ! Bonne chance \u00e0 vous aventurier :grinning:").queue();
+                channel.sendMessage(
+                        "Bravo ! Vous venez de gagner ! Vous remportez 20 trophées ainsi que 10000 Ozecoins. Vous \u00eates dorénavant pr\u00eat pour commencer votre aventure sur le bot ! Bonne chance \u00e0 vous aventurier :grinning:")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("Well ! You just win ! You won 20 trophies and 10000 Ozecoins. You are now ready to start your adventure on the bot ! Good luck to you adventurer  :grinning:").queue();
+                channel.sendMessage(
+                        "Well ! You just win ! You won 20 trophies and 10000 Ozecoins. You are now ready to start your adventure on the bot ! Good luck to you adventurer  :grinning:")
+                        .queue();
             }
             return;
         }
         try {
             c1 = args[0];
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             if (lang == command.Language.fr) {
-                channel.sendMessage("Afin d'attaquer veuillez mentionner ou mettre l'id de la personne que vous souhaitez attaquer.").queue();
+                channel.sendMessage(
+                        "Afin d'attaquer veuillez mentionner ou mettre l'id de la personne que vous souhaitez attaquer.")
+                        .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("To attack a player please mention or put the id or the location of the person you want to attack.").queue();
+                channel.sendMessage(
+                        "To attack a player please mention or put the id or the location of the person you want to attack.")
+                        .queue();
             }
             return;
         }
@@ -66,12 +74,10 @@ public class Attack {
         User cible = null;
         try {
             cible = message.getMentionedUsers().get(0);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             try {
                 cible = jda.getUserById(c1);
-            }
-            catch (NumberFormatException e1) {
+            } catch (NumberFormatException e1) {
                 cible = null;
             }
         }
@@ -79,20 +85,23 @@ public class Attack {
             try {
                 x = Integer.parseInt(args[0]);
                 y = Integer.parseInt(args[1]);
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Afin d'attaquer veuillez mentionner ou mettre l'id de la personne que vous souhaitez attaquer.").queue();
+                    channel.sendMessage(
+                            "Afin d'attaquer veuillez mentionner ou mettre l'id de la personne que vous souhaitez attaquer.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("To attack a player please mention or put the id or the location of the person you want to attack.").queue();
+                    channel.sendMessage(
+                            "To attack a player please mention or put the id or the location of the person you want to attack.")
+                            .queue();
                 }
                 return;
             }
             try {
-                cible = jda.getUserById(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"));
-            }
-            catch (NumberFormatException e) {
+                cible = jda.getUserById(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"));
+            } catch (NumberFormatException e) {
                 // empty catch block
             }
         }
@@ -100,14 +109,12 @@ public class Attack {
         HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
         try {
             listpet = pet.get(ActivePet);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             listpet = null;
         }
         try {
             Pet_EXP = Integer.parseInt(listpet.get(1));
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             Pet_EXP = 0;
         }
         String Pet_Bonus = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pets/" + ActivePet);
@@ -120,8 +127,7 @@ public class Attack {
             String name;
             try {
                 name = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 name = "0";
             }
             if (name.equals("0")) {
@@ -129,7 +135,8 @@ public class Attack {
                     channel.sendMessage("Il n'y a rien a cet endroit alors pourquoi l'attaquer ?").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("There is anything here so why would you like to attack on this location ?").queue();
+                    channel.sendMessage("There is anything here so why would you like to attack on this location ?")
+                            .queue();
                 }
                 return;
             }
@@ -139,8 +146,7 @@ public class Attack {
                 ArrayList list;
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroe = new HashMap();
                     list = new ArrayList();
                     list.add("1");
@@ -166,21 +172,25 @@ public class Attack {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    list = (ArrayList)heroe.get(activeHero);
-                }
-                catch (NullPointerException e) {
+                    list = (ArrayList) heroe.get(activeHero);
+                } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.").queue();
+                        channel.sendMessage(
+                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage("You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.").queue();
+                        channel.sendMessage(
+                                "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
+                                .queue();
                     }
                     return;
                 }
-                boolean heroAtk = ((String)list.get(2)).equals("true");
+                boolean heroAtk = ((String) list.get(2)).equals("true");
                 if (heroAtk) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
+                        channel.sendMessage(
+                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("You hero is already in attack , you can't use it actually.").queue();
@@ -188,7 +198,7 @@ public class Attack {
                     return;
                 }
                 String heroAtk1 = "true";
-                int pv = Integer.parseInt((String)list.get(3));
+                int pv = Integer.parseInt((String) list.get(3));
                 list.set(2, heroAtk1);
                 list.set(3, Integer.toString(pv));
                 list.set(4, Long.toString(System.currentTimeMillis()));
@@ -203,14 +213,14 @@ public class Attack {
                 double durée = Math.sqrt(operation);
                 System.out.println();
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis((long)(durée * 3600000.0));
+                calendar.setTimeInMillis((long) (durée * 3600000.0));
                 int heure = calendar.get(11) - 1;
                 int minutes = calendar.get(12);
                 long bonus = 0L;
                 if (Pet_Bonus.equals("speed")) {
-                    bonus = (long)(60000.0 * pet_bonus);
+                    bonus = (long) (60000.0 * pet_bonus);
                 }
-                if ((duree2 = (long)(durée * 3600000.0 - (double)bonus)) <= 0L) {
+                if ((duree2 = (long) (durée * 3600000.0 - (double) bonus)) <= 0L) {
                     duree2 = 1L;
                 }
                 long DateFin = System.currentTimeMillis() + duree2;
@@ -224,8 +234,7 @@ public class Attack {
                 try {
                     map = data.getProfils().get(user.getId()).getAttack();
                     map.put(DateFin, list1);
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     map = new HashMap();
                     System.out.println(DateFin);
                     System.out.println(list1);
@@ -233,10 +242,14 @@ public class Attack {
                 }
                 data.getProfils().get(user.getId()).setAttack(map);
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez d'attaquer le donjon en " + x + "," + y + ". Votre hero arrivera a destination dans " + heure + "h" + minutes + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
+                    channel.sendMessage("Vous venez d'attaquer le donjon en " + x + "," + y
+                            + ". Votre hero arrivera a destination dans " + heure + "h" + minutes
+                            + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("You just attack the dungeon in " + x + "," + y + ". Your hero will arrive to this point in  " + heure + "h" + minutes + "m. A private message will be send to you when the fight will stop.").queue();
+                    channel.sendMessage("You just attack the dungeon in " + x + "," + y
+                            + ". Your hero will arrive to this point in  " + heure + "h" + minutes
+                            + "m. A private message will be send to you when the fight will stop.").queue();
                 }
                 return;
             }
@@ -244,8 +257,7 @@ public class Attack {
             int atk = 0;
             try {
                 atk = Integer.parseInt(args[2]);
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
                 }
@@ -253,8 +265,7 @@ public class Attack {
                     channel.sendMessage("Please type a valid  soldier number.").queue();
                 }
                 return;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
                 }
@@ -275,8 +286,7 @@ public class Attack {
             String c3 = "";
             try {
                 c3 = args[3];
-            }
-            catch (IndexOutOfBoundsException heroAtk) {
+            } catch (IndexOutOfBoundsException heroAtk) {
                 // empty catch block
             }
             String hero = "false";
@@ -288,8 +298,7 @@ public class Attack {
                 HashMap<String, ArrayList<String>> heroe;
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroe = new HashMap();
                     list = new ArrayList();
                     list.add("1");
@@ -315,21 +324,25 @@ public class Attack {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    list = (ArrayList)heroe.get(activeHero);
-                }
-                catch (NullPointerException e) {
+                    list = (ArrayList) heroe.get(activeHero);
+                } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.").queue();
+                        channel.sendMessage(
+                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage("You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.").queue();
+                        channel.sendMessage(
+                                "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
+                                .queue();
                     }
                     return;
                 }
-                boolean heroAtk = ((String)list.get(2)).equals("true");
+                boolean heroAtk = ((String) list.get(2)).equals("true");
                 if (heroAtk) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
+                        channel.sendMessage(
+                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("Your hero is already in attack, you can't use it actually.").queue();
@@ -337,7 +350,7 @@ public class Attack {
                     return;
                 }
                 String heroAtk1 = "true";
-                int pv = Integer.parseInt((String)list.get(3));
+                int pv = Integer.parseInt((String) list.get(3));
                 list.set(2, heroAtk1);
                 list.set(3, Integer.toString(pv));
                 list.set(4, Long.toString(System.currentTimeMillis()));
@@ -354,9 +367,9 @@ public class Attack {
             System.out.println(durée);
             long bonus = 0L;
             if (Pet_Bonus.equals("spped")) {
-                bonus = (long)(60000.0 * pet_bonus);
+                bonus = (long) (60000.0 * pet_bonus);
             }
-            if ((duree = (long)(durée * 3600000.0 - (double)bonus)) <= 0L) {
+            if ((duree = (long) (durée * 3600000.0 - (double) bonus)) <= 0L) {
                 duree = 1L;
             }
             Calendar calendar = Calendar.getInstance();
@@ -375,15 +388,14 @@ public class Attack {
                 System.out.println(DateFin);
                 System.out.println(list);
                 map.put(DateFin, list);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 map = new HashMap();
                 System.out.println(DateFin);
                 System.out.println(list);
                 map.put(DateFin, list);
             }
             long soldier = data.getProfils().get(user.getId()).getSoldiers();
-            if ((long)atk > soldier) {
+            if ((long) atk > soldier) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas attaquer avec plus de soldats que vous n'en avez.").queue();
                 }
@@ -400,26 +412,28 @@ public class Attack {
                     channel.sendMessage("Please type a valid soldiers number.").queue();
                 }
             }
-            soldier -= (long)atk;
+            soldier -= (long) atk;
             try {
                 data.getProfils().get(user.getId()).setSoldiers(soldier);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setSoldiers(soldier);
             }
             try {
                 data.getProfils().get(user.getId()).setAttack(map);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setAttack(map);
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous venez d'attaquer en " + x + "," + y + " avec " + atk + " soldats. Vos soldats arriveront a destination dans " + heure + "h" + minutes + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
+                channel.sendMessage("Vous venez d'attaquer en " + x + "," + y + " avec " + atk
+                        + " soldats. Vos soldats arriveront a destination dans " + heure + "h" + minutes
+                        + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("You just attack in " + x + "," + y + " with " + atk + " soldiers. Your soldiers will arive at this point in " + heure + "h" + minutes + "m. A private message will be send you when the fight will stop.").queue();
+                channel.sendMessage("You just attack in " + x + "," + y + " with " + atk
+                        + " soldiers. Your soldiers will arive at this point in " + heure + "h" + minutes
+                        + "m. A private message will be send you when the fight will stop.").queue();
             }
         } else {
             long duree;
@@ -428,8 +442,7 @@ public class Attack {
             for (String str : args) {
                 try {
                     atk = Integer.parseInt(str);
-                }
-                catch (NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     c3 = str;
                 }
             }
@@ -442,8 +455,7 @@ public class Attack {
                 ArrayList list;
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroe = new HashMap();
                     list = new ArrayList();
                     list.add("1");
@@ -469,21 +481,25 @@ public class Attack {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    list = (ArrayList)heroe.get(activeHero);
-                }
-                catch (NullPointerException e) {
+                    list = (ArrayList) heroe.get(activeHero);
+                } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.").queue();
+                        channel.sendMessage(
+                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage("You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.").queue();
+                        channel.sendMessage(
+                                "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
+                                .queue();
                     }
                     return;
                 }
-                boolean heroAtk = ((String)list.get(2)).equals("true");
+                boolean heroAtk = ((String) list.get(2)).equals("true");
                 if (heroAtk) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement. ").queue();
+                        channel.sendMessage(
+                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement. ").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("Your hero is already in attack, You can't use it actually.").queue();
@@ -491,7 +507,7 @@ public class Attack {
                     return;
                 }
                 String heroAtk1 = "true";
-                int pv = Integer.parseInt((String)list.get(3));
+                int pv = Integer.parseInt((String) list.get(3));
                 list.set(2, heroAtk1);
                 list.set(3, Integer.toString(pv));
                 list.set(4, Long.toString(System.currentTimeMillis()));
@@ -516,7 +532,9 @@ public class Attack {
             }
             if (atk < 0) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Je savais pas que dnas la vraie vie on pouvais faire des attaques avec un nombre negatif de soldat ...").queue();
+                    channel.sendMessage(
+                            "Je savais pas que dnas la vraie vie on pouvais faire des attaques avec un nombre negatif de soldat ...")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("Please type a positive soldiers number.").queue();
@@ -527,7 +545,9 @@ public class Attack {
             int caserne = building.get("camp d'entrainement");
             if (caserne == 0) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous ne pouvez pas attaquer un joueurs si vous n'avez pas construit votre caserne.").queue();
+                    channel.sendMessage(
+                            "Vous ne pouvez pas attaquer un joueurs si vous n'avez pas construit votre caserne.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can't attack a player if you didn't build your barrack.").queue();
@@ -538,7 +558,8 @@ public class Attack {
             int Ccaserne = building1.get("camp d'entrainement");
             if (Ccaserne == 0) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous ne pouvez pas attaquer un joueurs qui n'a pas construit sa caserne.").queue();
+                    channel.sendMessage("Vous ne pouvez pas attaquer un joueurs qui n'a pas construit sa caserne.")
+                            .queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can't attack a player who didn't build his barrack.").queue();
@@ -546,7 +567,7 @@ public class Attack {
                 return;
             }
             long ATKmax = habitants.atk(user);
-            if ((long)atk > ATKmax) {
+            if ((long) atk > ATKmax) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Desolé vous n'avez pas asser de soldats.").queue();
                 }
@@ -555,11 +576,10 @@ public class Attack {
                 }
                 return;
             }
-            long soldier = ATKmax - (long)atk;
+            long soldier = ATKmax - (long) atk;
             try {
                 data.getProfils().get(user.getId()).setSoldiers(soldier);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setSoldiers(soldier);
             }
@@ -577,9 +597,9 @@ public class Attack {
             System.out.println(durée);
             long bonus = 0L;
             if (Pet_Bonus.equals("speed")) {
-                bonus = (long)(60000.0 * pet_bonus);
+                bonus = (long) (60000.0 * pet_bonus);
             }
-            if ((duree = (long)(durée * 3600000.0 - (double)bonus)) <= 0L) {
+            if ((duree = (long) (durée * 3600000.0 - (double) bonus)) <= 0L) {
                 duree = 1L;
             }
             Calendar calendar = Calendar.getInstance();
@@ -596,29 +616,32 @@ public class Attack {
             try {
                 map = data.getProfils().get(user.getId()).getAttack();
                 map.put(DateFin, list);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 map = new HashMap();
                 map.put(DateFin, list);
             }
             try {
                 data.getProfils().get(user.getId()).setAttack(map);
-            }
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setAttack(map);
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous venez d'attaquer " + cible.getName() + " avec " + atk + " soldats. Vos soldats arriveront a destination dans " + heure + "h+" + minutes + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
+                channel.sendMessage("Vous venez d'attaquer " + cible.getName() + " avec " + atk
+                        + " soldats. Vos soldats arriveront a destination dans " + heure + "h+" + minutes
+                        + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("You just attack " + cible.getName() + " with " + atk + " soldiers. Your soldiers will arrive at this point in " + heure + "h+" + minutes + "m. A private message will be send you when the fight will stop.").queue();
+                channel.sendMessage("You just attack " + cible.getName() + " with " + atk
+                        + " soldiers. Your soldiers will arrive at this point in " + heure + "h+" + minutes
+                        + "m. A private message will be send you when the fight will stop.").queue();
             }
         }
     }
 
-    @command(name="trophees", type=command.ExecutorType.ALL, topic=command.Topics.Game)
-    private void trophees(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data, command.Language lang) {
+    @command(name = "trophees", type = command.ExecutorType.ALL, topic = command.Topics.Game)
+    private void trophees(Message message, Guild guild, String[] args, User user, MessageChannel channel,
+            ProfilData data, command.Language lang) {
         int trophéesP = data.getProfils().get(user.getId()).getTrophy();
         String rank = null;
         if (trophéesP < 100) {
@@ -685,7 +708,8 @@ public class Attack {
             rank = "Master";
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("Vous avez " + trophéesP + " trophées. Vous etes actuelement rank " + rank + ".").queue();
+            channel.sendMessage("Vous avez " + trophéesP + " trophées. Vous etes actuelement rank " + rank + ".")
+                    .queue();
         }
         if (lang == command.Language.en) {
             channel.sendMessage("You have " + trophéesP + " trophies. You are actually rank " + rank + ".").queue();
@@ -897,7 +921,7 @@ public class Attack {
     }
 
     public static void Attack(User user, User cible, int atk, String hero) {
-        block162 : {
+        block162: {
             try {
                 HashMap<String, ArrayList<String>> heroeA;
                 boolean Umail;
@@ -913,26 +937,23 @@ public class Attack {
                 ProfilData data = DiscordBot.getData();
                 try {
                     trophéescible = data.getProfils().get(cible.getId()).getTrophy();
-                }
-                catch (NullPointerException e1) {
+                } catch (NullPointerException e1) {
                     trophéescible = 0;
                 }
                 try {
                     trophéesuser = data.getProfils().get(user.getId()).getTrophy();
-                }
-                catch (NullPointerException e1) {
+                } catch (NullPointerException e1) {
                     trophéesuser = 0;
                 }
                 long def1 = habitants.atk(cible);
                 HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
                 int bunker = building.get("muraille");
-                double bonus = 1.0 + (double)bunker * 0.075;
+                double bonus = 1.0 + (double) bunker * 0.075;
                 System.out.println(bonus);
-                long def = (int)((double)def1 * bonus);
+                long def = (int) ((double) def1 * bonus);
                 try {
                     heroeA = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroeA = new HashMap();
                     ArrayList<String> list = new ArrayList<String>();
                     list.add("1");
@@ -958,16 +979,14 @@ public class Attack {
                 }
                 ArrayList listA = null;
                 try {
-                    listA = (ArrayList)heroeA.get(data.getProfils().get(user.getId()).getActiveHeroe());
-                }
-                catch (NullPointerException list) {
+                    listA = (ArrayList) heroeA.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                } catch (NullPointerException list) {
                     // empty catch block
                 }
                 int levelA = 0;
                 try {
-                    levelA = Integer.parseInt((String)listA.get(0));
-                }
-                catch (NullPointerException nullPointerException) {
+                    levelA = Integer.parseInt((String) listA.get(0));
+                } catch (NullPointerException nullPointerException) {
                     // empty catch block
                 }
                 double Aatk = atk;
@@ -982,8 +1001,7 @@ public class Attack {
                 }
                 try {
                     heroeD = data.getProfils().get(cible.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroeD = new HashMap();
                     ArrayList<String> list = new ArrayList<String>();
                     list.add("1");
@@ -1009,27 +1027,28 @@ public class Attack {
                 }
                 ArrayList listD = null;
                 try {
-                    listD = (ArrayList)heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
-                }
-                catch (NullPointerException list) {
+                    listD = (ArrayList) heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
+                } catch (NullPointerException list) {
                     // empty catch block
                 }
                 int levelD = 0;
                 String isAttack = "true";
                 if (listD != null) {
-                    levelD = Integer.parseInt((String)listD.get(0));
+                    levelD = Integer.parseInt((String) listD.get(0));
                 }
                 if (listD != null) {
-                    isAttack = (String)listD.get(2);
+                    isAttack = (String) listD.get(2);
                 }
                 double Datk = def;
                 double DMagic = def;
                 double DPV = def;
                 double Ddef = def;
                 if (isAttack.equals("false")) {
-                    Datk = def + (long)Heroe.getAtk(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
-                    Ddef = def + (long)Heroe.getDef(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
-                    DPV = def + (long)Heroe.getPV(data.getProfils().get(cible.getId()).getActiveHeroe(), cible);
+                    Datk = def
+                            + (long) Heroe.getAtk(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
+                    Ddef = def
+                            + (long) Heroe.getDef(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
+                    DPV = def + (long) Heroe.getPV(data.getProfils().get(cible.getId()).getActiveHeroe(), cible);
                     DMagic = 0 + Heroe.getMagic(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD);
                 } else {
                     Datk = def;
@@ -1041,10 +1060,10 @@ public class Attack {
                     Ddef = 1.0;
                 }
                 while (DPV > 0.0 && APV > 0.0) {
-                    int ABonus = 0 + (int)(Math.random() * (AMagic - 0.0 + 1.0));
-                    int DBonus = 0 + (int)(Math.random() * (DMagic - 0.0 + 1.0));
-                    DPV -= Aatk + (double)ABonus / Ddef;
-                    APV -= Datk + (double)DBonus / Adef;
+                    int ABonus = 0 + (int) (Math.random() * (AMagic - 0.0 + 1.0));
+                    int DBonus = 0 + (int) (Math.random() * (DMagic - 0.0 + 1.0));
+                    DPV -= Aatk + (double) ABonus / Ddef;
+                    APV -= Datk + (double) DBonus / Adef;
                 }
                 if (DPV <= 0.0) {
                     ArrayList<ArrayList<String>> mails3;
@@ -1054,7 +1073,7 @@ public class Attack {
                     long Cpop;
                     boolean Cmail2;
                     if (isAttack.equals("false")) {
-                        int cartesD = Integer.parseInt((String)listD.get(1));
+                        int cartesD = Integer.parseInt((String) listD.get(1));
                         String heroAtkD = "false";
                         listD.set(0, Integer.toString(levelD));
                         listD.set(1, Integer.toString(cartesD));
@@ -1065,10 +1084,10 @@ public class Attack {
                         data.getProfils().get(cible.getId()).setHeroe(heroeD);
                     }
                     if (hero.equals("true")) {
-                        int cartesA = Integer.parseInt((String)listA.get(1));
-                        int pvA = Integer.parseInt((String)listA.get(3));
-                        double calcul1 = APV * 1.0 / (double)(atk + pvA);
-                        int calcul = (int)((double)pvA * calcul1);
+                        int cartesA = Integer.parseInt((String) listA.get(1));
+                        int pvA = Integer.parseInt((String) listA.get(3));
+                        double calcul1 = APV * 1.0 / (double) (atk + pvA);
+                        int calcul = (int) ((double) pvA * calcul1);
                         listA.set(0, Integer.toString(levelA));
                         listA.set(1, Integer.toString(cartesA));
                         listA.set(2, "false");
@@ -1081,7 +1100,7 @@ public class Attack {
                     long Umoney = data.getProfils().get(user.getId()).getMoney();
                     long Cmoney = data.getProfils().get(cible.getId()).getMoney();
                     double Mperte = 0.0;
-                    Double rapport = ((double)trophéescible + 1.0) / ((double)trophéesuser + 1.0);
+                    Double rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
                     System.out.println(rapport);
                     if (rapport < 0.5) {
                         Mperte = 0.0;
@@ -1096,31 +1115,28 @@ public class Attack {
                     } else if (rapport >= 5.0) {
                         Mperte = 0.09999999999999998;
                     }
-                    int perte2 = (int)((double)Cmoney * Mperte);
-                    Umoney += (long)perte2;
-                    Cmoney -= (long)perte2;
+                    int perte2 = (int) ((double) Cmoney * Mperte);
+                    Umoney += (long) perte2;
+                    Cmoney -= (long) perte2;
                     try {
                         data.getProfils().get(user.getId()).setMoney(Umoney);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setMoney(Umoney);
                     }
                     try {
                         data.getProfils().get(cible.getId()).setMoney(Cmoney);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setMoney(Cmoney);
                     }
                     try {
                         Cpop = habitants.pop(cible);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         Cpop = 0L;
                     }
                     double Pperte = 0.0;
-                    rapport = ((double)trophéescible + 1.0) / ((double)trophéesuser + 1.0);
+                    rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
                     System.out.println(rapport);
                     if (rapport < 0.5) {
                         Pperte = 0.0;
@@ -1135,12 +1151,11 @@ public class Attack {
                     } else if (rapport >= 5.0) {
                         Pperte = 0.09999999999999998;
                     }
-                    int perte3 = (int)((double)Cpop * Pperte);
-                    Cpop -= (long)perte3;
+                    int perte3 = (int) ((double) Cpop * Pperte);
+                    Cpop -= (long) perte3;
                     try {
                         data.getProfils().get(cible.getId()).setHabitants(Cpop);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setHabitants(Cpop);
                     }
@@ -1161,7 +1176,7 @@ public class Attack {
                     int Cfer = Cres.get("fer");
                     int Ccristal = Cres.get("cristal");
                     double Rperte = 0.0;
-                    rapport = ((double)trophéescible + 1.0) / ((double)trophéesuser + 1.0);
+                    rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
                     System.out.println(rapport);
                     if (rapport < 0.5) {
                         Rperte = 0.0;
@@ -1176,13 +1191,13 @@ public class Attack {
                     } else if (rapport >= 5.0) {
                         Rperte = 0.19999999999999996;
                     }
-                    int pertebois = (int)((double)Cbois * Rperte);
-                    int perteargile = (int)((double)Cargile * Rperte);
-                    int pertecuir = (int)((double)Ccuir * Rperte);
-                    int pertepierre = (int)((double)Cpierre * Rperte);
-                    int pertepaille = (int)((double)Cpaille * Rperte);
-                    int pertefer = (int)((double)Cfer * Rperte);
-                    int pertecristal = (int)((double)Ccristal * Rperte);
+                    int pertebois = (int) ((double) Cbois * Rperte);
+                    int perteargile = (int) ((double) Cargile * Rperte);
+                    int pertecuir = (int) ((double) Ccuir * Rperte);
+                    int pertepierre = (int) ((double) Cpierre * Rperte);
+                    int pertepaille = (int) ((double) Cpaille * Rperte);
+                    int pertefer = (int) ((double) Cfer * Rperte);
+                    int pertecristal = (int) ((double) Ccristal * Rperte);
                     Ures.put("bois", Ubois += pertebois);
                     Ures.put("argile", Uargile += perteargile);
                     Ures.put("cuir", Ucuir += pertepierre);
@@ -1199,62 +1214,65 @@ public class Attack {
                     Cres.put("cristal", Ccristal -= pertecristal);
                     try {
                         data.getProfils().get(user.getId()).setRes(Ures);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setRes(Ures);
                     }
                     try {
                         data.getProfils().get(cible.getId()).setRes(Cres);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setRes(Cres);
                     }
                     int trophéesP = trophéescible;
                     int trophéesV = trophéesuser;
                     int dif = trophéesV - trophéesP;
-                    int gain = dif > 500 ? 1 : (dif > 250 && dif <= 500 ? 4 : (dif > 0 && dif <= 250 ? 9 : (dif > -250 && dif <= 0 ? 14 : (dif > -250 && dif <= -500 ? 19 : (dif < -500 ? 29 : 1)))));
+                    int gain = dif > 500 ? 1
+                            : (dif > 250 && dif <= 500 ? 4
+                                    : (dif > 0 && dif <= 250 ? 9
+                                            : (dif > -250 && dif <= 0 ? 14
+                                                    : (dif > -250 && dif <= -500 ? 19 : (dif < -500 ? 29 : 1)))));
                     trophéesV = dif < 1000 ? trophéesV + gain + 1 : (trophéesV += 0);
                     trophéesP = trophéesP > gain - 1 ? (trophéesP -= gain - 1) : 0;
                     try {
                         data.getProfils().get(user.getId()).setTrophy(trophéesV);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setTrophy(trophéesV);
                     }
                     try {
                         data.getProfils().get(cible.getId()).setTrophy(trophéesP);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setTrophy(trophéesP);
                     }
                     try {
                         data.getProfils().get(cible.getId()).setSoldiers(def);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setSoldiers(def);
                     }
-                    Quest.Quest("atk", user, ((UserImpl)user).openPrivateChannel().complete(), 1);
+                    Quest.Quest("atk", user, ((UserImpl) user).openPrivateChannel().complete(), 1);
                     String villeCible = data.getProfils().get(cible.getId()).getHome();
-                    String ownerville = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
+                    String ownerville = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
                     if (!ownerville.equals(cible.getId())) {
                         boolean Umail3;
                         try {
                             Umail3 = data.getProfils().get(user.getId()).isMail();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             Umail3 = false;
                         }
                         if (!Umail3) {
                             if (lang == command.Language.fr) {
-                                ((UserImpl)user).openPrivateChannel().complete().sendMessage("La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.").queue();
+                                ((UserImpl) user).openPrivateChannel().complete().sendMessage(
+                                        "La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.")
+                                        .queue();
                             }
                             if (lang == command.Language.en) {
-                                ((UserImpl)user).openPrivateChannel().complete().sendMessage("The person you attacked seem have disappear... it's possible she already have been attacked").queue();
+                                ((UserImpl) user).openPrivateChannel().complete().sendMessage(
+                                        "The person you attacked seem have disappear... it's possible she already have been attacked")
+                                        .queue();
                             }
                         } else {
                             ArrayList<String> mail13 = new ArrayList<String>();
@@ -1265,10 +1283,12 @@ public class Attack {
                                 mail13.add("Attack report of " + cible.getName());
                             }
                             if (lang == command.Language.fr) {
-                                mail13.add("La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.");
+                                mail13.add(
+                                        "La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.");
                             }
                             if (lang == command.Language.en) {
-                                mail13.add("The person you attacked seem have disappear... it's possible she already have been attacked");
+                                mail13.add(
+                                        "The person you attacked seem have disappear... it's possible she already have been attacked");
                             }
                             mail13.add("false");
                             mail13.add("" + System.currentTimeMillis());
@@ -1276,8 +1296,7 @@ public class Attack {
                                 ArrayList<ArrayList<String>> mails5 = data.getProfils().get(user.getId()).getListMail();
                                 mails5.add(0, mail13);
                                 data.getProfils().get(user.getId()).setListMail(mails5);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 ArrayList<ArrayList<String>> mails6 = new ArrayList<ArrayList<String>>();
                                 mails6.add(0, mail13);
                                 data.getProfils().get(user.getId()).setListMail(mails6);
@@ -1292,14 +1311,12 @@ public class Attack {
                     data.getProfils().get(cible.getId()).setLooser(++L);
                     try {
                         Umail2 = data.getProfils().get(user.getId()).isMail();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Umail2 = false;
                     }
                     try {
                         Cmail2 = data.getProfils().get(cible.getId()).isMail();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Cmail2 = false;
                     }
                     int gain1 = gain + 1;
@@ -1308,10 +1325,25 @@ public class Attack {
                     }
                     if (!Umail2) {
                         if (lang == command.Language.fr) {
-                            user.openPrivateChannel().complete().sendMessage(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez gagné face a " + cible.getName() + ". Vous remportez " + (gain + 1) + " Trophées. \n Vous gagnez aussi " + perte2 + "$ , " + pertebois + " bois," + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, " + pertepaille + " paille, " + pertefer + " fer et " + pertecristal + " cristaux.").queue();
+                            user.openPrivateChannel().complete().sendMessage(
+                                    ":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez gagné face a "
+                                            + cible.getName() + ". Vous remportez " + (gain + 1)
+                                            + " Trophées. \n Vous gagnez aussi " + perte2 + "$ , " + pertebois
+                                            + " bois," + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre
+                                            + " pierre, " + pertepaille + " paille, " + pertefer + " fer et "
+                                            + pertecristal + " cristaux.")
+                                    .queue();
                         }
                         if (lang == command.Language.en) {
-                            user.openPrivateChannel().complete().sendMessage(":crossed_swords: Attack report :crossed_swords: \n **You Won** against " + cible.getName() + ". You won " + (gain + 1) + " trophies. \n You also won " + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer + " iron and " + pertecristal + " crystals.").queue();
+                            user.openPrivateChannel().complete()
+                                    .sendMessage(
+                                            ":crossed_swords: Attack report :crossed_swords: \n **You Won** against "
+                                                    + cible.getName() + ". You won " + (gain + 1)
+                                                    + " trophies. \n You also won " + perte2 + "$, " + pertebois
+                                                    + " wood," + perteargile + " clay, " + pertecuir + " leather, "
+                                                    + pertepierre + " stone, " + pertepaille + " straw, " + pertefer
+                                                    + " iron and " + pertecristal + " crystals.")
+                                    .queue();
                         }
                     } else {
                         mail12 = new ArrayList<String>();
@@ -1322,10 +1354,18 @@ public class Attack {
                             mail12.add("Attack report of " + cible.getName());
                         }
                         if (lang == command.Language.fr) {
-                            mail12.add(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez gagné face a " + cible.getName() + ". Vous remportez " + (gain + 1) + " Trophées. \n Vous gagnez aussi " + perte2 + "$ , " + pertebois + " bois," + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, " + pertepaille + " paille, " + pertefer + " fer et " + pertecristal + " cristaux.");
+                            mail12.add(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez gagné face a "
+                                    + cible.getName() + ". Vous remportez " + (gain + 1)
+                                    + " Trophées. \n Vous gagnez aussi " + perte2 + "$ , " + pertebois + " bois,"
+                                    + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, "
+                                    + pertepaille + " paille, " + pertefer + " fer et " + pertecristal + " cristaux.");
                         }
                         if (lang == command.Language.en) {
-                            mail12.add(":crossed_swords: Attack report :crossed_swords: \n **You Won** against " + cible.getName() + ". You won " + (gain + 1) + " trophies. \n You also won " + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer + " iron and " + pertecristal + " crystals.");
+                            mail12.add(":crossed_swords: Attack report :crossed_swords: \n **You Won** against "
+                                    + cible.getName() + ". You won " + (gain + 1) + " trophies. \n You also won "
+                                    + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir
+                                    + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer
+                                    + " iron and " + pertecristal + " crystals.");
                         }
                         mail12.add("false");
                         mail12.add("" + System.currentTimeMillis());
@@ -1333,8 +1373,7 @@ public class Attack {
                             mails3 = data.getProfils().get(user.getId()).getListMail();
                             mails3.add(0, mail12);
                             data.getProfils().get(user.getId()).setListMail(mails3);
-                        }
-                        catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             mails4 = new ArrayList<ArrayList<String>>();
                             mails4.add(0, mail12);
                             data.getProfils().get(user.getId()).setListMail(mails4);
@@ -1345,10 +1384,25 @@ public class Attack {
                     }
                     if (!Cmail2) {
                         if (langc == command.Language.fr) {
-                            cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez perdu face a " + user.getName() + ". Vous perdez " + (gain - 1) + " Trophées ainsi que tout vos soldats. \n Vous perdez aussi " + perte3 + " habitants, " + perte2 + "$, " + pertebois + " bois," + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, " + pertepaille + " paille et " + pertefer + " fer et " + pertecristal + " cristaux.").queue();
+                            cible.openPrivateChannel().complete().sendMessage(
+                                    ":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez perdu face a "
+                                            + user.getName() + ". Vous perdez " + (gain - 1)
+                                            + " Trophées ainsi que tout vos soldats. \n Vous perdez aussi " + perte3
+                                            + " habitants, " + perte2 + "$, " + pertebois + " bois," + perteargile
+                                            + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, "
+                                            + pertepaille + " paille et " + pertefer + " fer et " + pertecristal
+                                            + " cristaux.")
+                                    .queue();
                         }
                         if (langc == command.Language.en) {
-                            cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Defense report :crossed_swords: \n **You lose** against " + user.getName() + ". You lose " + (gain - 1) + " Trophies and all your soldiers. \n You also lose" + perte3 + " people, " + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer + " iron and " + pertecristal + " crystals.").queue();
+                            cible.openPrivateChannel().complete().sendMessage(
+                                    ":crossed_swords:  Defense report :crossed_swords: \n **You lose** against "
+                                            + user.getName() + ". You lose " + (gain - 1)
+                                            + " Trophies and all your soldiers. \n You also lose" + perte3 + " people, "
+                                            + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, "
+                                            + pertecuir + " leather, " + pertepierre + " stone, " + pertepaille
+                                            + " straw, " + pertefer + " iron and " + pertecristal + " crystals.")
+                                    .queue();
                         }
                     } else {
                         mail12 = new ArrayList();
@@ -1359,10 +1413,22 @@ public class Attack {
                             mail12.add("Defense report from " + user.getName());
                         }
                         if (langc == command.Language.fr) {
-                            mail12.add(":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez perdu face a " + user.getName() + ". Vous perdez " + (gain - 1) + " Trophées ainsi que tout vos soldats. \n Vous perdez aussi " + perte3 + " habitants, " + perte2 + "$, " + pertebois + " bois," + perteargile + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, " + pertepaille + " paille et " + pertefer + " fer et " + pertecristal + " cristaux.");
+                            mail12.add(
+                                    ":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez perdu face a "
+                                            + user.getName() + ". Vous perdez " + (gain - 1)
+                                            + " Trophées ainsi que tout vos soldats. \n Vous perdez aussi " + perte3
+                                            + " habitants, " + perte2 + "$, " + pertebois + " bois," + perteargile
+                                            + " argile, " + pertecuir + " cuir, " + pertepierre + " pierre, "
+                                            + pertepaille + " paille et " + pertefer + " fer et " + pertecristal
+                                            + " cristaux.");
                         }
                         if (langc == command.Language.en) {
-                            mail12.add(":crossed_swords:  Defense report :crossed_swords: \n **You lose** against " + user.getName() + ". You lose " + (gain - 1) + " Trophies and all your soldiers. \n You also lose" + perte3 + " people, " + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer + " iron and " + pertecristal + " crystals.");
+                            mail12.add(":crossed_swords:  Defense report :crossed_swords: \n **You lose** against "
+                                    + user.getName() + ". You lose " + (gain - 1)
+                                    + " Trophies and all your soldiers. \n You also lose" + perte3 + " people, "
+                                    + perte2 + "$, " + pertebois + " wood," + perteargile + " clay, " + pertecuir
+                                    + " leather, " + pertepierre + " stone, " + pertepaille + " straw, " + pertefer
+                                    + " iron and " + pertecristal + " crystals.");
                         }
                         mail12.add("false");
                         mail12.add("" + System.currentTimeMillis());
@@ -1370,26 +1436,27 @@ public class Attack {
                             mails3 = data.getProfils().get(cible.getId()).getListMail();
                             mails3.add(0, mail12);
                             data.getProfils().get(cible.getId()).setListMail(mails3);
-                        }
-                        catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             mails4 = new ArrayList();
                             mails4.add(0, mail12);
                             data.getProfils().get(cible.getId()).setListMail(mails4);
                         }
                     }
-                    CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a gagné face a " + cible.getName() + " (" + cible.getId() + ")", user.getJDA());
+                    CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur "
+                            + user.getName() + " (" + user.getId() + ") a gagné face a " + cible.getName() + " ("
+                            + cible.getId() + ")", user.getJDA());
                     break block162;
                 }
-                int perteSoldats = (int)((double)def * (DPV * 1.0 / (double)def));
-                long Dperte = def - (long)perteSoldats;
+                int perteSoldats = (int) ((double) def * (DPV * 1.0 / (double) def));
+                long Dperte = def - (long) perteSoldats;
                 if (isAttack.equals("false")) {
-                    int cartesD = Integer.parseInt((String)listD.get(1));
+                    int cartesD = Integer.parseInt((String) listD.get(1));
                     String heroAtkD = "false";
-                    int pvD = Integer.parseInt((String)listD.get(3));
-                    double calcul1 = DPV * 1.0 / (double)(def + (long)pvD);
-                    int calcul = (int)((double)pvD * calcul1);
-                    perteSoldats = (int)((double)def1 * calcul1);
-                    Dperte = (int)((double)def - (double)def * calcul1);
+                    int pvD = Integer.parseInt((String) listD.get(3));
+                    double calcul1 = DPV * 1.0 / (double) (def + (long) pvD);
+                    int calcul = (int) ((double) pvD * calcul1);
+                    perteSoldats = (int) ((double) def1 * calcul1);
+                    Dperte = (int) ((double) def - (double) def * calcul1);
                     listD.set(0, Integer.toString(levelD));
                     listD.set(1, Integer.toString(cartesD));
                     listD.set(2, heroAtkD);
@@ -1399,7 +1466,7 @@ public class Attack {
                     data.getProfils().get(cible.getId()).setHeroe(heroeD);
                 }
                 if (hero.equals("true")) {
-                    int cartesA = Integer.parseInt((String)listA.get(1));
+                    int cartesA = Integer.parseInt((String) listA.get(1));
                     listA.set(0, Integer.toString(levelA));
                     listA.set(1, Integer.toString(cartesA));
                     listA.set(2, "false");
@@ -1412,20 +1479,22 @@ public class Attack {
                 int trophéesV = data.getProfils().get(cible.getId()).getTrophy();
                 int trophéesP = data.getProfils().get(user.getId()).getTrophy();
                 int dif = trophéesP - trophéesV;
-                int gain = dif > 500 ? 29 : (dif > 250 && dif <= 500 ? 19 : (dif > 0 && dif <= 250 ? 14 : (dif > -250 && dif <= 0 ? 9 : (dif > -250 && dif <= -500 ? 4 : (dif < -500 ? 1 : 1)))));
+                int gain = dif > 500 ? 29
+                        : (dif > 250 && dif <= 500 ? 19
+                                : (dif > 0 && dif <= 250 ? 14
+                                        : (dif > -250 && dif <= 0 ? 9
+                                                : (dif > -250 && dif <= -500 ? 4 : (dif < -500 ? 1 : 1)))));
                 trophéesV = trophéesV + gain + 1;
                 trophéesP = trophéesP > gain - 1 ? (trophéesP -= gain - 1) : 0;
                 try {
                     data.getProfils().get(user.getId()).setTrophy(trophéesP);
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setTrophy(trophéesP);
                 }
                 try {
                     data.getProfils().get(cible.getId()).setTrophy(trophéesV);
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                     data.getProfils().get(cible.getId()).setTrophy(trophéesV);
                 }
@@ -1434,27 +1503,30 @@ public class Attack {
                 }
                 try {
                     data.getProfils().get(cible.getId()).setSoldiers(perteSoldats);
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                     data.getProfils().get(cible.getId()).setSoldiers(perteSoldats);
                 }
                 String villeCible = data.getProfils().get(cible.getId()).getHome();
-                String ownerville = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
+                String ownerville = TextFileWriter
+                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
                 if (!ownerville.equals(cible.getId())) {
                     boolean Umail4;
                     try {
                         Umail4 = data.getProfils().get(user.getId()).isMail();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Umail4 = false;
                     }
                     if (!Umail4) {
                         if (lang == command.Language.fr) {
-                            ((UserImpl)user).openPrivateChannel().complete().sendMessage("La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.").queue();
+                            ((UserImpl) user).openPrivateChannel().complete().sendMessage(
+                                    "La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.")
+                                    .queue();
                         }
                         if (lang == command.Language.en) {
-                            ((UserImpl)user).openPrivateChannel().complete().sendMessage("The person you attacked seem have disappear... it's possible she already have been attacked").queue();
+                            ((UserImpl) user).openPrivateChannel().complete().sendMessage(
+                                    "The person you attacked seem have disappear... it's possible she already have been attacked")
+                                    .queue();
                         }
                     } else {
                         ArrayList<String> mail14 = new ArrayList<String>();
@@ -1465,10 +1537,12 @@ public class Attack {
                             mail14.add("Attack report of " + cible.getName());
                         }
                         if (lang == command.Language.fr) {
-                            mail14.add("La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.");
+                            mail14.add(
+                                    "La personne que vous avez attaquez semble avoir disparue... peut etre s'est elle fait raser.");
                         }
                         if (lang == command.Language.en) {
-                            mail14.add("The person you attacked seem have disappear... it's possible she already have been attacked");
+                            mail14.add(
+                                    "The person you attacked seem have disappear... it's possible she already have been attacked");
                         }
                         mail14.add("false");
                         mail14.add("" + System.currentTimeMillis());
@@ -1476,8 +1550,7 @@ public class Attack {
                             ArrayList<ArrayList<String>> mails7 = data.getProfils().get(user.getId()).getListMail();
                             mails7.add(0, mail14);
                             data.getProfils().get(user.getId()).setListMail(mails7);
-                        }
-                        catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails8 = new ArrayList<ArrayList<String>>();
                             mails8.add(0, mail14);
                             data.getProfils().get(user.getId()).setListMail(mails8);
@@ -1491,22 +1564,29 @@ public class Attack {
                 data.getProfils().get(user.getId()).setLooser(++L);
                 try {
                     Umail = data.getProfils().get(user.getId()).isMail();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Umail = false;
                 }
                 try {
                     Cmail = data.getProfils().get(cible.getId()).isMail();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Cmail = false;
                 }
                 if (!Umail) {
                     if (lang == command.Language.fr) {
-                        user.openPrivateChannel().complete().sendMessage(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez perdu face a " + cible.getName() + ". Vous perdez " + (gain - 1) + " Trophées ainsi que " + atk + " soldats").queue();
+                        user.openPrivateChannel().complete()
+                                .sendMessage(
+                                        ":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez perdu face a "
+                                                + cible.getName() + ". Vous perdez " + (gain - 1)
+                                                + " Trophées ainsi que " + atk + " soldats")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        user.openPrivateChannel().complete().sendMessage(":crossed_swords: Attack report :crossed_swords: \n **You lose** aginst " + cible.getName() + ". You lose " + (gain - 1) + " trophies and " + atk + " soldiers").queue();
+                        user.openPrivateChannel().complete()
+                                .sendMessage(":crossed_swords: Attack report :crossed_swords: \n **You lose** aginst "
+                                        + cible.getName() + ". You lose " + (gain - 1) + " trophies and " + atk
+                                        + " soldiers")
+                                .queue();
                     }
                 } else {
                     mail1 = new ArrayList<String>();
@@ -1517,10 +1597,13 @@ public class Attack {
                         mail1.add("Attack report of " + cible.getName());
                     }
                     if (lang == command.Language.fr) {
-                        mail1.add(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez perdu face a " + cible.getName() + ". Vous perdez " + (gain - 1) + " Trophées ainsi que " + atk + "soldats");
+                        mail1.add(":crossed_swords: Rapport d'Attaque :crossed_swords: \n Vous avez perdu face a "
+                                + cible.getName() + ". Vous perdez " + (gain - 1) + " Trophées ainsi que " + atk
+                                + "soldats");
                     }
                     if (lang == command.Language.en) {
-                        mail1.add(":crossed_swords: Attack report :crossed_swords: \n **You lose** aginst " + cible.getName() + ". You lose " + (gain - 1) + " trophies and " + atk + " soldiers");
+                        mail1.add(":crossed_swords: Attack report :crossed_swords: \n **You lose** aginst "
+                                + cible.getName() + ". You lose " + (gain - 1) + " trophies and " + atk + " soldiers");
                     }
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
@@ -1528,8 +1611,7 @@ public class Attack {
                         mails = data.getProfils().get(user.getId()).getListMail();
                         mails.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         mails2 = new ArrayList<ArrayList<String>>();
                         mails2.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails2);
@@ -1537,10 +1619,18 @@ public class Attack {
                 }
                 if (!Cmail) {
                     if (langc == command.Language.fr) {
-                        cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez gagné face a " + user.getName() + ". Vous gagnez " + (gain + 1) + " Trophées et perdez " + Dperte + " soldats").queue();
+                        cible.openPrivateChannel().complete().sendMessage(
+                                ":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez gagné face a "
+                                        + user.getName() + ". Vous gagnez " + (gain + 1) + " Trophées et perdez "
+                                        + Dperte + " soldats")
+                                .queue();
                     }
                     if (langc == command.Language.en) {
-                        cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Defense report :crossed_swords: \n **You won** against " + user.getName() + ". You won " + (gain + 1) + " Trophies and you lose " + Dperte + " Soldiers").queue();
+                        cible.openPrivateChannel().complete()
+                                .sendMessage(":crossed_swords:  Defense report :crossed_swords: \n **You won** against "
+                                        + user.getName() + ". You won " + (gain + 1) + " Trophies and you lose "
+                                        + Dperte + " Soldiers")
+                                .queue();
                     }
                 } else {
                     mail1 = new ArrayList();
@@ -1551,10 +1641,14 @@ public class Attack {
                         mail1.add("Defense report of " + user.getName());
                     }
                     if (lang == command.Language.fr) {
-                        mail1.add(":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez gagné face a " + user.getName() + ". Vous gagnez " + (gain + 1) + " Trophées et perdez " + Dperte + " soldats");
+                        mail1.add(":crossed_swords:  Rapport de Defense :crossed_swords: \n Vous avez gagné face a "
+                                + user.getName() + ". Vous gagnez " + (gain + 1) + " Trophées et perdez " + Dperte
+                                + " soldats");
                     }
                     if (lang == command.Language.en) {
-                        mail1.add(":crossed_swords:  Defense report :crossed_swords: \n **You won** against " + user.getName() + ". You won " + (gain + 1) + " Trophies and you lose " + Dperte + " Soldiers");
+                        mail1.add(":crossed_swords:  Defense report :crossed_swords: \n **You won** against "
+                                + user.getName() + ". You won " + (gain + 1) + " Trophies and you lose " + Dperte
+                                + " Soldiers");
                     }
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
@@ -1562,17 +1656,17 @@ public class Attack {
                         mails = data.getProfils().get(cible.getId()).getListMail();
                         mails.add(0, mail1);
                         data.getProfils().get(cible.getId()).setListMail(mails);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         mails2 = new ArrayList();
                         mails2.add(0, mail1);
                         data.getProfils().get(cible.getId()).setListMail(mails2);
                     }
                 }
-                CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur " + cible.getName() + " (" + cible.getId() + ") a gagné face a " + user.getName() + " (" + user.getId() + ")", user.getJDA());
-                Quest.Quest("def", cible, ((UserImpl)user).openPrivateChannel().complete(), 1);
-            }
-            catch (Exception e) {
+                CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur "
+                        + cible.getName() + " (" + cible.getId() + ") a gagné face a " + user.getName() + " ("
+                        + user.getId() + ")", user.getJDA());
+                Quest.Quest("def", cible, ((UserImpl) user).openPrivateChannel().complete(), 1);
+            } catch (Exception e) {
                 e.printStackTrace();
                 CommandMap.Log("Attack", e.getLocalizedMessage(), user.getJDA());
             }
@@ -1580,14 +1674,13 @@ public class Attack {
     }
 
     public static void Attack2(User user, String cible2, int atk, JDA jda, String hero) {
-        block117 : {
+        block117: {
             try {
                 boolean Umail;
                 String owner;
                 try {
                     owner = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt");
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     owner = "personne";
                 }
                 if (owner.equals("") || owner == null || owner == "0") {
@@ -1606,20 +1699,20 @@ public class Attack {
                     int perteSoldats;
                     command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
                     ProfilData data = DiscordBot.getData();
-                    String defHero = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt");
+                    String defHero = TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt");
                     User cible = jda.getUserById(owner);
                     command.Language langc = DiscordBot.getData().getProfils().get(cible.getId()).getLanguage();
                     int def = 0;
                     try {
-                        def = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt"));
-                    }
-                    catch (NumberFormatException e) {
+                        def = Integer.parseInt(TextFileWriter
+                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt"));
+                    } catch (NumberFormatException e) {
                         def = 0;
                     }
                     try {
                         heroeA = data.getProfils().get(user.getId()).getHeroe();
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         heroeA = new HashMap();
                         ArrayList<String> list = new ArrayList<String>();
                         list.add("1");
@@ -1645,16 +1738,14 @@ public class Attack {
                     }
                     ArrayList listA = null;
                     try {
-                        listA = (ArrayList)heroeA.get(data.getProfils().get(user.getId()).getActiveHeroe());
-                    }
-                    catch (NullPointerException list) {
+                        listA = (ArrayList) heroeA.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                    } catch (NullPointerException list) {
                         // empty catch block
                     }
                     int levelA = 0;
                     try {
-                        levelA = Integer.parseInt((String)listA.get(0));
-                    }
-                    catch (NullPointerException nullPointerException) {
+                        levelA = Integer.parseInt((String) listA.get(0));
+                    } catch (NullPointerException nullPointerException) {
                         // empty catch block
                     }
                     double Aatk = atk;
@@ -1668,8 +1759,7 @@ public class Attack {
                     }
                     try {
                         heroeD = data.getProfils().get(cible.getId()).getHeroe();
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         heroeD = new HashMap();
                         ArrayList<String> list = new ArrayList<String>();
                         list.add("1");
@@ -1695,12 +1785,11 @@ public class Attack {
                     }
                     ArrayList listD = null;
                     try {
-                        listD = (ArrayList)heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
-                    }
-                    catch (NullPointerException list) {
+                        listD = (ArrayList) heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
+                    } catch (NullPointerException list) {
                         // empty catch block
                     }
-                    int levelD = Integer.parseInt((String)listD.get(0));
+                    int levelD = Integer.parseInt((String) listD.get(0));
                     if (defHero.equals("true")) {
                         Datk = def + Heroe.getAtk(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, user);
                         Ddef = def + Heroe.getDef(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, user);
@@ -1716,15 +1805,15 @@ public class Attack {
                         Ddef = 1.0;
                     }
                     while (DPV > 0.0 && APV > 0.0) {
-                        int ABonus = 0 + (int)(Math.random() * (AMagic - 0.0 + 1.0));
-                        int DBonus = 0 + (int)(Math.random() * (DMagic - 0.0 + 1.0));
-                        DPV -= Aatk + (double)ABonus / Ddef;
-                        APV -= Datk + (double)DBonus / Adef;
+                        int ABonus = 0 + (int) (Math.random() * (AMagic - 0.0 + 1.0));
+                        int DBonus = 0 + (int) (Math.random() * (DMagic - 0.0 + 1.0));
+                        DPV -= Aatk + (double) ABonus / Ddef;
+                        APV -= Datk + (double) DBonus / Adef;
                     }
                     if (DPV <= 0.0) {
                         boolean Umail3;
                         if (defHero.equals("true")) {
-                            int cartesD = Integer.parseInt((String)listD.get(1));
+                            int cartesD = Integer.parseInt((String) listD.get(1));
                             String heroAtkD = "false";
                             listD.set(0, Integer.toString(levelD));
                             listD.set(1, Integer.toString(cartesD));
@@ -1733,15 +1822,16 @@ public class Attack {
                             listD.set(4, Long.toString(System.currentTimeMillis()));
                             heroeD.put(data.getProfils().get(cible.getId()).getActiveHeroe(), listD);
                             data.getProfils().get(cible.getId()).setHeroe(heroeD);
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt", "false", 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt",
+                                    "false", 1);
                         }
-                        perteSoldats = (int)((double)atk * (APV * 1.0 / (double)atk));
+                        perteSoldats = (int) ((double) atk * (APV * 1.0 / (double) atk));
                         if (hero.equals("true")) {
-                            cartesA = Integer.parseInt((String)listA.get(1));
-                            int pvA = Integer.parseInt((String)listA.get(3));
-                            double calcul1 = APV * 1.0 / (double)(atk + pvA);
-                            int pertePV = (int)((double)pvA * calcul1);
-                            perteSoldats = (int)((double)atk * calcul1);
+                            cartesA = Integer.parseInt((String) listA.get(1));
+                            int pvA = Integer.parseInt((String) listA.get(3));
+                            double calcul1 = APV * 1.0 / (double) (atk + pvA);
+                            int pertePV = (int) ((double) pvA * calcul1);
+                            perteSoldats = (int) ((double) atk * calcul1);
                             listA.set(0, Integer.toString(levelA));
                             listA.set(1, Integer.toString(cartesA));
                             listA.set(2, "true");
@@ -1749,13 +1839,16 @@ public class Attack {
                             listA.set(4, Long.toString(System.currentTimeMillis()));
                             heroeA.put(data.getProfils().get(user.getId()).getActiveHeroe(), listA);
                             data.getProfils().get(user.getId()).setHeroe(heroeA);
-                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt", "true", 1);
+                            TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt",
+                                    "true", 1);
                         }
                         String UserPays = data.getProfils().get(user.getId()).getCountry();
                         String CiblePays = data.getProfils().get(cible.getId()).getCountry();
                         atk = user.getId().equals(owner) || UserPays.equals(CiblePays) ? (atk += def) : perteSoldats;
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt", Integer.toString(atk), 1);
-                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt", user.getId(), 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt",
+                                Integer.toString(atk), 1);
+                        TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt",
+                                user.getId(), 1);
                         int Avant_poste = data.getProfils().get(user.getId()).getAvant_poste();
                         data.getProfils().get(user.getId()).setAvant_poste(++Avant_poste);
                         if (!user.getId().equals(owner) && !UserPays.equals(CiblePays)) {
@@ -1766,22 +1859,30 @@ public class Attack {
                             boolean Umail4;
                             try {
                                 Umail4 = data.getProfils().get(user.getId()).isMail();
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 Umail4 = false;
                             }
                             try {
                                 Cmail = data.getProfils().get(cible.getId()).isMail();
-                            }
-                            catch (Exception e) {
+                            } catch (Exception e) {
                                 Cmail = false;
                             }
                             if (!Umail4) {
                                 if (lang == command.Language.fr && !user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete().sendMessage(":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez gagnez  la zone de ressource en " + cible2.replace("_", " ") + " qui appartenait \u00e0 " + cible.getName() + " (" + cible.getId() + "). Vous avez desormais " + atk + " soldats en defense sur cette zone").queue();
+                                    user.openPrivateChannel().complete().sendMessage(
+                                            ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez gagnez  la zone de ressource en "
+                                                    + cible2.replace("_", " ") + " qui appartenait \u00e0 "
+                                                    + cible.getName() + " (" + cible.getId() + "). Vous avez desormais "
+                                                    + atk + " soldats en defense sur cette zone")
+                                            .queue();
                                 }
                                 if (lang == command.Language.en && !user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete().sendMessage(":crossed_swords: Ressources attack report :crossed_swords: \n **You won** the ressource area in " + cible2.replace("_", " ") + " which belonged to " + cible.getName() + " (" + cible.getId() + "). You have now " + atk + " soldiers on defense on this area.").queue();
+                                    user.openPrivateChannel().complete().sendMessage(
+                                            ":crossed_swords: Ressources attack report :crossed_swords: \n **You won** the ressource area in "
+                                                    + cible2.replace("_", " ") + " which belonged to " + cible.getName()
+                                                    + " (" + cible.getId() + "). You have now " + atk
+                                                    + " soldiers on defense on this area.")
+                                            .queue();
                                 }
                             } else {
                                 mail1 = new ArrayList<String>();
@@ -1792,10 +1893,18 @@ public class Attack {
                                     mail1.add("Ressource attack report");
                                 }
                                 if (lang == command.Language.fr) {
-                                    mail1.add(":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez gagnez  la zone de ressource en " + cible2.replace("_", " ") + " qui appartenait \u00e0 " + cible.getName() + " (" + cible.getId() + "). Vous avez desormais " + atk + " soldats en defense sur cette zone");
+                                    mail1.add(
+                                            ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez gagnez  la zone de ressource en "
+                                                    + cible2.replace("_", " ") + " qui appartenait \u00e0 "
+                                                    + cible.getName() + " (" + cible.getId() + "). Vous avez desormais "
+                                                    + atk + " soldats en defense sur cette zone");
                                 }
                                 if (lang == command.Language.en) {
-                                    mail1.add(":crossed_swords: Ressources attack report :crossed_swords: \n **You won** the ressource area in " + cible2.replace("_", " ") + " which belonged to " + cible.getName() + " (" + cible.getId() + "). You have now " + atk + " soldiers on defense on this area.");
+                                    mail1.add(
+                                            ":crossed_swords: Ressources attack report :crossed_swords: \n **You won** the ressource area in "
+                                                    + cible2.replace("_", " ") + " which belonged to " + cible.getName()
+                                                    + " (" + cible.getId() + "). You have now " + atk
+                                                    + " soldiers on defense on this area.");
                                 }
                                 mail1.add("false");
                                 mail1.add("" + System.currentTimeMillis());
@@ -1803,8 +1912,7 @@ public class Attack {
                                     mails2 = data.getProfils().get(user.getId()).getListMail();
                                     mails2.add(0, mail1);
                                     data.getProfils().get(user.getId()).setListMail(mails2);
-                                }
-                                catch (NullPointerException e) {
+                                } catch (NullPointerException e) {
                                     mails = new ArrayList<ArrayList<String>>();
                                     mails.add(0, mail1);
                                     data.getProfils().get(user.getId()).setListMail(mails);
@@ -1812,10 +1920,16 @@ public class Attack {
                             }
                             if (!Cmail) {
                                 if (langc == command.Language.fr && !cible.hasPrivateChannel()) {
-                                    cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Rapport de Defense de ressources :crossed_swords: \n Vous avez perdu face a " + user.getName() + ". Vous perdez " + def + " soldats").queue();
+                                    cible.openPrivateChannel().complete().sendMessage(
+                                            ":crossed_swords:  Rapport de Defense de ressources :crossed_swords: \n Vous avez perdu face a "
+                                                    + user.getName() + ". Vous perdez " + def + " soldats")
+                                            .queue();
                                 }
                                 if (langc == command.Language.en && !cible.hasPrivateChannel()) {
-                                    cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** against " + user.getName() + ". You lose " + def + " soldiers").queue();
+                                    cible.openPrivateChannel().complete().sendMessage(
+                                            ":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** against "
+                                                    + user.getName() + ". You lose " + def + " soldiers")
+                                            .queue();
                                 }
                             } else {
                                 mail1 = new ArrayList();
@@ -1826,10 +1940,14 @@ public class Attack {
                                     mail1.add("Ressource defense report");
                                 }
                                 if (langc == command.Language.fr) {
-                                    mail1.add(":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez perdu face a " + user.getName() + ". Vous perdez " + def + " soldats");
+                                    mail1.add(
+                                            ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez perdu face a "
+                                                    + user.getName() + ". Vous perdez " + def + " soldats");
                                 }
                                 if (langc == command.Language.en) {
-                                    mail1.add(":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** against " + user.getName() + ". You lose " + def + " soldiers");
+                                    mail1.add(
+                                            ":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** against "
+                                                    + user.getName() + ". You lose " + def + " soldiers");
                                 }
                                 mail1.add("false");
                                 mail1.add("" + System.currentTimeMillis());
@@ -1837,29 +1955,36 @@ public class Attack {
                                     mails2 = data.getProfils().get(cible.getId()).getListMail();
                                     mails2.add(0, mail1);
                                     data.getProfils().get(cible.getId()).setListMail(mails2);
-                                }
-                                catch (NullPointerException e) {
+                                } catch (NullPointerException e) {
                                     mails = new ArrayList();
                                     mails.add(0, mail1);
                                     data.getProfils().get(cible.getId()).setListMail(mails);
                                 }
                             }
-                            Quest.Quest("def", cible, ((UserImpl)cible).openPrivateChannel().complete(), 1);
-                            CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a conquis la zone de ressource de " + cible.getName() + " (" + cible.getId() + ") en " + cible2.replace("_", " "), user.getJDA());
+                            Quest.Quest("def", cible, ((UserImpl) cible).openPrivateChannel().complete(), 1);
+                            CommandMap.PublicLog(
+                                    ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
+                                            + user.getName() + " (" + user.getId()
+                                            + ") a conquis la zone de ressource de " + cible.getName() + " ("
+                                            + cible.getId() + ") en " + cible2.replace("_", " "),
+                                    user.getJDA());
                             break block117;
                         }
                         try {
                             Umail3 = data.getProfils().get(user.getId()).isMail();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             Umail3 = false;
                         }
                         if (!Umail3) {
                             if (lang == command.Language.fr && !user.hasPrivateChannel()) {
-                                user.openPrivateChannel().complete().sendMessage("Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " ")).queue();
+                                user.openPrivateChannel().complete().sendMessage(
+                                        "Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " "))
+                                        .queue();
                             }
                             if (lang == command.Language.en && !user.hasPrivateChannel()) {
-                                user.openPrivateChannel().complete().sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " ")).queue();
+                                user.openPrivateChannel().complete()
+                                        .sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " "))
+                                        .queue();
                             }
                         } else {
                             ArrayList<String> mail1 = new ArrayList<String>();
@@ -1881,24 +2006,28 @@ public class Attack {
                                 ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                                 mails.add(0, mail1);
                                 data.getProfils().get(user.getId()).setListMail(mails);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                                 mails.add(0, mail1);
                                 data.getProfils().get(user.getId()).setListMail(mails);
                             }
                         }
-                        CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a ajouté des soldats sur la zone de ressource en " + cible2.replace("_", " "), user.getJDA());
+                        CommandMap.PublicLog(
+                                ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
+                                        + user.getName() + " (" + user.getId()
+                                        + ") a ajouté des soldats sur la zone de ressource en "
+                                        + cible2.replace("_", " "),
+                                user.getJDA());
                         break block117;
                     }
-                    perteSoldats = (int)((double)def * (DPV * 1.0 / (double)def));
+                    perteSoldats = (int) ((double) def * (DPV * 1.0 / (double) def));
                     if (defHero.equals("true")) {
-                        int cartesD = Integer.parseInt((String)listD.get(1));
+                        int cartesD = Integer.parseInt((String) listD.get(1));
                         String heroAtkD = "true";
-                        int pvD = Integer.parseInt((String)listD.get(3));
-                        double calcul1 = DPV * 1.0 / (double)(def + pvD);
-                        int calcul = (int)((double)pvD * calcul1);
-                        perteSoldats = (int)((double)def * calcul1);
+                        int pvD = Integer.parseInt((String) listD.get(3));
+                        double calcul1 = DPV * 1.0 / (double) (def + pvD);
+                        int calcul = (int) ((double) pvD * calcul1);
+                        perteSoldats = (int) ((double) def * calcul1);
                         listD.set(0, Integer.toString(levelD));
                         listD.set(1, Integer.toString(cartesD));
                         listD.set(2, heroAtkD);
@@ -1908,7 +2037,7 @@ public class Attack {
                         data.getProfils().get(cible.getId()).setHeroe(heroeD);
                     }
                     if (hero.equals("true")) {
-                        cartesA = Integer.parseInt((String)listA.get(1));
+                        cartesA = Integer.parseInt((String) listA.get(1));
                         listA.set(0, Integer.toString(levelA));
                         listA.set(1, Integer.toString(cartesA));
                         listA.set(2, "false");
@@ -1920,29 +2049,34 @@ public class Attack {
                     String UserPays = data.getProfils().get(user.getId()).getCountry();
                     String CiblePays = data.getProfils().get(cible.getId()).getCountry();
                     def = user.getId().equals(owner) || UserPays.equals(CiblePays) ? atk + def : perteSoldats;
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt", Integer.toString(def), 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt",
+                            Integer.toString(def), 1);
                     if (!user.getId().equals(owner) && !UserPays.equals(CiblePays)) {
                         ArrayList<String> mail1;
                         ArrayList<ArrayList<String>> mails;
                         boolean Cmail;
                         try {
                             Umail2 = data.getProfils().get(user.getId()).isMail();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             Umail2 = false;
                         }
                         try {
                             Cmail = data.getProfils().get(cible.getId()).isMail();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             Cmail = false;
                         }
                         if (!Umail2) {
                             if (lang == command.Language.fr && !user.hasPrivateChannel()) {
-                                user.openPrivateChannel().complete().sendMessage(":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu face a " + cible.getName() + ". Vous perdez " + atk + " soldiers").queue();
+                                user.openPrivateChannel().complete().sendMessage(
+                                        ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu face a "
+                                                + cible.getName() + ". Vous perdez " + atk + " soldiers")
+                                        .queue();
                             }
                             if (lang == command.Language.en && !user.hasPrivateChannel()) {
-                                user.openPrivateChannel().complete().sendMessage(":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** against " + cible.getName() + ". You lose " + atk + " soldiers").queue();
+                                user.openPrivateChannel().complete().sendMessage(
+                                        ":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** against "
+                                                + cible.getName() + ". You lose " + atk + " soldiers")
+                                        .queue();
                             }
                         } else {
                             mail1 = new ArrayList<String>();
@@ -1953,10 +2087,14 @@ public class Attack {
                                 mail1.add("Ressource attack report");
                             }
                             if (lang == command.Language.fr) {
-                                mail1.add(":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu face a " + cible.getName() + ". Vous perdez " + atk + "soldats");
+                                mail1.add(
+                                        ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu face a "
+                                                + cible.getName() + ". Vous perdez " + atk + "soldats");
                             }
                             if (lang == command.Language.en) {
-                                mail1.add(":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** against " + cible.getName() + ". You lose " + atk + " soldiers");
+                                mail1.add(
+                                        ":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** against "
+                                                + cible.getName() + ". You lose " + atk + " soldiers");
                             }
                             mail1.add("false");
                             mail1.add("" + System.currentTimeMillis());
@@ -1964,8 +2102,7 @@ public class Attack {
                                 ArrayList<ArrayList<String>> mails3 = data.getProfils().get(user.getId()).getListMail();
                                 mails3.add(0, mail1);
                                 data.getProfils().get(user.getId()).setListMail(mails3);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 mails = new ArrayList<ArrayList<String>>();
                                 mails.add(0, mail1);
                                 data.getProfils().get(user.getId()).setListMail(mails);
@@ -1973,10 +2110,16 @@ public class Attack {
                         }
                         if (!Cmail) {
                             if (langc == command.Language.fr && !cible.hasPrivateChannel()) {
-                                cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné face a " + user.getName() + ". Vous perdez " + atk + " soldats").queue();
+                                cible.openPrivateChannel().complete().sendMessage(
+                                        ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné face a "
+                                                + user.getName() + ". Vous perdez " + atk + " soldats")
+                                        .queue();
                             }
                             if (langc == command.Language.en && !cible.hasPrivateChannel()) {
-                                cible.openPrivateChannel().complete().sendMessage(":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** against " + user.getName() + ". You lose " + atk + " soldiers").queue();
+                                cible.openPrivateChannel().complete().sendMessage(
+                                        ":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** against "
+                                                + user.getName() + ". You lose " + atk + " soldiers")
+                                        .queue();
                             }
                         } else {
                             mail1 = new ArrayList();
@@ -1987,32 +2130,40 @@ public class Attack {
                                 mail1.add("Ressources attack report");
                             }
                             if (langc == command.Language.fr) {
-                                mail1.add(":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné face a " + user.getName() + ". Vous perdez " + atk + " soldats");
+                                mail1.add(
+                                        ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné face a "
+                                                + user.getName() + ". Vous perdez " + atk + " soldats");
                             }
                             if (langc == command.Language.en) {
-                                mail1.add(":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** against " + user.getName() + ". You lose " + atk + " soldiers");
+                                mail1.add(
+                                        ":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** against "
+                                                + user.getName() + ". You lose " + atk + " soldiers");
                             }
                             mail1.add("false");
                             mail1.add("" + System.currentTimeMillis());
                             try {
-                                ArrayList<ArrayList<String>> mails4 = data.getProfils().get(cible.getId()).getListMail();
+                                ArrayList<ArrayList<String>> mails4 = data.getProfils().get(cible.getId())
+                                        .getListMail();
                                 mails4.add(0, mail1);
                                 data.getProfils().get(cible.getId()).setListMail(mails4);
-                            }
-                            catch (NullPointerException e) {
+                            } catch (NullPointerException e) {
                                 mails = new ArrayList();
                                 mails.add(0, mail1);
                                 data.getProfils().get(cible.getId()).setListMail(mails);
                             }
                         }
-                        Quest.Quest("def", cible, ((UserImpl)cible).getPrivateChannel(), 1);
-                        CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur " + cible.getName() + " (" + cible.getId() + ") a subit une attaque de " + user.getName() + " (" + user.getId() + ") sur la zone de ressource en " + cible2.replace("_", " "), user.getJDA());
+                        Quest.Quest("def", cible, ((UserImpl) cible).getPrivateChannel(), 1);
+                        CommandMap.PublicLog(
+                                ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
+                                        + cible.getName() + " (" + cible.getId() + ") a subit une attaque de "
+                                        + user.getName() + " (" + user.getId() + ") sur la zone de ressource en "
+                                        + cible2.replace("_", " "),
+                                user.getJDA());
                         break block117;
                     }
                     try {
                         Umail2 = data.getProfils().get(user.getId()).isMail();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Umail2 = false;
                     }
                     if (!Umail2) {
@@ -2020,10 +2171,15 @@ public class Attack {
                             user.openPrivateChannel().complete();
                         }
                         if (lang == command.Language.fr) {
-                            ((UserImpl)user).getPrivateChannel().sendMessage("Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " ")).queue();
+                            ((UserImpl) user).getPrivateChannel()
+                                    .sendMessage(
+                                            "Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " "))
+                                    .queue();
                         }
                         if (lang == command.Language.en) {
-                            ((UserImpl)user).getPrivateChannel().sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " ")).queue();
+                            ((UserImpl) user).getPrivateChannel()
+                                    .sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " "))
+                                    .queue();
                         }
                     } else {
                         ArrayList<String> mail1 = new ArrayList<String>();
@@ -2045,27 +2201,32 @@ public class Attack {
                             ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                             mails.add(0, mail1);
                             data.getProfils().get(user.getId()).setListMail(mails);
-                        }
-                        catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                             mails.add(0, mail1);
                             data.getProfils().get(user.getId()).setListMail(mails);
                         }
                     }
-                    CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a ajouté des soldats sur la zone de ressource en " + cible2.replace("_", " "), user.getJDA());
+                    CommandMap.PublicLog(
+                            ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
+                                    + user.getName() + " (" + user.getId()
+                                    + ") a ajouté des soldats sur la zone de ressource en " + cible2.replace("_", " "),
+                            user.getJDA());
                     break block117;
                 }
                 ProfilData data = DiscordBot.getData();
                 command.Language lang = command.Language.fr;
                 if (hero.equals("true")) {
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt", "true", 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt", "true",
+                            1);
                 }
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt", Integer.toString(atk), 1);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt", user.getId(), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt",
+                        Integer.toString(atk), 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt", user.getId(),
+                        1);
                 try {
                     Umail = data.getProfils().get(user.getId()).isMail();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Umail = false;
                 }
                 if (!Umail) {
@@ -2073,10 +2234,14 @@ public class Attack {
                         user.openPrivateChannel().complete();
                     }
                     if (lang == command.Language.fr) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage("Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " ")).queue();
+                        ((UserImpl) user).getPrivateChannel()
+                                .sendMessage("Vous venez d'ajouter " + atk + " soldats en " + cible2.replace("_", " "))
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " ")).queue();
+                        ((UserImpl) user).getPrivateChannel()
+                                .sendMessage("You just add " + atk + " soldiers in " + cible2.replace("_", " "))
+                                .queue();
                     }
                 } else {
                     ArrayList<String> mail1 = new ArrayList<String>();
@@ -2098,16 +2263,18 @@ public class Attack {
                         ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                         mails.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                         mails.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails);
                     }
                 }
-                CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a ajouté des soldats sur la zone de ressource en " + cible2.replace("_", " "), user.getJDA());
-            }
-            catch (Exception e) {
+                CommandMap.PublicLog(
+                        ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
+                                + user.getName() + " (" + user.getId()
+                                + ") a ajouté des soldats sur la zone de ressource en " + cible2.replace("_", " "),
+                        user.getJDA());
+            } catch (Exception e) {
                 e.printStackTrace();
                 CommandMap.Log("Attack point de ravitaillement", e.getLocalizedMessage(), jda);
             }
@@ -2115,19 +2282,19 @@ public class Attack {
     }
 
     public static void AttackDungeon(User user, String cibleId, JDA jda) {
-        block52 : {
+        block52: {
             try {
                 HashMap<String, ArrayList<String>> heroe;
                 int ABonus;
                 boolean Umail;
-                double pvB = Double.parseDouble(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/"+cibleId+"/pv.txt"));
+                double pvB = Double.parseDouble(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt"));
                 int DBonus;
                 command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
                 ProfilData data = DiscordBot.getData();
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     heroe = new HashMap();
                     ArrayList<String> list2 = new ArrayList<String>();
                     list2.add("1");
@@ -2153,23 +2320,29 @@ public class Attack {
                 }
                 ArrayList list = null;
                 try {
-                    list = (ArrayList)heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
-                }
-                catch (NullPointerException list2) {
+                    list = (ArrayList) heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                } catch (NullPointerException list2) {
                     // empty catch block
                 }
-                int level = Integer.parseInt((String)list.get(0));
+                int level = Integer.parseInt((String) list.get(0));
                 double pvU = Heroe.getPV(data.getProfils().get(user.getId()).getActiveHeroe(), user);
                 double atkU = Heroe.getAtk(data.getProfils().get(user.getId()).getActiveHeroe(), level, user);
                 double defU = Heroe.getDef(data.getProfils().get(user.getId()).getActiveHeroe(), level, user);
                 double magU = Heroe.getMagic(data.getProfils().get(user.getId()).getActiveHeroe(), level);
-                double atkB = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
-                double defB = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
-                double magB = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
+                double atkB = Integer.parseInt(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
+                double defB = Integer.parseInt(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
+                double magB = Integer.parseInt(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
                 double pvBSosstart = pvB;
-                for (pvB = Double.parseDouble((String)TextFileWriter.read((String)new java.lang.StringBuilder((String)"/home/DiscordBot/Rasberry/données/bot/Map/").append((String)cibleId).append((String)"/pv.txt").toString())); pvU > 0.0 && pvB > 0.0; pvB -= atkU + (double)ABonus / defB, pvU -= atkB + (double)DBonus / defU) {
-                    ABonus = 0 + (int)(Math.random() * (magU - 0.0 + 1.0));
-                    DBonus = 0 + (int)(Math.random() * (magB - 0.0 + 1.0));
+                for (pvB = Double.parseDouble((String) TextFileWriter.read(
+                        (String) new java.lang.StringBuilder((String) "/home/DiscordBot/Rasberry/données/bot/Map/")
+                                .append((String) cibleId).append((String) "/pv.txt").toString())); pvU > 0.0
+                                        && pvB > 0.0; pvB -= atkU + (double) ABonus / defB, pvU -= atkB
+                                                + (double) DBonus / defU) {
+                    ABonus = 0 + (int) (Math.random() * (magU - 0.0 + 1.0));
+                    DBonus = 0 + (int) (Math.random() * (magB - 0.0 + 1.0));
                 }
                 if (pvU <= 0.0 && pvB > 0.0) {
                     boolean Umail2;
@@ -2178,11 +2351,11 @@ public class Attack {
                     list.set(4, Long.toString(System.currentTimeMillis()));
                     heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
                     data.getProfils().get(user.getId()).setHeroe(heroe);
-                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt", Integer.toString((int)pvB), 1);
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt",
+                            Integer.toString((int) pvB), 1);
                     try {
                         Umail2 = data.getProfils().get(user.getId()).isMail();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         Umail2 = false;
                     }
                     if (!Umail2) {
@@ -2190,10 +2363,16 @@ public class Attack {
                             user.openPrivateChannel().complete();
                         }
                         if (lang == command.Language.fr) {
-                            ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Rapport d'Attaque de Donjon :crossed_swords: \n Vous avez perdu face au boss du donjon. Votre hero a perdu tout ses PV, il aura besoin de temps pour recuperer.. Vous avez mit " + (pvBSosstart - pvB) + " de dégat au boss.").queue();
+                            ((UserImpl) user).getPrivateChannel().sendMessage(
+                                    ":crossed_swords: Rapport d'Attaque de Donjon :crossed_swords: \n Vous avez perdu face au boss du donjon. Votre hero a perdu tout ses PV, il aura besoin de temps pour recuperer.. Vous avez mit "
+                                            + (pvBSosstart - pvB) + " de dégat au boss.")
+                                    .queue();
                         }
                         if (lang == command.Language.en) {
-                            ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Dungeon attack report :crossed_swords: \n You lose against the boss donjon. Your hero lose all his HP, he will need some time to regen. You put " + (pvBSosstart - pvB) + " damage to the boss.").queue();
+                            ((UserImpl) user).getPrivateChannel().sendMessage(
+                                    ":crossed_swords: Dungeon attack report :crossed_swords: \n You lose against the boss donjon. Your hero lose all his HP, he will need some time to regen. You put "
+                                            + (pvBSosstart - pvB) + " damage to the boss.")
+                                    .queue();
                         }
                     } else {
                         ArrayList<String> mail1 = new ArrayList<String>();
@@ -2204,10 +2383,14 @@ public class Attack {
                             mail1.add("Dungeon attack report");
                         }
                         if (lang == command.Language.fr) {
-                            mail1.add(":crossed_swords: Rapport d'Attaque de Donjon :crossed_swords: \n Vous avez perdu face au boss du donjon. Votre hero a perdu tout ses PV, il aura besoin de temps pour recuperer. Vous avez mit " + (pvBSosstart - pvB) + " de dégat au boss.");
+                            mail1.add(
+                                    ":crossed_swords: Rapport d'Attaque de Donjon :crossed_swords: \n Vous avez perdu face au boss du donjon. Votre hero a perdu tout ses PV, il aura besoin de temps pour recuperer. Vous avez mit "
+                                            + (pvBSosstart - pvB) + " de dégat au boss.");
                         }
                         if (lang == command.Language.en) {
-                            mail1.add(":crossed_swords: Dungeon attack report :crossed_swords: \n You lose against the boss donjon. Your hero lose all his HP, he will need some time to regen. You put " + (pvBSosstart - pvB) + " damage to the boss.");
+                            mail1.add(
+                                    ":crossed_swords: Dungeon attack report :crossed_swords: \n You lose against the boss donjon. Your hero lose all his HP, he will need some time to regen. You put "
+                                            + (pvBSosstart - pvB) + " damage to the boss.");
                         }
                         mail1.add("false");
                         mail1.add("" + System.currentTimeMillis());
@@ -2215,35 +2398,38 @@ public class Attack {
                             ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                             mails.add(0, mail1);
                             data.getProfils().get(user.getId()).setListMail(mails);
-                        }
-                        catch (NullPointerException e) {
+                        } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                             mails.add(0, mail1);
                             data.getProfils().get(user.getId()).setListMail(mails);
                         }
                     }
-                    CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de donjon** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a affaiblit le boss du donjon en " + cibleId.replace("_", ""), user.getJDA());
+                    CommandMap
+                            .PublicLog(
+                                    ":crossed_swords: **Rapport d'attaque de donjon** :crossed_swords: \n\nle joueur "
+                                            + user.getName() + " (" + user.getId()
+                                            + ") a affaiblit le boss du donjon en " + cibleId.replace("_", ""),
+                                    user.getJDA());
                     break block52;
                 }
                 list.set(2, "false");
-                list.set(3, Integer.toString((int)pvU));
+                list.set(3, Integer.toString((int) pvU));
                 list.set(4, Long.toString(System.currentTimeMillis()));
                 heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
                 data.getProfils().get(user.getId()).setHeroe(heroe);
-                int levelB = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/bosslevel.txt"));
+                int levelB = Integer.parseInt(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/bosslevel.txt"));
                 try {
                     TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId));
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                int aleaLB = 1 + (int)(Math.random() * (double)(levelB - 1 + 1));
+                int aleaLB = 1 + (int) (Math.random() * (double) (levelB - 1 + 1));
                 int lb = data.getProfils().get(user.getId()).getLootbox();
                 data.getProfils().get(user.getId()).setLootbox(lb += aleaLB);
                 try {
                     Umail = data.getProfils().get(user.getId()).isMail();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Umail = false;
                 }
                 if (!Umail) {
@@ -2251,10 +2437,16 @@ public class Attack {
                         user.openPrivateChannel().complete();
                     }
                     if (lang == command.Language.fr) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Vous avez bettu le boss du donjon. Votre hero n'a plus que " + pvU + " point de vie. \n Vous avez obtenu " + aleaLB + " lootbox.").queue();
+                        ((UserImpl) user).getPrivateChannel().sendMessage(
+                                ":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Vous avez bettu le boss du donjon. Votre hero n'a plus que "
+                                        + pvU + " point de vie. \n Vous avez obtenu " + aleaLB + " lootbox.")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Dungeon attack report :crossed_swords: \n You kill the dungeon boss. Your hero has now " + pvU + " HP. \n You won " + aleaLB + " lootbox.").queue();
+                        ((UserImpl) user).getPrivateChannel().sendMessage(
+                                ":crossed_swords: Dungeon attack report :crossed_swords: \n You kill the dungeon boss. Your hero has now "
+                                        + pvU + " HP. \n You won " + aleaLB + " lootbox.")
+                                .queue();
                     }
                 } else {
                     ArrayList<String> mail1 = new ArrayList<String>();
@@ -2265,10 +2457,14 @@ public class Attack {
                         mail1.add("Dungeon attack report");
                     }
                     if (lang == command.Language.fr) {
-                        mail1.add(":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Vous avez bettu le boss du donjon. Votre hero n'a plus que " + pvU + " point de vie. \n Vous avez obtenu " + aleaLB + " lootbox.");
+                        mail1.add(
+                                ":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Vous avez bettu le boss du donjon. Votre hero n'a plus que "
+                                        + pvU + " point de vie. \n Vous avez obtenu " + aleaLB + " lootbox.");
                     }
                     if (lang == command.Language.en) {
-                        mail1.add(":crossed_swords: Dungeon attack report :crossed_swords: \n You kill the dungeon boss. Your hero has now " + pvU + " HP. \n You won " + aleaLB + " lootbox.");
+                        mail1.add(
+                                ":crossed_swords: Dungeon attack report :crossed_swords: \n You kill the dungeon boss. Your hero has now "
+                                        + pvU + " HP. \n You won " + aleaLB + " lootbox.");
                     }
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
@@ -2276,24 +2472,23 @@ public class Attack {
                         ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                         mails.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails);
-                    }
-                    catch (NullPointerException e) {
+                    } catch (NullPointerException e) {
                         ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                         mails.add(0, mail1);
                         data.getProfils().get(user.getId()).setListMail(mails);
                     }
                 }
-                CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de donjon** :crossed_swords: \n\nle joueur " + user.getName() + " (" + user.getId() + ") a vaincu le boss du donjon en " + cibleId.replace("_", " "), user.getJDA());
-            }
-            catch (Exception e) {
+                CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de donjon** :crossed_swords: \n\nle joueur "
+                        + user.getName() + " (" + user.getId() + ") a vaincu le boss du donjon en "
+                        + cibleId.replace("_", " "), user.getJDA());
+            } catch (Exception e) {
                 boolean Umail;
                 HashMap<String, ArrayList<String>> heroe;
                 command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
                 ProfilData data = DiscordBot.getData();
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
-                }
-                catch (NullPointerException e1) {
+                } catch (NullPointerException e1) {
                     heroe = new HashMap();
                     ArrayList<String> list3 = new ArrayList<String>();
                     list3.add("1");
@@ -2319,21 +2514,19 @@ public class Attack {
                 }
                 ArrayList list = null;
                 try {
-                    list = (ArrayList)heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
-                }
-                catch (NullPointerException list3) {
+                    list = (ArrayList) heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                } catch (NullPointerException list3) {
                     // empty catch block
                 }
                 double pvU = Heroe.getPV(data.getProfils().get(user.getId()).getActiveHeroe(), user);
                 list.set(2, "false");
-                list.set(3, Integer.toString((int)pvU));
+                list.set(3, Integer.toString((int) pvU));
                 list.set(4, Long.toString(System.currentTimeMillis()));
                 heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
                 data.getProfils().get(user.getId()).setHeroe(heroe);
                 try {
                     Umail = data.getProfils().get(user.getId()).isMail();
-                }
-                catch (Exception e1) {
+                } catch (Exception e1) {
                     Umail = false;
                 }
                 if (!Umail) {
@@ -2341,10 +2534,14 @@ public class Attack {
                         user.openPrivateChannel().complete();
                     }
                     if (lang == command.Language.fr) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Votre hero est arrivé trop tard, un joueur a deja vaincu le donjon.").queue();
+                        ((UserImpl) user).getPrivateChannel().sendMessage(
+                                ":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \n Votre hero est arrivé trop tard, un joueur a deja vaincu le donjon.")
+                                .queue();
                     }
                     if (lang == command.Language.en) {
-                        ((UserImpl)user).getPrivateChannel().sendMessage(":crossed_swords: Dungeon attack report :crossed_swords: \n Your hero arrived too late and another person killed the boss.").queue();
+                        ((UserImpl) user).getPrivateChannel().sendMessage(
+                                ":crossed_swords: Dungeon attack report :crossed_swords: \n Your hero arrived too late and another person killed the boss.")
+                                .queue();
                     }
                 }
                 ArrayList<String> mail1 = new ArrayList<String>();
@@ -2355,10 +2552,12 @@ public class Attack {
                     mail1.add("Dungeon attack report");
                 }
                 if (lang == command.Language.fr) {
-                    mail1.add(":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \\n Votre hero est arrivé trop tard, un joueur a deja vaincu le donjon.");
+                    mail1.add(
+                            ":crossed_swords: Rapport d'Attaque de donjon :crossed_swords: \\n Votre hero est arrivé trop tard, un joueur a deja vaincu le donjon.");
                 }
                 if (lang == command.Language.en) {
-                    mail1.add(":crossed_swords: Dungeon attack report :crossed_swords: \n Your hero arrived too late and another person killed the boss.");
+                    mail1.add(
+                            ":crossed_swords: Dungeon attack report :crossed_swords: \n Your hero arrived too late and another person killed the boss.");
                 }
                 mail1.add("false");
                 mail1.add("" + System.currentTimeMillis());
@@ -2366,8 +2565,7 @@ public class Attack {
                     ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
                     mails.add(0, mail1);
                     data.getProfils().get(user.getId()).setListMail(mails);
-                }
-                catch (NullPointerException e1) {
+                } catch (NullPointerException e1) {
                     ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                     mails.add(0, mail1);
                     data.getProfils().get(user.getId()).setListMail(mails);
@@ -2376,4 +2574,3 @@ public class Attack {
         }
     }
 }
-

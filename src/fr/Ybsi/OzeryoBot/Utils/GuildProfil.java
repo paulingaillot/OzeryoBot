@@ -141,4 +141,3 @@ public class GuildProfil {
         this.last_update = last_update;
     }
 }
-

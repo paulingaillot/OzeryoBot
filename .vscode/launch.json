@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DiscordBot",
+            "request": "launch",
+            "mainClass": "fr.Ybsi.OzeryoBot.DiscordBot",
+            "projectName": "Ozeryo"
+        }
+    ]
+}

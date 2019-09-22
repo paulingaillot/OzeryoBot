@@ -14,8 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.managers.AudioManager;
 
-public class AudioListener
-extends AudioEventAdapter {
+public class AudioListener extends AudioEventAdapter {
     private final BlockingQueue<AudioTrack> tracks = new LinkedBlockingQueue<AudioTrack>();
     private final MusicPlayer player;
     private final MusicManager manager = new MusicManager();
@@ -38,7 +37,7 @@ extends AudioEventAdapter {
         if (this.tracks.isEmpty()) {
             return;
         }
-        this.player.getAudioPlayer().startTrack((AudioTrack)this.tracks.poll(), false);
+        this.player.getAudioPlayer().startTrack((AudioTrack) this.tracks.poll(), false);
     }
 
     @Override
@@ -61,4 +60,3 @@ extends AudioEventAdapter {
         return this.guild;
     }
 }
-

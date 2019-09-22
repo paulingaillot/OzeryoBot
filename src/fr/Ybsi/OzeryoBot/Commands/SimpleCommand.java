@@ -18,7 +18,8 @@ public final class SimpleCommand {
     private String descen;
     private String use;
 
-    public SimpleCommand(String name, String abbrev, command.Topics topic, String descfr, String descen, command.ExecutorType executorType, Object object, Method method, int power, String use) {
+    public SimpleCommand(String name, String abbrev, command.Topics topic, String descfr, String descen,
+            command.ExecutorType executorType, Object object, Method method, int power, String use) {
         this.name = name;
         this.descfr = descfr;
         this.descen = descen;
@@ -79,4 +80,3 @@ public final class SimpleCommand {
         return this.use;
     }
 }
-

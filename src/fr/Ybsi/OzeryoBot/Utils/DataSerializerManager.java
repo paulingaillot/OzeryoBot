@@ -45,4 +45,3 @@ public class DataSerializerManager {
         return this.gson.toJson(s);
     }
 }
-

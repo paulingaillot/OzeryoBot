@@ -13,12 +13,10 @@ public class Premium {
         long prem;
         try {
             prem = DiscordBot.getData().getProfils().get(user.getId()).getPremium();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             prem = 0L;
         }
         long delay = prem - System.currentTimeMillis();
         return delay > 0L;
     }
 }
-

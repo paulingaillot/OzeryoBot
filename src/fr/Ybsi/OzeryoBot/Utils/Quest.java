@@ -26,25 +26,31 @@ public class Quest {
         String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest2.txt");
         String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest3.txt");
         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/");
-        for (File file : files = TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/")) {
-            if (file.getName().equals(String.valueOf(day) + "|" + quest1 + ".txt") || file.getName().equals(String.valueOf(day) + "|" + quest2 + ".txt") || Premium.Premium(user) && file.getName().equals(String.valueOf(day) + "|" + quest3 + ".txt")) continue;
+        for (File file : files = TextFileWriter
+                .folderlist("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/")) {
+            if (file.getName().equals(String.valueOf(day) + "|" + quest1 + ".txt")
+                    || file.getName().equals(String.valueOf(day) + "|" + quest2 + ".txt")
+                    || Premium.Premium(user) && file.getName().equals(String.valueOf(day) + "|" + quest3 + ".txt"))
+                continue;
             TextFileWriter.delete(file.getAbsolutePath());
         }
         if (quest1.equals(name) || quest2.equals(name) || Premium.Premium(user) && quest3.equals(name)) {
             int maxpoints;
             int lastpts = 0;
             try {
-                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt"));
-            }
-            catch (NumberFormatException e) {
+                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId()
+                        + "/quests/" + day + "|" + name + ".txt"));
+            } catch (NumberFormatException e) {
                 return;
             }
             points = lastpts + points;
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", Integer.toString(points), 1);
+            TextFileWriter.write(
+                    "/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt",
+                    Integer.toString(points), 1);
             try {
-                maxpoints = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + name));
-            }
-            catch (NumberFormatException e) {
+                maxpoints = Integer
+                        .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/" + name));
+            } catch (NumberFormatException e) {
                 maxpoints = 0;
             }
             if (points >= maxpoints) {
@@ -164,18 +170,21 @@ public class Quest {
                     name1 = "Collect 50 petrole";
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de terminer la quete :``" + name1 + "``. Vous obtenez donc 75EXP pour l'avoir accompli.").queue();
+                    channel.sendMessage("Vous venez de terminer la quete :``" + name1
+                            + "``. Vous obtenez donc 75EXP pour l'avoir accompli.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("You just finish the quest :``" + name1 + "``. So you won 75Xp for having accomplished.").queue();
+                    channel.sendMessage(
+                            "You just finish the quest :``" + name1 + "``. So you won 75Xp for having accomplished.")
+                            .queue();
                 }
                 int Game_EXP = data.getProfils().get(user.getId()).getXp();
                 data.getProfils().get(user.getId()).setXp(Game_EXP += 75);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt", "true", 1);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|"
+                        + name + ".txt", "true", 1);
             }
         } else {
             return;
         }
     }
 }
-

@@ -44,4 +44,3 @@ public class HypixelData {
         this.HypixelQueue = hypixelQueue;
     }
 }
-
