@@ -256,7 +256,7 @@ public class Mana {
             }
             if (habitant > (long)popmax) {
                 Integer hopital = building.get("auberge");
-                double perte;
+                double perte = 0.9;
                 switch (hopital) {
                     case 1: {
                         perte = 0.9025;
@@ -455,7 +455,7 @@ public class Mana {
             if (mana < 0) {
                 mana = Max_mana;
             }
-            if (!c1.equals("all")) break block293;
+            
             if (Pet_Bonus.equals("mana")) {
                 Max_mana += (int)(Pet_Level * 3.0);
             }
@@ -536,7 +536,7 @@ public class Mana {
             fer = 0.0;
             alea1 = (int)(2.0 + Math.random() * 4.0);
             EXP_win += alea1;
-            gift += 2;
+         
             money_win2 = 100.0 + (double)(10 * level) * bonus;
             money_win = (double)Math.round(money_win2) + money_win;
             pop_win2 = 10.0 + 2.5 * (double)(10 * (levelEcole + 1) * level);
@@ -807,7 +807,7 @@ public class Mana {
         fer = 0;
         int i = 0;
 
-
+        if(c1.equals("all")){
          while (mana > 0) {
         
             --mana;
@@ -815,7 +815,7 @@ public class Mana {
             ++Used_mana;
             alea1 = (int)(2.0 + Math.random() * 4.0);
             EXP_win += alea1;
-            gift += 2;
+            
             money_win2 = 100.0 + 10.0 * (bonus + 1.0) * (double)level;
             money_win = (double)((int)Math.round(money_win2)) + money_win;
             pop_win2 = 10.0 + 2.5 * (double)(10 * (levelEcole + 1) * level);
@@ -1057,12 +1057,13 @@ public class Mana {
         if (lang != command.Language.en) return;
         channel.sendMessage("Now you can build your first building! Let's start with the market place as an example: = b march\u00e9 1.").queue();
         return;
-
-        {
+    }
+}
+    if(c1.equals("")){
             ++Used_mana;
             alea1 = (int)(2.0 + Math.random() * 4.0);
             EXP_win += alea1;
-            gift += 2;
+         
             money_win2 = 100.0 + (double)(10 * level) * bonus;
             money_win = (int)Math.round(money_win2) + money_win;
             pop_win2 = 10.0 + 2.5 * (double)(10 * (levelEcole + 1) * level);
@@ -1087,10 +1088,9 @@ public class Mana {
             if (materiau_alea == 6) {
                 fer += nombre_alea;
             }
-            ++i;
 
-            ** while (i < nombre)
-        }
+            
+        
         if (Pet_Bonus.equals("bois")) {
             bois = (int)((double)bois * (1.0 + 0.1 * Pet_Level));
         }
@@ -1139,11 +1139,11 @@ public class Mana {
             fer = (int)((double)fer * (1.0 + 0.05 * Pet_Level));
         }
         bois_Total = (int) (bois + A_bois);
-        argile_Total = argile + A_argile;
-        cuir_Total = cuir + A_cuir;
-        pierre_Total = pierre + A_pierre;
-        paille_Total = paille + A_paille;
-        fer_Total = fer + A_fer;
+        argile_Total = (int) (argile + A_argile);
+        cuir_Total = (int) (cuir + A_cuir);
+        pierre_Total = (int) (pierre + A_pierre);
+        paille_Total = (int) (paille + A_paille);
+        fer_Total = (int) (fer + A_fer);
         if (Pays.Bonus(2, pays)) {
             money_win = (int)((double)money_win * 1.25);
         }
@@ -1241,24 +1241,24 @@ public class Mana {
         }
         Quest.Quest("exp", user, channel, EXP_win);
         Quest.Quest("mana", user, channel, Used_mana);
-        Quest.Quest("materiau", user, channel, bois + argile + cuir + pierre + paille + fer);
+        Quest.Quest("materiau", user, channel, (int)(bois + argile + cuir + pierre + paille + fer));
         if (bois != 0) {
-            Quest.Quest("bois", user, channel, bois);
+            Quest.Quest("bois", user, channel, (int)(bois));
         }
         if (argile != 0) {
-            Quest.Quest("argile", user, channel, argile);
+            Quest.Quest("argile", user, channel, (int)(argile));
         }
         if (cuir != 0) {
-            Quest.Quest("cuir", user, channel, cuir);
+            Quest.Quest("cuir", user, channel, (int)(cuir));
         }
         if (pierre != 0) {
-            Quest.Quest("pierre", user, channel, pierre);
+            Quest.Quest("pierre", user, channel, (int)(pierre));
         }
         if (paille != 0) {
-            Quest.Quest("paille", user, channel, paille);
+            Quest.Quest("paille", user, channel, (int)(paille));
         }
         if (fer != 0) {
-            Quest.Quest("fer", user, channel, fer);
+            Quest.Quest("fer", user, channel, (int)(fer));
         }
         money2 = data.getProfils().get(user.getId()).getMoney_r\u00e9colt\u00e9();
         data.getProfils().get(user.getId()).setMoney_r\u00e9colt\u00e9(money2 += (long)money_win);
