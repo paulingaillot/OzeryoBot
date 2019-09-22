@@ -1088,10 +1088,9 @@ public class Mana {
                 fer += nombre_alea;
             }
             ++i;
-lbl890: // 2 sources:
+
             ** while (i < nombre)
         }
-lbl891: // 1 sources:
         if (Pet_Bonus.equals("bois")) {
             bois = (int)((double)bois * (1.0 + 0.1 * Pet_Level));
         }
