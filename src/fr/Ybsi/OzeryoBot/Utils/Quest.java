@@ -6,7 +6,6 @@ package fr.Ybsi.OzeryoBot.Utils;
 import fr.Ybsi.OzeryoBot.Commands.command;
 import fr.Ybsi.OzeryoBot.DiscordBot;
 import fr.Ybsi.OzeryoBot.Utils.Premium;
-import fr.Ybsi.OzeryoBot.Utils.Profil;
 import fr.Ybsi.OzeryoBot.Utils.ProfilData;
 import fr.Ybsi.OzeryoBot.Utils.TextFileWriter;
 import java.io.File;

@@ -96,7 +96,7 @@ public class Scheduler {
     static int LastBidDate = 0;
     static int LastPaysDate = 0;
     static int LastRessourcesDate = 0;
-    static int week = DiscordBot.getData().getLbPremiumWeek();
+    static Long week = DiscordBot.getData().getLastLbPremium();
     public static long nextPub = System.currentTimeMillis() + 7200000L;
     public static boolean messcf = false;
     public static boolean debug = false;
@@ -654,95 +654,99 @@ public class Scheduler {
                             g1.setColor(Color.black);
 
                             int xi = 0;
-                            int yi = 0;
-                            for (x = (x - 2); x <= (x + 2); x++) {
+                            int yi = 6;
+                            int xmax = x+2;
+                            int ymax = y+2;
+                            int minx = x-2;
+                            int miny = y-2;
+                            for (x = minx; x <= xmax; x++) {
                                 xi++;
-                                for (y = (y - 2); y <= (y + 2); y++) {
-                                    yi++;
+                                yi = 6;
+                                for (y = miny; y <= ymax; y++) {
+                                    yi--;
                                     String Case = "";
                                     String Soldier = "";
                                     String Owner = "";
                                     String Level = "";
 
                                     try {
-                                        Case = jda.getUserById(
-                                                TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                        + "_" + y + "/name.txt"))
+                                        Case = jda
+                                                .getUserById(TextFileWriter
+                                                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"))
                                                 .getName();
                                     } catch (NullPointerException e) {
-                                        Case = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                + "_" + y + "/name.txt");
+                                        Case = TextFileWriter
+                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                                         if (Case.equals("0")) {
                                             Case = "personne";
                                         }
                                     } catch (NumberFormatException e) {
-                                        Case = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                + "_" + y + "/name.txt");
+                                        Case = TextFileWriter
+                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                                         if (Case.equals("dungeon")) {
-                                            Owner = "Level : "
-                                                    + TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/"
-                                                            + x + "_" + y + "/bosslevel.txt");
+                                            Owner = "Level : " + TextFileWriter
+                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
                                             Soldier = "";
-                                            Level = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                    + "_" + y + "/pv.txt");
+                                            Level = TextFileWriter
+                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
                                         }
-                                        Soldier = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                + "_" + y + "/soldier.txt");
+                                        Soldier = TextFileWriter
+                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
                                         Owner = "";
                                         try {
-                                            Owner = jda.getUserById(
-                                                    TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                            + "_" + y + "/owner.txt"))
+                                            Owner = jda
+                                                    .getUserById(TextFileWriter.read(
+                                                            "/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/owner.txt"))
                                                     .getName();
                                         } catch (NullPointerException e1) {
                                             Owner = "personne";
                                         }
-                                        int res = Integer.parseInt(
-                                                TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x
-                                                        + "_" + y + "/res.txt"));
+                                        int res = Integer.parseInt(TextFileWriter
+                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/res.txt"));
                                         Level = res + "";
                                     } catch (IllegalArgumentException e) {
                                         Case = "personne";
                                     }
 
                                     Color couleur = null;
-                                    if (!Case.equals("Foret") && !Case.equals("Grotte")
-                                            && !Case.equals("Dép\u00f4t d'Argile") && !Case.equals("Bétail")
-                                            && !Case.equals("Carri\u00e8re") && !Case.equals("Champs")
-                                            && !Case.equals("Mine") && !Case.equals("personne")
-                                            && !Case.equals("dungeon")) {
-                                        couleur = Color.white;
-                                    } else {
 
                                         String operation = Case;
-                                        if (!operation.equals("personne")) {
+                                        if(x>10 || y>10 || x<-10 || y<-10) {
+                                        	couleur = Color.white;
+                                        }
+                                        else if (operation.equals("personne") ) {
                                             couleur = Color.lightGray;
                                         }
 
-                                        else if (!operation.equals("dungeon")) {
+                                        else if (operation.equals("dungeon")) {
                                             couleur = Color.DARK_GRAY;
                                         }
 
-                                        else
-                                            couleur = Color.orange;
+                                        else if(!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")
+                                        && !Case.equals("Bétail") && !Case.equals("Carri\u00e8re") && !Case.equals("Champs")
+                                        && !Case.equals("Mine") && !Case.equals("personne") && !Case.equals("dungeon")) {
+                                    couleur = Color.white;
+                                        }
+                                    else  couleur = Color.orange;
 
-                                    }
+                                    
 
-                                    g1.setColor(couleur);
+
+                    				g1.setColor(couleur);
                                     g1.fillRect(1 + 160 * (xi - 1), 1 + 160 * (yi - 1), 155, 155);
                                     g1.setColor(Color.black);
 
-                                    if (x <= 10 && y <= 10) {
-                                        g1.drawString("(" + (xi + 2) + "," + (y + 1) + ")", 90 + (60 * (xi - 1)),
-                                                140 + (160 * (yi - 1)));
+                                    if (x<-10 || x>10 || y<-10 || y>10) {
+                                    }else {
+                                        g1.drawString("(" + x + "," + y + ")", 90 + (150 * (xi - 1)), 140 + (170 * (yi - 1)));
 
                                         Font font = new Font("Dialog", 1, 18);
                                         g1.setFont(font);
-                                        g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (150 * (yi - 1)));
+                                        g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (160 * (yi - 1)));
 
-                                        g1.drawString(Soldier, 50 + 135 * (xi - 1), 100 + 170 * (yi - 1));
-                                        g1.drawString(Owner, 50 + 135 * (xi - 1), 80 + 170 * (yi - 1));
-                                        g1.drawString(Level, 50 + 135 * (xi - 1), 120 + 170 * (yi - 1));
+                                        g1.drawString(Soldier, 50 + 150 * (xi - 1), 100 + 160 * (yi - 1));
+                                        g1.drawString(Owner, 50 + 150 * (xi - 1), 80 + 160 * (yi - 1));
+                                        g1.drawString(Level, 50 + 150 * (xi - 1), 120 + 160 * (yi - 1));
                                     }
                                 }
                             }
@@ -763,7 +767,7 @@ public class Scheduler {
                 }
             }
         };
-        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 1L, 1L, TimeUnit.MINUTES);
+        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 1, 1, TimeUnit.MINUTES);
     }
 
     public static void hypixelStats(JDA jda) {
@@ -1470,13 +1474,12 @@ public class Scheduler {
                 ProfilData data = DiscordBot.getData();
                 try {
                     long lastcf;
-                    if (Calendar.getInstance().getWeekYear() != week || debug) {
+                    if (System.currentTimeMillis() > week + 604800000L || debug) {
                         for (Profil profil : data.getProfils().values()) {
                             data.getProfils().get(profil.getId()).setLootboxPremium(false);
                         }
-                        week = Calendar.getInstance().getWeekYear();
+                        data.setLastLbPremium(System.currentTimeMillis());
                         debug = false;
-                        data.setLbPremiumWeek(Calendar.getInstance().getWeekYear());
                     }
                     if ((lastcf = data.getNextcf()) < System.currentTimeMillis() && !messcf) {
                         messcf = true;
@@ -3042,7 +3045,7 @@ public class Scheduler {
                         List list3 = null;
                         List list4 = null;
                         for (MessageReaction mess1 : mess.getReactions()) {
-                            if (mess1.getReactionEmote().getName().equals("\ud83d\udc94")) {
+                            if (mess1.getReactionEmote().getName().equals("broken_heart")) {
                                 list = (List) mess1.getUsers().complete();
                                 continue;
                             }
@@ -3051,7 +3054,7 @@ public class Scheduler {
                                 list2 = (List) mess1.getUsers().complete();
                                 continue;
                             }
-                            if (mess1.getReactionEmote().getName().equals("\ud83c\udf89")) {
+                            if (mess1.getReactionEmote().getName().equals(":white_check_mark:")) {
                                 list4 = (List) mess1.getUsers().complete();
                                 continue;
                             }
@@ -3128,14 +3131,14 @@ public class Scheduler {
                             if (user1.getId().equals(user.getId())) {
                                 guild.getController()
                                         .addRolesToMember(member, guild.getRolesByName(
-                                                "\u1801\u1801\u1801 Notifications settings \u1801\u1801\u1801", true))
+                                                "᠁᠁᠁ Notifications settings ᠁᠁᠁", true))
                                         .queue();
                                 guild.getController().addRolesToMember(member,
-                                        guild.getRolesByName("\ud83d\udd14 notifications", true));
+                                        guild.getRolesByName("🔔 notifications", true));
                                 continue;
                             }
                             guild.getController().removeRolesFromMember(member,
-                                    guild.getRolesByName("\ud83d\udd14 notifications", true));
+                                    guild.getRolesByName("🔔 notifications", true));
                         }
                         for (User user1 : mess.getReactions().get(3).getUsers()) {
                             member = null;
@@ -3149,14 +3152,14 @@ public class Scheduler {
                             if (user1.getId().equals(user.getId())) {
                                 guild.getController()
                                         .addRolesToMember(guild.getMember(user1), guild.getRolesByName(
-                                                "\u1801\u1801\u1801 Notifications settings \u1801\u1801\u1801", true))
+                                                "᠁᠁᠁ Notifications settings ᠁᠁᠁", true))
                                         .queue();
                                 guild.getController().addRolesToMember(guild.getMember(user1),
-                                        guild.getRolesByName("\ud83d\udd14 notif-events", true));
+                                        guild.getRolesByName("🔔 notif-events", true));
                                 continue;
                             }
                             guild.getController().removeRolesFromMember(guild.getMember(user1),
-                                    guild.getRolesByName("\ud83d\udd14 notif-events", true));
+                                    guild.getRolesByName("🔔 notif-events", true));
                         }
                     }
                 } catch (Exception e) {

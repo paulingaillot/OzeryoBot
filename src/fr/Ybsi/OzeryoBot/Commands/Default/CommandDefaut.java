@@ -6,6 +6,9 @@ package fr.Ybsi.OzeryoBot.Commands.Default;
 import fr.Ybsi.OzeryoBot.Commands.CommandMap;
 import fr.Ybsi.OzeryoBot.Commands.Game.Attack;
 import fr.Ybsi.OzeryoBot.Commands.command;
+import fr.Ybsi.OzeryoBot.Commands.command.ExecutorType;
+import fr.Ybsi.OzeryoBot.Commands.command.Language;
+import fr.Ybsi.OzeryoBot.Commands.command.Topics;
 import fr.Ybsi.OzeryoBot.DiscordBot;
 import fr.Ybsi.OzeryoBot.Event.BotListener;
 import fr.Ybsi.OzeryoBot.Level.EXP;
@@ -89,20 +92,23 @@ import net.dv8tion.jda.core.requests.restaction.RoleAction;
 import net.dv8tion.jda.core.requests.restaction.pagination.MessagePaginationAction;
 import org.discordbots.api.client.DiscordBotListAPI;
 
+
+
 public class CommandDefaut {
+
     private final DiscordBot DiscordBot;
-    private static /* synthetic */ int[] $SWITCH_TABLE$net$dv8tion$jda$core$Region;
 
     public CommandDefaut(DiscordBot DiscordBot2) {
         this.DiscordBot = DiscordBot2;
     }
 
-    @command(name = "Bstop", type = command.ExecutorType.CONSOLE)
+	
+    @command(name = "Bstop", type = ExecutorType.CONSOLE)
     private void Bstop() {
         this.DiscordBot.setrunning(false);
     }
 
-    @command(name = "ram", type = command.ExecutorType.ALL, descfr = "Permet de voir toutes les informations sur l'utilisation de la ram par le bot", descen = "Lets see all the information on the use of the ram by the bot.", rank = 1, topic = command.Topics.Admin)
+    @command(name = "ram", type = ExecutorType.ALL, descfr = "Permet de voir toutes les informations sur l'utilisation de la ram par le bot", descen = "Lets see all the information on the use of the ram by the bot.", rank = 1, topic = Topics.Admin)
     private void ram(User user, MessageChannel Channel2, Guild guild, JDA jda) {
         long totalram = Runtime.getRuntime().totalMemory();
         long maxram = Runtime.getRuntime().maxMemory();
@@ -112,8 +118,8 @@ public class CommandDefaut {
                 + "MaxRam - FreeRam : " + (maxram - freeram) + "\n").queue();
     }
 
-    @command(name = "info", type = command.ExecutorType.ALL, descfr = "Permet de voir toute les informations sur le bot.", descen = "Lets see all the information about the bot.", rank = 1)
-    private void info(User user, MessageChannel Channel2, Guild guild, JDA jda, command.Language lang) {
+    @command(name = "info", type = ExecutorType.ALL, descfr = "Permet de voir toute les informations sur le bot.", descen = "Lets see all the information about the bot.", rank = 1)
+    private void info(User user, MessageChannel Channel2, Guild guild, JDA jda, Language lang) {
         long ping;
         long ram1 = Runtime.getRuntime().totalMemory();
         long ram2 = Runtime.getRuntime().freeMemory();
@@ -160,17 +166,17 @@ public class CommandDefaut {
         builder.setFooter(guild.getName(), guild.getIconUrl());
         builder.setColor(color.couleurAleatoire(user));
         String dev = "";
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             dev = "developer";
-        } else if (lang == command.Language.fr) {
+        } else if (lang == Language.fr) {
             dev = "developpeur";
         }
         builder.addField("\ud83e\udd34 " + dev + " \ud83e\udd34", "Ybsi#0451", true);
         builder.addBlankField(true);
         String website = "";
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             website = "Website";
-        } else if (lang == command.Language.fr) {
+        } else if (lang == Language.fr) {
             website = "Site Web";
         }
         builder.addField("\ud83c\udf10 " + website + " \ud83c\udf10", "http://ozeryo.xyz", true);
@@ -188,13 +194,13 @@ public class CommandDefaut {
         Channel2.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "invite", type = command.ExecutorType.ALL, descfr = "invite OzeryoBot sur ton serveur !!!", descen = " lets invite the bot on your server")
-    private void invite(User user, MessageChannel Channel2, command.Language lang) {
-        if (lang == command.Language.fr) {
+    @command(name = "invite", type = ExecutorType.ALL, descfr = "invite OzeryoBot sur ton serveur !!!", descen = " lets invite the bot on your server")
+    private void invite(User user, MessageChannel Channel2, Language lang) {
+        if (lang == Language.fr) {
             Channel2.sendMessage(
                     "Pour obtenir OzeryoBot sur ton serveur : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ")
                     .complete();
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             Channel2.sendMessage(
                     " Click here to get OzeryoBot on your server : \n\n http://bit.ly/OzeryoBot \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ")
                     .complete();
@@ -202,20 +208,20 @@ public class CommandDefaut {
         System.out.println("La commande serveur a été utilisé par : " + user.getName());
     }
 
-    @command(name = "serveur", type = command.ExecutorType.ALL, descfr = "Permet de rejoindre le serveur officiel d'OzeryoBot", descen = "allows to join the official OzeryoBot server")
-    private void serveur(User user, MessageChannel Channel2, command.Language lang) {
-        if (lang == command.Language.fr) {
+    @command(name = "serveur", type = ExecutorType.ALL, descfr = "Permet de rejoindre le serveur officiel d'OzeryoBot", descen = "allows to join the official OzeryoBot server")
+    private void serveur(User user, MessageChannel Channel2, Language lang) {
+        if (lang == Language.fr) {
             Channel2.sendMessage(
                     ":boom: :boom: :boom:   Rejoint vite notre serveur !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2")
                     .complete();
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             Channel2.sendMessage(
                     ":boom: :boom: :boom: Join our Main Server !!! :boom: :boom: :boom: :boom: \n\n                https://discord.gg/6c8NXk2")
                     .complete();
         }
     }
 
-    @command(name = "say", type = command.ExecutorType.ALL, descfr = " usage : =say [message]\n Le bot repete ton message", descen = "use : =say [message]\n The bot will repeat your message")
+    @command(name = "say", type = ExecutorType.ALL, descfr = " usage : =say [message]\n Le bot repete ton message", descen = "use : =say [message]\n The bot will repeat your message")
     private void say(String[] args, MessageChannel channel, User user, Message messages) {
         String message = messages.getContentRaw().replace("=say ", "");
         if (message.contains("@everyone")) {
@@ -228,8 +234,8 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "prefix", power = 100, type = command.ExecutorType.ALL, descfr = "change le prefix du bot", descen = "allows you to edit the bot prefix", topic = command.Topics.Modo)
-    private void prefix(String[] args, MessageChannel channel, User user, Guild guild, command.Language lang) {
+    @command(name = "prefix", power = 100, type = ExecutorType.ALL, descfr = "change le prefix du bot", descen = "allows you to edit the bot prefix", topic = Topics.Modo)
+    private void prefix(String[] args, MessageChannel channel, User user, Guild guild, Language lang) {
         if (guild.getMember(user).hasPermission(Permission.ADMINISTRATOR)) {
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
@@ -239,32 +245,32 @@ public class CommandDefaut {
                 builder.append(str);
             }
             if (builder.toString().equals("") || builder.toString() == null) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=prefix [prefix]").queue();
-                } else if (lang == command.Language.fr) {
+                } else if (lang == Language.fr) {
                     channel.sendMessage("Syntax : ``=prefix [prefix]").queue();
                 }
                 return;
             }
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/prefix.txt",
                     builder.toString(), 1);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Le prefix est désormais : " + builder.toString()).queue();
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 channel.sendMessage("The prefix is now : " + builder.toString()).queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas les permissions nécessaire pour executer cette action.").queue();
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 channel.sendMessage("You don't have the required permissions to perform this action.").queue();
             }
             return;
         }
     }
 
-    @command(name = "spam", type = command.ExecutorType.ALL, descfr = "Te permet de spam un message ", descen = "Allow you to spam a message", topic = command.Topics.Admin)
-    private void spam(String[] args, MessageChannel channel, User user, int[] arg, Guild guild, command.Language lang) {
+    @command(name = "spam", type = ExecutorType.ALL, descfr = "Te permet de spam un message ", descen = "Allow you to spam a message", topic = Topics.Admin)
+    private void spam(String[] args, MessageChannel channel, User user, int[] arg, Guild guild, Language lang) {
         if (user.getId().equals("102108573298851840")) {
             String string = "";
             StringBuilder builder = new StringBuilder();
@@ -284,36 +290,36 @@ public class CommandDefaut {
                     channel.sendMessage(c2).queue();
                 }
             }
-        } else if (lang == command.Language.fr) {
+        } else if (lang == Language.fr) {
             channel.sendMessage("Cette commande a déja fait trop de dommage donc reve pour avoir l'acces !!").queue();
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             channel.sendMessage("This command make has already done too much demage so she is no longer available")
                     .queue();
         }
     }
 
-    @command(name = "choix", type = command.ExecutorType.ALL, descfr = "usage : =choix [choix 1] / [choix 2]\n Je choisit a ta place", descen = " use ``=choix [choix 1] / [choix 2] \n The bot will choose for you")
-    public void choix(String[] args, MessageChannel channel, Message message, command.Language lang, String mess) {
+    @command(name = "choix", type = ExecutorType.ALL, descfr = "usage : =choix [choix 1] / [choix 2]\n Je choisit a ta place", descen = " use ``=choix [choix 1] / [choix 2] \n The bot will choose for you")
+    public void choix(String[] args, MessageChannel channel, Message message, Language lang, String mess) {
         try {
             mess.replace("choix", "");
             String[] newArgs = mess.split("/");
             String c1 = newArgs[0];
             String c2 = newArgs[1];
             if (c1.equals("") || c2.equals("")) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("``Syntaxe`` : =choix <CHOIX_1> / <CHOIX_2> ").queue();
-                } else if (lang == command.Language.en) {
+                } else if (lang == Language.en) {
                     channel.sendMessage("``Syntax`` : =choix <CHOIX_1> / <CHOIX_2>").queue();
                 }
             } else if (Math.random() < 0.5) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Je choisis : " + c1).queue();
-                } else if (lang == command.Language.en) {
+                } else if (lang == Language.en) {
                     channel.sendMessage("I choose : " + c1).queue();
                 }
-            } else if (lang == command.Language.fr) {
+            } else if (lang == Language.fr) {
                 channel.sendMessage("Je choisis : " + c2).queue();
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 channel.sendMessage("I choose : " + c2).queue();
             }
         } catch (Exception e) {
@@ -322,9 +328,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "stats", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = command.Topics.Social)
+    @command(name = "stats", type = ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = Topics.Social)
     private void stats(MessageChannel channel, Message message, String[] args, User user, Guild guild, ProfilData data,
-            command.Language lang, JDA jda) {
+            Language lang, JDA jda) {
         User cible;
         try {
             cible = message.getMentionedUsers().get(0);
@@ -340,19 +346,19 @@ public class CommandDefaut {
         builder.setAuthor(cible.getName(), null, cible.getAvatarUrl());
         builder.setColor(color.couleurAleatoire(cible));
         builder.setFooter(guild.getName(), guild.getIconUrl());
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName()
                     + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             builder.setDescription("To access to your stats click on the link : [Stats de " + cible.getName()
                     + "](https://ozeryo.xyz/profile.php?id=" + cible.getId() + ")");
         }
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "level", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = command.Topics.Social)
-    private void level(MessageChannel message, User user, ProfilData data, command.Language lang) {
+    @command(name = "level", type = ExecutorType.ALL, descfr = "Affiche le level d'un joueur", descen = "Shows the level of a player", topic = Topics.Social)
+    private void level(MessageChannel message, User user, ProfilData data, Language lang) {
         int level = Level.level(user.getId());
         int EXPUp = EXP.LevelUp(user, -1);
         int EXPUp2 = EXP.LevelUp2(user);
@@ -384,9 +390,9 @@ public class CommandDefaut {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             levelS = "Niveau";
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             levelS = "Level";
         }
         builder.addField(":level_slider: " + levelS + " ", String.valueOf(level), true);
@@ -397,8 +403,8 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "rank", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur.", descen = "Show the level of a player.", topic = command.Topics.Social)
-    private void rank(MessageChannel message, User user, command.Language lang, ProfilData data) {
+    @command(name = "rank", type = ExecutorType.ALL, descfr = "Affiche le level d'un joueur.", descen = "Show the level of a player.", topic = Topics.Social)
+    private void rank(MessageChannel message, User user, Language lang, ProfilData data) {
         int level = Level.level(user.getId());
         int EXPUp = EXP.LevelUp(user, -1);
         int EXPUp2 = EXP.LevelUp2(user);
@@ -430,9 +436,9 @@ public class CommandDefaut {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             levelS = "Niveau";
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             levelS = "Level";
         }
         builder.addField(":level_slider: " + levelS + " ", String.valueOf(level), true);
@@ -443,8 +449,8 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "top", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur IDH !", descen = "Show the IDH players leaderboard.", topic = command.Topics.Game)
-    private void top(MessageChannel channel, Guild guild, String[] args, JDA jda, command.Language lang) {
+    @command(name = "top", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur IDH !", descen = "Show the IDH players leaderboard.", topic = Topics.Game)
+    private void top(MessageChannel channel, Guild guild, String[] args, JDA jda, Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
@@ -460,8 +466,8 @@ public class CommandDefaut {
             try {
                 user = jda.getUserById(profil.getId()).getName();
             } catch (NullPointerException e) {
-                user = lang == command.Language.fr ? "Une personne invisible"
-                        : (lang == command.Language.en ? "An invisible person" : "An invisible person");
+                user = lang == Language.fr ? "Une personne invisible"
+                        : (lang == Language.en ? "An invisible person" : "An invisible person");
             }
             int point = profil.getIdh();
             classement.put(user, point);
@@ -485,8 +491,8 @@ public class CommandDefaut {
             String rank = o == 1 ? ":first_place:"
                     : (o == 2 ? ":second_place:"
                             : (o == 3 ? ":third_place:"
-                                    : (lang == command.Language.fr ? String.valueOf(o) + "\u00e8me"
-                                            : (lang == command.Language.en ? String.valueOf(o) + "e" : "e"))));
+                                    : (lang == Language.fr ? String.valueOf(o) + "\u00e8me"
+                                            : (lang == Language.en ? String.valueOf(o) + "e" : "e"))));
             if ((messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
                     + entry.getValue() + " points (" + (Integer) entry.getValue() * 100 / (max + max / 10) + "%)\n")
                             .length() > 1900
@@ -496,8 +502,8 @@ public class CommandDefaut {
         channel.sendMessage(messages).queue();
     }
 
-    @command(name = "Glevel", type = command.ExecutorType.ALL, descfr = "Affiche le level d'une guilde !", descen = " Show the level of a server.", topic = command.Topics.Social)
-    private void Glevel(MessageChannel message, Guild guild, User user, ProfilData data, command.Language lang) {
+    @command(name = "Glevel", type = ExecutorType.ALL, descfr = "Affiche le level d'une guilde !", descen = " Show the level of a server.", topic = Topics.Social)
+    private void Glevel(MessageChannel message, Guild guild, User user, ProfilData data, Language lang) {
         int level = Level.Glevel(guild.getId());
         int EXPUp = EXP.GLevelUp(guild, -1);
         int EXPMax = EXP.GLevelUp(guild, 0);
@@ -529,9 +535,9 @@ public class CommandDefaut {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setColor(color.couleurAleatoire(user));
         String levelS = "";
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             levelS = "Niveau";
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             levelS = "Level";
         }
         builder.addField(":level_slider: " + levelS + " ", String.valueOf(level), true);
@@ -542,8 +548,8 @@ public class CommandDefaut {
         message.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "report", type = command.ExecutorType.ALL, descfr = "usage : =report [command] [raison] . \n donnes des idées pour les futures maj du bot grace a cette commande !!!", descen = "User: =report [command] [reason]. \n give ideas for the future maj of the bot thanks to this command !!!")
-    private void report(MessageChannel message, Guild guild, String[] args, User user, command.Language lang) {
+    @command(name = "report", type = ExecutorType.ALL, descfr = "usage : =report [command] [raison] . \n donnes des idées pour les futures maj du bot grace a cette commande !!!", descen = "User: =report [command] [reason]. \n give ideas for the future maj of the bot thanks to this command !!!")
+    private void report(MessageChannel message, Guild guild, String[] args, User user, Language lang) {
         StringBuilder builder = new StringBuilder();
         for (String str : args) {
             if (builder.length() > 0) {
@@ -560,9 +566,9 @@ public class CommandDefaut {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             message.sendMessage("Votre rapport \u00e0 bien été envoyé \u00e0 un admin.").queue();
-        } else if (lang == command.Language.en) {
+        } else if (lang == Language.en) {
             message.sendMessage("Your report has been sent to an admin.").queue();
         }
     }
@@ -570,9 +576,9 @@ public class CommandDefaut {
     /*
      * WARNING - void declaration
      */
-    @command(name = "profile", type = command.ExecutorType.ALL, descfr = "Affiche le profil d'un joueur", descen = "Show the player profile", topic = command.Topics.Social)
+    @command(name = "profile", type = ExecutorType.ALL, descfr = "Affiche le profil d'un joueur", descen = "Show the player profile", topic = Topics.Social)
     private void profile(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            command.Language lang) {
+            Language lang) {
         String rank;
         int LevelOzr;
         ProfilData data;
@@ -624,10 +630,10 @@ public class CommandDefaut {
             try {
                 pays = data.getProfils().get(cible.getId()).getCountry();
             } catch (NullPointerException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     pays = "Aucun";
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     break block50;
                 pays = "None";
             }
@@ -660,9 +666,9 @@ public class CommandDefaut {
             desc = null;
         }
         if (desc == null) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 desc = "Joueur OzeryoBot";
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 desc = "OzeryoBot Player";
             }
         }
@@ -672,10 +678,10 @@ public class CommandDefaut {
             try {
                 user15 = jda.getUserById(profil.getId()).getName();
             } catch (NullPointerException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     user15 = "Une personne invisible";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     user15 = "An invisible person";
                 }
                 user15 = "An invisible person";
@@ -748,10 +754,10 @@ public class CommandDefaut {
         builder.setColor(color.couleurAleatoire(cible));
         builder.setThumbnail(cible.getAvatarUrl());
         String country = "";
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             country = "Pays";
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             country = "Country";
         }
         builder.setDescription(":mortar_board: Level : " + level + "\t\t      |      :incoming_envelope: Vote : " + vote
@@ -763,8 +769,8 @@ public class CommandDefaut {
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "vote", type = command.ExecutorType.ALL, descfr = "Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen = "Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic = command.Topics.Social)
-    private void vote(MessageChannel message, Guild guild, String[] args, User user, JDA jda, command.Language lang) {
+    @command(name = "vote", type = ExecutorType.ALL, descfr = "Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen = "Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic = Topics.Social)
+    private void vote(MessageChannel message, Guild guild, String[] args, User user, JDA jda, Language lang) {
         ProfilData data = DiscordBot.getData();
         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/");
         DiscordBotListAPI api = new DiscordBotListAPI.Builder().token(
@@ -815,9 +821,9 @@ public class CommandDefaut {
                         int bonus1 = data.getProfils().get(user.getId()).getBonus() / 100;
                         gain = nbalea * (1 + bonus1);
                         data.getProfils().get(user.getId()).setOzPassXp(xp += gain);
-                        if (lang == command.Language.fr) {
+                        if (lang == Language.fr) {
                             reponse2 = " Vous gangez aussi " + gain + " OzXp";
-                        } else if (lang == command.Language.en) {
+                        } else if (lang == Language.en) {
                             reponse2 = " You also won " + gain + " OzXp";
                         }
                     }
@@ -909,10 +915,10 @@ public class CommandDefaut {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setVote(vote);
                     }
-                    if (lang == command.Language.fr) {
+                    if (lang == Language.fr) {
                         reponse = "Vous venez de gagner  " + Alea_EXP + "EXP, " + money_win2 + "$, " + pop_win2
                                 + " habitants ainsi que 5 jetons. " + reponse2;
-                    } else if (lang == command.Language.en) {
+                    } else if (lang == Language.en) {
                         reponse = "You won " + Alea_EXP + "Xp, " + money_win2 + "$, " + pop_win2
                                 + " people and 5 tokens. " + reponse2;
                     }
@@ -922,35 +928,35 @@ public class CommandDefaut {
                     Uheures = 11 - Uheures;
                     Uminutes = 60 - Uminutes;
                     Usecondes = 60 - Usecondes;
-                    if (lang == command.Language.fr) {
+                    if (lang == Language.fr) {
                         reponse = "Vous devez attendre " + Uheures + " heures " + Uminutes + " minutes " + Usecondes
                                 + " secondes avant de pouvoir de nouveau voter";
-                    } else if (lang == command.Language.fr) {
+                    } else if (lang == Language.fr) {
                         reponse = "You must wait " + Uheures + " hours " + Uminutes + " minutes " + Usecondes
                                 + " seconds to be able to vote for OzeryoBot again";
                     }
                 }
             } else {
                 TextFileWriter.folder_delete("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/");
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     reponse = "Veuillez voter pour reclamer votre prix";
-                } else if (lang == command.Language.en) {
+                } else if (lang == Language.en) {
                     reponse = "You must vote to claim your price";
                 }
             }
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTitle("Vote");
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 builder.setDescription(
                         "Clique sur ce lien afin d'acceder a la page de vote : https://discordbots.org/bot/399115724926484490/vote");
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 builder.setDescription(
                         "Click on the link to go to the voting page : https://discordbots.org/bot/399115724926484490/vote");
             }
             builder.setColor(color.couleurAleatoire(user));
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 builder.addField("**Etat**", reponse, false);
-            } else if (lang == command.Language.en) {
+            } else if (lang == Language.en) {
                 builder.addField("**Progress**", reponse, false);
             }
             builder.setAuthor(user.getName(), user.getAvatarUrl());
@@ -959,8 +965,8 @@ public class CommandDefaut {
         });
     }
 
-    @command(name = "game", type = command.ExecutorType.ALL, descfr = "Met a jour le jeu du bot", descen = "Update the bot game", topic = command.Topics.Admin)
-    private void game(MessageChannel message, Guild guild, String[] args, User user, JDA jda, command.Language lang) {
+    @command(name = "game", type = ExecutorType.ALL, descfr = "Met a jour le jeu du bot", descen = "Update the bot game", topic = Topics.Admin)
+    private void game(MessageChannel message, Guild guild, String[] args, User user, JDA jda, Language lang) {
         if (user.getId().equals("102108573298851840")) {
             jda.getPresence().setGame(Game
                     .playing("try =help | " + jda.getGuilds().size() + " guilds " + jda.getUsers().size() + " users"));
@@ -971,17 +977,17 @@ public class CommandDefaut {
             api.setStats(serverCount);
             message.sendMessage("Le jeu a bien été mis a jours").queue();
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 message.sendMessage("désolé mais vous n'avez pas la permission necessaire pour faire cela").queue();
             }
-            if (lang == command.Language.en) {
-                message.sendMessage("Sorry but you don't have the necessary permission to perform this command.")
+            if (lang == Language.en) {
+                message.sendMessage("Sorry but you don't have the necessary permission to perform this ")
                         .queue();
             }
         }
     }
 
-    @command(name = "bruh", type = command.ExecutorType.ALL, descfr = "BRUHHH", descen = " BRUHHHHHHH")
+    @command(name = "bruh", type = ExecutorType.ALL, descfr = "BRUHHH", descen = " BRUHHHHHHH")
     private void bruh(MessageChannel message, Guild guild, String[] args, User user, JDA jda) {
         EmbedBuilder bruh = new EmbedBuilder();
         bruh.setImage("https://media.giphy.com/media/NrqabhEpXWsGA/giphy.gif");
@@ -990,9 +996,9 @@ public class CommandDefaut {
         message.sendMessage(bruh.build()).queue();
     }
 
-    @command(name = "kick", type = command.ExecutorType.ALL, descfr = "Permet de kick un joueur de votre serveur ", descen = " allow you to kick a player from your server", topic = command.Topics.Modo)
+    @command(name = "kick", type = ExecutorType.ALL, descfr = "Permet de kick un joueur de votre serveur ", descen = " allow you to kick a player from your server", topic = Topics.Modo)
     private void kick(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
-            command.Language lang) {
+            Language lang) {
         if (guild.getMember(user).hasPermission(Permission.KICK_MEMBERS)) {
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
@@ -1006,103 +1012,103 @@ public class CommandDefaut {
             String c1 = builder.toString();
             User userk = message.getMentionedUsers().get(0);
             guild.getController().kick(userk.getId(), c1).queue();
-            command.Language langk = data.getProfils().get(userk.getId()).getLanguage();
+            Language langk = data.getProfils().get(userk.getId()).getLanguage();
             userk.openPrivateChannel().complete();
-            if (langk == command.Language.fr) {
+            if (langk == Language.fr) {
                 ((UserImpl) userk).getPrivateChannel()
                         .sendMessage("Vous avez été kick du serveur " + guild.getName() + "\n ***Raison*** :" + c1)
                         .queue();
             }
-            if (langk == command.Language.en) {
+            if (langk == Language.en) {
                 ((UserImpl) userk).getPrivateChannel()
                         .sendMessage("You have been kicked from " + guild.getName() + "\n ***Reason*** :" + c1).queue();
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(String.valueOf(userk.getName()) + " a bien été kick.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(String.valueOf(userk.getName()) + " has successfully been kick.").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Desolé mias vous n'avez pas la permission de kick un joueur.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Sorry but you don't ave the necessary permission to kick a player.").queue();
             }
         }
     }
 
-    @command(name = "ban", type = command.ExecutorType.ALL, descfr = "Permet de bannir un joueur de votre serveur", descen = " Allow you to ban a player from your server", topic = command.Topics.Modo)
+    @command(name = "ban", type = ExecutorType.ALL, descfr = "Permet de bannir un joueur de votre serveur", descen = " Allow you to ban a player from your server", topic = Topics.Modo)
     private void ban(Message message, Guild guild, String[] args, User user, MessageChannel channel,
-            command.Language lang) {
+            Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.BAN_MEMBERS)) {
                 String c1 = args[1];
                 User userk = message.getMentionedUsers().get(0);
                 channel.sendMessage("" + userk).queue();
                 guild.getController().ban(userk.getId(), Integer.parseInt(c1)).queue();
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage(String.valueOf(userk.getName()) + " a bien été ban .").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage(String.valueOf(userk.getName()) + " has been successfully banned.").queue();
                 }
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Desolé mais vous n'avez pas la permission de ban un joueur.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Sorry but you don't have the necessary permissions to ban a player.").queue();
                 }
             }
         } catch (Exception e) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Syntaxe : ``=ban [jours] [mention]``").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Syntax : ``=ban [days] [mention]``").queue();
             }
             return;
         }
     }
 
-    @command(name = "unban", type = command.ExecutorType.ALL, descfr = "Permet de debannir un joueur de votre serveur", descen = "Allow you to unban a player from your server", topic = command.Topics.Modo)
+    @command(name = "unban", type = ExecutorType.ALL, descfr = "Permet de debannir un joueur de votre serveur", descen = "Allow you to unban a player from your server", topic = Topics.Modo)
     private void unban(Message message, Guild guild, String[] args, User user, MessageChannel channel,
-            command.Language lang) {
+            Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.BAN_MEMBERS)) {
                 String c1 = args[0];
                 guild.getController().unban(c1).queue();
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage(String.valueOf(c1) + " a bien été **unban** .").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage(String.valueOf(c1) + "has been successfully unban.").queue();
                 }
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Desolé mias vous n'avez pas la permission de ban un joueur.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Sorry but you don't have the necessary permissions to unban a player.")
                             .queue();
                 }
             }
         } catch (Exception e) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Syntaxe : ``=unban [id]``").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Syntax : ``=unban [id]``").queue();
             }
             return;
         }
     }
 
-    @command(name = "warn", type = command.ExecutorType.ALL, descfr = "Permet de warn un joueur", descen = " Allow you to warn a player", topic = command.Topics.Modo)
+    @command(name = "warn", type = ExecutorType.ALL, descfr = "Permet de warn un joueur", descen = " Allow you to warn a player", topic = Topics.Modo)
     private void warn(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
-            command.Language lang) {
+            Language lang) {
         try {
             if (guild.getMember(user).hasPermission(Permission.MANAGE_CHANNEL)) {
                 User userk = message.getMentionedUsers().get(0);
@@ -1116,46 +1122,46 @@ public class CommandDefaut {
                     builder.append(str);
                 }
                 String c1 = builder.toString();
-                command.Language langk = data.getProfils().get(userk.getId()).getLanguage();
+                Language langk = data.getProfils().get(userk.getId()).getLanguage();
                 userk.openPrivateChannel().complete();
-                if (langk == command.Language.fr) {
+                if (langk == Language.fr) {
                     ((UserImpl) userk).getPrivateChannel().sendMessage(
                             "Vous avez été warn sur le serveur " + guild.getName() + "\n __***Raison***__ : " + c1)
                             .queue();
                 }
-                if (langk == command.Language.en) {
+                if (langk == Language.en) {
                     ((UserImpl) userk).getPrivateChannel()
                             .sendMessage("You have been warn on " + guild.getName() + "\n __***Reason***__ : " + c1)
                             .queue();
                 }
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été warn !!").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been successfully warn.").queue();
                 }
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous n'avez pas les perm requises pour effectué cette action.").queue();
                 }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You don't have the necessarry permissions to perform this command.").queue();
+                if (lang == Language.en) {
+                    channel.sendMessage("You don't have the necessarry permissions to perform this ").queue();
                 }
             }
         } catch (Exception e) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Syntaxe : ``=warn [mention]``").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Syntax : ``=warn [mention]``").queue();
             }
             return;
         }
     }
 
-    @command(name = "nick", type = command.ExecutorType.ALL, descfr = "Permet de nick le bot", descen = "Allow you to nick the bot")
+    @command(name = "nick", type = ExecutorType.ALL, descfr = "Permet de nick le bot", descen = "Allow you to nick the bot")
     private void nick(Message message, Guild guild, String[] args, User user, MessageChannel channel,
-            command.Language lang) {
+            Language lang) {
         if (guild.getMember(user).hasPermission(Permission.NICKNAME_CHANGE)) {
             StringBuilder builder = new StringBuilder();
             for (String str : args) {
@@ -1169,25 +1175,25 @@ public class CommandDefaut {
             if (c1.equals("")) {
                 c1 = "OzeryoBot";
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Mon pseudo est désormais " + c1).queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("My username is now " + c1).queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas les perms resquises pour effectuer cette action.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You don't have the necessay permission to perform this action.").queue();
             }
         }
     }
 
-    @command(name = "mute", type = command.ExecutorType.ALL, descfr = "Permet de rendre muet un joueur", descen = " Allow you to mute a player", topic = command.Topics.Admin)
+    @command(name = "mute", type = ExecutorType.ALL, descfr = "Permet de rendre muet un joueur", descen = " Allow you to mute a player", topic = Topics.Admin)
     private void mute(Message message, Guild guild, String[] args, User user, MessageChannel channel, Channel chanel,
-            command.Language lang) {
+            Language lang) {
         block21: {
             try {
                 if (guild.getMember(user).hasPermission(Permission.ADMINISTRATOR)) {
@@ -1221,11 +1227,11 @@ public class CommandDefaut {
                         }
                         System.out.println("6");
                         guild.getController().addSingleRoleToMember(guild.getMember(userk), role2).queue();
-                        if (lang == command.Language.fr) {
+                        if (lang == Language.fr) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
                                     + mute_time + " minutes").queue();
                         }
-                        if (lang == command.Language.en) {
+                        if (lang == Language.en) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for "
                                     + mute_time + " minutes").queue();
                         }
@@ -1249,11 +1255,11 @@ public class CommandDefaut {
                         }
                         System.out.println("11");
                         guild.getController().addSingleRoleToMember(guild.getMember(userk), role2).queue();
-                        if (lang == command.Language.fr) {
+                        if (lang == Language.fr) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
                                     + mute_time + " minutes").queue();
                         }
-                        if (lang == command.Language.en) {
+                        if (lang == Language.en) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " has been muted for "
                                     + mute_time + " minutes").queue();
                         }
@@ -1261,17 +1267,17 @@ public class CommandDefaut {
                     Scheduler.Mute(userk, mute_time, channel, guild);
                     break block21;
                 }
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous n'avez pas les perms requises pour effectuer cette action.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You don't have the necessay permission to perform this action.").queue();
                 }
             } catch (Exception e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=mute [mention] [durée]``.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Syntax : ``=mute [mention] [duration]``.").queue();
                 }
                 return;
@@ -1284,9 +1290,9 @@ public class CommandDefaut {
      * unnecessary exception pruning Enabled aggressive exception aggregation Lifted
      * jumps to return sites
      */
-    @command(name = "sethome", type = command.ExecutorType.ALL, descfr = "Permet de set son home", descen = "Allow you to set your home", topic = command.Topics.Game)
+    @command(name = "sethome", type = ExecutorType.ALL, descfr = "Permet de set son home", descen = "Allow you to set your home", topic = Topics.Game)
     private void sethome(Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data,
-            command.Language lang) {
+            Language lang) {
         int x = 1;
         int y = 1;
         String message = "";
@@ -1306,10 +1312,10 @@ public class CommandDefaut {
             return;
         }
         if (x > 10 || x < -10 || y > 10 || y < -10) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("x et y doivent etre compris entre -10 et 10").queue();
             }
-            if (lang != command.Language.en)
+            if (lang != Language.en)
                 return;
             channel.sendMessage("x and y must be between -10 and 10").queue();
             return;
@@ -1327,12 +1333,12 @@ public class CommandDefaut {
                 home = "0";
             }
             if (!home.equals("0")) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage(
                             "Désolé mais cet emplacement est deja occupé veuillez utilisez de nouvelles coordonnées")
                             .queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage("Sorry but this location is already taken, please use another coordinates.")
                         .queue();
@@ -1343,10 +1349,10 @@ public class CommandDefaut {
             int last_x = Integer.parseInt(arg[0]);
             int last_y = Integer.parseInt(arg[1]);
             if (x > last_x + dif || x < last_x - dif && y > last_y + dif || y < last_y - dif) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas vous deplacer aussi loin pour le moment.").queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage(
                         "You can't go so far for the moment, you can only move from 1 block per days (combinable).")
@@ -1368,18 +1374,18 @@ public class CommandDefaut {
             System.out.println(4);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt",
                     Long.toString(System.currentTimeMillis()), 1);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Votre nouveau home est désormais en " + x + "," + y + ".").queue();
             }
-            if (lang != command.Language.en)
+            if (lang != Language.en)
                 return;
             channel.sendMessage("Your new home is now on " + x + "," + y + ".").queue();
             return;
         }
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             channel.sendMessage("Vous ne pouvez changer de home qu'une fois par jour.").queue();
         }
-        if (lang != command.Language.en) {
+        if (lang != Language.en) {
             channel.sendMessage("You can only move from 1 block per day.").queue();
             return;
         }
@@ -1406,13 +1412,13 @@ public class CommandDefaut {
             ++x;
         }
 
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             channel.sendMessage(
                     "Vous devez indiquez les coordonnées x et y de votre nouveau home. Vous pouvez vous placer par exemple sur ces coordonnées : "
                             + message)
                     .queue();
         }
-        if (lang != command.Language.en) {
+        if (lang != Language.en) {
             channel.sendMessage(
                     "You must indicate the coordinate x and y of your new home. You can, for exemple, go on this coordinates : "
                             + message)
@@ -1422,9 +1428,8 @@ public class CommandDefaut {
 
     }
 
-    @command(name = "map", type = command.ExecutorType.ALL, descfr = "permet d'afficher la carte du jeu ", descen = " Allow you to see the game map", topic = command.Topics.Game)
-    private void map(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            ProfilData data, command.Language lang) {
+    @command(name = "map", type = ExecutorType.ALL, descfr = "permet d'afficher la carte du jeu ", descen = " Allow you to see the game map", topic = Topics.Game)
+    private void map(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda, ProfilData data, Language lang) {
         int x = 1;
         int y = 1;
         String[] coord;
@@ -1437,10 +1442,10 @@ public class CommandDefaut {
                 x = Integer.parseInt(coord[0]);
                 y = Integer.parseInt(coord[1]);
             } catch (Exception e2) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous devez indiquez les coordonnées x et y de la map a afficher.").queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage("You must indicate the coordinate x and y of the map to show.").queue();
                 return;
@@ -1457,10 +1462,10 @@ public class CommandDefaut {
                 x = Integer.parseInt(coord[0]);
                 y = Integer.parseInt(coord[1]);
             } catch (Exception e2) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous devez indiquez les coordonnées x et y de la map a afficher.").queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage("You must indicate the coordinate x and y of the map to show.").queue();
                 return;
@@ -1468,10 +1473,10 @@ public class CommandDefaut {
         }
         int max = 10;
         if (x > max || x < -max || y > max || y < -max) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("x et y doivent etre compris entre -10 et 10.").queue();
             }
-            if (lang != command.Language.en)
+            if (lang != Language.en)
                 return;
             channel.sendMessage("The coordinates x and y must be between -10 and 10.").queue();
             return;
@@ -1489,11 +1494,16 @@ public class CommandDefaut {
         g1.setColor(Color.black);
 
         int xi = 0;
-        int yi = 0;
-        for (x = (x - 2); x < (x + 2); x++) {
+        int yi = 6;
+        int xmax = x+2;
+        int ymax = y+2;
+        int minx = x-2;
+        int miny = y-2;
+        for (x = minx; x <= xmax; x++) {
             xi++;
-            for (y = (y - 2); y < (y + 2); y++) {
-                yi++;
+            yi = 6;
+            for (y = miny; y <= ymax; y++) {
+                yi--;
                 String Case = "";
                 String Soldier = "";
                 String Owner = "";
@@ -1539,40 +1549,44 @@ public class CommandDefaut {
                 }
 
                 Color couleur = null;
-                if (!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")
-                        && !Case.equals("Bétail") && !Case.equals("Carri\u00e8re") && !Case.equals("Champs")
-                        && !Case.equals("Mine") && !Case.equals("personne") && !Case.equals("dungeon")) {
-                    couleur = Color.white;
-                } else {
 
                     String operation = Case;
-                    if (!operation.equals("personne")) {
+                    if(x>10 || y>10 || x<-10 || y<-10) {
+                    	couleur = Color.white;
+                    }
+                    else if (operation.equals("personne") ) {
                         couleur = Color.lightGray;
                     }
 
-                    else if (!operation.equals("dungeon")) {
+                    else if (operation.equals("dungeon")) {
                         couleur = Color.DARK_GRAY;
                     }
 
-                    else
-                        couleur = Color.orange;
+                    else if(!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")
+                    && !Case.equals("Bétail") && !Case.equals("Carri\u00e8re") && !Case.equals("Champs")
+                    && !Case.equals("Mine") && !Case.equals("personne") && !Case.equals("dungeon")) {
+                couleur = Color.white;
+                    }
+                else  couleur = Color.orange;
 
-                }
+                
 
-                g1.setColor(couleur);
+
+				g1.setColor(couleur);
                 g1.fillRect(1 + 160 * (xi - 1), 1 + 160 * (yi - 1), 155, 155);
                 g1.setColor(Color.black);
 
-                if (x <= max && y <= max) {
-                    g1.drawString("(" + (xi + 2) + "," + (y + 1) + ")", 90 + (60 * (xi - 1)), 140 + (160 * (yi - 1)));
+                if (x<-10 || x>10 || y<-10 || y>10) {
+                }else {
+                    g1.drawString("(" + x + "," + y + ")", 90 + (135 * (xi - 1)), 140 + (150 * (yi - 1)));
 
                     Font font = new Font("Dialog", 1, 18);
                     g1.setFont(font);
                     g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (150 * (yi - 1)));
 
-                    g1.drawString(Soldier, 50 + 135 * (xi - 1), 100 + 170 * (yi - 1));
-                    g1.drawString(Owner, 50 + 135 * (xi - 1), 80 + 170 * (yi - 1));
-                    g1.drawString(Level, 50 + 135 * (xi - 1), 120 + 170 * (yi - 1));
+                    g1.drawString(Soldier, 50 + 135 * (xi - 1), 100 + 150 * (yi - 1));
+                    g1.drawString(Owner, 50 + 135 * (xi - 1), 80 + 150 * (yi - 1));
+                    g1.drawString(Level, 50 + 135 * (xi - 1), 120 + 150 * (yi - 1));
                 }
             }
         }
@@ -1588,9 +1602,10 @@ public class CommandDefaut {
 
     }
 
-    @command(name = "Gtop", type = command.ExecutorType.ALL, descfr = "permet d'afficher le classement des serveur ", descen = "Show the Server Leaderboard", topic = command.Topics.Social)
+
+    @command(name = "Gtop", type = ExecutorType.ALL, descfr = "permet d'afficher le classement des serveur ", descen = "Show the Server Leaderboard", topic = Topics.Social)
     private void Gtop(Message message, Guild guild, String[] args, User user, MessageChannel channel, ProfilData data,
-            command.Language lang) {
+            Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
@@ -1635,9 +1650,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "toplevel", type = command.ExecutorType.ALL, descfr = "Affiche le classement en fonction du niveau social ", descen = "Show the Social Level Leaderboard", topic = command.Topics.Social)
+    @command(name = "toplevel", type = ExecutorType.ALL, descfr = "Affiche le classement en fonction du niveau social ", descen = "Show the Social Level Leaderboard", topic = Topics.Social)
     private void toplevel(Message message, Guild guild, String[] args, User user, MessageChannel channel,
-            ProfilData data, JDA jda, command.Language lang) {
+            ProfilData data, JDA jda, Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
@@ -1655,10 +1670,10 @@ public class CommandDefaut {
                     try {
                         member = jda.getUserById(levelProfil.getId()).getName();
                     } catch (NullPointerException e) {
-                        if (lang == command.Language.fr) {
+                        if (lang == Language.fr) {
                             member = "inconnu";
                         }
-                        if (lang != command.Language.en)
+                        if (lang != Language.en)
                             break block11;
                         member = "unknown";
                     }
@@ -1693,9 +1708,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "toprep", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de la reputation ", descen = " Show the Reputation Players Leaderboard", topic = command.Topics.Social)
+    @command(name = "toprep", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de la reputation ", descen = " Show the Reputation Players Leaderboard", topic = Topics.Social)
     private void toprep(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            command.Language lang) {
+            Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
@@ -1707,17 +1722,17 @@ public class CommandDefaut {
         for (Profil profil : data.getProfils().values()) {
             int rep = profil.getRep();
             String member = "Une personne discr\u00e8te | **reputation** ";
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 member = "an invisible person | **réputation** ";
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 member = "Une personne discrete | **reputation** ";
             }
             try {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **réputation** ";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **reputation** ";
                 }
             } catch (NullPointerException nullPointerException) {
@@ -1748,10 +1763,10 @@ public class CommandDefaut {
             } else if (o == 3) {
                 rank = ":third_place:";
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     rank = String.valueOf(o) + "\u00e8me";
                 }
-                rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
+                rank = lang == Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
             messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
                     + entry.getValue() + "\n";
@@ -1761,9 +1776,9 @@ public class CommandDefaut {
         channel.sendMessage(messages).queue();
     }
 
-    @command(name = "badword", type = command.ExecutorType.ALL, descfr = "Affiche les statistiques des gros mots supprimés par le bot", descen = "Show statistics about badwords tha bot have deleted")
+    @command(name = "badword", type = ExecutorType.ALL, descfr = "Affiche les statistiques des gros mots supprimés par le bot", descen = "Show statistics about badwords tha bot have deleted")
     private void badword(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            command.Language lang) {
+            Language lang) {
         int tg = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Tg.txt"));
         int ntm = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Ntm.txt"));
         int fdp = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Fdp.txt"));
@@ -1774,14 +1789,14 @@ public class CommandDefaut {
         int blc = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Blc.txt"));
         int ptn = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Ptn.txt"));
         int pd = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/BadWords/Pd.txt"));
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             channel.sendMessage("\ud83d\udcdbSuppression :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm
                     + "**\n" + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n"
                     + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **"
                     + ptn + "**\n" + "pd = **" + pd + "**\n" + "\n Vous deriez faire attention a votre langage !!!")
                     .queue();
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             channel.sendMessage("\ud83d\udcdbRemoval :\ud83d\udcdb \ntg = **" + tg + "**\n" + "ntm = **" + ntm + "**\n"
                     + "fdp = **" + fdp + "**\n" + "ez = **" + ez + "**\n" + "salope = **" + salope + "**\n"
                     + "pute = **" + pute + "**\n" + "suce = **" + suce + "**\n" + "blc = **" + blc + "**\n" + "ptn = **"
@@ -1790,9 +1805,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "topG", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs du serveur ", descen = " Show the Guild Players Leaderboard", topic = command.Topics.Social)
+    @command(name = "topG", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs du serveur ", descen = " Show the Guild Players Leaderboard", topic = Topics.Social)
     private void topG(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         String c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
@@ -1805,10 +1820,10 @@ public class CommandDefaut {
                 int EXP2 = DiscordBot.getGuilddata().getGuildProfil().get(guildProfil.getId()).getXp();
                 int level = Level.Glevel(guildProfil.getId());
                 String Guildname = "";
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     Guildname = "inconnu";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     Guildname = "inconnu";
                 }
                 try {
@@ -1847,33 +1862,33 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "silence", type = command.ExecutorType.ALL, descfr = "Permet d'activer/desactiver les messages de level up sur votre serveur.", descen = "Allow you to enable/disable level up message on your server", topic = command.Topics.Modo)
+    @command(name = "silence", type = ExecutorType.ALL, descfr = "Permet d'activer/desactiver les messages de level up sur votre serveur.", descen = "Allow you to enable/disable level up message on your server", topic = Topics.Modo)
     private void silence(Message message, Guild guild, String[] args, User user, MessageChannel channel,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         GuildProfilData guilddata = DiscordBot.getGuilddata();
         Boolean silence = guilddata.getGuildProfil().get(guild.getId()).isSilence();
         if (!silence.booleanValue()) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Le bot a été mit en sourdine. (il ne previendra plus des level up)").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)")
                         .queue();
             }
             guilddata.getGuildProfil().get(guild.getId()).setSilence(true);
         } else if (silence.booleanValue()) {
             guilddata.getGuildProfil().get(guild.getId()).setSilence(false);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Le bot peut de nouveau parler (il previendra des level up").queue();
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("The bot can speak again (you will be inform when you level up)").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Le bot a été mit en sourdine. (il ne previendra plus des level up)").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("The bot has been muted. (you will be not inform anymore when you level up)")
                         .queue();
             }
@@ -1881,20 +1896,20 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "AFK", type = command.ExecutorType.ALL, descfr = "Permet de se definir comme AFK ", descen = "Allow you to set yourself AFK", topic = command.Topics.Util)
+    @command(name = "AFK", type = ExecutorType.ALL, descfr = "Permet de se definir comme AFK ", descen = "Allow you to set yourself AFK", topic = Topics.Util)
     private void AFK(Message message, Guild guild, String[] args, User user, MessageChannel channel, JDA jda,
-            command.Language lang) {
+            Language lang) {
         TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/AFK.txt", "true", 1);
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             channel.sendMessage("Vous etes desormais AFK. ").queue();
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             channel.sendMessage("You are now AFK. ").queue();
         }
     }
 
-    @command(name = "premium", type = command.ExecutorType.ALL, descfr = "Affiche la durée restante de votre Premium", descen = "Show you the remaining duration of your Premium", topic = command.Topics.Util)
-    private void premium(MessageChannel channel, User user, String[] args, Message message, command.Language lang,
+    @command(name = "premium", type = ExecutorType.ALL, descfr = "Affiche la durée restante de votre Premium", descen = "Show you the remaining duration of your Premium", topic = Topics.Util)
+    private void premium(MessageChannel channel, User user, String[] args, Message message, Language lang,
             ProfilData data) {
         if (user.getId().equals("102108573298851840")) {
             if (message.getMentionedUsers().size() <= 0) {
@@ -1915,25 +1930,25 @@ public class CommandDefaut {
             calendar.setTimeInMillis(delay);
             int mDay = calendar.get(5);
             if (delay > 0L) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Votre premium est actif pour encore " + mDay + " jours.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Your premium is still active for " + mDay + " days.").queue();
                 }
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous n'avez pas le Premium.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You don't have the Premium").queue();
                 }
             }
         }
     }
 
-    @command(name = "color", type = command.ExecutorType.ALL, descfr = "Permet de definir une couleur pour tout vos commandes (Premium Uniquement)", descen = "Allow you to set a color for your commands (Only for Premium users)")
-    private void color(MessageChannel channel, User user, String[] args, Message message, command.Language lang) {
+    @command(name = "color", type = ExecutorType.ALL, descfr = "Permet de definir une couleur pour tout vos commandes (Premium Uniquement)", descen = "Allow you to set a color for your commands (Only for Premium users)")
+    private void color(MessageChannel channel, User user, String[] args, Message message, Language lang) {
         if (Premium.Premium(user)) {
             String g;
             String b;
@@ -1960,24 +1975,24 @@ public class CommandDefaut {
                     g, 1);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/blue.txt",
                     b, 1);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Votre couleur est desormais RGB(" + r + "," + g + "," + b + ")").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Your color message is now RGB(" + r + "," + g + "," + b + ")").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous devez etre Premium pour effectuer cette action.").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You must be Premium to perform this command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You must be Premium to perform this ").queue();
             }
         }
     }
 
-    @command(name = "rmd", type = command.ExecutorType.ALL, descfr = "Permet de vous alerter au bout d'un certain temps", descen = "Alert you after a while")
-    private void rmd(MessageChannel channel, User user, String[] args, Message message, command.Language lang) {
+    @command(name = "rmd", type = ExecutorType.ALL, descfr = "Permet de vous alerter au bout d'un certain temps", descen = "Alert you after a while")
+    private void rmd(MessageChannel channel, User user, String[] args, Message message, Language lang) {
         try {
             int rmd;
             String arg;
@@ -1996,10 +2011,10 @@ public class CommandDefaut {
             String messages = "minutes";
             if (arg.contains("s")) {
                 arg = arg.replace("s", "");
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     messages = "secondes";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     messages = "seconds";
                 }
                 try {
@@ -2010,10 +2025,10 @@ public class CommandDefaut {
                 rmd *= 1000;
             } else if (arg.contains("m")) {
                 arg = arg.replace("m", "");
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     messages = "minutes";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     messages = "minutes";
                 }
                 try {
@@ -2024,10 +2039,10 @@ public class CommandDefaut {
                 rmd *= 60000;
             } else if (arg.contains("h")) {
                 arg = arg.replace("h", "");
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     messages = "heures";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     messages = "hours";
                 }
                 try {
@@ -2038,10 +2053,10 @@ public class CommandDefaut {
                 rmd *= 3600000;
             } else if (arg.contains("d")) {
                 arg = arg.replace("d", "");
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     messages = "jours";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     messages = "days";
                 }
                 try {
@@ -2051,10 +2066,10 @@ public class CommandDefaut {
                 }
                 rmd *= 86400000;
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     messages = "minutes";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     messages = "minutes";
                 }
                 try {
@@ -2082,28 +2097,28 @@ public class CommandDefaut {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setRMD(map);
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Je vous previendrai dans " + Integer.parseInt(arg) + " " + messages
                         + "\n Raison : " + builder.toString()).queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("I will remind you in " + Integer.parseInt(arg) + " " + messages + "\n Reason : "
                         + builder.toString()).queue();
             }
         } catch (Exception e) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Syntaxe : ``=rmd [30s/10m/1h/2d/...] [raison]``").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Syntax : ``=rmd [30s/10m/1h/2d/...] [raison]``").queue();
             }
             return;
         }
     }
 
-    @command(name = "CoffreFort", abbrev = "cf", type = command.ExecutorType.ALL, descfr = "permet de récupérer un coffre fort. Ceux-ci apparaissent au bout d'un certain temps mais attention les autres joueurs les réclameront aussi !", descen = " Allow you to recolt a treasure. Treasure appear after a while but be carefull because other users will also try to recolt it.", topic = command.Topics.Game)
+    @command(name = "CoffreFort", abbrev = "cf", type = ExecutorType.ALL, descfr = "permet de récupérer un coffre fort. Ceux-ci apparaissent au bout d'un certain temps mais attention les autres joueurs les réclameront aussi !", descen = " Allow you to recolt a treasure. Treasure appear after a while but be carefull because other users will also try to recolt it.", topic = Topics.Game)
     private void cf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         ArrayList<String> list;
         int Pet_EXP;
         String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
@@ -2307,7 +2322,7 @@ public class CommandDefaut {
                 }
             }
             String gains = "";
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 for (i = 1; i <= 6; ++i) {
                     if (i == 1 && bois != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
@@ -2341,7 +2356,7 @@ public class CommandDefaut {
                             + " **Fer :** " + plastique;
                 }
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 for (i = 1; i <= 6; ++i) {
                     if (i == 1 && bois != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
@@ -2456,14 +2471,14 @@ public class CommandDefaut {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setCf(Combos);
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "\ud83d\udd13 Bravo " + user.getAsMention() + ".Vous avez remporté un Coffre Fort **" + rarity
                                 + "** (*Combo : " + Combos + "*). \n Il y avait \u00e0 l'intérieur "
                                 + Math.round(operation4) + " EXP et : \n" + gains + " \n" + Halloween1)
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("\ud83d\udd13 Great " + user.getAsMention() + ".You won a strongbox **" + rarity
                         + "** (*Combo : " + Combos + "*). \n You found in it " + Math.round(operation4) + " Xp and : \n"
                         + gains + " \n" + Halloween1).queue();
@@ -2478,13 +2493,13 @@ public class CommandDefaut {
             int mSecond = calendar.get(13);
             User Ucible = jda.getUserById(lastUser);
             Guild SCible = jda.getGuildById(lastServer);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("\ud83d\udd12   Le dernier coffre fort a été récupéré par **" + Ucible.getName()
                         + "** sur le serveur **" + SCible.getName() + "**. \r\n"
                         + "Il sera \u00e0 nouveau récupérable dans : " + mMinute + " minutes et " + mSecond
                         + " secondes.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("\ud83d\udd12  The last StrongBox was collected by  **" + Ucible.getName()
                         + "** on **" + SCible.getName() + "**. \r\n" + "The next StrongBox will be available in  "
                         + mMinute + " minutes and " + mSecond + " seconds.").queue();
@@ -2492,9 +2507,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "clean", type = command.ExecutorType.ALL, descfr = "Permet de supprimer un certain nombre de message sur le channel", descen = "Allow you to delete some messages on the channel", topic = command.Topics.Modo)
+    @command(name = "clean", type = ExecutorType.ALL, descfr = "Permet de supprimer un certain nombre de message sur le channel", descen = "Allow you to delete some messages on the channel", topic = Topics.Modo)
     private void clean(MessageChannel channel, User user, String[] args, Message message, Guild guild,
-            command.Language lang) {
+            Language lang) {
         block13: {
             try {
                 if (guild.getMember(user).hasPermission(Permission.MESSAGE_MANAGE)) {
@@ -2503,34 +2518,34 @@ public class CommandDefaut {
                         message2 = Integer.parseInt(args[0]);
                     } catch (NumberFormatException e) {
                         boolean message22 = false;
-                        if (lang == command.Language.fr) {
+                        if (lang == Language.fr) {
                             channel.sendMessage("Vous devez ecrire un nombre valide").queue();
                         }
-                        if (lang == command.Language.en) {
+                        if (lang == Language.en) {
                             channel.sendMessage("You must write a valid number").queue();
                         }
                         return;
                     }
                     channel.getIterableHistory().takeAsync(message2 + 1).thenAccept(channel::purgeMessages);
-                    if (lang == command.Language.fr) {
+                    if (lang == Language.fr) {
                         channel.sendMessage("J'ai supprimé " + message2 + " messages.").queue();
                     }
-                    if (lang == command.Language.en) {
+                    if (lang == Language.en) {
                         channel.sendMessage("I deleted " + (message2 + 1) + " messages.").queue();
                     }
                     break block13;
                 }
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous n'avez pas les permissions pour effectuer cette action.").queue();
                 }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You don't have the necessary permission to perform this command.").queue();
+                if (lang == Language.en) {
+                    channel.sendMessage("You don't have the necessary permission to perform this ").queue();
                 }
             } catch (Exception e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=clean [nombre]``.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Syntax : ``=clean [nombre]``.").queue();
                 }
                 return;
@@ -2538,9 +2553,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "topEXP", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonctions de leur Xp", descen = " Show the Xp Players LeaderBoard", topic = command.Topics.Game)
+    @command(name = "topEXP", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonctions de leur Xp", descen = " Show the Xp Players LeaderBoard", topic = Topics.Game)
     private void topEXP(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
@@ -2572,10 +2587,10 @@ public class CommandDefaut {
                 emoji = "\ud83d\udda4";
             }
             String member = "";
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 member = "Une personne discr\u00e8te | **Level** : " + level + (String) emoji + " | **Xp** ";
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 member = "An invisible person | **Level** : " + level + (String) emoji + " | **Xp** ";
             }
             try {
@@ -2609,10 +2624,10 @@ public class CommandDefaut {
             } else if (o == 3) {
                 rank = ":third_place:";
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     rank = String.valueOf(o) + "\u00e8me";
                 }
-                rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
+                rank = lang == Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
             messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
                     + entry.getValue() + "\n";
@@ -2622,9 +2637,9 @@ public class CommandDefaut {
         channel.sendMessage(messages).queue();
     }
 
-    @command(name = "topPays", type = command.ExecutorType.ALL, descfr = "Affiche le classement des Pays", descen = "Show the Country's LeaderBoard", topic = command.Topics.Game)
+    @command(name = "topPays", type = ExecutorType.ALL, descfr = "Affiche le classement des Pays", descen = "Show the Country's LeaderBoard", topic = Topics.Game)
     private void topPays(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         String c1;
         int i;
         File[] files;
@@ -2678,7 +2693,7 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "server", type = command.ExecutorType.CONSOLE)
+    @command(name = "server", type = ExecutorType.CONSOLE)
     private void server() {
         JDA jda = DiscordBot.getjda();
         List<Guild> guilds = jda.getGuilds();
@@ -2689,7 +2704,7 @@ public class CommandDefaut {
         System.out.println(message);
     }
 
-    @command(name = "region", type = command.ExecutorType.CONSOLE)
+    @command(name = "region", type = ExecutorType.CONSOLE)
     private void region() {
         JDA jda = DiscordBot.getjda();
         int amsterdam = 0;
@@ -2709,79 +2724,7 @@ public class CommandDefaut {
         int us_west = 0;
         int us_east = 0;
         int unknow = 0;
-        block18: for (int i = 0; i < jda.getGuilds().size(); ++i) {
-            Guild guild = jda.getGuilds().get(i);
-            Region reg = guild.getRegion();
-            switch (CommandDefaut.$SWITCH_TABLE$net$dv8tion$jda$core$Region()[reg.ordinal()]) {
-            case 1: {
-                ++amsterdam;
-                continue block18;
-            }
-            case 2: {
-                ++brazil;
-                continue block18;
-            }
-            case 3: {
-                ++eu_central;
-                continue block18;
-            }
-            case 4: {
-                ++eu_west;
-                continue block18;
-            }
-            case 5: {
-                ++frankfurt;
-                continue block18;
-            }
-            case 6: {
-                ++hong_kong;
-                continue block18;
-            }
-            case 7: {
-                ++japan;
-                continue block18;
-            }
-            case 8: {
-                ++london;
-                continue block18;
-            }
-            case 9: {
-                ++russia;
-                continue block18;
-            }
-            case 10: {
-                ++singapore;
-                continue block18;
-            }
-            case 11: {
-                ++south_africa;
-                continue block18;
-            }
-            case 12: {
-                ++sydney;
-                continue block18;
-            }
-            case 13: {
-                ++us_central;
-                continue block18;
-            }
-            case 14: {
-                ++us_east;
-                continue block18;
-            }
-            case 15: {
-                ++us_south;
-                continue block18;
-            }
-            case 16: {
-                ++us_west;
-                continue block18;
-            }
-            default: {
-                ++unknow;
-            }
-            }
-        }
+
         System.out.println("Voici la liste des regions des serveur : \nAmsterdam : " + amsterdam + "\n" + "Brazil : "
                 + brazil + "\n" + "EU Central : " + eu_central + "\n" + "EU West : " + eu_west + "\n" + "Franfurt : "
                 + frankfurt + "\n" + "Hong Kong : " + hong_kong + "\n" + "Japan : " + japan + "\n" + "London : "
@@ -2791,9 +2734,9 @@ public class CommandDefaut {
                 + unknow);
     }
 
-    @command(name = "topCf", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction du nombre de cf recupérés", descen = " Show the Cf players LeaderBoard", topic = command.Topics.Game)
+    @command(name = "topCf", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction du nombre de cf recupérés", descen = " Show the Cf players LeaderBoard", topic = Topics.Game)
     private void topCf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         int c1;
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         try {
@@ -2804,10 +2747,10 @@ public class CommandDefaut {
         for (Profil profil : data.getProfils().values()) {
             int combo = profil.getCf();
             String member = "";
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 member = "Une personne discr\u00e8te | **Combo**  ";
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 member = "An invisible person | **Combo**  ";
             }
             try {
@@ -2840,10 +2783,10 @@ public class CommandDefaut {
             } else if (o == 3) {
                 rank = ":third_place:";
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     rank = String.valueOf(o) + "\u00e8me";
                 }
-                rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
+                rank = lang == Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
             messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
                     + entry.getValue() + "\n";
@@ -2856,132 +2799,132 @@ public class CommandDefaut {
     /*
      * Enabled force condition propagation Lifted jumps to return sites
      */
-    @command(name = "setgrade", type = command.ExecutorType.ALL, descfr = "Permet de modifier son grade (premium uniquement)", descen = "Allow you to modifiy your rank (Premium only)")
+    @command(name = "setgrade", type = ExecutorType.ALL, descfr = "Permet de modifier son grade (premium uniquement)", descen = "Allow you to modifiy your rank (Premium only)")
     private void setgrade(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         if (Premium.Premium(user)) {
             try {
                 String grade = args[0];
                 TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/grade.txt", grade,
                         1);
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Votre grade est desormais " + grade).queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage("Your personal rank is now " + grade).queue();
                 return;
             } catch (IndexOutOfBoundsException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous devez indiquer le grade que vous souhaitez avoir.").queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     return;
                 channel.sendMessage("You must indicate the personal rank you would have").queue();
                 return;
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Désolé mais vous devez etre premium pour acceder a cette fonctionalité.").queue();
             }
-            if (lang != command.Language.en)
+            if (lang != Language.en)
                 return;
-            channel.sendMessage("Sorry but you must be Premium to access to this command.").queue();
+            channel.sendMessage("Sorry but you must be Premium to access to this ").queue();
         }
     }
 
-    @command(name = "unmute", type = command.ExecutorType.ALL, descfr = "Permet d'unmute un joueur", descen = "Allow you to unmute a player", topic = command.Topics.Modo)
+    @command(name = "unmute", type = ExecutorType.ALL, descfr = "Permet d'unmute un joueur", descen = "Allow you to unmute a player", topic = Topics.Modo)
     private void unmute(MessageChannel channel, User user, String[] args, Message message, Guild guild,
-            command.Language lang) {
+            Language lang) {
         try {
             List<Role> role = guild.getRolesByName("Muted", true);
             Role role2 = role.get(0);
             User cible = message.getMentionedUsers().get(0);
             guild.getController().removeSingleRoleFromMember(guild.getMember(cible), role2).queue();
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(String.valueOf(cible.getName()) + " a bien été unmute.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(String.valueOf(cible.getName()) + " has been unmute.").queue();
             }
         } catch (Exception e) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Syntaxe : ``=unmute [mention]``.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Syntax : ``=unmute [mention]``.").queue();
             }
             return;
         }
     }
 
-    @command(name = "slowmode", type = command.ExecutorType.ALL, descfr = "Permet de definir un delai entre deux messages consecutif sur un channel", descen = "Define a delay between two consecutive messages on a channel", topic = command.Topics.Modo)
+    @command(name = "slowmode", type = ExecutorType.ALL, descfr = "Permet de definir un delai entre deux messages consecutif sur un channel", descen = "Define a delay between two consecutive messages on a channel", topic = Topics.Modo)
     private void slowmode(TextChannel channel, User user, String[] args, MessageChannel message, Guild guild,
-            command.Language lang) {
+            Language lang) {
         if (guild.getMember(user).hasPermission(Permission.MANAGE_CHANNEL)) {
             int c1;
             try {
                 c1 = Integer.parseInt(args[0]);
             } catch (ArrayIndexOutOfBoundsException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=slowmode [durée]``.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Syntax : ``=slowmode [duration]``.").queue();
                 }
                 return;
             } catch (NumberFormatException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=slowmode [durée]``.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Syntax : ``=slowmode [duration]``.").queue();
                 }
                 return;
             }
             if (c1 > 120) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     message.sendMessage("Les cooldown doit etre compris entre 1 et 120 secondes").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     message.sendMessage("The cooldown must be between 1 and 120 seconds").queue();
                 }
                 return;
             }
             channel.getManager().setSlowmode(c1).queue();
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 message.sendMessage("Le slowmode est désormais de " + c1 + " secondes").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 message.sendMessage("The slowmode is now set on " + c1 + " seconds on this channel").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas les permissions pour effectuer cet action.").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You don't have the necessary permissions to perform this command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You don't have the necessary permissions to perform this ").queue();
             }
             return;
         }
     }
 
-    @command(name = "partenaires", abbrev = "partners", type = command.ExecutorType.ALL, descfr = "Affiche la liste des partnaires OzeryoBot", descen = "Show the OzeryoBot Partner List")
+    @command(name = "partenaires", abbrev = "partners", type = ExecutorType.ALL, descfr = "Affiche la liste des partnaires OzeryoBot", descen = "Show the OzeryoBot Partner List")
     private void partenaire(Message message, User user, String[] args, MessageChannel channel, Guild guild,
-            command.Language lang) {
+            Language lang) {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(user.getName(), null, user.getAvatarUrl());
         builder.setColor(color.couleurAleatoire(user));
-        if (lang == command.Language.fr) {
+        if (lang == Language.fr) {
             builder.setDescription(":busts_in_silhouette: Listes des Partenaires d'OzeryoBot :heart: ");
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             builder.setDescription(":busts_in_silhouette: OzeryoBot Partners List :heart: ");
         }
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "CPU", type = command.ExecutorType.ALL, descfr = "Affiche les information processeur du bot", descen = " Allow you to see the CPU informations", topic = command.Topics.Admin)
+    @command(name = "CPU", type = ExecutorType.ALL, descfr = "Affiche les information processeur du bot", descen = " Allow you to see the CPU informations", topic = Topics.Admin)
     private void CPU(Message message, User user, String[] args, MessageChannel channel, Guild guild) {
         OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
         String message1 = "";
@@ -3000,9 +2943,9 @@ public class CommandDefaut {
         channel.sendMessage(String.valueOf(message1)).queue();
     }
 
-    @command(name = "parrain", type = command.ExecutorType.ALL, descfr = "Permet de parrainer un joueur", descen = "Allow you to choose your sponsor")
+    @command(name = "parrain", type = ExecutorType.ALL, descfr = "Permet de parrainer un joueur", descen = "Allow you to choose your sponsor")
     private void parrain(Message message, User user, String[] args, MessageChannel channel, Guild guild,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         String c1;
         int level;
         try {
@@ -3025,20 +2968,20 @@ public class CommandDefaut {
             if (parrain.booleanValue()) {
                 emoji = ":x:";
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(String.valueOf(emoji) + " | Vous avez actuelement " + Ufilleuls + " filleuls.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(String.valueOf(emoji) + " | You actualy have " + Ufilleuls + " godson.").queue();
             }
         } else {
             if (level < 30) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous devez atteindre le niveau 30 du jeu pour pouvoir choisir votre parrain.")
                             .queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You must reach level 30 of the game to be able to choose your sponsor.")
                             .queue();
                 }
@@ -3048,39 +2991,39 @@ public class CommandDefaut {
             try {
                 cible = message.getMentionedUsers().get(0);
             } catch (ArrayIndexOutOfBoundsException e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Veuillez mentionner le joueur que vous voulez designer comme votre parrain.")
                             .queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Please mention the player you want to designate as your sponsor.").queue();
                 }
                 return;
             }
             if (cible.getId().equals(user.getId())) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas vous parrainer vous meme.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You can't sponsor yourself.").queue();
                 }
                 return;
             }
             if (cible.isBot()) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas parrainer un bot.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You can't sponsor a bot.").queue();
                 }
                 return;
             }
             Boolean parrain = data.getProfils().get(user.getId()).isParrain();
             if (parrain.booleanValue()) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Désolé mais vous avez deja choisit votre parrain.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Sorry but you already choose your sponsor.").queue();
                 }
                 return;
@@ -3088,22 +3031,22 @@ public class CommandDefaut {
             data.getProfils().get(user.getId()).setParrain(true);
             int Cfilleuls = data.getProfils().get(cible.getId()).getFilleuls();
             data.getProfils().get(cible.getId()).setFilleuls(++Cfilleuls);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous avez choisit " + cible.getName() + " comme parrain.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You chosse " + cible.getName() + " as sponsor.").queue();
             }
-            command.Language langcible = data.getProfils().get(cible.getId()).getLanguage();
+            Language langcible = data.getProfils().get(cible.getId()).getLanguage();
             if (!cible.hasPrivateChannel()) {
                 cible.openPrivateChannel().complete();
             }
-            if (langcible == command.Language.fr) {
+            if (langcible == Language.fr) {
                 ((UserImpl) cible).getPrivateChannel().sendMessage(
                         "Vous venez de gagner un nouveau filleul. Vous avez actuelement " + Cfilleuls + " filleuls.")
                         .queue();
             }
-            if (langcible == command.Language.en) {
+            if (langcible == Language.en) {
                 ((UserImpl) cible).getPrivateChannel()
                         .sendMessage("You won a new godson. You have actually " + Cfilleuls + " godson.").queue();
             }
@@ -3111,12 +3054,12 @@ public class CommandDefaut {
                 if (!cible.hasPrivateChannel()) {
                     cible.openPrivateChannel().complete();
                 }
-                if (langcible == command.Language.fr) {
+                if (langcible == Language.fr) {
                     ((UserImpl) cible).getPrivateChannel().sendMessage(
                             "Bravo vous avez " + Cfilleuls + " filleuls, vous remportez donc un premium d'un mois.")
                             .queue();
                 }
-                if (langcible == command.Language.en) {
+                if (langcible == Language.en) {
                     ((UserImpl) cible).getPrivateChannel()
                             .sendMessage(
                                     "Great you have " + Cfilleuls + " godson, So you win one month of Ozeryo Premium.")
@@ -3133,9 +3076,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "math", type = command.ExecutorType.ALL, descfr = "Permet d'effectuer un calcul mathematique, c'est fantastique !", descen = " Allow you to execute a mathematical calculation, it's fantastic !")
+    @command(name = "math", type = ExecutorType.ALL, descfr = "Permet d'effectuer un calcul mathematique, c'est fantastique !", descen = " Allow you to execute a mathematical calculation, it's fantastic !")
     private void math(Message message, User user, String arg, MessageChannel channel, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
         System.out.println(message.getContentRaw());
@@ -3144,29 +3087,29 @@ public class CommandDefaut {
         try {
             System.out.println(engine.eval(foo));
             if (foo.equals("")) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=math [calcul]``.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("Syntax : ``=math [calculation]``.").queue();
                 }
             }
             channel.sendMessage("``" + foo + "`` = " + engine.eval(foo)).queue();
         } catch (ScriptException e) {
             System.out.println("Error");
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Erreur Math : " + arg).queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Error Math : " + arg).queue();
             }
             e.printStackTrace();
         }
     }
 
-    @command(name = "bid", type = command.ExecutorType.ALL, descfr = "Permet d'encherir sur l'objet du jour en vente", descen = "Allow you to bet on the daily object on sale", topic = command.Topics.Game)
+    @command(name = "bid", type = ExecutorType.ALL, descfr = "Permet d'encherir sur l'objet du jour en vente", descen = "Allow you to bet on the daily object on sale", topic = Topics.Game)
     private void bid(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         int c1;
         try {
             c1 = Integer.parseInt(args[0]);
@@ -3198,13 +3141,13 @@ public class CommandDefaut {
             if (object1.equals("weapon") || object1.equals("armor")) {
                 mess = " de niveau **" + level + "**";
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "\u2696 Vous avez **" + jetons1 + "** jetons\r\n" + "L'ench\u00e8re du jour est **" + object2
                                 + "**" + mess + ". **" + cible + "** a enchérit dessus pour **" + jetons + "** jetons.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("\u2696 You have **" + jetons1 + "** tokens\r\n" + "The bid of the day is **"
                         + object2 + "**" + mess + ". **" + cible + "** who has bid on for **" + jetons + "** tokens.")
                         .queue();
@@ -3219,20 +3162,20 @@ public class CommandDefaut {
             }
             int jetons = data.getProfils().get(user.getId()).getTokens();
             if (c1 > jetons) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas miser plus de jetons que vous n'en avez.").queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You can't bet more tokens than you have.").queue();
                 }
                 return;
             }
             if (c1 <= Ljetons) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas misez un nombre inferieur de jetons a celui actuel.")
                             .queue();
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     channel.sendMessage("You can't bet a lower number of tokens than the current one .").queue();
                 }
                 return;
@@ -3242,20 +3185,20 @@ public class CommandDefaut {
             data.getProfils().get(user.getId()).setTokens(jetons -= c1);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Bid/bidjetons.txt", Integer.toString(c1), 1);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Bid/biduser.txt", user.getId(), 1);
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("\u2696 Vous venez de miser **" + c1 + "** jetons pour **" + object2 + "**.\r\n"
                         + "Si vous remportez celle-ci, vous serez informé aux alentours de minuit (UTC+2).").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("\u2696 you have just bet **" + c1 + "** tokens for **" + object2 + "**.\r\n"
                         + "If you win the bid, you will be inform around midnight (UTC+2).").queue();
             }
         }
     }
 
-    @command(name = "topTrophy", type = command.ExecutorType.ALL, descfr = "Affiche le top des joueurs en fonction de leurs trophées", descen = " Show the Trophy player top", topic = command.Topics.Game)
+    @command(name = "topTrophy", type = ExecutorType.ALL, descfr = "Affiche le top des joueurs en fonction de leurs trophées", descen = " Show the Trophy player top", topic = Topics.Game)
     private void topTrophy(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
@@ -3268,18 +3211,18 @@ public class CommandDefaut {
             int trophees = profil.getTrophy();
             String rank = Attack.rank(trophees);
             Object member = "";
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 member = "Une personne discr\u00e8te | **Rank** : " + rank + " | **Trophées**  ";
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 member = "An invisible Person | **Rank** : " + rank + " | **Trophies**  ";
             }
             try {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank
                             + " | **Trophées**  ";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **Rank** : " + rank
                             + " | **Trophies**  ";
                 }
@@ -3311,10 +3254,10 @@ public class CommandDefaut {
             } else if (o == 3) {
                 rank = ":third_place:";
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     rank = String.valueOf(o) + "\u00e8me";
                 }
-                rank = lang == command.Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
+                rank = lang == Language.en ? String.valueOf(o) + "e" : String.valueOf(o) + "e";
             }
             messages = String.valueOf(messages) + "**" + rank + "** : " + (String) entry.getKey() + " : "
                     + entry.getValue() + "\n";
@@ -3324,9 +3267,9 @@ public class CommandDefaut {
         channel.sendMessage(messages).queue();
     }
 
-    @command(name = "setdescription", type = command.ExecutorType.ALL, descfr = "Permet de definir une description de profil (Premium only)", descen = " Allow you to set your profile description ( Premium only)")
+    @command(name = "setdescription", type = ExecutorType.ALL, descfr = "Permet de definir une description de profil (Premium only)", descen = " Allow you to set your profile description ( Premium only)")
     private void setdescription(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         if (Premium.Premium(user)) {
             ProfilData data = DiscordBot.getData();
             String desc = message.getContentRaw();
@@ -3338,25 +3281,25 @@ public class CommandDefaut {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setDescription(desc);
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Votre description est désormais : \n \n **" + desc + "**").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("Your description is now : \n \n **" + desc + "**").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous devez etre premium pour changer votre description.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You must be Premium to change your description.").queue();
             }
         }
     }
 
-    @command(name = "timerpanel", type = command.ExecutorType.ALL, descfr = "Affiche la liste de vos operations en cours", descen = " Show you the list of all your operation in progress")
+    @command(name = "timerpanel", type = ExecutorType.ALL, descfr = "Affiche la liste de vos operations en cours", descen = " Show you the list of all your operation in progress")
     private void timerpanel(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         String rep;
         int mMinute;
         int Pet_EXP;
@@ -3580,7 +3523,7 @@ public class CommandDefaut {
         channel.sendMessage(builder.build()).queue();
     }
 
-    @command(name = "test", type = command.ExecutorType.ALL, descfr = "Affiche la proportion de la carte utilisé", descen = "Show the map statistic", topic = command.Topics.Admin)
+    @command(name = "test", type = ExecutorType.ALL, descfr = "Affiche la proportion de la carte utilisé", descen = "Show the map statistic", topic = Topics.Admin)
     private void test(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
         int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
         String message2 = String.valueOf(taille) + " joueurs  (" + taille * 100 / 441 + ")\n";
@@ -3612,9 +3555,9 @@ public class CommandDefaut {
         channel.sendMessage(message2).queue();
     }
 
-    @command(name = "topap", type = command.ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur nombre d'Achievement Point", descen = "Show the Achievement Point Player's LeaderBoard", topic = command.Topics.Game)
+    @command(name = "topap", type = ExecutorType.ALL, descfr = "Affiche le classement des joueurs en fonction de leur nombre d'Achievement Point", descen = "Show the Achievement Point Player's LeaderBoard", topic = Topics.Game)
     private void topap(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            command.Language lang) {
+            Language lang) {
         int c1;
         ProfilData data = DiscordBot.getData();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
@@ -3626,10 +3569,10 @@ public class CommandDefaut {
         for (Profil profil : data.getProfils().values()) {
             int rep = profil.getAp();
             String member = "";
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 member = "Une personne discr\u00e8te | **Achievement Points** ";
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 member = "An invisible person | **Achievement Points** ";
             }
             try {
@@ -3662,10 +3605,10 @@ public class CommandDefaut {
             } else if (o == 3) {
                 rank = ":third_place:";
             } else {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     rank = String.valueOf(o) + "\u00e8me";
                 }
-                if (lang == command.Language.en) {
+                if (lang == Language.en) {
                     rank = String.valueOf(o) + "e";
                 }
             }
@@ -3677,23 +3620,23 @@ public class CommandDefaut {
         channel.sendMessage(messages).queue();
     }
 
-    @command(name = "helpstories", type = command.ExecutorType.ALL, descfr = "Affiche la liste des Stories", descen = "Show the list of all sotries")
+    @command(name = "helpstories", type = ExecutorType.ALL, descfr = "Affiche la liste des Stories", descen = "Show the list of all sotries")
     private void helpstories(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
         channel.sendMessage(
                 "**Stories** \ud83c\udf93 \r\n\r\n**=vulcain** : 10reps\r\n**=cry** :  20reps\r\n**=rage** :  30reps\r\n**=grow** : 40reps\r\n**=nop** : 50reps\r\n**=lol** : 60reps\r\n**=hearts** :  70reps\r\n**=travel** : 80reps\r\n**=rain** : 90reps\r\n**=lf** :  100reps\r\n**=surf** : 120reps\r\n**=travelplane** : 140reps\r\n**=thug** : 160reps\r\n**=ghost** : 180 reps\r\n**=singe** : 200reps\r\n**=moon** : 240reps\r\n**=fight** : 280reps\r\n**=soundover** : 300reps\r\n**=hiver** : 350reps\r\n**=women** : 400reps\r\n**=timeislong** : 500reps\r\n**=sick** : 550reps\r\n**=fp** : 600reps\r\n**=nm** : 650reps\r\n**=hey** : 700reps\r\n**=pic** : 750reps\r\n\r\n**Spéciaux** \ud83d\udc51 \r\n\r\n**=topreprec** : top 5 reps\r\n**=cfez** : top 5cfs\r\n")
                 .queue();
     }
 
-    @command(name = "herodebug", type = command.ExecutorType.ALL, descfr = "debug le hero d'un joueur", topic = command.Topics.Admin)
+    @command(name = "herodebug", type = ExecutorType.ALL, descfr = "debug le hero d'un joueur", topic = Topics.Admin)
     private void herodebug(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         if (!(user.getId().equals("102108573298851840") || user.getId().equals("502535486691082279")
                 || user.getId().equals("249987060365000704"))) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas la permission d'executer cette action").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You don't have the necessary permission to perform this command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You don't have the necessary permission to perform this ").queue();
             }
             return;
         }
@@ -3707,9 +3650,9 @@ public class CommandDefaut {
         channel.sendMessage("Le hero de " + cible.getName() + " a été réparé.").queue();
     }
 
-    @command(name = "mapdebug", type = command.ExecutorType.ALL, descfr = "Clean la map", topic = command.Topics.Admin)
+    @command(name = "mapdebug", type = ExecutorType.ALL, descfr = "Clean la map", topic = Topics.Admin)
     private void mapdebug(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         if (user.getId().equals("102108573298851840")) {
             int y = -10;
             int x = -10;
@@ -3730,20 +3673,20 @@ public class CommandDefaut {
                 }
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas la permission d'executer cette action").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You don't have the necessary permission to perform this command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You don't have the necessary permission to perform this ").queue();
             }
             return;
         }
         channel.sendMessage("La map a été clear.").queue();
     }
 
-    @command(name = "Ozpass", type = command.ExecutorType.ALL, descfr = "Affiche votre progression dans la pass OzeryoBot", descen = " Show your progression in the OzeryoBot Pass", topic = command.Topics.Game)
+    @command(name = "Ozpass", type = ExecutorType.ALL, descfr = "Affiche votre progression dans la pass OzeryoBot", descen = " Show your progression in the OzeryoBot Pass", topic = Topics.Game)
     private void Ozpass(Message message, User user, String[] args, MessageChannel channel, Guild guild, JDA jda,
-            ProfilData data, command.Language lang) {
+            ProfilData data, Language lang) {
         if (Event.Summer() || user.getId().equals("102108573298851840")) {
             int xp = data.getProfils().get(user.getId()).getOzPassXp();
             int pallier = xp / 1000;
@@ -3835,20 +3778,20 @@ public class CommandDefaut {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("``Vous avez actuelement " + (xp - pallier * 1000) + " / 1000 OzXp``")
                         .addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("``You have actually " + (xp - pallier * 1000) + " / 1000 OzXp``")
                         .addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
             }
         }
     }
 
-    @command(name = "apDebug", type = command.ExecutorType.ALL, descfr = "Debug des achievement points des joueurs", topic = command.Topics.Admin)
+    @command(name = "apDebug", type = ExecutorType.ALL, descfr = "Debug des achievement points des joueurs", topic = Topics.Admin)
     private void apDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
+            User user, Language lang) {
         int o;
         if (user.getId().equals("102108573298851840")) {
             o = 0;
@@ -4329,31 +4272,31 @@ public class CommandDefaut {
                 ++o;
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous n'avez pas la permission d'executer cette action").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You don't have the necessary permission to perform this command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You don't have the necessary permission to perform this ").queue();
             }
             return;
         }
         channel.sendMessage("Les ap des joueurs ont été mis a jours. (" + o + " joueurs)").queue();
     }
 
-    @command(name = "site", type = command.ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = command.Topics.Util)
+    @command(name = "site", type = ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = Topics.Util)
     private void site(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
-        if (lang == command.Language.fr) {
+            User user, Language lang) {
+        if (lang == Language.fr) {
             channel.sendMessage("**Site OzeryoBot** : http://ozeryo.xyz").queue();
         }
-        if (lang == command.Language.en) {
+        if (lang == Language.en) {
             channel.sendMessage("**WebSite OzeryoBot** : http://ozeryo.xyz").queue();
         }
     }
 
-    @command(name = "debug", type = command.ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = command.Topics.Admin)
+    @command(name = "debug", type = ExecutorType.ALL, descfr = "Lien vers le site web", descen = "Website URL ", topic = Topics.Admin)
     private void debug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
+            User user, Language lang) {
         for (Profil profil : data.getProfils().values()) {
             try {
                 HashMap<String, Long> achievement = profil.getAchievement();
@@ -4413,9 +4356,9 @@ public class CommandDefaut {
         channel.sendMessage("Update des achievement des joueurs").queue();
     }
 
-    @command(name = "tuto", type = command.ExecutorType.ALL, descfr = "Permet de vous aider a debuter le jeu", descen = "Help you to start the game", topic = command.Topics.Game)
+    @command(name = "tuto", type = ExecutorType.ALL, descfr = "Permet de vous aider a debuter le jeu", descen = "Help you to start the game", topic = Topics.Game)
     private void tuto(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
+            User user, Language lang) {
         int tuto = data.getProfils().get(user.getId()).getTuto();
         String c1 = args[0];
         if (c1.equals("confirm") && tuto == 0) {
@@ -4426,120 +4369,120 @@ public class CommandDefaut {
             channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.")
                     .queue();
         } else if (tuto == 0) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         ":mouse_three_button: Le tutoriel va commencer, il durera environ 2 minutes, soyez sur de pouvoir le terminer ( =tuto confirm ).")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         ":mouse_three_button: The tutorial will start, it will last about 2 minutes, be sure to finish it ( =tuto confirm ).")
                         .queue();
             }
         } else if (tuto == 1) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("Well, start by collecting your daily reward with the =daily command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("Well, start by collecting your daily reward with the =daily ").queue();
             }
         } else if (tuto == 2) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Maintenant, obtenez votre salaire horaire avec la commande =hourly.").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("Now, get your hourly reward with the =hourly command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("Now, get your hourly reward with the =hourly ").queue();
             }
         } else if (tuto == 3) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous pouvez maintenant consulter votre ville avec la commande =city.").queue();
             }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You can now check your city informations with the =city command.").queue();
+            if (lang == Language.en) {
+                channel.sendMessage("You can now check your city informations with the =city ").queue();
             }
         } else if (tuto == 4) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Vous pouvez y voir votre exp, le niveau de vos constructions et vos réserves de ressources. Le mana, affiché en haut, vous permet de récolter des ressources \u00e0 l'aide de travail, essayez tout de suite avec =work all.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         "You can see your exp, the level of your builds, and your resource reserves. The mana, shown at the top, allows you to collect resources using work command, try now with =work all.")
                         .queue();
             }
         } else if (tuto == 5) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         "Now you can build your first building! Let's start with the company as an example: = b marché 1.")
                         .queue();
             }
         } else if (tuto == 6) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Bravo, vous avez obtenu votre premi\u00e8re construction, celle-ci permet d'augmenter vos gains de money lors de vos commandes. Vous pouvez reconsulter votre ville maintenant =city.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         "Congratulations, you got your first build, it increases your money gains during your commands. You can consult again your city now =city.")
                         .queue();
             }
         } else if (tuto == 7) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Chaque construction poss\u00e8de une vingtaine de niveaux, vous pourrez les monter de niveaux gr\u00e2ce aux Ozecoins et aux différents matériaux. Maintenant, apprenons \u00e0 attaquer, tout d'abord construisez votre camp d'entrainement, =b camp 1.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.")
                         .queue();
             }
         } else if (tuto == 8) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Vous pouvez maintenant entrainer des soldats, faites le avec la commande =soldier train 15.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You can now train soldiers, do it with the command =soldier train 15.").queue();
             }
         } else if (tuto == 9) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage(
                         "Pour lancer une attaque vous pouvez consulter la map et utiliser l'id, le tag ou les coordonnés d'un joueur. Testons maintenant : =a Ozeryo 15.")
                         .queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage(
                         "To launch an attack you can check the map and use a player's id, tag, or coordinates. Now, let's test: =a Ozeryo 15.")
                         .queue();
             }
         } else if (tuto == 10) {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous avez deja complété le tutoriel.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You already complete the tutorial.").queue();
             }
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("Vous avez deja complété le tutoriel.").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("You already complete the tutorial.").queue();
             }
         }
     }
 
-    @command(name = "save", type = command.ExecutorType.CONSOLE, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
+    @command(name = "save", type = ExecutorType.CONSOLE, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = Topics.Util)
     private void save() {
         long debut = System.currentTimeMillis();
         System.out.println("Eregistrement en cours");
@@ -4553,9 +4496,9 @@ public class CommandDefaut {
         System.out.println("Données enregistrés en " + dif + " secondes");
     }
 
-    @command(name = "attackDebug", type = command.ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
+    @command(name = "attackDebug", type = ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = Topics.Util)
     private void attackDebug(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda,
-            ProfilData data, User user, command.Language lang) {
+            ProfilData data, User user, Language lang) {
         if (user.getId().equals("102108573298851840")) {
             HashMap<Long, ArrayList<String>> attack = data.getProfils().get(user.getId()).getAttack();
             ArrayList<String> atk2 = null;
@@ -4571,9 +4514,9 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "UpdateV3", type = command.ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = command.Topics.Util)
+    @command(name = "UpdateV3", type = ExecutorType.ALL, descfr = "Permet de s'enregistrer pour la v3 d'OzeryoBot", descen = " Allow you to register yourself to the V3 of OzeryoBot", topic = Topics.Util)
     private void UpdateV3(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
+            User user, Language lang) {
         if (user.getId().equals("102108573298851840")) {
             for (Profil profil : data.getProfils().values()) {
                 try {
@@ -4611,169 +4554,39 @@ public class CommandDefaut {
         }
     }
 
-    @command(name = "language", type = command.ExecutorType.ALL, descfr = "Permet de selectionner la langue du bot", descen = "Allow you to select the bot language", topic = command.Topics.Admin)
+    @command(name = "language", type = ExecutorType.ALL, descfr = "Permet de selectionner la langue du bot", descen = "Allow you to select the bot language", topic = Topics.Admin)
     private void language(Message message, String[] args, MessageChannel channel, Guild guild, JDA jda, ProfilData data,
-            User user, command.Language lang) {
+            User user, Language lang) {
         String c1;
         block9: {
             c1 = "";
             try {
                 c1 = args[0];
             } catch (Exception e) {
-                if (lang == command.Language.fr) {
+                if (lang == Language.fr) {
                     channel.sendMessage("``Syntaxe :`` =language [fr/en].").queue();
                 }
-                if (lang != command.Language.en)
+                if (lang != Language.en)
                     break block9;
                 channel.sendMessage("``Syntax :`` =language [fr/en].").queue();
             }
         }
         if (c1.equals("fr")) {
-            channel.sendMessage("Le langage du bot est désormais réglé sur : Fran\u00e7ais").queue();
-            data.getProfils().get(user.getId()).setLanguage(command.Language.fr);
+            channel.sendMessage("Le langage du bot est désormais réglé sur : Français").queue();
+            data.getProfils().get(user.getId()).setLanguage(Language.fr);
         } else if (c1.equals("en")) {
             channel.sendMessage("the bot's language is now set on : English").queue();
-            data.getProfils().get(user.getId()).setLanguage(command.Language.en);
+            data.getProfils().get(user.getId()).setLanguage(Language.en);
         } else {
-            if (lang == command.Language.fr) {
+            if (lang == Language.fr) {
                 channel.sendMessage("``Syntaxe :`` =language [fr/en].").queue();
             }
-            if (lang == command.Language.en) {
+            if (lang == Language.en) {
                 channel.sendMessage("``Syntax :`` =language [fr/en].").queue();
             }
         }
     }
 
-    static /* synthetic */ int[] $SWITCH_TABLE$net$dv8tion$jda$core$Region() {
-
-        int[] arrn = new int[Region.values().length];
-
-        try {
-            arrn[Region.AMSTERDAM.ordinal()] = 1;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.BRAZIL.ordinal()] = 2;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.EU_CENTRAL.ordinal()] = 3;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.EU_WEST.ordinal()] = 4;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.FRANKFURT.ordinal()] = 5;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.HONG_KONG.ordinal()] = 6;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.JAPAN.ordinal()] = 7;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.LONDON.ordinal()] = 8;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.RUSSIA.ordinal()] = 9;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.SINGAPORE.ordinal()] = 10;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.SOUTH_AFRICA.ordinal()] = 11;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.SYDNEY.ordinal()] = 12;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.UNKNOWN.ordinal()] = 31;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.US_CENTRAL.ordinal()] = 13;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.US_EAST.ordinal()] = 14;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.US_SOUTH.ordinal()] = 15;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.US_WEST.ordinal()] = 16;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_AMSTERDAM.ordinal()] = 17;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_BRAZIL.ordinal()] = 18;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_EU_CENTRAL.ordinal()] = 19;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_EU_WEST.ordinal()] = 20;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_FRANKFURT.ordinal()] = 21;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_JAPAN.ordinal()] = 22;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_LONDON.ordinal()] = 23;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_SINGAPORE.ordinal()] = 24;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_SOUTH_AFRICA.ordinal()] = 25;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_SYDNEY.ordinal()] = 26;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_US_CENTRAL.ordinal()] = 27;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_US_EAST.ordinal()] = 28;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_US_SOUTH.ordinal()] = 29;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        try {
-            arrn[Region.VIP_US_WEST.ordinal()] = 30;
-        } catch (NoSuchFieldError noSuchFieldError) {
-        }
-        $SWITCH_TABLE$net$dv8tion$jda$core$Region = arrn;
-        return $SWITCH_TABLE$net$dv8tion$jda$core$Region;
-    }
+   
 
 }

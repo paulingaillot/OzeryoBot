@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class ProfilData {
     private HashMap<String, Profil> profils = new HashMap();
-    private int LbPremiumWeek = 30;
+    private long lastLbPremium = 0;
     private int registers = 0;
     private long nextcf = 0L;
 
@@ -37,13 +37,7 @@ public class ProfilData {
         return new File(path, "/profilData.json");
     }
 
-    public int getLbPremiumWeek() {
-        return this.LbPremiumWeek;
-    }
 
-    public void setLbPremiumWeek(int lbPremiumWeek) {
-        this.LbPremiumWeek = lbPremiumWeek;
-    }
 
     public int getRegisters() {
         return this.registers;
@@ -60,4 +54,13 @@ public class ProfilData {
     public void setNextcf(long nextcf) {
         this.nextcf = nextcf;
     }
+
+	public long getLastLbPremium() {
+		return lastLbPremium;
+	}
+
+	public void setLastLbPremium(long lastLbPremium) {
+		this.lastLbPremium = lastLbPremium;
+	}
 }
+
