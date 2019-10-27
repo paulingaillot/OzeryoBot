@@ -51,200 +51,13 @@ public class Pray {
             e.printStackTrace();
         }
 
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise/");
-        int Lday = Integer.parseInt(
-                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise/day.txt"));
-        int Lmonth = Integer.parseInt(
-                TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise/month.txt"));
-        int day = Integer.parseInt(new SimpleDateFormat("dd", Locale.FRANCE).format(new Date()));
-        int month = Integer.parseInt(new SimpleDateFormat("MM", Locale.FRANCE).format(new Date()));
-        int Nday = day - Lday;
-        int Nmonth = month - Lmonth;
-        if (Nday < 0) {
-            Nday += 30;
-            --Nmonth;
-        }
-
-        if ((Nday += Nmonth * 30) <= 7 && Nday >= 0) {
-            channel.sendMessage("Vous ne pouvez changer de dieu que tout les 7 jours").queue();
-            return;
-        }
-
+        long lastPray = data.getProfils().get(user.getId()).getLastPray();
         String dieu = c1.toLowerCase();
-        switch (dieu) {
-        case "athena": {
-            if (!dieu.equals("athena")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt",
-                        "Athena", 1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Athena.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Athena.").queue();
-                }
+        String lastdieu = data.getProfils().get(user.getId()).getDeus();
+        
+        if(dieu.equals("")) {
 
-            }
-        }
-
-        case "hermes": {
-            if (!dieu.equals("hermes")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt",
-                        "Hermes", 1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Hermes.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Hermes.").queue();
-                }
-
-            }
-        }
-        case "ares": {
-            if (!dieu.equals("ares")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Ares",
-                        1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Ares.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Ares.").queue();
-                }
-
-            }
-        }
-
-        case "hera": {
-            if (!dieu.equals("hera")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Hera",
-                        1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Hera.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Hera.").queue();
-                }
-            }
-        }
-
-        case "zeus": {
-            if (!dieu.equals("zeus")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Zeus",
-                        1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Zeus.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Zeus.").queue();
-                }
-            }
-        }
-        case "hades": {
-            if (!dieu.equals("hades")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt", "Hades",
-                        1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Hades.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Hades.").queue();
-                }
-
-            }
-        }
-
-        case "poseidon": {
-            if (!dieu.equals("poseidon")) {
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt",
-                        "Poseidon", 1);
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de prier pour Poseidon.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("You just pray for Poseidon.").queue();
-                }
-
-            }
-
-            dieu = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
-            bonus = "";
-            if (dieu.equals("Zeus")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost le gain de money";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost money you win";
-                }
-            } else if (dieu.equals("Hera")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost le gain d'habitants";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost people you win";
-                }
-            } else if (dieu.equals("Athena")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost votre maximum de mana";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost your mana Maximum";
-                }
-            } else if (dieu.equals("Poseidon")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost le gain de materiaux";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost ressources you win";
-                }
-            } else if (dieu.equals("Hades")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost votre maximum d'habitants";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost your people limit";
-                }
-            } else if (dieu.equals("Ares")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost votre entrainement de soldats";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost the number of soldiers you train";
-                }
-            } else if (dieu.equals("Hermes")) {
-                if (lang == command.Language.fr) {
-                    bonus = "Ce Dieu boost votre regeneration de mana";
-                }
-                if (lang == command.Language.en) {
-                    bonus = "This deus boost your mana regen";
-                }
-            }
-            if (lang == command.Language.fr) {
-                channel.sendMessage("Votre dieu actuel est " + dieu + ". " + bonus + ". Vous pouvez changer de dieu.")
-                        .queue();
-            }
-            if (lang != command.Language.en) {
-                channel.sendMessage("Your actual deus is " + dieu + ". " + bonus + ". You can change deus now.")
-                        .queue();
-                return;
-            }
-        }
-            if (lang == command.Language.fr) {
-                channel.sendMessage(
-                        "Les dieux que vous pouvez prier sont : ``Zeus``, ``Poseidon``, ``Hades``, ``Hermes``, ``Hera``, ``Athena``, ``Ares``")
-                        .queue();
-            }
-            if (lang == command.Language.en) {
-                channel.sendMessage(
-                        "Deus you can pray are : ``Zeus``, ``Poseidon``, ``Hades``, ``Hermes``, ``Hera``, ``Athena``, ``Ares``")
-                        .queue();
-                return;
-            }
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise/day.txt",
-                    Integer.toString(day), 1);
-            TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise/month.txt",
-                    Integer.toString(month), 1);
-            return;
-        }
-        dieu = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
+        dieu = data.getProfils().get(user.getId()).getDeus();
         bonus = "";
         if (dieu.equals("Zeus")) {
             if (lang == command.Language.fr) {
@@ -296,16 +109,143 @@ public class Pray {
                 bonus = "This deus boost your mana regen";
             }
         }
-        Nday = 7 - Nday;
+        int Nday = (int) (7 - (System.currentTimeMillis() - lastPray) / 86400000);
+        if(Nday <=0) {
+        	 if (lang == command.Language.fr) {
+                 channel.sendMessage(
+                         "Votre dieu est " + dieu + ". " + bonus + ". Vous pouvez desormais changer de dieu.")
+                         .queue();
+             }
+             if (lang == command.Language.en) {
+             channel.sendMessage(
+                     "Your deus is " + dieu + ". " + bonus + ".You can now change you deus.")
+                     .queue();
+         }
+        	
+        }else {
         if (lang == command.Language.fr) {
             channel.sendMessage(
                     "Votre dieu est " + dieu + ". " + bonus + ". Vous pourez changer de dieu dans " + Nday + " jours.")
                     .queue();
         }
-        if (lang != command.Language.en)
-            return;
+        if (lang == command.Language.en) {
         channel.sendMessage(
                 "Your deus is " + dieu + ". " + bonus + ". You will be able to change deus in " + Nday + " days.")
                 .queue();
+        }
+    }
+        return;
+        }
+        
+        
+        if ((System.currentTimeMillis() - lastPray) < 604800000) {
+            channel.sendMessage("Vous ne pouvez changer de dieu que tout les 7 jours").queue();
+            return;
+        }
+
+
+        switch (dieu) {
+        case "athena": {
+            if (!lastdieu.equals("athena")) {
+                data.getProfils().get(user.getId()).setDeus("Athena");
+                data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Athena.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Athena.").queue();
+                }
+
+            }
+            return;
+        }
+
+        case "hermes": {
+            if (!lastdieu.equals("hermes")) {
+            	data.getProfils().get(user.getId()).setDeus("Hermes");
+            	data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Hermes.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Hermes.").queue();
+                }
+
+            }
+            return;
+        }
+        case "ares": {
+            if (!lastdieu.equals("ares")) {
+            	data.getProfils().get(user.getId()).setDeus("Ares");
+            	data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Ares.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Ares.").queue();
+                }
+
+            }
+            return;
+        }
+
+        case "hera": {
+            if (!lastdieu.equals("hera")) {
+                data.getProfils().get(user.getId()).setDeus("Hera");
+                data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Hera.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Hera.").queue();
+                }
+            }
+            return;
+        }
+
+        case "zeus": {
+            if (!lastdieu.equals("zeus")) {
+            	data.getProfils().get(user.getId()).setDeus("Zeus");
+            	data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Zeus.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Zeus.").queue();
+                }
+            }
+            return;
+        }
+        case "hades": {
+            if (!lastdieu.equals("hades")) {
+            	data.getProfils().get(user.getId()).setDeus("Hades");
+            	data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Hades.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Hades.").queue();
+                }
+
+            }
+            return;
+        }
+
+        case "poseidon": {
+            if (!lastdieu.equals("poseidon")) {
+            	data.getProfils().get(user.getId()).setDeus("Poseidon");
+            	data.getProfils().get(user.getId()).setLastPray(System.currentTimeMillis());
+                if (lang == command.Language.fr) {
+                    channel.sendMessage("Vous venez de prier pour Poseidon.").queue();
+                }
+                if (lang == command.Language.en) {
+                    channel.sendMessage("You just pray for Poseidon.").queue();
+                }
+
+            }
+            return;
+        }
+       
+}
     }
 }

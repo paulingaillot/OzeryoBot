@@ -946,7 +946,7 @@ public class Attack {
                     trophéesuser = 0;
                 }
                 long def1 = habitants.atk(cible);
-                HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
+                HashMap<String, Integer> building = data.getProfils().get(cible.getId()).getBuilding();
                 int bunker = building.get("muraille");
                 double bonus = 1.0 + (double) bunker * 0.075;
                 System.out.println(bonus);

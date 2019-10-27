@@ -208,8 +208,7 @@ public class City {
             double Glevel2 = point / 1000;
             double Glevel3 = Math.sqrt(Glevel2);
             int Glevel = (int) Math.round(Glevel3);
-            String eglise = TextFileWriter
-                    .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
+            String eglise = data.getProfils().get(user.getId()).getDeus();
             cc = 500.0 + Math.pow(cc2 + 1, 2.0) * (double) (40 * level);
             long popmax = (int) Math.round(cc);
             if (eglise.equals("Hades")) {
@@ -391,6 +390,7 @@ public class City {
                 delay1 /= 3600000L;
                 if (habitant > popmax) {
                     int a = 0;
+                    habitant -= popmax;
                     while ((long) a < delay1) {
                         habitant = (int) ((double) habitant * perte);
                         ++a;

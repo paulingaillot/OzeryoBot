@@ -70,7 +70,7 @@ public class Mana {
         long Pet_Level = Math.round(operation2);
         double pet_bonus = 1.0 + 0.03 * Pet_Level;
         Integer levelEcole = building.get("biblioth\u00e8que");
-        String eglise = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt");
+        String eglise = data.getProfils().get(user.getId()).getDeus();
         int Game_EXP = data.getProfils().get(user.getId()).getXp();
         int level;
         try {
@@ -706,19 +706,19 @@ public class Mana {
                 Quest.Quest("bois", user, channel, (int) bois);
             }
             if (argile != 0.0) {
-                Quest.Quest("argile", user, channel, (int) argile);
+                Quest.Quest("acier", user, channel, (int) argile);
             }
             if (cuir != 0.0) {
-                Quest.Quest("cuir", user, channel, (int) cuir);
+                Quest.Quest("brique", user, channel, (int) cuir);
             }
             if (pierre != 0.0) {
-                Quest.Quest("pierre", user, channel, (int) pierre);
+                Quest.Quest("verre", user, channel, (int) pierre);
             }
             if (paille != 0.0) {
-                Quest.Quest("paille", user, channel, (int) paille);
+                Quest.Quest("pierre", user, channel, (int) paille);
             }
             if (fer != 0.0) {
-                Quest.Quest("fer", user, channel, (int) fer);
+                Quest.Quest("petrole", user, channel, (int) fer);
             }
             money2 = data.getProfils().get(user.getId()).getMoney_récolté();
             money2 = (long) ((double) money2 + money_win);
@@ -853,6 +853,7 @@ public class Mana {
                 if (materiau_alea == 6) {
                     fer += (double) nombre_alea;
                 }
+            }
 
                 if (Pet_Bonus.equals("bois")) {
                     bois = (int) (bois * (1.0 + 0.1 * Pet_Level));
@@ -1005,19 +1006,19 @@ public class Mana {
                     Quest.Quest("bois", user, channel, (int) bois);
                 }
                 if (argile != 0.0) {
-                    Quest.Quest("argile", user, channel, (int) argile);
+                    Quest.Quest("acier", user, channel, (int) argile);
                 }
                 if (cuir != 0.0) {
-                    Quest.Quest("cuir", user, channel, (int) cuir);
+                    Quest.Quest("brique", user, channel, (int) cuir);
                 }
                 if (pierre != 0.0) {
-                    Quest.Quest("pierre", user, channel, (int) pierre);
+                    Quest.Quest("verre", user, channel, (int) pierre);
                 }
                 if (paille != 0.0) {
-                    Quest.Quest("paille", user, channel, (int) paille);
+                    Quest.Quest("pierre", user, channel, (int) paille);
                 }
                 if (fer != 0.0) {
-                    Quest.Quest("fer", user, channel, (int) fer);
+                    Quest.Quest("petrole", user, channel, (int) fer);
                 }
                 money2 = data.getProfils().get(user.getId()).getMoney_récolté();
                 money2 = (long) ((double) money2 + money_win);
@@ -1083,22 +1084,24 @@ public class Mana {
                     builder.addField("OzPass Xp", String.valueOf(gain) + " :beach: ", true);
                 }
                 channel.sendMessage(builder.build()).queue();
+                
                 int tuto = data.getProfils().get(user.getId()).getTuto();
-                if (tuto != 4)
-                    return;
+                if (tuto != 4) {
+                	return;
+                }else {
                 data.getProfils().get(user.getId()).setTuto(5);
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
                             "\u00c0 présent, vous pouvez construire votre premier b\u00e2timent ! Commen\u00e7ons par le marché comme exemple : =b marché 1.")
                             .queue();
                 }
-                if (lang != command.Language.en)
-                    return;
+                if (lang != command.Language.en) {
                 channel.sendMessage(
                         "Now you can build your first building! Let's start with the market place as an example: = b marché 1.")
                         .queue();
-                return;
-            }
+                }
+                }
+
         }
         if (c1.equals("")) {
             ++Used_mana;
@@ -1275,23 +1278,23 @@ public class Mana {
             Quest.Quest("exp", user, channel, EXP_win);
             Quest.Quest("mana", user, channel, Used_mana);
             Quest.Quest("materiau", user, channel, (int) (bois + argile + cuir + pierre + paille + fer));
-            if (bois != 0) {
-                Quest.Quest("bois", user, channel, (int) (bois));
+            if (bois != 0.0) {
+                Quest.Quest("bois", user, channel, (int) bois);
             }
-            if (argile != 0) {
-                Quest.Quest("argile", user, channel, (int) (argile));
+            if (argile != 0.0) {
+                Quest.Quest("acier", user, channel, (int) argile);
             }
-            if (cuir != 0) {
-                Quest.Quest("cuir", user, channel, (int) (cuir));
+            if (cuir != 0.0) {
+                Quest.Quest("brique", user, channel, (int) cuir);
             }
-            if (pierre != 0) {
-                Quest.Quest("pierre", user, channel, (int) (pierre));
+            if (pierre != 0.0) {
+                Quest.Quest("verre", user, channel, (int) pierre);
             }
-            if (paille != 0) {
-                Quest.Quest("paille", user, channel, (int) (paille));
+            if (paille != 0.0) {
+                Quest.Quest("pierre", user, channel, (int) paille);
             }
-            if (fer != 0) {
-                Quest.Quest("fer", user, channel, (int) (fer));
+            if (fer != 0.0) {
+                Quest.Quest("petrole", user, channel, (int) fer);
             }
             money2 = data.getProfils().get(user.getId()).getMoney_récolté();
             data.getProfils().get(user.getId()).setMoney_récolté(money2 += (long) money_win);
@@ -1354,6 +1357,271 @@ public class Mana {
                 builder.addField("OzPass Xp", String.valueOf(gain) + " :beach: ", true);
             }
             channel.sendMessage(builder.build()).queue();
-        }
+        }else {
+        	 
+        	int c2 = Integer.parseInt(args[0]);
+        	
+        	if(c2>mana) {
+        		channel.sendMessage("Vous n'avez pas asser de mana").queue();
+        		return;
+        	}
+        	
+        	for(int o=0; o<c2; o++) {
+                 ++Used_mana;
+                 alea1 = (int) (2.0 + Math.random() * 4.0);
+                 EXP_win += alea1;
+
+                 money_win2 = 100.0 + (double) (10 * level) * bonus;
+                 money_win = (int) Math.round(money_win2) + money_win;
+                 pop_win2 = 10.0 + 2.5 * (double) (10 * (levelEcole + 1) * level);
+                 pop_win = (int) Math.round(pop_win2) + pop_win;
+                 nombre_alea = min + (int) (Math.random() * (double) (max - min + 1));
+                 materiau_alea = (int) (1.0 + Math.random() * 6.0);
+                 if (materiau_alea == 1) {
+                     bois += nombre_alea;
+                 }
+                 if (materiau_alea == 2) {
+                     argile += nombre_alea;
+                 }
+                 if (materiau_alea == 3) {
+                     cuir += nombre_alea;
+                 }
+                 if (materiau_alea == 4) {
+                     pierre += nombre_alea;
+                 }
+                 if (materiau_alea == 5) {
+                     paille += nombre_alea;
+                 }
+                 if (materiau_alea == 6) {
+                     fer += nombre_alea;
+                 }
+        	}
+                 
+                 if (Pet_Bonus.equals("bois")) {
+                     bois = (int) ((double) bois * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     bois = (int) ((double) bois * 1.5);
+                 }
+                 if (Pet_Bonus.equals("argile")) {
+                     argile = (int) ((double) argile * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     argile = (int) ((double) argile * 1.5);
+                 }
+                 if (Pet_Bonus.equals("cuir")) {
+                     cuir = (int) ((double) cuir * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     cuir = (int) ((double) cuir * 1.5);
+                 }
+                 if (Pet_Bonus.equals("pierre")) {
+                     pierre = (int) ((double) pierre * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     pierre = (int) ((double) pierre * 1.5);
+                 }
+                 if (Pet_Bonus.equals("paille")) {
+                     paille = (int) ((double) paille * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     paille = (int) ((double) paille * 1.5);
+                 }
+                 if (Pet_Bonus.equals("fer")) {
+                     fer = (int) ((double) fer * (1.0 + 0.1 * Pet_Level));
+                 }
+                 if (eglise.equals("Poseidon")) {
+                     fer = (int) ((double) fer * 1.5);
+                 }
+                 if (Pays.Bonus(1, pays)) {
+                     bois = (int) ((double) bois * 1.5);
+                 }
+                 if (Pet_Bonus.equals("res")) {
+                     bois = (int) ((double) bois * (1.0 + 0.05 * Pet_Level));
+                     argile = (int) ((double) argile * (1.0 + 0.05 * Pet_Level));
+                     cuir = (int) ((double) cuir * (1.0 + 0.05 * Pet_Level));
+                     pierre = (int) ((double) pierre * (1.0 + 0.05 * Pet_Level));
+                     paille = (int) ((double) paille * (1.0 + 0.05 * Pet_Level));
+                     fer = (int) ((double) fer * (1.0 + 0.05 * Pet_Level));
+                 }
+                 bois_Total = (int) (bois + A_bois);
+                 argile_Total = (int) (argile + A_argile);
+                 cuir_Total = (int) (cuir + A_cuir);
+                 pierre_Total = (int) (pierre + A_pierre);
+                 paille_Total = (int) (paille + A_paille);
+                 fer_Total = (int) (fer + A_fer);
+                 if (Pays.Bonus(2, pays)) {
+                     money_win = (int) ((double) money_win * 1.25);
+                 }
+                 if (Pet_Bonus.equals("pop")) {
+                     pop_win = (int) ((double) pop_win * pet_bonus);
+                 }
+                 if (eglise.equals("Hera")) {
+                     pop_win = (int) ((double) pop_win * 1.5);
+                 }
+                 if (Pet_Bonus.equals("money")) {
+                     money_win = (int) ((double) money_win * pet_bonus);
+                 }
+                 if (eglise.equals("Zeus")) {
+                     money_win = (int) ((double) money_win * 1.5);
+                 }
+                 mana -= Used_mana;
+                 gain = 0;
+                 if (Event.Summer()) {
+                     xp = data.getProfils().get(user.getId()).getOzPassXp();
+                     bonus1 = (double) data.getProfils().get(user.getId()).getBonus() / 100.0;
+                     gain = (int) ((double) Used_mana * (1.0 + bonus1));
+                     op = (100.0 - Pet_Level) / 100.0;
+                     if (Pet_Bonus.equals("regen")) {
+                         gain = (int) ((double) gain * op);
+                     }
+                     data.getProfils().get(user.getId()).setOzPassXp(xp += gain);
+                 }
+                 res.put("bois", bois_Total);
+                 res.put("argile", argile_Total);
+                 res.put("cuir", cuir_Total);
+                 res.put("pierre", pierre_Total);
+                 res.put("paille", paille_Total);
+                 res.put("fer", fer_Total);
+                 try {
+                     data.getProfils().get(user.getId()).setRes(res);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setRes(res);
+                 }
+                 pop = data.getProfils().get(user.getId()).getHabitants();
+                 money = data.getProfils().get(user.getId()).getMoney();
+                 pop = pop + (long) pop_win;
+                 money = money + (long) money_win;
+                 Game_EXP += EXP_win;
+                 petGain = EXP_win / 10;
+                 if (list != null) {
+                     Pet_EXP += EXP_win / 10;
+                 } else {
+                     petGain = 0;
+                 }
+                 if (list != null) {
+                     list.remove(1);
+                 }
+                 if (list != null) {
+                     list.add(1, String.valueOf(Pet_EXP));
+                 }
+                 if (list != null) {
+                     pet.put(ActivePet, list);
+                 }
+                 try {
+                     data.getProfils().get(user.getId()).setPet(pet);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setPet(pet);
+                 }
+                 try {
+                     data.getProfils().get(user.getId()).setMoney(money);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setMoney(money);
+                 }
+                 try {
+                     data.getProfils().get(user.getId()).setHabitants(pop);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setHabitants(pop);
+                 }
+                 try {
+                     data.getProfils().get(user.getId()).setXp(Game_EXP);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setXp(Game_EXP);
+                 }
+                 try {
+                     data.getProfils().get(user.getId()).setMana(mana);
+                 } catch (NullPointerException e) {
+                     data.getProfils().put(user.getId(), new Profil(user.getId()));
+                     data.getProfils().get(user.getId()).setMana(mana);
+                 }
+                 Quest.Quest("exp", user, channel, EXP_win);
+                 Quest.Quest("mana", user, channel, Used_mana);
+                 Quest.Quest("materiau", user, channel, (int) (bois + argile + cuir + pierre + paille + fer));
+                 if (bois != 0.0) {
+                     Quest.Quest("bois", user, channel, (int) bois);
+                 }
+                 if (argile != 0.0) {
+                     Quest.Quest("acier", user, channel, (int) argile);
+                 }
+                 if (cuir != 0.0) {
+                     Quest.Quest("brique", user, channel, (int) cuir);
+                 }
+                 if (pierre != 0.0) {
+                     Quest.Quest("verre", user, channel, (int) pierre);
+                 }
+                 if (paille != 0.0) {
+                     Quest.Quest("pierre", user, channel, (int) paille);
+                 }
+                 if (fer != 0.0) {
+                     Quest.Quest("petrole", user, channel, (int) fer);
+                 }
+                 money2 = data.getProfils().get(user.getId()).getMoney_récolté();
+                 data.getProfils().get(user.getId()).setMoney_récolté(money2 += (long) money_win);
+                 premium2 = premium != false ? "[Premium]" : "";
+                 builder = new EmbedBuilder();
+                 builder.setAuthor(user.getName(), null, user.getAvatarUrl());
+                 builder.setFooter(guild.getName(), guild.getIconUrl());
+                 builder.setDescription("Votre travail vous a apporté :");
+                 builder.setColor(color.couleurAleatoire(user));
+                 builder.addField(":star: | **Xp** ", String.valueOf(EXP_win), true);
+                 if (lang == command.Language.fr) {
+                     builder.addField("\ud83d\udc65 | **Habitants** ", "+" + pop_win, true);
+                 }
+                 if (lang == command.Language.en) {
+                     builder.addField("\ud83d\udc65 | **People** ", "+" + pop_win, true);
+                 }
+                 builder.addField(String
+                         .valueOf(jda.getGuildById("326345972739473410").getEmotesByName("gold", true).get(0).getAsMention())
+                         + " | **Money** ", "+" + money_win, true);
+                 builder.addBlankField(true);
+                 if (lang == command.Language.fr) {
+                     builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention()
+                             + " **Bois :** " + "+" + bois + "\n "
+                             + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention()
+                             + " **argile :** " + "+" + argile + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention()
+                             + " **cuir :** " + "+" + cuir + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention()
+                             + " **pierre :** " + "+" + pierre + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention()
+                             + " **paille :** " + "+" + paille + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
+                             + " **fer :** " + "+" + fer, false);
+                 }
+                 if (lang == command.Language.en) {
+                     builder.addField("\ud83d\udc8e | **Matériaux obtenus** :", "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("wood", true).get(0).getAsMention()
+                             + " **wood :** " + "+" + bois + "\n "
+                             + jda.getGuildById("326345972739473410").getEmotesByName("clay", true).get(0).getAsMention()
+                             + " **clay :** " + "+" + argile + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("leather", true).get(0).getAsMention()
+                             + " **leather :** " + "+" + cuir + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("stone", true).get(0).getAsMention()
+                             + " **stone :** " + "+" + pierre + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("straw", true).get(0).getAsMention()
+                             + " **straw :** " + "+" + paille + "\n"
+                             + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
+                             + " **iron :** " + "+" + fer, false);
+                 }
+                 builder.addBlankField(false);
+                 if (lang == command.Language.fr) {
+                     builder.addField(":heart:  **Mana Dépensé** ", String.valueOf(Used_mana) + " " + premium2, true);
+                 }
+                 if (lang == command.Language.en) {
+                     builder.addField(":heart:  **Mana Spent** ", String.valueOf(Used_mana) + " " + premium2, true);
+                 }
+                 builder.addField(":sparkles: **Pet EXP**", "+" + petGain, true);
+                 if (Event.Summer()) {
+                     builder.addField("OzPass Xp", String.valueOf(gain) + " :beach: ", true);
+                 }
+                 channel.sendMessage(builder.build()).queue();
+             }
+        
     }
 }

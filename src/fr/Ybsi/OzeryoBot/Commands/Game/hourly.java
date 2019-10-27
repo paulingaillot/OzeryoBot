@@ -107,7 +107,6 @@ public class hourly {
             }
             if (Pet_Bonus.equals("resHr")) {
                 money_win = (int) ((double) money_win * pet_bonus);
-                EXP_win = (int) ((double) EXP_win * pet_bonus);
                 pop_win = (int) ((double) pop_win * pet_bonus);
             }
             try {

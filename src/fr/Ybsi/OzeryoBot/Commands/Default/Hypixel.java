@@ -719,10 +719,16 @@ public class Hypixel {
                         String slime;
                         String tnt;
                         String rush;
-                        String Temps_de_jeu = jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
-                                .getAsJsonObject("SkyWars").get("time_played").toString().replace("\"", "");
+                        
+                        String Temps_de_jeu ;
+                        try {
+                        	Temps_de_jeu = jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars").get("time_played").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	Temps_de_jeu = "0";
+                        }
                         double Temps_De_Jeu = Integer.parseInt(Temps_de_jeu) / 60 / 60;
                         int Heure = new Double(Temps_De_Jeu).intValue();
+                        
                         EmbedBuilder hypixel2 = new EmbedBuilder();
                         hypixel2.setTitle("SkyWars Stats");
                         hypixel2.setColor(color.couleurAleatoire(user));
@@ -735,14 +741,33 @@ public class Hypixel {
                         hypixel2.addField("\ud83c\udd94 | UUID | \ud83c\udd94 : ",
                                 jsonObject.getAsJsonObject("player").get("uuid").toString().replace("\"", ""), true);
                         hypixel2.addBlankField(false);
-                        hypixel2.addField("\u2694 | Kills | \u2694 : ",
-                                jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
-                                        .get("kills").toString().replace("\"", ""),
+                        
+                        String kills = "0";
+                        try {
+                        	kills=   jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars") .get("kills").toString().replace("\"", "");
+                        }catch (NullPointerException e) {
+                        	
+                        }
+                               
+                        hypixel2.addField("\u2694 | Kills | \u2694 : ",kills,   true);
+                        
+                        String wins="0";
+                        try {
+                        	wins =   jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
+                                    .get("wins").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        hypixel2.addField("\ud83c\udfae | Wins | \ud83c\udfae : ", wins ,
                                 true);
-                        hypixel2.addField("\ud83c\udfae | Wins | \ud83c\udfae : ",
-                                jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
-                                        .get("wins").toString().replace("\"", ""),
-                                true);
+                        
+                        String heads = "0";
+                        try {
+                        	  jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
+                              .get("heads").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
                         hypixel2.addField(
                                 String.valueOf(jda.getGuildById("326345972739473410")
                                         .getEmotesByName("minecraft_head", true).get(0).getAsMention())
@@ -750,67 +775,178 @@ public class Hypixel {
                                         + jda.getGuildById("326345972739473410").getEmotesByName("minecraft_head", true)
                                                 .get(0).getAsMention()
                                         + " : ",
-                                jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
-                                        .get("heads").toString().replace("\"", ""),
+                              heads,
                                 true);
+                        String souls = "0";
+                        
+                        try {
+                        	 jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
+                             .get("souls").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
                         hypixel2.addField("\ud83d\udc7b | Souls | \ud83d\udc7b : ",
-                                jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
-                                        .get("souls").toString().replace("\"", ""),
+                               souls,
                                 true);
+                        String coins = "0" ;
+                        try {
+                        	coins =  jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
+                                    .get("coins").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
                         hypixel2.addField("\ud83d\udcb0 | Coins | \ud83d\udcb0 : ",
-                                jsonObject.getAsJsonObject("player").getAsJsonObject("stats").getAsJsonObject("SkyWars")
-                                        .get("coins").toString().replace("\"", ""),
+                               coins,
                                 true);
                         hypixel2.addField("\u23f2\ufe0f | Time to play | \u23f2\ufe0f : ", String.valueOf(Heure) + "H",
                                 true);
                         hypixel2.addBlankField(false);
-                        int kills_solo = Integer
-                                .parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                        
+                        int kills_solo =0;
+                        try {
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
                                         .get("skywars_kills_solo").toString().replace("\"", ""));
-                        int losses_solo = Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
+                        }catch(NullPointerException e) {
+                        	
+                        }catch(NumberFormatException e) {
+                        	
+                        }
+                        
+                        int losses_solo = 0;
+                        
+                        try {
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
+                        
                                 .getAsJsonObject("SkyWars").get("deaths_solo").toString().replace("\"", ""));
-                        double KD_solo = (double) kills_solo / (double) losses_solo;
+                        }catch(NullPointerException e) {
+                        	
+                        }catch(NumberFormatException e) {
+                        	
+                        }
+                        
+                        String win_solo = "0";
+                        try {
+                        	win_solo = jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                            .get("skywars_wins_solo").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        String kit_solo = "0";
+                        try {
+                        	 jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                             .get("skywars_kits_solo").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        
+                       double KD_solo =0;
+                       if(losses_solo !=0) KD_solo= (double) kills_solo / (double) losses_solo;
+                        
+                        
                         hypixel2.addField("\ud83d\udc64 | Solo | \ud83d\udc64 :", "\n**:trophy: | Kills** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kills_solo").toString().replace("\"", "")
-                                + "\n**\u2694 | Win** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_wins_solo").toString().replace("\"", "")
+                                + kills_solo
+                                + "\n**\u2694 | Win** : " 
+                                + win_solo
                                 + "\n**\u2694 | K/D** : " + Utils.arrondi(2, KD_solo) + "\n**\ud83c\udf92 | Kits** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kits_solo").toString().replace("\"", ""),
+                                + kit_solo,
                                 true);
-                        int kills_team = Integer
-                                .parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                        
+                        
+                        
+                        int kills_team = 0;
+                        try { 
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
                                         .get("skywars_kills_team").toString().replace("\"", ""));
-                        int losses_team = Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
+                        }catch(NullPointerException e) {
+                        	
+                        }catch(NumberFormatException e) {
+                        	
+                        }
+                        
+                        
+                        int losses_team = 0;
+                        try {
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
                                 .getAsJsonObject("SkyWars").get("deaths_team").toString().replace("\"", ""));
-                        double KD_team = (double) kills_team / (double) losses_team;
+                        }catch(NullPointerException e) {
+                        	
+                        }catch(NumberFormatException e) {
+                        	
+                        }
+                        
+                        String wins_team = "0";
+                        try {
+                        	wins_team = jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                                    .get("skywars_wins_team").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        String Kits_team = "0";
+                        try {
+                        	Kits_team = jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                                    .get("skywars_kits_team").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        double KD_team = 0;
+                        if(losses_team != 0) KD_team = (double) kills_team / (double) losses_team;
+                        
+                        
+                        
                         hypixel2.addField("\ud83d\udc65 | Duo | \ud83d\udc65 :", "\n**:trophy: | Kills** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kills_team").toString().replace("\"", "")
+                                + kills_team
                                 + "\n**\u2694 | Win** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_wins_team").toString().replace("\"", "")
+                                + wins_team
                                 + "\n**\u2694 | K/D** : " + Utils.arrondi(2, KD_team) + "\n**\ud83c\udf92 | Kits** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kits_team").toString().replace("\"", ""),
+                                + Kits_team,
                                 true);
-                        int kills_mega = Integer
-                                .parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                        
+                        
+                        int kills_mega = 0;
+                        try { 
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
                                         .get("skywars_kills_mega").toString().replace("\"", ""));
-                        int losses_mega = Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        int losses_mega = 0;
+                        try {
+                        	Integer.parseInt(jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
                                 .getAsJsonObject("SkyWars").get("deaths_mega").toString().replace("\"", ""));
-                        double KD_mega = (double) kills_mega / (double) losses_mega;
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        double KD_mega = 0;
+                        if(losses_mega != 0) KD_mega = (double) kills_mega / (double) losses_mega;
+                        
+                        String wins_mega ="0";
+                        try {
+                        	wins_mega = jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                                    .get("skywars_wins_mega").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
+                        String kits_mega = "0";
+                        try {
+                        	kits_mega = jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
+                                    .get("skywars_kits_mega").toString().replace("\"", "");
+                        }catch(NullPointerException e) {
+                        	
+                        }
+                        
                         hypixel2.addField("\ud83c\udf10 | Mega | \ud83c\udf10 :", "\n**:trophy: | Kills** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kills_mega").toString().replace("\"", "")
+                                + kills_mega
                                 + "\n**\u2694 | Win** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_wins_mega").toString().replace("\"", "")
+                                + wins_mega
                                 + "\n**\u2694 | K/D** : " + Utils.arrondi(2, KD_mega) + "\n**\ud83c\udf92 | Kits** : "
-                                + jsonObject.getAsJsonObject("player").getAsJsonObject("achievements")
-                                        .get("skywars_kits_mega").toString().replace("\"", ""),
+                                + kits_mega,
                                 true);
                         try {
                             lucky = jsonObject.getAsJsonObject("player").getAsJsonObject("stats")
@@ -862,7 +998,7 @@ public class Hypixel {
                         String renown;
                         block280: {
                             hypixel = new EmbedBuilder();
-                            hypixel.setTitle("SkyWars Stats");
+                            hypixel.setTitle("The Pit Stats");
                             hypixel.setColor(color.couleurAleatoire(user));
                             hypixel.setThumbnail("https://cravatar.eu/head/"
                                     + jsonObject.getAsJsonObject("player").get("uuid").toString().replace("\"", "")

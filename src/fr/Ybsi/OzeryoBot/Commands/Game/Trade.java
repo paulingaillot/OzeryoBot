@@ -121,7 +121,7 @@ public class Trade {
             }
             return;
         }
-        HashMap<String, Integer> building1 = data.getProfils().get(cible.getId()).getBuilding();
+        HashMap<String, Integer> building1 = data.getProfils().get(user.getId()).getBuilding();
         int level = building1.get("transport");
         int temps = 0;
         if (level == 0) {

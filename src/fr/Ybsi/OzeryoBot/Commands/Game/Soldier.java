@@ -65,7 +65,6 @@ public class Soldier {
         double pet_bonus = 1.0 + 0.03 * Pet_Level;
         if (c1.equals("train")) {
             int bonus_caserne;
-            String eglise;
             long soldier = data.getProfils().get(user.getId()).getSoldiers();
             long money = data.getProfils().get(user.getId()).getMoney();
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
@@ -333,8 +332,7 @@ public class Soldier {
                     message = "Your pet give you a bonus of " + soldier2 + " soldiers more.";
                 }
             }
-            if ((eglise = TextFileWriter
-                    .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/eglise.txt")).equals("Ares")) {
+            if ( data.getProfils().get(user.getId()).getDeus().equals("Ares")) {
                 soldier += (long) (soldier2 += (int) ((double) c2 * 1.25) - c2);
                 if (lang == command.Language.fr) {
                     message = String.valueOf(message) + " Vous obtenez un bonus de " + soldier2

@@ -12,6 +12,7 @@ import fr.Ybsi.OzeryoBot.Commands.Game.Attack;
 import fr.Ybsi.OzeryoBot.Commands.Game.Heroe;
 import fr.Ybsi.OzeryoBot.Commands.Game.LootBox;
 import fr.Ybsi.OzeryoBot.Commands.Game.Trade;
+import fr.Ybsi.OzeryoBot.Commands.command.Language;
 import fr.Ybsi.OzeryoBot.Commands.SimpleCommand;
 import fr.Ybsi.OzeryoBot.Commands.command;
 import fr.Ybsi.OzeryoBot.DiscordBot;
@@ -637,12 +638,15 @@ public class Scheduler {
             public void run() {
                 try {
 
-                    int x = -10;
-                    int y = -10;
-                    for (x = -10; x <= 10; x = x + 5) {
-                        for (y = -10; y <= 10; y = y + 5) {
+                    int xb = -10;
+                    int yb = -10;
+                    int x;
+                    int y;
+                    BufferedImage image = null;
+                    for (xb = -10; xb <= 10; xb = xb + 5) {
+                        for (yb = -10; yb <= 10; yb = yb + 5) {
 
-                            BufferedImage image = null;
+
                             try {
                                 image = ImageIO.read(new File("/home/DiscordBot/Rasberry/données/bot/map1.png"));
                             } catch (IOException e) {
@@ -655,10 +659,10 @@ public class Scheduler {
 
                             int xi = 0;
                             int yi = 6;
-                            int xmax = x+2;
-                            int ymax = y+2;
-                            int minx = x-2;
-                            int miny = y-2;
+                            int xmax = xb+2;
+                            int ymax = yb+2;
+                            int minx = xb-2;
+                            int miny = yb-2;
                             for (x = minx; x <= xmax; x++) {
                                 xi++;
                                 yi = 6;
@@ -683,13 +687,6 @@ public class Scheduler {
                                     } catch (NumberFormatException e) {
                                         Case = TextFileWriter
                                                 .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                                        if (Case.equals("dungeon")) {
-                                            Owner = "Level : " + TextFileWriter
-                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
-                                            Soldier = "";
-                                            Level = TextFileWriter
-                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
-                                        }
                                         Soldier = TextFileWriter
                                                 .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
                                         Owner = "";
@@ -720,6 +717,13 @@ public class Scheduler {
 
                                         else if (operation.equals("dungeon")) {
                                             couleur = Color.DARK_GRAY;
+
+                                                Owner = "Level : " + TextFileWriter
+                                                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
+                                                Soldier = "";
+                                                Level = TextFileWriter
+                                                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
+                                            
                                         }
 
                                         else if(!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")
@@ -738,15 +742,15 @@ public class Scheduler {
 
                                     if (x<-10 || x>10 || y<-10 || y>10) {
                                     }else {
-                                        g1.drawString("(" + x + "," + y + ")", 90 + (150 * (xi - 1)), 140 + (170 * (yi - 1)));
+                                        g1.drawString("(" + x + "," + y + ")", 90 + (135 * (xi - 1)), 140 + (150 * (yi - 1)));
 
                                         Font font = new Font("Dialog", 1, 18);
                                         g1.setFont(font);
-                                        g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (160 * (yi - 1)));
+                                        g1.drawString(Case, 50 + (150 * (xi - 1)), 50 + (150 * (yi - 1)));
 
-                                        g1.drawString(Soldier, 50 + 150 * (xi - 1), 100 + 160 * (yi - 1));
-                                        g1.drawString(Owner, 50 + 150 * (xi - 1), 80 + 160 * (yi - 1));
-                                        g1.drawString(Level, 50 + 150 * (xi - 1), 120 + 160 * (yi - 1));
+                                        g1.drawString(Soldier, 50 + 135 * (xi - 1), 100 + 150 * (yi - 1));
+                                        g1.drawString(Owner, 50 + 135 * (xi - 1), 80 + 150 * (yi - 1));
+                                        g1.drawString(Level, 50 + 135 * (xi - 1), 120 + 150 * (yi - 1));
                                     }
                                 }
                             }
@@ -755,7 +759,7 @@ public class Scheduler {
                             g1.dispose();
                             try {
                                 ImageIO.write((RenderedImage) image, "png", new File(
-                                        "/home/DiscordBot/Rasberry/données/bot/WebMap/" + x + "_" + y + ".png"));
+                                        "/home/DiscordBot/Rasberry/données/bot/WebMap/" + xb + "_" + yb + ".png"));
                             } catch (Exception ex) {
                                 ex.printStackTrace();
                             }

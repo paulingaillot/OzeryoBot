@@ -23,7 +23,7 @@ public class mail {
             String from = "paulingaillot@outlook.com";
             String to = "paulingaillot@gmail.com";
             String username = "paulingaillot@outlook.com";
-            String password = "Paulin2001";
+            String password = passwd;
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");

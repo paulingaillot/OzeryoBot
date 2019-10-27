@@ -1515,21 +1515,14 @@ public class CommandDefaut {
                                     .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"))
                             .getName();
                 } catch (NullPointerException e) {
-                    Case = TextFileWriter
-                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                    if (Case.equals("0")) {
+                    Case = data.getProfils().get(TextFileWriter
+                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt")).getName();
+                    if (Case.equals("")) {
                         Case = "personne";
                     }
                 } catch (NumberFormatException e) {
                     Case = TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                    if (Case.equals("dungeon")) {
-                        Owner = "Level : " + TextFileWriter
-                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
-                        Soldier = "";
-                        Level = TextFileWriter
-                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
-                    }
                     Soldier = TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
                     Owner = "";
@@ -1560,6 +1553,13 @@ public class CommandDefaut {
 
                     else if (operation.equals("dungeon")) {
                         couleur = Color.DARK_GRAY;
+
+                            Owner = "Level : " + TextFileWriter
+                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt");
+                            Soldier = "";
+                            Level = TextFileWriter
+                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/pv.txt");
+                        
                     }
 
                     else if(!Case.equals("Foret") && !Case.equals("Grotte") && !Case.equals("Dép\u00f4t d'Argile")

@@ -1297,6 +1297,21 @@ public final class CommandMap {
                     } while (true);
                 }
             }
+            
+            
+            // Regen Hero 
+            
+            String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
+            Heroe.getPV(activeHero, user);
+            
+            
+            // Set Name
+            
+            data.getProfils().get(user.getId()).setName(user.getName());
+            
+            // Cooldown
+            
+            
             if (!(CoolDown1 = CoolDown.CoolDown(user)) && ((SimpleCommand) object[0]).getMethod().getName() != "cf") {
                 channel.sendMessage(":x: CoolDown (1sec) !! :x: ").queue();
                 System.out.println(" La commande " + ((SimpleCommand) object[0]).getMethod().getName()

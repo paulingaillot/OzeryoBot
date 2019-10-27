@@ -436,7 +436,7 @@ public class Shop {
         }
         if (c1 == 6) {
             int Bstock4;
-            int fer = res.get("petrole");
+            int fer = res.get("fer");
             try {
                 Bstock4 = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Shop/fer.txt"));
             } catch (NumberFormatException e) {
@@ -537,7 +537,7 @@ public class Shop {
                 }
                 if (alea == 6) {
                     ++fer;
-                    ressource = "petrole";
+                    ressource = "fer";
                 }
                 int res1 = res.get(ressource);
                 money -= 2500L;

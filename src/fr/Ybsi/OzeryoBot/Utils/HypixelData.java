@@ -29,7 +29,7 @@ public class HypixelData {
     }
 
     public static File getFile(String path) {
-        return new File(path, "/hypixeData.json");
+        return new File(path, "/hypixelData.json");
     }
 
     public HashMap<String, Hypixel> getHypixelStats() {

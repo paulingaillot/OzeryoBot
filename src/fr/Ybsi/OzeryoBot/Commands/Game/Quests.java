@@ -90,19 +90,19 @@ public class Quests {
                                                                                                                                     ? "Recuperer 50 bois"
                                                                                                                                     : (quest1
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Recuperer 50 acier"
+                                                                                                                                                    ? "Recuperer 50 argile"
                                                                                                                                                     : (quest1
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Recuperer 50 briques"
+                                                                                                                                                                    ? "Recuperer 50 cuir"
                                                                                                                                                                     : (quest1
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Recuperer 50 verre"
+                                                                                                                                                                                    ? "Recuperer 50 pierre"
                                                                                                                                                                                     : (quest1
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Recuperer 50 pierre"
+                                                                                                                                                                                                    ? "Recuperer 50 paille"
                                                                                                                                                                                                     : (quest1
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Recuperer 50 petrole"
+                                                                                                                                                                                                                    ? "Recuperer 50 fer"
                                                                                                                                                                                                                     : "aucune")))))))))))))))));
         }
         if (lang == command.Language.en) {
@@ -129,19 +129,19 @@ public class Quests {
                                                                                                                                     ? "Collect 50 bois"
                                                                                                                                     : (quest1
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Collect 50 acier"
+                                                                                                                                                    ? "Collect 50 argile"
                                                                                                                                                     : (quest1
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Collect 50 briques"
+                                                                                                                                                                    ? "Collect 50 cuir"
                                                                                                                                                                     : (quest1
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Collect 50 verre"
+                                                                                                                                                                                    ? "Collect 50 pierre"
                                                                                                                                                                                     : (quest1
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Collect 50 pierre"
+                                                                                                                                                                                                    ? "Collect 50 paille"
                                                                                                                                                                                                     : (quest1
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Collect 50 petrole"
+                                                                                                                                                                                                                    ? "Collect 50 fer"
                                                                                                                                                                                                                     : "any")))))))))))))))));
         }
         if (lang == command.Language.fr) {
@@ -168,19 +168,19 @@ public class Quests {
                                                                                                                                     ? "Recuperer 50 bois"
                                                                                                                                     : (quest2
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Recuperer 50 acier"
+                                                                                                                                                    ? "Recuperer 50 argile"
                                                                                                                                                     : (quest2
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Recuperer 50 briques"
+                                                                                                                                                                    ? "Recuperer 50 cuir"
                                                                                                                                                                     : (quest2
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Recuperer 50 verre"
+                                                                                                                                                                                    ? "Recuperer 50 pierre"
                                                                                                                                                                                     : (quest2
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Recuperer 50 pierre"
+                                                                                                                                                                                                    ? "Recuperer 50 paille"
                                                                                                                                                                                                     : (quest2
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Recuperer 50 petrole"
+                                                                                                                                                                                                                    ? "Recuperer 50 fer"
                                                                                                                                                                                                                     : "aucune")))))))))))))))));
         }
         if (lang == command.Language.en) {
@@ -207,19 +207,19 @@ public class Quests {
                                                                                                                                     ? "Collect 50 bois"
                                                                                                                                     : (quest2
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Collect 50 acier"
+                                                                                                                                                    ? "Collect 50 argile"
                                                                                                                                                     : (quest2
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Collect 50 briques"
+                                                                                                                                                                    ? "Collect 50 cuir"
                                                                                                                                                                     : (quest2
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Collect 50 verre"
+                                                                                                                                                                                    ? "Collect 50 pierre"
                                                                                                                                                                                     : (quest2
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Collect 50 pierre"
+                                                                                                                                                                                                    ? "Collect 50 paille"
                                                                                                                                                                                                     : (quest2
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Collect 50 petrole"
+                                                                                                                                                                                                                    ? "Collect 50 fer"
                                                                                                                                                                                                                     : "any")))))))))))))))));
         }
         if (lang == command.Language.fr) {
@@ -246,19 +246,19 @@ public class Quests {
                                                                                                                                     ? "Recuperer 50 bois"
                                                                                                                                     : (quest3
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Recuperer 50 acier"
+                                                                                                                                                    ? "Recuperer 50 argile"
                                                                                                                                                     : (quest3
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Recuperer 50 briques"
+                                                                                                                                                                    ? "Recuperer 50 cuir"
                                                                                                                                                                     : (quest3
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Recuperer 50 verre"
+                                                                                                                                                                                    ? "Recuperer 50 pierre"
                                                                                                                                                                                     : (quest3
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Recuperer 50 pierre"
+                                                                                                                                                                                                    ? "Recuperer 50 paille"
                                                                                                                                                                                                     : (quest3
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Recuperer 50 petrole"
+                                                                                                                                                                                                                    ? "Recuperer 50 fer"
                                                                                                                                                                                                                     : "aucune")))))))))))))))));
         }
         if (lang == command.Language.en) {
@@ -285,19 +285,19 @@ public class Quests {
                                                                                                                                     ? "Collect 50 bois"
                                                                                                                                     : (quest3
                                                                                                                                             .equals("acier")
-                                                                                                                                                    ? "Collect 50 acier"
+                                                                                                                                                    ? "Collect 50 argile"
                                                                                                                                                     : (quest3
                                                                                                                                                             .equals("brique")
-                                                                                                                                                                    ? "Collect 50 briques"
+                                                                                                                                                                    ? "Collect 50 cuir"
                                                                                                                                                                     : (quest3
                                                                                                                                                                             .equals("verre")
-                                                                                                                                                                                    ? "Collect 50 verre"
+                                                                                                                                                                                    ? "Collect 50 pierre"
                                                                                                                                                                                     : (quest3
                                                                                                                                                                                             .equals("pierre")
-                                                                                                                                                                                                    ? "Collect 50 pierre"
+                                                                                                                                                                                                    ? "Collect 50 paille"
                                                                                                                                                                                                     : (quest3
                                                                                                                                                                                                             .equals("petrole")
-                                                                                                                                                                                                                    ? "Collect 50 petrole"
+                                                                                                                                                                                                                    ? "Collect 50 fer"
                                                                                                                                                                                                                     : "any")))))))))))))))));
         }
         String emoji1 = ":negative_squared_cross_mark: ";

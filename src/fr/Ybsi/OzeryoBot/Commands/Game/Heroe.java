@@ -119,7 +119,8 @@ public class Heroe {
                 try {
                     c3 = Integer.parseInt(str);
                 } catch (NumberFormatException e) {
-                    c2 = c2 + str;
+                    if(c2 != "") c2 = c2 + " "+ str;
+                    else c2 = c2 + str;
                 }
             }
             try {
@@ -620,17 +621,8 @@ public class Heroe {
                 try {
                     c3 = Integer.parseInt(str);
                 } catch (NumberFormatException e) {
-                    c2 = c2 + str;
-                }
-            }
-
-            for (String str : args) {
-                if (str.equals(args[0]))
-                    continue;
-                try {
-                    c3 = Integer.parseInt(str);
-                } catch (NumberFormatException e) {
-                    c2 = !c2.equals("") ? String.valueOf(c2) + " " + str : str;
+                    if(c2 != "") c2 = c2 +" "+ str;
+                    else c2 = c2 + str;
                 }
             }
             try {

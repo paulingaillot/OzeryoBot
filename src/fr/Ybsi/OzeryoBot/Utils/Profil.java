@@ -18,42 +18,42 @@ public class Profil {
     private int idh = 0;
     private int trophy = 0;
     private int cf = 0;
-    private HashMap<Long, ArrayList<String>> Attack = new HashMap();
-    private HashMap<Long, ArrayList<String>> give = new HashMap();
-    private HashMap<Long, ArrayList<String>> RMD = new HashMap();
+    private HashMap<Long, ArrayList<String>> Attack = new HashMap<Long, ArrayList<String>>();
+    private HashMap<Long, ArrayList<String>> give = new HashMap<Long, ArrayList<String>>();
+    private HashMap<Long, ArrayList<String>> RMD = new HashMap<Long, ArrayList<String>>();
     private long lastRep = 0L;
     private int rep = 0;
     private long LastTrain = 0L;
     private long Train = 0L;
     private String Description = "Aucune Description";
     private int vote = 0;
-    private HashMap<String, Long> achievement = new HashMap();
+    private HashMap<String, Long> achievement = new HashMap<String, Long>();
     private int ap = 0;
     private long lastDaily = 0L;
     private long lastHourly = 0L;
     private long money = 0L;
     private long habitants = 0L;
-    private HashMap<String, Integer> res = new HashMap();
-    private HashMap<String, Integer> building = new HashMap();
+    private HashMap<String, Integer> res = new HashMap<String, Integer>();
+    private HashMap<String, Integer> building = new HashMap<String, Integer>();
     private long soldiers = 0L;
     private String country = "";
     private String home = "0_0";
     private int mana = 0;
     private long lastMana = 0L;
-    private HashMap<String, ArrayList<String>> pet = new HashMap();
-    private HashMap<String, ArrayList<String>> houses = new HashMap();
+    private HashMap<String, ArrayList<String>> pet = new HashMap<String, ArrayList<String>>();
+    private HashMap<String, ArrayList<String>> houses = new HashMap<String, ArrayList<String>>();
     private long lastPerte = 0L;
     private int tokens = 0;
     private boolean game = false;
-    private HashMap<String, ArrayList<String>> heroe = new HashMap();
+    private HashMap<String, ArrayList<String>> heroe = new HashMap<String, ArrayList<String>>();
     private String activeHeroe = "";
     private long lastPV = 0L;
     private int lootbox = 0;
     private boolean lootboxPremium = false;
-    private HashMap<String, ArrayList<Integer>> weapons = new HashMap();
-    private HashMap<String, ArrayList<Integer>> armor = new HashMap();
+    private HashMap<String, ArrayList<Integer>> weapons = new HashMap<String, ArrayList<Integer>>();
+    private HashMap<String, ArrayList<Integer>> armor = new HashMap<String, ArrayList<Integer>>();
     private boolean mail = true;
-    private ArrayList<ArrayList<String>> listMail = new ArrayList();
+    private ArrayList<ArrayList<String>> listMail = new ArrayList<ArrayList<String>>();
     private int filleuls = 0;
     private boolean parrain = false;
     private int ozPassXp = 0;
@@ -75,7 +75,7 @@ public class Profil {
     private int Scientifique = 0;
     private int Melting = 0;
     private int Collector = 0;
-    private HashMap<String, Integer> competence = new HashMap();
+    private HashMap<String, Integer> competence = new HashMap<String, Integer>();
     private long premium = 1L;
     private int topIdh = 0;
     private int topTrophy = 0;
@@ -88,6 +88,8 @@ public class Profil {
     private int commands = 0;
     private long lastCommand = 0L;
     int topLevel = 0;
+    private String Deus = "";
+    private long lastPray = 0;
 
     public Profil() {
     }
@@ -735,4 +737,20 @@ public class Profil {
     public void setLastCommand(long lastCommand) {
         this.lastCommand = lastCommand;
     }
+
+	public String getDeus() {
+		return Deus;
+	}
+
+	public void setDeus(String deus) {
+		Deus = deus;
+	}
+
+	public long getLastPray() {
+		return lastPray;
+	}
+
+	public void setLastPray(long lastPray) {
+		this.lastPray = lastPray;
+	}
 }
