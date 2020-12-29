@@ -113,7 +113,7 @@ public class NSFW {
                         builder1.setImage(photo);
                         builder1.setColor(color.couleurAleatoire(user));
                         builder1.setTimestamp(Instant.now());
-                        builder1.setFooter(String.valueOf(guild.getName()) + " | " + image, guild.getIconUrl());
+                        builder1.setFooter(guild.getName() + " | " + image, guild.getIconUrl());
                         builder1.setAuthor(user.getName(), null, user.getAvatarUrl());
                         channel.sendMessage(builder1.build()).queue();
                     } catch (ParserConfigurationException e) {

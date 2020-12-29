@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.HashMap;
 
 public class ProfilData {
-    private HashMap<String, Profil> profils = new HashMap();
+    private final HashMap<String, Profil> profils = new HashMap();
     private long lastLbPremium = 0;
     private int registers = 0;
     private long nextcf = 0L;

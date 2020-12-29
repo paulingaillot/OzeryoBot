@@ -45,7 +45,7 @@ public class Competence {
         int points = (int) Math.floor(level / 100);
         Iterator<Integer> math = competence.values().iterator();
         while (math.hasNext()) {
-            int used_point = (Integer) math.next();
+            int used_point = math.next();
             points -= used_point;
         }
         String c1 = "";
@@ -66,6 +66,8 @@ public class Competence {
             builder.addField("Branche des héros :statue_of_liberty: : :", "", true);
             builder.addField("Branche de l'intelligence :dove: : :", "", true);
             builder.addField("Branche du pays :map: : :", "", true);
+
+            channel.sendMessage(builder.build()).queue();
         }
     }
 }

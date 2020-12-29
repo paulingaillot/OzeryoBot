@@ -21,7 +21,7 @@ public class LootBox {
         HashMap<String, ArrayList<Integer>> armor;
         HashMap<String, ArrayList<Integer>> weapons;
         try {
-            weapons = DiscordBot.getData().getProfils().get(user.getId()).getWeapons();
+            weapons = user.getWeapons();
         } catch (NullPointerException e) {
             weapons = new HashMap<String, ArrayList<Integer>>();
             weapons.put("epee", null);
@@ -41,96 +41,96 @@ public class LootBox {
             weapons.put("dague", null);
             weapons.put("shuriken", null);
             weapons.put("katana", null);
-            DiscordBot.getData().getProfils().get(user.getId()).setWeapons(weapons);
+            user.setWeapons(weapons);
         }
         int quantité = 0;
         try {
-            quantité += ((ArrayList) weapons.get("epee")).size();
+            quantité += weapons.get("epee").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("spectre")).size();
+            quantité += weapons.get("spectre").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("arc")).size();
+            quantité += weapons.get("arc").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("arbalete")).size();
+            quantité += weapons.get("arbalete").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("lance")).size();
+            quantité += weapons.get("lance").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("pelle de combat")).size();
+            quantité += weapons.get("pelle de combat").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("sarbacanne")).size();
+            quantité += weapons.get("sarbacanne").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("gourdin")).size();
+            quantité += weapons.get("gourdin").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("flechettes")).size();
+            quantité += weapons.get("flechettes").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("trident")).size();
+            quantité += weapons.get("trident").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("fleau")).size();
+            quantité += weapons.get("fleau").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("fouet")).size();
+            quantité += weapons.get("fouet").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("baton")).size();
+            quantité += weapons.get("baton").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("fourche")).size();
+            quantité += weapons.get("fourche").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("dague")).size();
+            quantité += weapons.get("dague").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("shuriken")).size();
+            quantité += weapons.get("shuriken").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) weapons.get("katana")).size();
+            quantité += weapons.get("katana").size();
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
         try {
-            armor = DiscordBot.getData().getProfils().get(user.getId()).getArmor();
+            armor = user.getArmor();
         } catch (NullPointerException e) {
             armor = new HashMap<String, ArrayList<Integer>>();
             armor.put("armure obscure", null);
@@ -150,90 +150,90 @@ public class LootBox {
             armor.put("bouclier de bois", null);
             armor.put("armure de cuire", null);
             armor.put("armure celeste", null);
-            DiscordBot.getData().getProfils().get(user.getId()).setArmor(armor);
+            user.setArmor(armor);
         }
         try {
-            quantité += ((ArrayList) armor.get("armure obscure")).size();
+            quantité += armor.get("armure obscure").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure")).size();
+            quantité += armor.get("armure").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("bouclier")).size();
+            quantité += armor.get("bouclier").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure lumineuse")).size();
+            quantité += armor.get("armure lumineuse").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure royale")).size();
+            quantité += armor.get("armure royale").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure elfique")).size();
+            quantité += armor.get("armure elfique").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("tenue en soie")).size();
+            quantité += armor.get("tenue en soie").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure magique")).size();
+            quantité += armor.get("armure magique").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("bouclier reflechissant")).size();
+            quantité += armor.get("bouclier reflechissant").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure de vulcain")).size();
+            quantité += armor.get("armure de vulcain").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure aquatique")).size();
+            quantité += armor.get("armure aquatique").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure magenta")).size();
+            quantité += armor.get("armure magenta").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure de rubis")).size();
+            quantité += armor.get("armure de rubis").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("bouclier de cristal")).size();
+            quantité += armor.get("bouclier de cristal").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("bouclier de bois")).size();
+            quantité += armor.get("bouclier de bois").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure de cuire")).size();
+            quantité += armor.get("armure de cuire").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
         try {
-            quantité += ((ArrayList) armor.get("armure celeste")).size();
+            quantité += armor.get("armure celeste").size();
         } catch (NullPointerException e) {
             // empty catch block
         }
@@ -257,7 +257,7 @@ public class LootBox {
             int lb = data.getProfils().get(user.getId()).getLootbox();
             if (lang == command.Language.fr) {
                 channel.sendMessage(
-                        "Vous avez actuelement " + lb + " lootbox. Faites ``=lb open`` pour ouvrir une lootbox.")
+                        "Vous avez actuellement " + lb + " lootbox. Faites ``=lb open`` pour ouvrir une lootbox.")
                         .queue();
             }
             if (lang != command.Language.en)
@@ -302,46 +302,23 @@ public class LootBox {
                 level = 0;
             }
             String mess = "";
-            int alea = 1 + (int) (Math.random() * 3.0);
-            if (alea == 1) {
-                int tokens = data.getProfils().get(user.getId()).getTokens();
-                int gaintokens = 5 + (int) (Math.random() * 21.0);
-                data.getProfils().get(user.getId()).setTokens(tokens += gaintokens);
-                if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + gaintokens + " jetons \n";
-                }
-                if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + gaintokens + " Tokens \n";
-                }
-            }
             if ((alea1 = 1 + (int) (Math.random() * 3.0)) == 1) {
                 long money = data.getProfils().get(user.getId()).getMoney();
                 int Alea_money = 25 + (int) (Math.random() * 76.0);
                 int money_win2 = (int) ((double) Alea_money * (100.0 + (double) (10 * level) * bonus));
-                data.getProfils().get(user.getId()).setMoney(money += (long) money_win2);
-                mess = String.valueOf(mess) + "- " + money_win2 + " money \n";
+                data.getProfils().get(user.getId()).setMoney(money += money_win2);
+                mess = mess + "- " + money_win2 + " money \n";
             }
             if ((alea11 = 1 + (int) (Math.random() * 3.0)) == 1) {
                 long pop = data.getProfils().get(user.getId()).getHabitants();
                 int Alea_pop = 25 + (int) (Math.random() * 76.0);
                 int popWin = (int) ((double) Alea_pop * (10.0 + 2.5 * (double) (10 * (levelEcole + 1) * level)));
-                data.getProfils().get(user.getId()).setHabitants(pop += (long) popWin);
+                data.getProfils().get(user.getId()).setHabitants(pop += popWin);
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + popWin + " habitants \n";
+                    mess = mess + "- " + popWin + " habitants \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + popWin + " people \n";
-                }
-            }
-            if ((alea3 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                int mana = data.getProfils().get(user.getId()).getMana();
-                int Alea_mana = 25 + (int) (Math.random() * 76.0);
-                data.getProfils().get(user.getId()).setMana(mana += Alea_mana);
-                if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_mana + " manas \n";
-                }
-                if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_mana + " mana \n";
+                    mess = mess + "- " + popWin + " people \n";
                 }
             }
             HashMap<String, Integer> res = data.getProfils().get(user.getId()).getRes();
@@ -350,76 +327,76 @@ public class LootBox {
             int Alea_bois = 25 + (int) (Math.random() * (double) (max - min + 1));
             int Alea_acier = 25 + (int) (Math.random() * (double) (max - min + 1));
             int Alea_brique = 25 + (int) (Math.random() * (double) (max - min + 1));
-            int Alea_verre = 25 + (int) (Math.random() * (double) (max - min + 1));
             int Alea_pierre = 25 + (int) (Math.random() * (double) (max - min + 1));
-            int Alea_petrole = 25 + (int) (Math.random() * (double) (max - min + 1));
+            int Alea_paille = 25 + (int) (Math.random() * (double) (max - min + 1));
+            int Alea_fer = 25 + (int) (Math.random() * (double) (max - min + 1));
             int bois = res.get("bois");
             int acier = res.get("argile");
             int brique = res.get("cuir");
-            int verre = res.get("pierre");
-            int pierre = res.get("paille");
-            int petrole = res.get("fer");
+            int pierre = res.get("pierre");
+            int paille = res.get("paille");
+            int fer = res.get("fer");
             int alea4 = 1 + (int) (Math.random() * 3.0);
             if (alea4 == 1) {
                 bois += Alea_bois;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_bois + " bois \n";
+                    mess = mess + "- " + Alea_bois + " bois \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_bois + " wood \n";
+                    mess = mess + "- " + Alea_bois + " wood \n";
                 }
             }
             if ((alea5 = 1 + (int) (Math.random() * 3.0)) == 1) {
                 acier += Alea_acier;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_acier + " argile \n";
+                    mess = mess + "- " + Alea_acier + " argile \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_acier + " clay \n";
+                    mess = mess + "- " + Alea_acier + " clay \n";
                 }
             }
             if ((alea6 = 1 + (int) (Math.random() * 3.0)) == 1) {
                 brique += Alea_brique;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_brique + " cuir \n";
+                    mess = mess + "- " + Alea_brique + " cuir \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_brique + " leather \n";
+                    mess = mess + "- " + Alea_brique + " leather \n";
                 }
             }
             if ((alea7 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                verre += Alea_verre;
+                pierre += Alea_pierre;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_verre + " pierre \n";
+                    mess = mess + "- " + Alea_pierre + " pierre \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_verre + " stone \n";
+                    mess = mess + "- " + Alea_pierre + " stone \n";
                 }
             }
             if ((alea8 = 1 + (int) (Math.random() * 3.0)) == 1) {
                 pierre += Alea_pierre;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_pierre + " paille \n";
+                    mess = mess + "- " + Alea_pierre + " paille \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_pierre + " straw \n";
+                    mess = mess + "- " + Alea_pierre + " straw \n";
                 }
             }
             if ((alea9 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                petrole += Alea_petrole;
+                fer += Alea_fer;
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- " + Alea_petrole + " fer \n";
+                    mess = mess + "- " + Alea_fer + " fer \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- " + Alea_petrole + " iron \n";
+                    mess = mess + "- " + Alea_fer + " iron \n";
                 }
             }
             res.put("bois", bois);
             res.put("argile", acier);
             res.put("cuir", brique);
-            res.put("pierre", verre);
-            res.put("paille", pierre);
-            res.put("fer", petrole);
+            res.put("pierre", pierre);
+            res.put("paille", paille);
+            res.put("fer", fer);
             data.getProfils().get(user.getId()).setRes(res);
             try {
                 heroe = data.getProfils().get(user.getId()).getHeroe();
@@ -510,7 +487,7 @@ public class LootBox {
                     hero = "Ivoire";
                 }
                 try {
-                    hero1 = (ArrayList<String>) heroe.get(hero);
+                    hero1 = heroe.get(hero);
                 } catch (NullPointerException e) {
                     hero1 = new ArrayList<String>();
                     hero1.add("1");
@@ -519,12 +496,12 @@ public class LootBox {
                     hero1.add("0");
                 }
                 try {
-                    level1 = Integer.parseInt((String) hero1.get(0));
+                    level1 = Integer.parseInt(hero1.get(0));
                 } catch (NullPointerException e) {
                     level1 = 0;
                 }
                 try {
-                    card = Integer.parseInt((String) hero1.get(1));
+                    card = Integer.parseInt(hero1.get(1));
                 } catch (NullPointerException e) {
                     card = 0;
                 }
@@ -582,10 +559,10 @@ public class LootBox {
                         .setCollector(data.getProfils().get(user.getId()).getCollector() + 1);
                 data.getProfils().get(user.getId()).setHeroe(heroe);
                 if (lang == command.Language.fr) {
-                    mess = String.valueOf(mess) + "- une carte du hero " + hero + " (" + Heroe.getRarity(hero) + ") \n";
+                    mess = mess + "- une carte du hero " + hero + " (" + Heroe.getRarity(hero) + ") \n";
                 }
                 if (lang == command.Language.en) {
-                    mess = String.valueOf(mess) + "- An hero card " + hero + " (" + Heroe.getRarity(hero) + ") \n";
+                    mess = mess + "- An hero card " + hero + " (" + Heroe.getRarity(hero) + ") \n";
                 }
             }
             if ((alea12 = 1 + (int) (Math.random() * 3.0)) == 1) {
@@ -701,7 +678,7 @@ public class LootBox {
                     }
                     ArrayList<Integer> weaponList = new ArrayList<Integer>();
                     try {
-                        weaponList = (ArrayList<Integer>) weapons.get(weapon);
+                        weaponList = weapons.get(weapon);
                         weaponList.add(aleaWeapon2);
                     } catch (NullPointerException e) {
                         weaponList = new ArrayList<Integer>();
@@ -732,20 +709,20 @@ public class LootBox {
                     }
                     data.getProfils().get(user.getId()).setWeapons(weapons);
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + weapon + " offrant un bonus de " + aleaWeapon2 * 50
+                        mess = mess + "- " + weapon + " offrant un bonus de " + aleaWeapon2 * 50
                                 + " d'attaque \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + weapon + " which give a bonus of " + aleaWeapon2 * 50
+                        mess = mess + "- " + weapon + " which give a bonus of " + aleaWeapon2 * 50
                                 + " of attack \n";
                     }
                 } else {
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess)
+                        mess = mess
                                 + "- Oh non votre ville n'a plus l'espace necessaire pour stocker une arme de plus \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess)
+                        mess = mess
                                 + "- Oh no your city doesn't have the necessary space to store a weapon more \n";
                     }
                 }
@@ -869,7 +846,7 @@ public class LootBox {
                     }
                     ArrayList<Integer> armorList = new ArrayList<Integer>();
                     try {
-                        armorList = (ArrayList<Integer>) armors.get(armor);
+                        armorList = armors.get(armor);
                         armorList.add(aleaArmor2);
                     } catch (NullPointerException e) {
                         armorList = new ArrayList<Integer>();
@@ -900,20 +877,20 @@ public class LootBox {
                     }
                     data.getProfils().get(user.getId()).setArmor(armors);
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + armor + " offrant un bonus de " + aleaArmor2 * 50
+                        mess = mess + "- " + armor + " offrant un bonus de " + aleaArmor2 * 50
                                 + " de defense \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + armor + " which give a bonus of " + aleaArmor2 * 50
+                        mess = mess + "- " + armor + " which give a bonus of " + aleaArmor2 * 50
                                 + " of defense \n";
                     }
                 } else {
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess)
+                        mess = mess
                                 + "- Oh non on dirai que votre ville n'a plus l'espace necessaire pour stocker un bouclier de plus.";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess)
+                        mess = mess
                                 + "-Oh no your city doesn't have the necessary space to store mroe armor.";
                     }
                 }
@@ -928,7 +905,7 @@ public class LootBox {
         }
         if (!c1.equals("premium"))
             return;
-        if (!Premium.Premium(user)) {
+        if (!Premium.Premium(data.getProfils().get(user.getId()))) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("Vous devez etre premium pour reclamer votre lootbox habdomadaire").queue();
             }
@@ -976,46 +953,23 @@ public class LootBox {
                     level = 0;
                 }
                 String mess = "";
-                int alea = 1 + (int) (Math.random() * 3.0);
-                if (alea == 1) {
-                    int tokens = data.getProfils().get(user.getId()).getTokens();
-                    int gaintokens = 5 + (int) (Math.random() * 21.0);
-                    data.getProfils().get(user.getId()).setTokens(tokens += gaintokens);
-                    if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + gaintokens + " jetons \n";
-                    }
-                    if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + gaintokens + " Tokens \n";
-                    }
-                }
                 if ((alea1 = 1 + (int) (Math.random() * 3.0)) == 1) {
                     long money = data.getProfils().get(user.getId()).getMoney();
                     int Alea_money = 25 + (int) (Math.random() * 76.0);
                     int money_win2 = (int) ((double) Alea_money * (100.0 + (double) (10 * level) * bonus));
-                    data.getProfils().get(user.getId()).setMoney(money += (long) money_win2);
-                    mess = String.valueOf(mess) + "- " + money_win2 + " money \n";
+                    data.getProfils().get(user.getId()).setMoney(money += money_win2);
+                    mess = mess + "- " + money_win2 + " money \n";
                 }
                 if ((alea11 = 1 + (int) (Math.random() * 3.0)) == 1) {
                     long pop = data.getProfils().get(user.getId()).getHabitants();
                     int Alea_pop = 25 + (int) (Math.random() * 76.0);
                     int popWin = (int) ((double) Alea_pop * (10.0 + 2.5 * (double) (10 * (levelEcole + 1) * level)));
-                    data.getProfils().get(user.getId()).setHabitants(pop += (long) popWin);
+                    data.getProfils().get(user.getId()).setHabitants(pop += popWin);
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + popWin + " habitants \n";
+                        mess = mess + "- " + popWin + " habitants \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + popWin + " people \n";
-                    }
-                }
-                if ((alea3 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                    int mana = data.getProfils().get(user.getId()).getMana();
-                    int Alea_mana = 25 + (int) (Math.random() * 76.0);
-                    data.getProfils().get(user.getId()).setMana(mana += Alea_mana);
-                    if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_mana + " manas \n";
-                    }
-                    if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_mana + " mana \n";
+                        mess = mess + "- " + popWin + " people \n";
                     }
                 }
                 HashMap<String, Integer> res = data.getProfils().get(user.getId()).getRes();
@@ -1024,76 +978,76 @@ public class LootBox {
                 int Alea_bois = 25 + (int) (Math.random() * (double) (max - min + 1));
                 int Alea_acier = 25 + (int) (Math.random() * (double) (max - min + 1));
                 int Alea_brique = 25 + (int) (Math.random() * (double) (max - min + 1));
-                int Alea_verre = 25 + (int) (Math.random() * (double) (max - min + 1));
                 int Alea_pierre = 25 + (int) (Math.random() * (double) (max - min + 1));
-                int Alea_petrole = 25 + (int) (Math.random() * (double) (max - min + 1));
+                int Alea_paille = 25 + (int) (Math.random() * (double) (max - min + 1));
+                int Alea_fer = 25 + (int) (Math.random() * (double) (max - min + 1));
                 int bois = res.get("bois");
                 int acier = res.get("argile");
                 int brique = res.get("cuir");
-                int verre = res.get("pierre");
-                int pierre = res.get("paille");
-                int petrole = res.get("fer");
+                int pierre = res.get("pierre");
+                int paille = res.get("paille");
+                int fer = res.get("fer");
                 int alea4 = 1 + (int) (Math.random() * 3.0);
                 if (alea4 == 1) {
                     bois += Alea_bois;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_bois + " bois \n";
+                        mess = mess + "- " + Alea_bois + " bois \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_bois + " wood \n";
+                        mess = mess + "- " + Alea_bois + " wood \n";
                     }
                 }
                 if ((alea5 = 1 + (int) (Math.random() * 3.0)) == 1) {
                     acier += Alea_acier;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_acier + " argile \n";
+                        mess = mess + "- " + Alea_acier + " argile \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_acier + " clay \n";
+                        mess = mess + "- " + Alea_acier + " clay \n";
                     }
                 }
                 if ((alea6 = 1 + (int) (Math.random() * 3.0)) == 1) {
                     brique += Alea_brique;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_brique + " cuir \n";
+                        mess = mess + "- " + Alea_brique + " cuir \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_brique + " leather \n";
+                        mess = mess + "- " + Alea_brique + " leather \n";
                     }
                 }
                 if ((alea7 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                    verre += Alea_verre;
+                    pierre += Alea_pierre;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_verre + " pierre \n";
+                        mess = mess + "- " + Alea_pierre + " pierre \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_verre + " stone \n";
+                        mess = mess + "- " + Alea_pierre + " stone \n";
                     }
                 }
                 if ((alea8 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                    pierre += Alea_pierre;
+                    paille += Alea_paille;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_pierre + " paille \n";
+                        mess = mess + "- " + Alea_paille + " paille \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_pierre + " straw \n";
+                        mess = mess + "- " + Alea_paille + " straw \n";
                     }
                 }
                 if ((alea9 = 1 + (int) (Math.random() * 3.0)) == 1) {
-                    petrole += Alea_petrole;
+                    fer += Alea_fer;
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- " + Alea_petrole + " fer \n";
+                        mess = mess + "- " + Alea_fer + " fer \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- " + Alea_petrole + " iron \n";
+                        mess = mess + "- " + Alea_fer + " iron \n";
                     }
                 }
                 res.put("bois", bois);
                 res.put("argile", acier);
                 res.put("cuir", brique);
-                res.put("pierre", verre);
-                res.put("paille", pierre);
-                res.put("fer", petrole);
+                res.put("pierre", pierre);
+                res.put("paille", paille);
+                res.put("fer", fer);
                 data.getProfils().get(user.getId()).setRes(res);
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
@@ -1184,7 +1138,7 @@ public class LootBox {
                         hero = "Ivoire";
                     }
                     try {
-                        hero1 = (ArrayList<String>) heroe.get(hero);
+                        hero1 = heroe.get(hero);
                     } catch (NullPointerException e) {
                         hero1 = new ArrayList<String>();
                         hero1.add("1");
@@ -1193,12 +1147,12 @@ public class LootBox {
                         hero1.add("0");
                     }
                     try {
-                        level1 = Integer.parseInt((String) hero1.get(0));
+                        level1 = Integer.parseInt(hero1.get(0));
                     } catch (NullPointerException e) {
                         level1 = 0;
                     }
                     try {
-                        card = Integer.parseInt((String) hero1.get(1));
+                        card = Integer.parseInt(hero1.get(1));
                     } catch (NullPointerException e) {
                         card = 0;
                     }
@@ -1256,11 +1210,11 @@ public class LootBox {
                             .setCollector(data.getProfils().get(user.getId()).getCollector() + 1);
                     data.getProfils().get(user.getId()).setHeroe(heroe);
                     if (lang == command.Language.fr) {
-                        mess = String.valueOf(mess) + "- une carte du hero " + hero + " (" + Heroe.getRarity(hero)
+                        mess = mess + "- une carte du hero " + hero + " (" + Heroe.getRarity(hero)
                                 + ") \n";
                     }
                     if (lang == command.Language.en) {
-                        mess = String.valueOf(mess) + "- An hero card " + hero + " (" + Heroe.getRarity(hero) + ") \n";
+                        mess = mess + "- An hero card " + hero + " (" + Heroe.getRarity(hero) + ") \n";
                     }
                 }
                 if ((alea12 = 1 + (int) (Math.random() * 3.0)) == 1) {
@@ -1376,7 +1330,7 @@ public class LootBox {
                         }
                         ArrayList<Integer> weaponList = new ArrayList<Integer>();
                         try {
-                            weaponList = (ArrayList<Integer>) weapons.get(weapon);
+                            weaponList = weapons.get(weapon);
                             weaponList.add(aleaWeapon2);
                         } catch (NullPointerException e) {
                             weaponList = new ArrayList<Integer>();
@@ -1407,20 +1361,20 @@ public class LootBox {
                         }
                         data.getProfils().get(user.getId()).setWeapons(weapons);
                         if (lang == command.Language.fr) {
-                            mess = String.valueOf(mess) + "- " + weapon + " offrant un bonus de " + aleaWeapon2 * 50
+                            mess = mess + "- " + weapon + " offrant un bonus de " + aleaWeapon2 * 50
                                     + " d'attaque \n";
                         }
                         if (lang == command.Language.en) {
-                            mess = String.valueOf(mess) + "- " + weapon + " which give a bonus of " + aleaWeapon2 * 50
+                            mess = mess + "- " + weapon + " which give a bonus of " + aleaWeapon2 * 50
                                     + " of attack \n";
                         }
                     } else {
                         if (lang == command.Language.fr) {
-                            mess = String.valueOf(mess)
+                            mess = mess
                                     + "- Oh non votre ville n'a plus l'espace necessaire pour stocker une arme de plus \n";
                         }
                         if (lang == command.Language.en) {
-                            mess = String.valueOf(mess)
+                            mess = mess
                                     + "- Oh no your city doesn't have the necessary space to store a weapon more \n";
                         }
                     }
@@ -1544,7 +1498,7 @@ public class LootBox {
                         }
                         ArrayList<Integer> armorList = new ArrayList<Integer>();
                         try {
-                            armorList = (ArrayList<Integer>) armors.get(armor);
+                            armorList = armors.get(armor);
                             armorList.add(aleaArmor2);
                         } catch (NullPointerException e) {
                             armorList = new ArrayList<Integer>();
@@ -1575,20 +1529,20 @@ public class LootBox {
                         }
                         data.getProfils().get(user.getId()).setArmor(armors);
                         if (lang == command.Language.fr) {
-                            mess = String.valueOf(mess) + "- " + armor + " offrant un bonus de " + aleaArmor2 * 50
+                            mess = mess + "- " + armor + " offrant un bonus de " + aleaArmor2 * 50
                                     + " de defense \n";
                         }
                         if (lang == command.Language.en) {
-                            mess = String.valueOf(mess) + "- " + armor + " which give a bonus of " + aleaArmor2 * 50
+                            mess = mess + "- " + armor + " which give a bonus of " + aleaArmor2 * 50
                                     + " of defense \n";
                         }
                     } else {
                         if (lang == command.Language.fr) {
-                            mess = String.valueOf(mess)
+                            mess = mess
                                     + "- Oh non on dirai que votre ville n'a plus l'espace necessaire pour stocker un bouclier de plus.";
                         }
                         if (lang == command.Language.en) {
-                            mess = String.valueOf(mess)
+                            mess = mess
                                     + "-Oh no your city doesn't have the necessary space to store mroe armor.";
                         }
                     }
@@ -1603,7 +1557,7 @@ public class LootBox {
                 return;
             }
             if (lang == command.Language.fr) {
-                channel.sendMessage("Vous pouvez actuelement ouvrir votre box premium.").queue();
+                channel.sendMessage("Vous pouvez actuellement ouvrir votre box premium.").queue();
             }
             if (lang != command.Language.en)
                 return;

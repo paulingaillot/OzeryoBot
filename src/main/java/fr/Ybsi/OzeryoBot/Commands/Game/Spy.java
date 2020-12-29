@@ -5,6 +5,7 @@ package fr.Ybsi.OzeryoBot.Commands.Game;
 
 import fr.Ybsi.OzeryoBot.Commands.command;
 import fr.Ybsi.OzeryoBot.DiscordBot;
+import fr.Ybsi.OzeryoBot.Utils.Profil;
 import fr.Ybsi.OzeryoBot.Utils.ProfilData;
 import fr.Ybsi.OzeryoBot.Utils.TextFileWriter;
 import net.dv8tion.jda.api.JDA;
@@ -21,7 +22,7 @@ public class Spy {
     @command(name = "spy", type = command.ExecutorType.ALL, topic = command.Topics.Game)
     private void spy(Message message, Guild guild, String[] args, User user, MessageChannel channel, String arg,
                      JDA jda, ProfilData data, command.Language lang) {
-        User cible;
+        Profil cible;
         int point;
         String cible2 = "";
         try {
@@ -36,9 +37,9 @@ public class Spy {
             return;
         }
         try {
-            cible = message.getMentionedUsers().get(0);
+            cible = data.getProfils().get(message.getMentionedUsers().get(0).getId());
         } catch (IndexOutOfBoundsException e) {
-            cible = jda.getUserById(cible2);
+            cible = data.getProfils().get(jda.getUserById(cible2));
         }
         HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
         int caserne = building.get("camp d'entrainement");
@@ -75,7 +76,7 @@ public class Spy {
             }
             return;
         }
-        long soldier = habitants.atk(data.getProfils().get(cible.getId()));
+        long soldier = habitants.atk(cible);
         int alea = 0;
         int alea2 = 0;
         if (caserne == 26) {
@@ -100,98 +101,98 @@ public class Spy {
         }
         long soldierMax = soldier + (long) alea2;
         alea = 1 + (int) (Math.random() * 9.0);
-        HashMap<String, Integer> res = data.getProfils().get(cible.getId()).getRes();
+        HashMap<String, Integer> res = cible.getRes();
         String messages = "";
         if (alea == 1) {
-            long money = data.getProfils().get(cible.getId()).getMoney();
+            long money = cible.getMoney();
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + money + "$.";
+                messages = messages + "\n Votre espion a decouvert " + money + "$.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + money + "$.";
+                messages = messages + "\n Your spy discovered " + money + "$.";
             }
         }
         if (alea == 2) {
-            int mana = data.getProfils().get(cible.getId()).getMana();
+            int mana = cible.getMana();
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert que l'ennemi a " + mana + " mana.";
+                messages = messages + "\n Votre espion a decouvert que l'ennemi a " + mana + " mana.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered that your opponent have " + mana
+                messages = messages + "\n Your spy discovered that your opponent have " + mana
                         + " mana.";
             }
         }
         if (alea == 3) {
             int bois = res.get("bois");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + bois
+                messages = messages + "\n Votre espion a decouvert " + bois
                         + " bois dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + bois + " wood in the opponent city.";
+                messages = messages + "\n Your spy discovered " + bois + " wood in the opponent city.";
             }
         }
         if (alea == 4) {
             int acier = res.get("acier");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + acier
+                messages = messages + "\n Votre espion a decouvert " + acier
                         + " argile dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + acier + " clay in the opponent city.";
+                messages = messages + "\n Your spy discovered " + acier + " clay in the opponent city.";
             }
         }
         if (alea == 5) {
             int brique = res.get("brique");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + brique
+                messages = messages + "\n Votre espion a decouvert " + brique
                         + " cuir dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + brique
+                messages = messages + "\n Your spy discovered " + brique
                         + " leather in the opponent city.";
             }
         }
         if (alea == 6) {
-            int verre = res.get("verre");
+            int pierre = res.get("pierre");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + verre
+                messages = messages + "\n Votre espion a decouvert " + pierre
                         + " pierre dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + verre
+                messages = messages + "\n Your spy discovered " + pierre
                         + " stone in the opponent city.";
             }
         }
         if (alea == 7) {
             int pierre = res.get("pierre");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + pierre
+                messages = messages + "\n Votre espion a decouvert " + pierre
                         + " paille dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + pierre
+                messages = messages + "\n Your spy discovered " + pierre
                         + " straw in the opponent city.";
             }
         }
         if (alea == 8) {
             int petrole = res.get("petrole");
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Votre espion a decouvert " + petrole
+                messages = messages + "\n Votre espion a decouvert " + petrole
                         + " fer dans la ville ennemie.";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n Your spy discovered " + petrole
+                messages = messages + "\n Your spy discovered " + petrole
                         + " iron in the opponent city.";
             }
         }
         if (alea == 9) {
-            long habitant = habitants.pop(data.getProfils().get(cible));
+            long habitant = habitants.pop(cible);
             if (lang == command.Language.fr) {
-                messages = String.valueOf(messages) + "\n Il y a " + habitant + " habitants dans la ville ennemie";
+                messages = messages + "\n Il y a " + habitant + " habitants dans la ville ennemie";
             }
             if (lang == command.Language.en) {
-                messages = String.valueOf(messages) + "\n There are " + habitant + "people in the opponent city";
+                messages = messages + "\n There are " + habitant + "people in the opponent city";
             }
         }
         int reperage = 50;
@@ -209,9 +210,9 @@ public class Spy {
         int alea3 = 1 + (int) (Math.random() * 100.0);
         int espion = data.getProfils().get(user.getId()).getEspion();
         data.getProfils().get(user.getId()).setEspion(++espion);
-        command.Language langc = DiscordBot.getData().getProfils().get(cible.getId()).getLanguage();
+        command.Language langc = cible.getLanguage();
         if (alea3 <= reperage) {
-            if (!cible.hasPrivateChannel()) {
+            /*if (!cible.hasPrivateChannel()) {
                 cible.openPrivateChannel().complete();
             }
             if (langc == command.Language.fr) {
@@ -221,9 +222,9 @@ public class Spy {
             if (langc == command.Language.en) {
                 ((UserImpl) cible).getPrivateChannel()
                         .sendMessage("\u26a0 Alert \u26a0 \n A spy has been discovered in your city.").queue();
-            }
+            }*/
         }
-        if (!user.hasPrivateChannel()) {
+        /*if (!user.hasPrivateChannel()) {
             user.openPrivateChannel().complete();
         }
         if (lang == command.Language.fr) {
@@ -248,6 +249,6 @@ public class Spy {
         }
         if (lang == command.Language.en) {
             channel.sendMessage("You spying mission is in progress... Check your PM to see the report.").queue();
-        }
+        }*/
     }
 }

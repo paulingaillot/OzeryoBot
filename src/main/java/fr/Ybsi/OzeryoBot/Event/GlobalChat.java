@@ -58,7 +58,7 @@ public class GlobalChat implements EventListener {
                             .read("/home/DiscordBot/Rasberry/données/Guild/" + guild.getId() + "/GlobalChat.txt");
                     String content = message;
                     String Role2 = "LvL" + Level.level(event.getAuthor().getId());
-                    if (Premium.Premium(event.getAuthor()) && !TextFileWriter
+                    if (Premium.Premium(DiscordBot.getData().getProfils().get(event.getAuthor().getId())) && !TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/Users/" + event.getAuthor().getId() + "/grade.txt")
                             .equals("0")) {
                         Role2 = TextFileWriter.read(
@@ -76,7 +76,7 @@ public class GlobalChat implements EventListener {
                     if (fichier.size() > 0) {
                         builder.setImage(fichier.get(0).getUrl());
                     }
-                    builder.setFooter(String.valueOf(event.getGuild().getName()) + " | Level : " + Levels,
+                    builder.setFooter(event.getGuild().getName() + " | Level : " + Levels,
                             event.getGuild().getIconUrl());
                     builder.setTimestamp(Instant.now());
                     builder.setColor(color.couleurAleatoire(event.getAuthor()));

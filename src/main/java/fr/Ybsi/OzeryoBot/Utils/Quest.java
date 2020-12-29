@@ -12,40 +12,40 @@ import java.io.File;
 import java.util.Date;
 
 public class Quest {
-    public static void Quest(String name, User user, MessageChannel channel, int points) {
+    public static void Quest(String name, Profil profil, MessageChannel channel, int points) {
         File[] files;
-        command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
+        command.Language lang = profil.getLanguage();
         ProfilData data = DiscordBot.getData();
         int day = new Date().getDay();
         String quest1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest1.txt");
         String quest2 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest2.txt");
         String quest3 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Quests/quest3.txt");
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId()+"/");
-        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + profil.getId()+"/");
+        TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + profil.getId() + "/quests/");
         try {
             for (File file : files = TextFileWriter
-                    .folderlist("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/")) {
-                if (file.getName().equals(String.valueOf(day) + "|" + quest1 + ".txt")
-                        || file.getName().equals(String.valueOf(day) + "|" + quest2 + ".txt")
-                        || Premium.Premium(user) && file.getName().equals(String.valueOf(day) + "|" + quest3 + ".txt"))
+                    .folderlist("/home/DiscordBot/Rasberry/données/Users/" + profil.getId() + "/quests/")) {
+                if (file.getName().equals(day + "|" + quest1 + ".txt")
+                        || file.getName().equals(day + "|" + quest2 + ".txt")
+                        || Premium.Premium(profil) && file.getName().equals(day + "|" + quest3 + ".txt"))
                     continue;
                 TextFileWriter.delete(file.getAbsolutePath());
             }
         }catch(NullPointerException e){
 
         }
-        if (quest1.equals(name) || quest2.equals(name) || Premium.Premium(user) && quest3.equals(name)) {
+        if (quest1.equals(name) || quest2.equals(name) || Premium.Premium(data.getProfils().get(profil.getId())) && quest3.equals(name)) {
             int maxpoints;
             int lastpts = 0;
             try {
-                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId()
+                lastpts = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + profil.getId()
                         + "/quests/" + day + "|" + name + ".txt"));
             } catch (NumberFormatException e) {
                 return;
             }
             points = lastpts + points;
             TextFileWriter.write(
-                    "/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|" + name + ".txt",
+                    "/home/DiscordBot/Rasberry/données/Users/" + profil.getId() + "/quests/" + day + "|" + name + ".txt",
                     Integer.toString(points), 1);
             try {
                 maxpoints = Integer
@@ -86,11 +86,11 @@ public class Quest {
                         name1 = "Recuperer 50 acier";
                     } else if (name.equals("brique")) {
                         name1 = "Recuperer 50 briques";
-                    } else if (name.equals("verre")) {
-                        name1 = "Recuperer 50 verre";
                     } else if (name.equals("pierre")) {
                         name1 = "Recuperer 50 pierre";
-                    } else if (name.equals("petrole")) {
+                    } else if (name.equals("pierre")) {
+                        name1 = "Recuperer 50 pierre";
+                    } else if (name.equals("fer")) {
                         name1 = "Recuperer 50 petrole";
                     }
                 }
@@ -125,8 +125,8 @@ public class Quest {
                         name1 = "Collect 50 acier";
                     } else if (name.equals("brique")) {
                         name1 = "Collect 50 briques";
-                    } else if (name.equals("verre")) {
-                        name1 = "Collect 50 verre";
+                    } else if (name.equals("pierre")) {
+                        name1 = "Collect 50 pierre";
                     } else if (name.equals("pierre")) {
                         name1 = "Collect 50 pierre";
                     } else if (name.equals("petrole")) {
@@ -162,25 +162,25 @@ public class Quest {
                     name1 = "Collect 50 acier";
                 } else if (name.equals("brique")) {
                     name1 = "Collect 50 briques";
-                } else if (name.equals("verre")) {
-                    name1 = "Collect 50 verre";
+                } else if (name.equals("pierre")) {
+                    name1 = "Collect 50 pierre";
                 } else if (name.equals("pierre")) {
                     name1 = "Collect 50 pierre";
                 } else if (name.equals("petrole")) {
                     name1 = "Collect 50 petrole";
                 }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous venez de terminer la quete :``" + name1
+                    if(channel != null) channel.sendMessage("Vous venez de terminer la quete :``" + name1
                             + "``. Vous obtenez donc 75EXP pour l'avoir accompli.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(
+                    if(channel != null) channel.sendMessage(
                             "You just finish the quest :``" + name1 + "``. So you won 75Xp for having accomplished.")
                             .queue();
                 }
-                int Game_EXP = data.getProfils().get(user.getId()).getXp();
-                data.getProfils().get(user.getId()).setXp(Game_EXP += 75);
-                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/quests/" + day + "|"
+                int Game_EXP = profil.getXp();
+                profil.setXp(Game_EXP += 75);
+                TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + profil.getId() + "/quests/" + day + "|"
                         + name + ".txt", "true", 1);
             }
         } else {

@@ -40,7 +40,7 @@ public class Trade {
                 res.put("fer", 0);
             }
             if (c1.equals("bois")) {
-                int Cible_bois = (Integer) res.get("bois");
+                int Cible_bois = res.get("bois");
                 int res_cible = Cible_bois + c2;
                 res.put("bois", res_cible);
                 try {
@@ -50,7 +50,7 @@ public class Trade {
                     data.getProfils().get(cible.getId()).setRes(res);
                 }
             } else if (c1.equals("argile")) {
-                int Cargile = (Integer) res.get("argile");
+                int Cargile = res.get("argile");
                 resC = Cargile + c2;
                 res.put("argile", resC);
                 try {
@@ -60,7 +60,7 @@ public class Trade {
                     data.getProfils().get(cible.getId()).setRes(res);
                 }
             } else if (c1.equals("cuir")) {
-                int Ccuir = (Integer) res.get("cuir");
+                int Ccuir = res.get("cuir");
                 resC = Ccuir + c2;
                 res.put("cuir", resC);
                 try {
@@ -70,7 +70,7 @@ public class Trade {
                     data.getProfils().get(cible.getId()).setRes(res);
                 }
             } else if (c1.equals("pierre")) {
-                int Cpierre = (Integer) res.get("pierre");
+                int Cpierre = res.get("pierre");
                 resC = Cpierre + c2;
                 res.put("pierre", resC);
                 try {
@@ -80,7 +80,7 @@ public class Trade {
                     data.getProfils().get(cible.getId()).setRes(res);
                 }
             } else if (c1.equals("paille")) {
-                int Cpaille = (Integer) res.get("paille");
+                int Cpaille = res.get("paille");
                 resC = Cpaille + c2;
                 res.put("paille", resC);
                 try {
@@ -90,7 +90,7 @@ public class Trade {
                     data.getProfils().get(cible.getId()).setRes(res);
                 }
             } else if (c1.equals("fer") || c1.equals("fer")) {
-                int Cfer = (Integer) res.get("fer");
+                int Cfer = res.get("fer");
                 resC = Cfer + c2;
                 res.put("fer", resC);
                 try {
@@ -296,8 +296,7 @@ public class Trade {
                 c1 = str;
             }
         }
-        System.out.println(c1);
-        System.out.println(c2);
+
         if (c2 < 0) {
             if (lang == command.Language.fr) {
                 channel.sendMessage("C'est pas bien d'essayer d'usebug tu sais ...").queue();
@@ -339,9 +338,7 @@ public class Trade {
         int xC = Integer.parseInt(strC[0]);
         int yC = Integer.parseInt(strC[1]);
         double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
-        System.out.println(operation);
         double durée = Math.sqrt(operation);
-        System.out.println(durée);
         int heure = (int) (durée * (double) temps / 3600000.0);
         int minutes1 = (int) (durée * (double) temps / 3600000.0 * 60.0 % 60.0);
         long DateFin = System.currentTimeMillis() + (long) (durée * (double) temps);
@@ -352,18 +349,12 @@ public class Trade {
         String mess = command2;
         mess = mess.replaceAll("g ", "");
         mess = mess.replaceAll("give ", "");
-        mess = mess.replaceAll(String.valueOf(xC) + " " + yC + " ", "");
-        mess = mess.replaceAll(String.valueOf(cible.getAsMention()) + " ", "");
+        mess = mess.replaceAll(xC + " " + yC + " ", "");
+        mess = mess.replaceAll(cible.getAsMention() + " ", "");
         mess = mess.replaceAll("<@!" + cible.getId() + "> ", "");
         mess = mess.replaceAll("<@" + cible.getId() + "> ", "");
-        mess = mess.replaceAll(String.valueOf(cible.getId()) + " ", "");
-        System.out.println(mess);
-        channel.sendMessage(cible.getAsMention()).queue();
-        channel.sendMessage(cible.getId()).queue();
-        channel.sendMessage(mess).queue();
+        mess = mess.replaceAll(cible.getId() + " ", "");
         args = mess.split(" ");
-        System.out.println(cible.getAsMention());
-        System.out.println(mess.replace(String.valueOf(cible.getAsMention()) + " ", ""));
         String mess1 = "";
         HashMap<Long, ArrayList<String>> map = new HashMap();
         try {
@@ -380,7 +371,7 @@ public class Trade {
                 if (c2 > User_bois) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -401,7 +392,7 @@ public class Trade {
                 if (c2 > Uargile) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -422,7 +413,7 @@ public class Trade {
                 if (c2 > Ucuir) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -443,7 +434,7 @@ public class Trade {
                 if (c2 > Upierre) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -464,7 +455,7 @@ public class Trade {
                 if (c2 > Upaille) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -485,7 +476,7 @@ public class Trade {
                 if (c2 > Ufer) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuelement.")
+                                "Vous ne pouvez pas donner plus de ressources que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -505,7 +496,7 @@ public class Trade {
                 long Umoney = data.getProfils().get(user.getId()).getMoney();
                 if ((long) c2 > Umoney) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage("Vous ne pouvez pas donner plus d'argent que vous n'en avait actuelement.")
+                        channel.sendMessage("Vous ne pouvez pas donner plus d'argent que vous n'en avait actuellement.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -543,7 +534,7 @@ public class Trade {
                 map = new HashMap();
                 map.put(DateFin, list);
             }
-            mess1 = String.valueOf(mess1) + c2 + " " + c1 + "\n";
+            mess1 = mess1 + c2 + " " + c1 + "\n";
         }
         if (lang == command.Language.fr) {
             channel.sendMessage("Vous venez d'echanger avec " + cible.getName() + " : \n" + mess1

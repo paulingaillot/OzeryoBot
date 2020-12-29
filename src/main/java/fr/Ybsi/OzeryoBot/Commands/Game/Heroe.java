@@ -68,13 +68,13 @@ public class Heroe {
             heroe.put("Ivoire", null);
         }
         try {
-            list = (ArrayList) heroe.get(hero);
+            list = heroe.get(hero);
         } catch (NullPointerException e) {
             return atk;
         }
         int levelarmor = 0;
         try {
-            levelarmor = Integer.parseInt((String) list.get(5));
+            levelarmor = Integer.parseInt(list.get(5));
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             // empty catch block
         }
@@ -118,13 +118,13 @@ public class Heroe {
             heroe.put("Ivoire", null);
         }
         try {
-            list = (ArrayList) heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
+            list = heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
         } catch (NullPointerException e) {
             return def;
         }
         int levelarmor = 0;
         try {
-            levelarmor = Integer.parseInt((String) list.get(6));
+            levelarmor = Integer.parseInt(list.get(6));
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             // empty catch block
         }
@@ -167,21 +167,21 @@ public class Heroe {
             heroe.put("Ivoire", null);
         }
         try {
-            list = (ArrayList) heroe.get(hero);
+            list = heroe.get(hero);
         } catch (NullPointerException e) {
             return 0;
         }
         if (list == null) {
             return 0;
         }
-        int level = Integer.parseInt((String) list.get(0));
-        int cartes = Integer.parseInt((String) list.get(1));
-        String atk = (String) list.get(2);
-        int PV = Integer.parseInt((String) list.get(3));
+        int level = Integer.parseInt(list.get(0));
+        int cartes = Integer.parseInt(list.get(1));
+        String atk = list.get(2);
+        int PV = Integer.parseInt(list.get(3));
         if (atk.equals("false")) {
             long lastPV;
             try {
-                lastPV = Long.parseLong((String) list.get(4));
+                lastPV = Long.parseLong(list.get(4));
             } catch (IndexOutOfBoundsException e) {
                 lastPV = 0L;
             }
@@ -244,7 +244,7 @@ public class Heroe {
             } catch (NullPointerException e) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
-                            "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
+                            "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
                             .queue();
                     return;
                 }
@@ -259,7 +259,7 @@ public class Heroe {
             if (list2 == null) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
-                            "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
+                            "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
                             .queue();
                 }
                 if (lang == command.Language.en) {
@@ -293,10 +293,10 @@ public class Heroe {
                 builder2.addField("In attack", list2.get(2), true);
             }
             if (lang == command.Language.fr) {
-                builder2.addField(" :heart:  PV", String.valueOf(PV) + "/" + pvtotal, true);
+                builder2.addField(" :heart:  PV", PV + "/" + pvtotal, true);
             }
             if (lang == command.Language.en) {
-                builder2.addField(" :heart:  HP", String.valueOf(PV) + "/" + pvtotal, true);
+                builder2.addField(" :heart:  HP", PV + "/" + pvtotal, true);
             }
             builder2.addBlankField(false);
             builder2.addField(":crossed_swords:  Atk", String.valueOf(ATK), true);
@@ -417,7 +417,7 @@ public class Heroe {
                 i = 1;
                 try {
                     for (int o : list) {
-                        mess = String.valueOf(mess) + " **[" + i + "]** - Level " + o + "\n";
+                        mess = mess + " **[" + i + "]** - Level " + o + "\n";
                         ++i;
                     }
                 } catch (NullPointerException e) {
@@ -426,7 +426,7 @@ public class Heroe {
                 channel.sendMessage(mess).queue();
             } else if (weapon2 != 0) {
                 int level4 = (Integer) ((ArrayList) weapons.get(c2)).get(c3 - 1);
-                ArrayList weapon1 = (ArrayList) weapons.get(c2);
+                ArrayList weapon1 = weapons.get(c2);
                 weapon1.remove(c3 - 1);
                 weapons.put(c2, weapon1);
                 if (lang == command.Language.fr) {
@@ -437,7 +437,7 @@ public class Heroe {
                 }
             } else if (armor1 != 0) {
                 int level5 = (Integer) ((ArrayList) armor.get(c2)).get(c3 - 1);
-                ArrayList armor2 = (ArrayList) armor.get(c2);
+                ArrayList armor2 = armor.get(c2);
                 armor2.remove(c3 - 1);
                 armor.put(c2, armor2);
                 if (lang == command.Language.fr) {
@@ -486,11 +486,11 @@ public class Heroe {
             builder.setAuthor(user.getName(), null, user.getAvatarUrl());
             builder.setFooter(guild.getName(), guild.getIconUrl());
             if (lang == command.Language.fr) {
-                builder.setDescription(String.valueOf(LootBox.test(data.getProfils().get(user))) + " / " + (building.get("armurerie") * 5 + 20)
+                builder.setDescription(LootBox.test(data.getProfils().get(user.getId())) + " / " + (building.get("armurerie") * 5 + 20)
                         + " places d'entrepot utilisés.");
             }
             if (lang == command.Language.en) {
-                builder.setDescription(String.valueOf(LootBox.test(data.getProfils().get(user))) + " / " + (building.get("armurerie") * 5 + 20)
+                builder.setDescription(LootBox.test(data.getProfils().get(user.getId())) + " / " + (building.get("armurerie") * 5 + 20)
                         + " store spaces used.");
             }
             String epee = "";
@@ -500,11 +500,11 @@ public class Heroe {
                 while (weapon21.hasNext()) {
                     level = (Integer) weapon21.next();
                     if (lang == command.Language.fr) {
-                        epee = String.valueOf(epee) + "niveau : " + level + " \n";
+                        epee = epee + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    epee = String.valueOf(epee) + "level : " + level + " \n";
+                    epee = epee + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -518,11 +518,11 @@ public class Heroe {
                 while (armor12.hasNext()) {
                     level = (Integer) armor12.next();
                     if (lang == command.Language.fr) {
-                        spectre = String.valueOf(spectre) + "niveau : " + level + " \n";
+                        spectre = spectre + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    spectre = String.valueOf(spectre) + "level : " + level + " \n";
+                    spectre = spectre + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -536,11 +536,11 @@ public class Heroe {
                 while (level5.hasNext()) {
                     level = (Integer) level5.next();
                     if (lang == command.Language.fr) {
-                        arc = String.valueOf(arc) + "niveau : " + level + " \n";
+                        arc = arc + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    arc = String.valueOf(arc) + "level : " + level + " \n";
+                    arc = arc + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -554,11 +554,11 @@ public class Heroe {
                 while (armor2.hasNext()) {
                     level = (Integer) armor2.next();
                     if (lang == command.Language.fr) {
-                        arbalete = String.valueOf(arbalete) + "niveau : " + level + " \n";
+                        arbalete = arbalete + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    arbalete = String.valueOf(arbalete) + "level : " + level + " \n";
+                    arbalete = arbalete + "level : " + level + " \n";
                 }
             } catch (NullPointerException i18) {
                 // empty catch block
@@ -572,11 +572,11 @@ public class Heroe {
                 while (level31.hasNext()) {
                     i = (Integer) level31.next();
                     if (lang == command.Language.fr) {
-                        lance = String.valueOf(lance) + "niveau : " + i + " \n";
+                        lance = lance + "niveau : " + i + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    lance = String.valueOf(lance) + "level : " + i + " \n";
+                    lance = lance + "level : " + i + " \n";
                 }
             } catch (NullPointerException i19) {
                 // empty catch block
@@ -590,11 +590,11 @@ public class Heroe {
                 while (iterator.hasNext()) {
                     level = (Integer) iterator.next();
                     if (lang == command.Language.fr) {
-                        pelle_de_combat = String.valueOf(pelle_de_combat) + "niveau : " + level + " \n";
+                        pelle_de_combat = pelle_de_combat + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    pelle_de_combat = String.valueOf(pelle_de_combat) + "level : " + level + " \n";
+                    pelle_de_combat = pelle_de_combat + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -608,11 +608,11 @@ public class Heroe {
                 while (iterator3.hasNext()) {
                     level = (Integer) iterator3.next();
                     if (lang == command.Language.fr) {
-                        sarbacanne = String.valueOf(sarbacanne) + "niveau : " + level + " \n";
+                        sarbacanne = sarbacanne + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    sarbacanne = String.valueOf(sarbacanne) + "level : " + level + " \n";
+                    sarbacanne = sarbacanne + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -626,17 +626,17 @@ public class Heroe {
                 while (iterator4.hasNext()) {
                     level = (Integer) iterator4.next();
                     if (lang == command.Language.fr) {
-                        gourdin = String.valueOf(gourdin) + "niveau : " + level + " \n";
+                        gourdin = gourdin + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    gourdin = String.valueOf(gourdin) + "level : " + level + " \n";
+                    gourdin = gourdin + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (gourdin != "") {
-                builder.addField("gourdin", (String) gourdin, false);
+                builder.addField("gourdin", gourdin, false);
             }
             String flechettes = "";
             try {
@@ -644,11 +644,11 @@ public class Heroe {
                 while (iterator5.hasNext()) {
                     level = (Integer) iterator5.next();
                     if (lang == command.Language.fr) {
-                        flechettes = String.valueOf(flechettes) + "niveau : " + level + " \n";
+                        flechettes = flechettes + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    flechettes = String.valueOf(flechettes) + "level : " + level + " \n";
+                    flechettes = flechettes + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -662,11 +662,11 @@ public class Heroe {
                 while (iterator6.hasNext()) {
                     level = (Integer) iterator6.next();
                     if (lang == command.Language.fr) {
-                        trident = String.valueOf(trident) + "niveau : " + level + " \n";
+                        trident = trident + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    trident = String.valueOf(trident) + "level : " + level + " \n";
+                    trident = trident + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -680,11 +680,11 @@ public class Heroe {
                 while (iterator7.hasNext()) {
                     level = (Integer) iterator7.next();
                     if (lang == command.Language.fr) {
-                        fleau = String.valueOf(fleau) + "niveau : " + level + " \n";
+                        fleau = fleau + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    fleau = String.valueOf(fleau) + "level : " + level + " \n";
+                    fleau = fleau + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
@@ -698,17 +698,17 @@ public class Heroe {
                 while (iterator8.hasNext()) {
                     level = (Integer) iterator8.next();
                     if (lang == command.Language.fr) {
-                        fouet = String.valueOf(fouet) + "niveau : " + level + " \n";
+                        fouet = fouet + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    fouet = String.valueOf(fouet) + "level : " + level + " \n";
+                    fouet = fouet + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (fouet != "") {
-                builder.addField("fouet", (String) fouet, false);
+                builder.addField("fouet", fouet, false);
             }
             String baton = "";
             try {
@@ -716,17 +716,17 @@ public class Heroe {
                 while (iterator9.hasNext()) {
                     level = (Integer) iterator9.next();
                     if (lang == command.Language.fr) {
-                        baton = String.valueOf(baton) + "niveau : " + level + " \n";
+                        baton = baton + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    baton = String.valueOf(baton) + "level : " + level + " \n";
+                    baton = baton + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (baton != "") {
-                builder.addField("baton", (String) baton, false);
+                builder.addField("baton", baton, false);
             }
             String fourche = "";
             try {
@@ -734,17 +734,17 @@ public class Heroe {
                 while (iterator10.hasNext()) {
                     level = (Integer) iterator10.next();
                     if (lang == command.Language.fr) {
-                        fourche = String.valueOf(fourche) + "niveau : " + level + " \n";
+                        fourche = fourche + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    fourche = String.valueOf(fourche) + "level : " + level + " \n";
+                    fourche = fourche + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (fourche != "") {
-                builder.addField("fourche", (String) fourche, false);
+                builder.addField("fourche", fourche, false);
             }
             String dague = "";
             try {
@@ -752,17 +752,17 @@ public class Heroe {
                 while (iterator11.hasNext()) {
                     level = (Integer) iterator11.next();
                     if (lang == command.Language.fr) {
-                        dague = String.valueOf(dague) + "niveau : " + level + " \n";
+                        dague = dague + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    dague = String.valueOf(dague) + "level : " + level + " \n";
+                    dague = dague + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (dague != "") {
-                builder.addField("dague", (String) dague, false);
+                builder.addField("dague", dague, false);
             }
             String shuriken = "";
             try {
@@ -770,17 +770,17 @@ public class Heroe {
                 while (iterator12.hasNext()) {
                     level = (Integer) iterator12.next();
                     if (lang == command.Language.fr) {
-                        shuriken = String.valueOf(shuriken) + "niveau : " + level + " \n";
+                        shuriken = shuriken + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    shuriken = String.valueOf(shuriken) + "level : " + level + " \n";
+                    shuriken = shuriken + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (shuriken != "") {
-                builder.addField("shuriken", (String) shuriken, false);
+                builder.addField("shuriken", shuriken, false);
             }
             String katana = "";
             try {
@@ -788,24 +788,24 @@ public class Heroe {
                 while (iterator2.hasNext()) {
                     level = (Integer) iterator2.next();
                     if (lang == command.Language.fr) {
-                        katana = String.valueOf(katana) + "niveau : " + level + " \n";
+                        katana = katana + "niveau : " + level + " \n";
                     }
                     if (lang != command.Language.en)
                         continue;
-                    katana = String.valueOf(katana) + "level : " + level + " \n";
+                    katana = katana + "level : " + level + " \n";
                 }
             } catch (NullPointerException e) {
                 // empty catch block
             }
             if (katana != "") {
-                builder.addField("katana", (String) katana, false);
+                builder.addField("katana", katana, false);
             }
             if (builder.isEmpty()) {
                 if (lang == command.Language.fr) {
-                    builder.addField("Error", "Vous n'avez actuelement aucune armures", true);
+                    builder.addField("Error", "Vous n'avez actuellement aucune armure", true);
                 }
                 if (lang == command.Language.en) {
-                    builder.addField("Error", "Vous n'avez actuelement aucune armures", true);
+                    builder.addField("Error", "You don't have any armor", true);
                 }
             }
             channel.sendMessage(builder.build()).queue();
@@ -875,7 +875,7 @@ public class Heroe {
             boolean weapon3 = false;
             int armor1 = 0;
             try {
-                list = (ArrayList) weapons.get(c2);
+                list = weapons.get(c2);
                 weapon3 = true;
             } catch (Exception lance) {
                 // empty catch block
@@ -885,7 +885,7 @@ public class Heroe {
                 weapon3 = false;
                 armor1 = 1;
                 try {
-                    list = (ArrayList) armor.get(c2);
+                    list = armor.get(c2);
                 } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Veuillez indiquer un nom valide d'armure ou d'épée").queue();
@@ -952,11 +952,11 @@ public class Heroe {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    hero = (ArrayList) heroe3.get(activeHero);
+                    hero = heroe3.get(activeHero);
                 } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
+                                "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select``")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -1030,7 +1030,7 @@ public class Heroe {
                     c4 = Integer.parseInt(str);
                     continue;
                 } catch (NumberFormatException e) {
-                    c23 = !c23.equals("") ? String.valueOf(c23) + " " + str : str;
+                    c23 = !c23.equals("") ? c23 + " " + str : str;
                 }
             }
             int c3 = 0;
@@ -1093,7 +1093,7 @@ public class Heroe {
             boolean weapon4 = false;
             boolean armor13 = false;
             try {
-                list3 = (ArrayList) weapons3.get(c23);
+                list3 = weapons3.get(c23);
                 weapon4 = true;
             } catch (Exception level8) {
                 // empty catch block
@@ -1103,7 +1103,7 @@ public class Heroe {
                 weapon4 = false;
                 armor13 = true;
                 try {
-                    list3 = (ArrayList) armor2.get(c23);
+                    list3 = armor2.get(c23);
                 } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Veuillez un nom valide d'armure ou d'épée").queue();
@@ -1151,7 +1151,7 @@ public class Heroe {
                 ((HashMap) heroe2).put("Spirita", null);
                 ((HashMap) heroe2).put("Tempest", null);
                 ((HashMap) heroe2).put("Ivoire", null);
-                data.getProfils().get(user.getId()).setHeroe((HashMap<String, ArrayList<String>>) heroe2);
+                data.getProfils().get(user.getId()).setHeroe(heroe2);
             }
             if (c3 == 0 || c4 == 0) {
                 String mess2 = "";
@@ -1166,7 +1166,7 @@ public class Heroe {
                     Iterator fouet1 = list3.iterator();
                     while (fouet1.hasNext()) {
                         int level1 = (Integer) fouet1.next();
-                        mess2 = String.valueOf(mess2) + " **[" + i20 + "]** - Level " + level1 + "\n";
+                        mess2 = mess2 + " **[" + i20 + "]** - Level " + level1 + "\n";
                         ++i20;
                     }
                 } catch (NullPointerException level1) {
@@ -1195,7 +1195,7 @@ public class Heroe {
                     ((ArrayList) weapons3.get(c23)).remove(c4 - 1);
                 }
                 int levelup2 = level1 + 1;
-                ((ArrayList) weapons3.get(c23)).add(0, levelup2);
+                weapons3.get(c23).add(0, levelup2);
                 data.getProfils().get(user.getId()).setWeapons(weapons3);
                 data.getProfils().get(user.getId()).setMelting(data.getProfils().get(user.getId()).getMelting() + 1);
                 if (lang == command.Language.fr) {
@@ -1226,7 +1226,7 @@ public class Heroe {
                     ((ArrayList) armor2.get(c23)).remove(c4 - 1);
                 }
                 int levelup3 = level1 + 1;
-                ((ArrayList) armor2.get(c23)).add(0, levelup3);
+                armor2.get(c23).add(0, levelup3);
                 data.getProfils().get(user.getId()).setArmor(armor2);
                 data.getProfils().get(user.getId()).setMelting(data.getProfils().get(user.getId()).getMelting() + 1);
                 if (lang == command.Language.fr) {
@@ -1271,11 +1271,11 @@ public class Heroe {
             builder.setAuthor(user.getName(), null, user.getAvatarUrl());
             builder.setFooter(guild.getName(), guild.getIconUrl());
             if (lang == command.Language.fr) {
-                builder.setDescription(String.valueOf(LootBox.test(data.getProfils().get(user))) + " / " + (building.get("armurerie") * 5 + 20)
+                builder.setDescription(LootBox.test(data.getProfils().get(user.getId())) + " / " + (building.get("armurerie") * 5 + 20)
                         + " places d'entrepot utilisés.");
             }
             if (lang == command.Language.en) {
-                builder.setDescription(String.valueOf(LootBox.test(data.getProfils().get(user))) + " / " + (building.get("armurerie") * 5 + 20)
+                builder.setDescription(LootBox.test(data.getProfils().get(user.getId())) + " / " + (building.get("armurerie") * 5 + 20)
                         + " spaces used.");
             }
             String epee = "";
@@ -1284,7 +1284,7 @@ public class Heroe {
                 Iterator weapons3 = ((ArrayList) armor3.get("armure obscure")).iterator();
                 while (weapons3.hasNext()) {
                     level = (Integer) weapons3.next();
-                    epee = String.valueOf(epee) + "level : " + level + " \n";
+                    epee = epee + "level : " + level + " \n";
                 }
             } catch (NullPointerException i21) {
                 // empty catch block
@@ -1297,7 +1297,7 @@ public class Heroe {
                 Iterator armor2 = ((ArrayList) armor3.get("armure")).iterator();
                 while (armor2.hasNext()) {
                     level = (Integer) armor2.next();
-                    spectre = String.valueOf(spectre) + "level : " + level + " \n";
+                    spectre = spectre + "level : " + level + " \n";
                 }
             } catch (NullPointerException i22) {
                 // empty catch block
@@ -1310,7 +1310,7 @@ public class Heroe {
                 Iterator list3 = ((ArrayList) armor3.get("bouclier")).iterator();
                 while (list3.hasNext()) {
                     level = (Integer) list3.next();
-                    arc = String.valueOf(arc) + "level : " + level + " \n";
+                    arc = arc + "level : " + level + " \n";
                 }
             } catch (NullPointerException i23) {
                 // empty catch block
@@ -1323,7 +1323,7 @@ public class Heroe {
                 Iterator weapon4 = ((ArrayList) armor3.get("armure lumineuse")).iterator();
                 while (weapon4.hasNext()) {
                     level = (Integer) weapon4.next();
-                    arbalete = String.valueOf(arbalete) + "level : " + level + " \n";
+                    arbalete = arbalete + "level : " + level + " \n";
                 }
             } catch (NullPointerException i24) {
                 // empty catch block
@@ -1336,7 +1336,7 @@ public class Heroe {
                 Iterator armor13 = ((ArrayList) armor3.get("armure royale")).iterator();
                 while (armor13.hasNext()) {
                     i = (Integer) armor13.next();
-                    lance = String.valueOf(lance) + "level : " + i + " \n";
+                    lance = lance + "level : " + i + " \n";
                 }
             } catch (NullPointerException i25) {
                 // empty catch block
@@ -1349,7 +1349,7 @@ public class Heroe {
                 Iterator heroe22 = ((ArrayList) armor3.get("armure elfique")).iterator();
                 while (heroe22.hasNext()) {
                     level = (Integer) heroe22.next();
-                    pelle_de_combat = String.valueOf(pelle_de_combat) + "level : " + level + " \n";
+                    pelle_de_combat = pelle_de_combat + "level : " + level + " \n";
                 }
             } catch (NullPointerException i26) {
                 // empty catch block
@@ -1362,7 +1362,7 @@ public class Heroe {
                 Iterator level1 = ((ArrayList) armor3.get("tenue en soie")).iterator();
                 while (level1.hasNext()) {
                     level = (Integer) level1.next();
-                    sarbacanne = String.valueOf(sarbacanne) + "level : " + level + " \n";
+                    sarbacanne = sarbacanne + "level : " + level + " \n";
                 }
             } catch (NullPointerException i27) {
                 // empty catch block
@@ -1375,7 +1375,7 @@ public class Heroe {
                 Iterator level2 = ((ArrayList) armor3.get("armure magique")).iterator();
                 while (level2.hasNext()) {
                     level = (Integer) level2.next();
-                    gourdin2 = String.valueOf(gourdin2) + "level : " + level + " \n";
+                    gourdin2 = gourdin2 + "level : " + level + " \n";
                 }
             } catch (NullPointerException i28) {
                 // empty catch block
@@ -1388,7 +1388,7 @@ public class Heroe {
                 Iterator levelup3 = ((ArrayList) armor3.get("bouclier reflechissant")).iterator();
                 while (levelup3.hasNext()) {
                     level = (Integer) levelup3.next();
-                    flechettes = String.valueOf(flechettes) + "level : " + level + " \n";
+                    flechettes = flechettes + "level : " + level + " \n";
                 }
             } catch (NullPointerException i29) {
                 // empty catch block
@@ -1401,7 +1401,7 @@ public class Heroe {
                 Iterator test52 = ((ArrayList) armor3.get("armure de vulcain")).iterator();
                 while (test52.hasNext()) {
                     level = (Integer) test52.next();
-                    trident = String.valueOf(trident) + "level : " + level + " \n";
+                    trident = trident + "level : " + level + " \n";
                 }
             } catch (NullPointerException i30) {
                 // empty catch block
@@ -1415,7 +1415,7 @@ public class Heroe {
                 baton1 = ((ArrayList) armor3.get("armure aquatique")).iterator();
                 while (baton1.hasNext()) {
                     level = (Integer) baton1.next();
-                    fleau = String.valueOf(fleau) + "level : " + level + " \n";
+                    fleau = fleau + "level : " + level + " \n";
                 }
             } catch (NullPointerException i31) {
                 // empty catch block
@@ -1428,14 +1428,14 @@ public class Heroe {
                 Iterator test25 = ((ArrayList) armor3.get("armure magenta")).iterator();
                 while (test25.hasNext()) {
                     level = (Integer) test25.next();
-                    fourche = String.valueOf(fourche) + "level : " + level + " \n";
+                    fourche = fourche + "level : " + level + " \n";
                 }
             } catch (NullPointerException i32) {
                 // empty catch block
             }
 
             if (fourche != "") {
-                builder.addField("armure magenta", (String) fourche, false);
+                builder.addField("armure magenta", fourche, false);
             }
             String baton = "";
             Iterator dague1;
@@ -1443,13 +1443,13 @@ public class Heroe {
                 dague1 = ((ArrayList) armor3.get("armure de rubis")).iterator();
                 while (dague1.hasNext()) {
                     level = (Integer) dague1.next();
-                    baton = String.valueOf(baton) + "level : " + level + " \n";
+                    baton = baton + "level : " + level + " \n";
                 }
             } catch (NullPointerException i33) {
                 // empty catch block
             }
             if (baton != "") {
-                builder.addField("armure de rubis", (String) baton, false);
+                builder.addField("armure de rubis", baton, false);
             }
             fourche = "";
             Iterator shuriken1;
@@ -1457,13 +1457,13 @@ public class Heroe {
                 shuriken1 = ((ArrayList) armor3.get("bouclier de cristal")).iterator();
                 while (shuriken1.hasNext()) {
                     level = (Integer) shuriken1.next();
-                    fourche = String.valueOf(fourche) + "level : " + level + " \n";
+                    fourche = fourche + "level : " + level + " \n";
                 }
             } catch (NullPointerException i34) {
                 // empty catch block
             }
             if (fourche != "") {
-                builder.addField("bouclier de cristal", (String) fourche, false);
+                builder.addField("bouclier de cristal", fourche, false);
             }
             String dague = "";
             Iterator katana1;
@@ -1471,43 +1471,43 @@ public class Heroe {
                 katana1 = ((ArrayList) armor3.get("bouclier de bois")).iterator();
                 while (katana1.hasNext()) {
                     level = (Integer) katana1.next();
-                    dague = String.valueOf(dague) + "level : " + level + " \n";
+                    dague = dague + "level : " + level + " \n";
                 }
             } catch (NullPointerException i35) {
                 // empty catch block
             }
             if (dague != "") {
-                builder.addField("bouclier de bois", (String) dague, false);
+                builder.addField("bouclier de bois", dague, false);
             }
             String shuriken = "";
             try {
                 Iterator i112 = ((ArrayList) armor3.get("armure de cuire")).iterator();
                 while (i112.hasNext()) {
                     level = (Integer) i112.next();
-                    shuriken = String.valueOf(shuriken) + "level : " + level + " \n";
+                    shuriken = shuriken + "level : " + level + " \n";
                 }
             } catch (NullPointerException i36) {
                 // empty catch block
             }
             if (shuriken != "") {
-                builder.addField("armure de cuire", (String) shuriken, false);
+                builder.addField("armure de cuire", shuriken, false);
             }
             String katana = "";
             try {
                 Iterator iterator2 = ((ArrayList) armor3.get("armure celeste")).iterator();
                 while (iterator2.hasNext()) {
                     level = (Integer) iterator2.next();
-                    katana = String.valueOf(katana) + "level : " + level + " \n";
+                    katana = katana + "level : " + level + " \n";
                 }
             } catch (NullPointerException i37) {
                 // empty catch block
             }
             if (katana != "") {
-                builder.addField("armure celeste", (String) katana, false);
+                builder.addField("armure celeste", katana, false);
             }
             if (builder.isEmpty()) {
                 if (lang == command.Language.fr) {
-                    builder.addField("Error", "Vous n'avez actuelement aucune armures", true);
+                    builder.addField("Error", "Vous n'avez actuellement aucune armure", true);
                 }
                 if (lang == command.Language.en) {
                     builder.addField("Error", "You don't have any armor", true);
@@ -1584,7 +1584,7 @@ public class Heroe {
                 // empty catch block
             }
             try {
-                if (((String) list24.get(2)).equals("true")) {
+                if (list24.get(2).equals("true")) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
                                 "Veuillez attendre que votre hero actif soit au repos avant dans selectionner un autre.")

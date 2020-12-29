@@ -3,13 +3,14 @@
  */
 package fr.Ybsi.OzeryoBot.Utils;
 
+import fr.Ybsi.OzeryoBot.DiscordBot;
 import net.dv8tion.jda.api.entities.User;
 
 import java.awt.*;
 
 public class color {
     public static Color couleurAleatoire(User user) {
-        if (Premium.Premium(user)) {
+        if (Premium.Premium(DiscordBot.getData().getProfils().get(user.getId()))) {
             int b;
             int g;
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/Premium/Color/");

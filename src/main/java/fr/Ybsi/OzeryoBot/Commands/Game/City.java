@@ -54,8 +54,8 @@ public class City {
             building = data.getProfils().get(user.getId()).getBuilding();
             HashMap<String, Integer> res = new HashMap();
             res = data.getProfils().get(user.getId()).getRes();
-            int camp_entrainement = (Integer) building.get("camp d'entrainement");
-            int cc2 = (Integer) building.get("habitations");
+            int camp_entrainement = building.get("camp d'entrainement");
+            int cc2 = building.get("habitations");
             switch (cc2) {
                 case 0: {
                     cc = 0.0;
@@ -219,7 +219,7 @@ public class City {
             if (delay > (long) regen) {
                 while (delay > (long) regen) {
                     ++mana;
-                    delay -= (long) regen;
+                    delay -= regen;
                 }
                 try {
                     data.getProfils().get(user.getId()).setLastMana(System.currentTimeMillis() - delay);
@@ -229,8 +229,8 @@ public class City {
                 }
             }
             int Mana_Max = 10 + level;
-            if (level > 190) {
-                Mana_Max = 200;
+            if (level > 90) {
+                Mana_Max = 100;
             }
             if (Pet_Bonus.equals("mana")) {
                 Mana_Max += (int) (Pet_Level * 3.0);
@@ -269,7 +269,7 @@ public class City {
             String hopmess = "";
             if (habitant > popmax || (double) soldier > 0.25 * (double) habitant) {
                 double perte;
-                int hopital = (Integer) building.get("auberge");
+                int hopital = building.get("auberge");
                 switch (hopital) {
                     case 1: {
                         perte = 0.9025;
@@ -436,28 +436,28 @@ public class City {
                     data.getProfils().get(user.getId()).setLastPerte(System.currentTimeMillis());
                 }
             }
-            int auberge = (Integer) building.get("auberge");
-            int marché = (Integer) building.get("marché");
-            int habitation = (Integer) building.get("habitations");
+            int auberge = building.get("auberge");
+            int marché = building.get("marché");
+            int habitation = building.get("habitations");
             long money = data.getProfils().get(user.getId()).getMoney();
-            int A_bois = (Integer) res.get("bois");
-            int A_argile = (Integer) res.get("argile");
-            int A_cuir = (Integer) res.get("cuir");
-            int A_pierre = (Integer) res.get("pierre");
-            int A_paille = (Integer) res.get("paille");
-            int A_fer = (Integer) res.get("fer");
-            int A_Cristal = (Integer) res.get("cristal");
-            int cirque = (Integer) building.get("cirque");
+            int A_bois = res.get("bois");
+            int A_argile = res.get("argile");
+            int A_cuir = res.get("cuir");
+            int A_pierre = res.get("pierre");
+            int A_paille = res.get("paille");
+            int A_fer = res.get("fer");
+            int A_Cristal = res.get("cristal");
+            int cirque = building.get("cirque");
             EmbedBuilder builder = new EmbedBuilder();
-            int leveleglise = (Integer) building.get("eglise");
-            int levelMine = (Integer) building.get("mine");
-            int sorcier = (Integer) building.get("tour de sorcier");
-            int bibliothèque = (Integer) building.get("biblioth\u00e8que");
-            int muraille = (Integer) building.get("muraille");
-            int armurerie = (Integer) building.get("armurerie");
-            int forge = (Integer) building.get("forge");
-            int centrale = (Integer) building.get("centrale nucleaire");
-            int leveltransport = (Integer) building.get("transport");
+            int leveleglise = building.get("eglise");
+            int levelMine = building.get("mine");
+            int sorcier = building.get("tour de sorcier");
+            int bibliothèque = building.get("biblioth\u00e8que");
+            int muraille = building.get("muraille");
+            int armurerie = building.get("armurerie");
+            int forge = building.get("forge");
+            int centrale = building.get("centrale nucleaire");
+            int leveltransport = building.get("transport");
             int trophées = data.getProfils().get(user.getId()).getTrophy();
             data.getProfils().get(user.getId()).setTrophy(trophées);
             try {
@@ -475,7 +475,7 @@ public class City {
             }
             String thumbail = TextFileWriter
                     .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/logo.txt");
-            System.out.println(thumbail);
+
             if (!thumbail.equals("0")) {
                 builder.setThumbnail("http://ozeryo.sytes.net/logos/" + thumbail + ".png");
             }
@@ -505,21 +505,21 @@ public class City {
             }
             String titre = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/city.txt");
             if (titre.equals("0")) {
-                titre = String.valueOf(user.getName()) + "'s City";
+                titre = user.getName() + "'s City";
             }
             builder.setAuthor(user.getName(), user.getAvatarUrl());
             builder.setColor(color.couleurAleatoire(user));
             builder.setFooter(guild.getName(), guild.getIconUrl());
             builder.setTitle(titre);
             builder.addField("Mana :heart:\ufe0f",
-                    String.valueOf(mana) + " / " + Mana_Max + " mana (+1 mana / " + regen + " secondes)", true);
-            builder.addField("Xp :star:", String.valueOf(Utils.format(Game_EXP)) + " EXP **(Level " + level + ")**",
+                    mana + " / " + Mana_Max + " mana (+1 mana / " + regen + " secondes)", true);
+            builder.addField("Xp :star:", Utils.format(Game_EXP) + " EXP **(Level " + level + ")**",
                     true);
             if (lang == command.Language.fr) {
-                builder.addField("Population \ud83d\udc65", String.valueOf(Utils.format(habitant)) + hopmess, true);
+                builder.addField("Population \ud83d\udc65", Utils.format(habitant) + hopmess, true);
             }
             if (lang == command.Language.en) {
-                builder.addField("People \ud83d\udc65", String.valueOf(Utils.format(habitant)) + hopmess, true);
+                builder.addField("People \ud83d\udc65", Utils.format(habitant) + hopmess, true);
             }
             builder.addField("IDH", "" + IDH, true);
             builder.addBlankField(false);
@@ -630,7 +630,7 @@ public class City {
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(
-                            "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.")
+                            "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, =b camp 1.")
                             .queue();
                 }
             }

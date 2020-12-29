@@ -311,19 +311,19 @@ public class Soldier {
                 }
                 return;
             }
-            soldier += (long) c2;
+            soldier += c2;
             if (tuto == 8) {
                 price = 0;
                 price_hab = 0;
             }
-            money -= (long) price;
-            habitant -= (long) price_hab;
+            money -= price;
+            habitant -= price_hab;
             String message = "";
             int soldier2 = 0;
             if (Pet_Bonus.equals("soldier")) {
                 double bonus = 1.0 + Pet_Level * 3.0 / 100.0;
                 soldier2 = (int) ((double) c2 * bonus) - c2;
-                soldier += (long) soldier2;
+                soldier += soldier2;
                 if (lang == command.Language.fr) {
                     message = " Votre pet vous apporte un bonus de " + soldier2 + " soldats en plus.";
                 }
@@ -332,13 +332,13 @@ public class Soldier {
                 }
             }
             if (data.getProfils().get(user.getId()).getDeus().equals("Ares")) {
-                soldier += (long) (soldier2 += (int) ((double) c2 * 1.25) - c2);
+                soldier += soldier2 += (int) ((double) c2 * 1.25) - c2;
                 if (lang == command.Language.fr) {
-                    message = String.valueOf(message) + " Vous obtenez un bonus de " + soldier2
+                    message = message + " Vous obtenez un bonus de " + soldier2
                             + " soldats grace a Ares.";
                 }
                 if (lang == command.Language.en) {
-                    message = String.valueOf(message) + "You obtain a bonus of " + soldier2
+                    message = message + "You obtain a bonus of " + soldier2
                             + " soldiers more thank to Ares.";
                 }
             }
@@ -369,11 +369,11 @@ public class Soldier {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setHabitants(habitant);
             }
-            Quest.Quest("soldier", user, channel, c2);
+            Quest.Quest("soldier", data.getProfils().get(user.getId()), channel, c2);
             if (lang == command.Language.fr) {
                 channel.sendMessage("Vous venez de creer " + c2 + "soldats pour " + price + "$ et " + price_hab
                         + " habitants." + message + " Vous pouvez encore former " + (soldiers - (long) c2)
-                        + " soldats actuelement.").queue();
+                        + " soldats actuellement.").queue();
             }
             if (lang == command.Language.en) {
                 channel.sendMessage(

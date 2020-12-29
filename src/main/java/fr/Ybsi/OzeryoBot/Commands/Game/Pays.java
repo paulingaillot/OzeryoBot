@@ -46,7 +46,7 @@ public class Pays {
         int level;
         StringBuilder builder;
         String c1;
-        User cible;
+        Profil cible;
         String rank;
         String c2;
         String c3;
@@ -258,7 +258,7 @@ public class Pays {
                 point /= 1000;
                 lettre = "k";
             }
-            String points = String.valueOf(point) + lettre;
+            String points = point + lettre;
             String emoji = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/emoji.txt");
             String emoji2 = "0";
             if (emoji.equals("\ud83d\udcaf")) {
@@ -351,80 +351,80 @@ public class Pays {
             int emoji = 0;
             emoji = level % 10 >= 2 ? level / 10 + 1 : level / 10;
             String emote = "";
-            emote = emoji == 1 ? String.valueOf(emote) + ":beginner: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":beginner: : débloqué au niveau 2 \n";
-            emote = emoji == 2 ? String.valueOf(emote) + ":100: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":100: : débloqué au niveau 12 \n";
+            emote = emoji == 1 ? emote + ":beginner: : :white_check_mark: \n"
+                    : emote + ":beginner: : débloqué au niveau 2 \n";
+            emote = emoji == 2 ? emote + ":100: : :white_check_mark: \n"
+                    : emote + ":100: : débloqué au niveau 12 \n";
             if (emoji == 3) {
-                emote = String.valueOf(emote) + ":shamrock: : :white_check_mark: \n";
+                emote = emote + ":shamrock: : :white_check_mark: \n";
             }
-            emote = String.valueOf(emote) + ":shamrock: : débloqué au niveau 22 \n";
-            emote = emoji == 4 ? String.valueOf(emote) + ":four_leaf_clover: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":four_leaf_clover: : débloqué au niveau 32 \n";
-            emote = emoji == 5 ? String.valueOf(emote) + ":diamond_shape_with_a_dot_inside: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":diamond_shape_with_a_dot_inside: : débloqué au niveau 42 \n";
-            emote = emoji == 6 ? String.valueOf(emote) + ":skull: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":skull: : débloqué au niveau 52 \n";
-            emote = emoji == 7 ? String.valueOf(emote) + ":zap: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":zap: : débloqué au niveau 62 \n";
-            emote = emoji == 8 ? String.valueOf(emote) + ":crown: : :white_check_mark:\n"
-                    : String.valueOf(emote) + ":crown: : débloqué au niveau 72 \n";
+            emote = emote + ":shamrock: : débloqué au niveau 22 \n";
+            emote = emoji == 4 ? emote + ":four_leaf_clover: : :white_check_mark: \n"
+                    : emote + ":four_leaf_clover: : débloqué au niveau 32 \n";
+            emote = emoji == 5 ? emote + ":diamond_shape_with_a_dot_inside: : :white_check_mark: \n"
+                    : emote + ":diamond_shape_with_a_dot_inside: : débloqué au niveau 42 \n";
+            emote = emoji == 6 ? emote + ":skull: : :white_check_mark: \n"
+                    : emote + ":skull: : débloqué au niveau 52 \n";
+            emote = emoji == 7 ? emote + ":zap: : :white_check_mark: \n"
+                    : emote + ":zap: : débloqué au niveau 62 \n";
+            emote = emoji == 8 ? emote + ":crown: : :white_check_mark:\n"
+                    : emote + ":crown: : débloqué au niveau 72 \n";
             if (emoji == 9) {
-                emote = String.valueOf(emote) + ":shield: : :white_check_mark: \n";
+                emote = emote + ":shield: : :white_check_mark: \n";
             }
-            emote = String.valueOf(emote) + ":shield: : débloqué au niveau 82 \n";
-            emote = emoji == 10 ? String.valueOf(emote) + ":dagger: : :white_check_mark: \n"
-                    : String.valueOf(emote) + ":dagger: : débloqué au niveau 92 \n";
+            emote = emote + ":shield: : débloqué au niveau 82 \n";
+            emote = emoji == 10 ? emote + ":dagger: : :white_check_mark: \n"
+                    : emote + ":dagger: : débloqué au niveau 92 \n";
             int membres = 10 + level / 10;
             int membresnext = level / 10 + 10;
             String bonus = "";
-            bonus = level > 4 ? String.valueOf(bonus) + " +50% de bois : :white_check_mark: \n"
-                    : String.valueOf(bonus) + " +50% de bois : débloqué au niveau 4 \n";
-            bonus = level > 8 ? String.valueOf(bonus) + "+25% de money dans le =work : :white_check_mark: \n"
-                    : String.valueOf(bonus) + " +25% de money dans le =work : débloqué au niveau 8 \n";
-            bonus = level > 14 ? String.valueOf(bonus) + "+50% d'argile : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% d'argile : débloqué au niveau 14 \n";
-            bonus = level > 18 ? String.valueOf(bonus) + "+25% de pop dans le =work : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+25% de pop dans le =work : débloqué au niveau 18 \n";
-            bonus = level > 24 ? String.valueOf(bonus) + "+50% de cuir : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de cuir : débloqué au niveau 24 \n";
-            bonus = level > 28 ? String.valueOf(bonus) + "+50% gain hr : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% gain hr : débloqué au niveau 28 \n";
-            bonus = level > 34 ? String.valueOf(bonus) + "+50% de pierre : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de pierre : débloqué au niveau 34 \n";
-            bonus = level > 38 ? String.valueOf(bonus) + "+50% gain daily : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% gain daily : débloqué au niveau 38 \n";
-            bonus = level > 44 ? String.valueOf(bonus) + "+50% de paille : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de paille : débloqué au niveau 44 \n";
-            bonus = level > 48 ? String.valueOf(bonus) + "+25% popmax : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+25% popmax : débloqué au niveau 48 \n";
-            bonus = level > 54 ? String.valueOf(bonus) + "+50% de fer : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de fer : débloqué au niveau 54 \n";
-            bonus = level > 58 ? String.valueOf(bonus) + "+50% de soldats : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de soldats : débloqué au niveau 58 \n";
-            bonus = level > 64 ? String.valueOf(bonus) + "+50% de maximum de mana : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de maximum de mana : débloqué au niveau 64 \n";
-            bonus = level > 68 ? String.valueOf(bonus) + "+50% atk de hero : :white_check_mark:  \n"
-                    : String.valueOf(bonus) + "+50% atk de hero : débloqué au niveau 68  \n";
-            bonus = level > 74 ? String.valueOf(bonus)
+            bonus = level > 4 ? bonus + " +50% de bois : :white_check_mark: \n"
+                    : bonus + " +50% de bois : débloqué au niveau 4 \n";
+            bonus = level > 8 ? bonus + "+25% de money dans le =work : :white_check_mark: \n"
+                    : bonus + " +25% de money dans le =work : débloqué au niveau 8 \n";
+            bonus = level > 14 ? bonus + "+50% d'argile : :white_check_mark: \n"
+                    : bonus + "+50% d'argile : débloqué au niveau 14 \n";
+            bonus = level > 18 ? bonus + "+25% de pop dans le =work : :white_check_mark: \n"
+                    : bonus + "+25% de pop dans le =work : débloqué au niveau 18 \n";
+            bonus = level > 24 ? bonus + "+50% de cuir : :white_check_mark: \n"
+                    : bonus + "+50% de cuir : débloqué au niveau 24 \n";
+            bonus = level > 28 ? bonus + "+50% gain hr : :white_check_mark: \n"
+                    : bonus + "+50% gain hr : débloqué au niveau 28 \n";
+            bonus = level > 34 ? bonus + "+50% de pierre : :white_check_mark: \n"
+                    : bonus + "+50% de pierre : débloqué au niveau 34 \n";
+            bonus = level > 38 ? bonus + "+50% gain daily : :white_check_mark: \n"
+                    : bonus + "+50% gain daily : débloqué au niveau 38 \n";
+            bonus = level > 44 ? bonus + "+50% de paille : :white_check_mark: \n"
+                    : bonus + "+50% de paille : débloqué au niveau 44 \n";
+            bonus = level > 48 ? bonus + "+25% popmax : :white_check_mark: \n"
+                    : bonus + "+25% popmax : débloqué au niveau 48 \n";
+            bonus = level > 54 ? bonus + "+50% de fer : :white_check_mark: \n"
+                    : bonus + "+50% de fer : débloqué au niveau 54 \n";
+            bonus = level > 58 ? bonus + "+50% de soldats : :white_check_mark: \n"
+                    : bonus + "+50% de soldats : débloqué au niveau 58 \n";
+            bonus = level > 64 ? bonus + "+50% de maximum de mana : :white_check_mark: \n"
+                    : bonus + "+50% de maximum de mana : débloqué au niveau 64 \n";
+            bonus = level > 68 ? bonus + "+50% atk de hero : :white_check_mark:  \n"
+                    : bonus + "+50% atk de hero : débloqué au niveau 68  \n";
+            bonus = level > 74 ? bonus
                     + "+100% de vitesse de recuperation des ressources dans les zones de ressources : :white_check_mark: \n"
-                    : String.valueOf(bonus)
+                    : bonus
                     + "+100% de vitesse de recuperation des ressources dans les zones de ressources : débloqué au niveau 74 \n";
-            bonus = level > 78 ? String.valueOf(bonus) + "+50% magie de hero : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% magie de hero : débloqué au niveau 78 \n";
+            bonus = level > 78 ? bonus + "+50% magie de hero : :white_check_mark: \n"
+                    : bonus + "+50% magie de hero : débloqué au niveau 78 \n";
             bonus = level > 84
-                    ? String.valueOf(bonus) + "+50% de vitesse de deplacement sur la map : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% de vitesse de deplacement sur la map : débloqué au niveau 84 \n";
-            bonus = level > 88 ? String.valueOf(bonus) + "+50% def de hero : :white_check_mark: \n"
-                    : String.valueOf(bonus) + "+50% def de hero : débloqué au niveau 88 \n";
+                    ? bonus + "+50% de vitesse de deplacement sur la map : :white_check_mark: \n"
+                    : bonus + "+50% de vitesse de deplacement sur la map : débloqué au niveau 84 \n";
+            bonus = level > 88 ? bonus + "+50% def de hero : :white_check_mark: \n"
+                    : bonus + "+50% def de hero : débloqué au niveau 88 \n";
             bonus = level > 94
-                    ? String.valueOf(bonus) + "-50% de delay pour reconstruire le laboratoire : :white_check_mark: \n"
-                    : String.valueOf(bonus)
+                    ? bonus + "-50% de delay pour reconstruire le laboratoire : :white_check_mark: \n"
+                    : bonus
                     + "-50% de delay pour reconstruire le laboratoire : débloqué au niveau 94 \n";
-            bonus = level > 98 ? String.valueOf(bonus) + "+50% de vitesse de regen du hero : :white_check_mark:"
-                    : String.valueOf(bonus) + "+50% de vitesse de regen du hero : débloqué au niveau 98";
+            bonus = level > 98 ? bonus + "+50% de vitesse de regen du hero : :white_check_mark:"
+                    : bonus + "+50% de vitesse de regen du hero : débloqué au niveau 98";
             EmbedBuilder builder3 = new EmbedBuilder();
-            builder3.setTitle(String.valueOf(pays));
+            builder3.setTitle(pays);
             builder3.setAuthor(user.getName(), null, user.getAvatarUrl());
             builder3.setColor(color.couleurAleatoire(user));
             builder3.addField("Machine",
@@ -648,7 +648,7 @@ public class Pays {
             channel.sendMessage("Vous venez d'arreter la machine " + i).queue();
             return;
         }
-        if (c1.equals("emoji") && ((Boolean) map.get("emoji")).booleanValue()) {
+        if (c1.equals("emoji") && map.get("emoji").booleanValue()) {
             int point = Integer.parseInt(
                     TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/points.txt"));
             double level2 = point / 1000;
@@ -697,7 +697,7 @@ public class Pays {
             }
             return;
         }
-        if (c1.equals("role") && ((Boolean) map.get("giver")).booleanValue()) {
+        if (c1.equals("role") && map.get("giver").booleanValue()) {
             User cible2;
             if (pays.equals("")) {
                 if (lang == command.Language.fr) {
@@ -752,11 +752,11 @@ public class Pays {
                     "/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles/" + rank + "/" + cible2.getId(),
                     "true", 1);
             if (lang == command.Language.fr) {
-                channel.sendMessage(String.valueOf(cible2.getName()) + " a desormais le rang : " + rank).queue();
+                channel.sendMessage(cible2.getName() + " a desormais le rang : " + rank).queue();
             }
             if (lang != command.Language.en)
                 return;
-            channel.sendMessage(String.valueOf(cible2.getName()) + " now have rank : " + rank).queue();
+            channel.sendMessage(cible2.getName() + " now have rank : " + rank).queue();
             return;
         }
         if (c1.equals("perm")) {
@@ -779,11 +779,11 @@ public class Pays {
                     mess = "Permissions List \n";
                 }
                 for (String test : map.keySet()) {
-                    mess = String.valueOf(mess) + test + " : " + (Boolean) map.get(test) + " \n";
+                    mess = mess + test + " : " + map.get(test) + " \n";
                 }
                 channel.sendMessage(mess).queue();
             }
-            if (c2.equals("add") && ((Boolean) map.get("modifr")).booleanValue()) {
+            if (c2.equals("add") && map.get("modifr").booleanValue()) {
                 rank = c3.replaceAll(" ", "_");
                 Boolean test = false;
                 for (File file : TextFileWriter
@@ -819,7 +819,7 @@ public class Pays {
                             .queue();
                     return;
                 }
-                if (!((Boolean) map.get(perm)).booleanValue()) {
+                if (!map.get(perm).booleanValue()) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Vous ne pouvez pas donner un role que vous n'avez pas.").queue();
                     }
@@ -839,7 +839,7 @@ public class Pays {
                 channel.sendMessage("The rank " + rank + " has now the permission : ``" + perm + "``").queue();
                 return;
             } else {
-                if (!c2.equals("remove") || !((Boolean) map.get("modifr")).booleanValue())
+                if (!c2.equals("remove") || !map.get("modifr").booleanValue())
                     return;
                 rank = c3.replaceAll(" ", "_");
                 Boolean test = false;
@@ -876,7 +876,7 @@ public class Pays {
                             .queue();
                     return;
                 }
-                if (!((Boolean) map.get(perm)).booleanValue()) {
+                if (!map.get(perm).booleanValue()) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Vous ne pouvez pas retirer une permission que vous n'avez pas.").queue();
                     }
@@ -898,7 +898,7 @@ public class Pays {
             }
             return;
         }
-        if (c1.equals("rank") && ((Boolean) map.get("creater")).booleanValue()) {
+        if (c1.equals("rank") && map.get("creater").booleanValue()) {
             if (pays.equals("")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("\u26a0 Vous devez etre dans un pays pour pouvoir executer cette commande.")
@@ -1000,7 +1000,7 @@ public class Pays {
                     channel.sendMessage("You can't give more money than you have to the country").queue();
                     return;
                 }
-                Umoney -= (long) Integer.parseInt(c3);
+                Umoney -= Integer.parseInt(c3);
                 bank += Integer.parseInt(c3);
                 try {
                     data.getProfils().get(user.getId()).setMoney(Umoney);
@@ -1018,7 +1018,7 @@ public class Pays {
                 channel.sendMessage("You just add " + c3 + " money to the country bank").queue();
                 return;
             }
-            if (!c2.equals("credit") || !((Boolean) map.get("creditb")).booleanValue())
+            if (!c2.equals("credit") || !map.get("creditb").booleanValue())
                 return;
             if (Integer.parseInt(c3) > bank) {
                 if (lang == command.Language.fr) {
@@ -1029,7 +1029,7 @@ public class Pays {
                 channel.sendMessage("You can't collect more money from the country than there is.").queue();
                 return;
             }
-            Umoney += (long) Integer.parseInt(c3);
+            Umoney += Integer.parseInt(c3);
             bank -= Integer.parseInt(c3);
             try {
                 data.getProfils().get(user.getId()).setMoney(Umoney);
@@ -1047,7 +1047,7 @@ public class Pays {
             channel.sendMessage("You just remove " + c3 + " money to the country bank").queue();
             return;
         }
-        if (c1.equals("discord") && ((Boolean) map.get("changed")).booleanValue()) {
+        if (c1.equals("discord") && map.get("changed").booleanValue()) {
             if (pays.equals("")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("\u26a0 Vous devez etre dans un pays pour pouvoir executer cette commande.")
@@ -1062,7 +1062,7 @@ public class Pays {
             for (String str : args) {
                 if (str.equals(args[0]))
                     continue;
-                builder.append(String.valueOf(str) + " ");
+                builder.append(str + " ");
             }
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/discordURL.txt",
                     builder.toString(), 1);
@@ -1074,7 +1074,7 @@ public class Pays {
             channel.sendMessage("The new discord url of the country is : \n ``" + builder.toString() + "``").queue();
             return;
         }
-        if (c1.equals("setdescription") || c1.equals("description") && ((Boolean) map.get("desc")).booleanValue()) {
+        if (c1.equals("setdescription") || c1.equals("description") && map.get("desc").booleanValue()) {
             if (pays.equals("")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("\u26a0 Vous devez etre dans un pays pour pouvoir executer cette commande.")
@@ -1089,7 +1089,7 @@ public class Pays {
             for (String str : args) {
                 if (str.equals(args[0]))
                     continue;
-                builder.append(String.valueOf(str) + " ");
+                builder.append(str + " ");
             }
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/description.txt",
                     builder.toString(), 1);
@@ -1117,7 +1117,7 @@ public class Pays {
             }
             long soldier = habitants.atk(data.getProfils().get(user.getId()));
             if (soldier >= (long) givePop) {
-                soldier -= (long) givePop;
+                soldier -= givePop;
             } else {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas donner plus d'habitant que vous n'en avez.").queue();
@@ -1140,7 +1140,7 @@ public class Pays {
             channel.sendMessage("You just give " + givePop + " soldiers to your country.").queue();
             return;
         }
-        if (c1.equals("members") && ((Boolean) map.get("showm")).booleanValue()) {
+        if (c1.equals("members") && map.get("showm").booleanValue()) {
             String messages = "";
             if (lang == command.Language.fr) {
                 messages = "Listes des membres de votre pays : \n";
@@ -1148,36 +1148,36 @@ public class Pays {
             if (lang == command.Language.en) {
                 messages = "Members List : \n";
             }
-            messages = String.valueOf(messages) + "---- **Owner** ---- \n"
-                    + jda.getUserById(
+            messages = messages + "---- **Owner** ---- \n"
+                    + data.getProfils().get(
                     TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/owner.txt"))
                     .getName()
                     + " (" + TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/owner.txt")
                     + ") \n\n";
             for (File file1 : TextFileWriter
                     .folderlist("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles")) {
-                messages = String.valueOf(messages) + " ---- **" + file1.getName() + "** ----\n";
+                messages = messages + " ---- **" + file1.getName() + "** ----\n";
                 for (File file2 : TextFileWriter.folderlist(
                         "/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/roles/" + file1.getName())) {
                     if (file2.getName().equals("perm"))
                         continue;
-                    messages = String.valueOf(messages) + jda.getUserById(file2.getName()).getName() + " ("
+                    messages = messages + data.getProfils().get(file2.getName()).getName() + " ("
                             + file2.getName() + ") \n";
                 }
-                messages = String.valueOf(messages) + "\n";
+                messages = messages + "\n";
             }
-            messages = String.valueOf(messages) + " ---- **Members** ----\n";
+            messages = messages + " ---- **Members** ----\n";
             for (File members : TextFileWriter
                     .folderlist("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/member")) {
-                if (messages.contains(jda.getUserById(members.getName()).getName()))
+                if (messages.contains(data.getProfils().get(members.getName()).getName()))
                     continue;
-                messages = String.valueOf(messages) + jda.getUserById(members.getName()).getName() + " ("
+                messages = messages + data.getProfils().get(members.getName()).getName() + " ("
                         + members.getName() + "\n";
             }
             channel.sendMessage(messages).queue();
             return;
         }
-        if (c1.equals("rename") && ((Boolean) map.get("prename")).booleanValue()) {
+        if (c1.equals("rename") && map.get("prename").booleanValue()) {
             String test;
             File[] members;
             name = c2;
@@ -1212,13 +1212,13 @@ public class Pays {
             channel.sendMessage("Your country's name is now " + name).queue();
             return;
         }
-        if (c1.equals("kick") && ((Boolean) map.get("kick")).booleanValue()) {
+        if (c1.equals("kick") && map.get("kick").booleanValue()) {
             String test;
             cible = null;
             try {
-                cible = message.getMentionedUsers().get(0);
+                cible = data.getProfils().get(message.getMentionedUsers().get(0).getId());
             } catch (IndexOutOfBoundsException e) {
-                cible = jda.getUserById(args[1]);
+                cible = data.getProfils().get(args[1]);
             }
             if (user.getId().equals(cible.getId())) {
                 if (lang == command.Language.fr) {
@@ -1269,7 +1269,7 @@ public class Pays {
             return;
         }
         if (c1.equals("lead")) {
-            cible = message.getMentionedUsers().get(0);
+            cible = data.getProfils().get(message.getMentionedUsers().get(0).getId());
             if (owner.equals(user.getId())) {
                 String test;
                 try {
@@ -1371,7 +1371,7 @@ public class Pays {
             channel.sendMessage("You just leave the country : " + pays).queue();
             return;
         }
-        if (c1.equals("invite") && ((Boolean) map.get("invite")).booleanValue()) {
+        if (c1.equals("invite") && map.get("invite").booleanValue()) {
             int membres = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/member");
             if (membres >= 10) {
                 if (lang == command.Language.fr) {
@@ -1403,7 +1403,7 @@ public class Pays {
                     "/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/member/" + user_invite.getId());
             return;
         }
-        if (c1.equals("attack") && ((Boolean) map.get("pattack")).booleanValue()) {
+        if (c1.equals("attack") && map.get("pattack").booleanValue()) {
             String pays_adv = c2;
             if (TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays_adv + "/pays.txt")
                     .equals("true")) {
@@ -1457,7 +1457,7 @@ public class Pays {
                             Integer.toString(troupe_adv), 1);
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays_adv + "/trophy.txt",
                             Integer.toString(trophéesP), 1);
-                    User owner_adv = jda.getUserById(TextFileWriter
+                    Profil owner_adv = data.getProfils().get(TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays_adv + "/owner.txt"));
                     if (lang == command.Language.fr) {
                         channel.sendMessage("Un rapport de combat vous a été envoyer par MP.").queue();
@@ -1482,7 +1482,7 @@ public class Pays {
                                 .queue();
                     }
                     command.Language langc = DiscordBot.getData().getProfils().get(owner_adv.getId()).getLanguage();
-                    if (!owner_adv.hasPrivateChannel()) {
+                    /*if (!owner_adv.hasPrivateChannel()) {
                         owner_adv.openPrivateChannel().complete();
                     }
                     if (langc == command.Language.fr) {
@@ -1497,7 +1497,7 @@ public class Pays {
                             .sendMessage(
                                     ":crossed_swords: Country Defense report :crossed_swords: \n You lose. You lose "
                                             + gain + " trophies and lose " + troupe_adv + " soldiers")
-                            .queue();
+                            .queue();*/
                     return;
                 } else {
                     if (troupe_adv <= troupe)
@@ -1521,7 +1521,7 @@ public class Pays {
                             Integer.toString(troupe_adv -= troupe), 1);
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays_adv + "/trophy.txt",
                             Integer.toString(trophéesV += gain), 1);
-                    User owner_adv = jda.getUserById(TextFileWriter
+                    Profil owner_adv = data.getProfils().get(TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Pays/" + pays_adv + "/owner.txt"));
                     if (!user.hasPrivateChannel()) {
                         user.openPrivateChannel().complete();
@@ -1539,7 +1539,7 @@ public class Pays {
                                                 + gain + " trophies and " + troupe + " soldiers")
                                 .queue();
                     }
-                    if (!owner_adv.hasPrivateChannel()) {
+                    /*if (!owner_adv.hasPrivateChannel()) {
                         owner_adv.openPrivateChannel().complete();
                     }
                     if (lang == command.Language.fr) {
@@ -1553,7 +1553,7 @@ public class Pays {
                     ((UserImpl) owner_adv).getPrivateChannel()
                             .sendMessage(":crossed_swords: Country defense report :crossed_swords: \n You won. You won "
                                     + gain + " trophies and lose " + troupe_adv + " soldiers")
-                            .queue();
+                            .queue();*/
                 }
                 return;
             }
@@ -1567,11 +1567,11 @@ public class Pays {
         }
         if (c1.equals("create")) {
             long money = data.getProfils().get(user.getId()).getMoney();
-            if (money >= 10000000L && !Premium.Premium(user) || money >= 1000000L && Premium.Premium(user)) {
+            if (money >= 10000000L && !Premium.Premium(data.getProfils().get(user.getId())) || money >= 1000000L && Premium.Premium(data.getProfils().get(user.getId()))) {
                 String test;
-                if (Premium.Premium(user)) {
+                if (Premium.Premium(data.getProfils().get(user.getId()))) {
                     money -= 1000000L;
-                } else if (!Premium.Premium(user)) {
+                } else if (!Premium.Premium(data.getProfils().get(user.getId()))) {
                     money -= 10000000L;
                 }
                 if (c2.equals("")) {
@@ -1756,7 +1756,7 @@ public class Pays {
                     TextFileWriter.write(
                             "/home/DiscordBot/Rasberry/données/bot/Pays/" + pays + "/ressources/" + materiau1 + ".txt",
                             Integer.toString(materiau_Pays += nombre), 1);
-                    Quest.Quest("invest", user, channel, nombre);
+                    Quest.Quest("invest", DiscordBot.getData().getProfils().get(user), channel, nombre);
                     int Investisseur = data.getProfils().get(user.getId()).getInvestisseur();
                     data.getProfils().get(user.getId()).setInvestisseur(Investisseur += nombre);
                     if (point_total == 0) {

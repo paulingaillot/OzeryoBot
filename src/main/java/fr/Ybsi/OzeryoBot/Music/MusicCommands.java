@@ -96,7 +96,7 @@ public class MusicCommands {
         for (String str : args) {
             if (str.equals(args[0]))
                 continue;
-            builder.append(String.valueOf(str));
+            builder.append(str);
         }
         try {
             c1 = args[0];
@@ -131,7 +131,7 @@ public class MusicCommands {
             message = "**Guild Playlist** \n";
             int i = 1;
             for (String track : list) {
-                message = String.valueOf(message) + "**" + i + "** - " + track + "\n";
+                message = message + "**" + i + "** - " + track + "\n";
                 ++i;
             }
             channel.sendMessage(message).queue();
@@ -141,15 +141,15 @@ public class MusicCommands {
                 message = "**Guild Playlist** \n";
                 int i = 1;
                 for (String track : list) {
-                    message = String.valueOf(message) + "**" + i + "** - " + track + "\n";
+                    message = message + "**" + i + "** - " + track + "\n";
                     ++i;
                 }
                 if (lang == command.Language.fr) {
-                    message = String.valueOf(message)
+                    message = message
                             + " **Veuillez indiquer le numero de la musique a supprimer de la playlist.**";
                 }
                 if (lang == command.Language.en) {
-                    message = String.valueOf(message)
+                    message = message
                             + " **You must indicate the number of the song you want to remove from the playlist.**";
                 }
                 channel.sendMessage(message).queue();
@@ -236,11 +236,11 @@ public class MusicCommands {
         } catch (Exception e) {
             if (lang == command.Language.fr) {
                 channel.sendMessage(
-                        "Vous ne pouvez pas utiliser cet commande si vous n'ecoutez pas de musique avec le bot actuelement.")
+                        "Vous ne pouvez pas utiliser cet commande si vous n'ecoutez pas de musique avec le bot actuellement.")
                         .queue();
             }
             if (lang == command.Language.en) {
-                channel.sendMessage("You can't use this command if you'renot listening music with the bot actually.")
+                channel.sendMessage("You can't use this command if you're not listening music with the bot actually.")
                         .queue();
             }
             return;
@@ -262,13 +262,13 @@ public class MusicCommands {
         }
         if (lang == command.Language.fr) {
             builder.addField("Durée",
-                    String.valueOf((double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0)
+                    (double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0
                             + " minutes",
                     true);
         }
         if (lang == command.Language.en) {
             builder.addField("Duration",
-                    String.valueOf((double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0)
+                    (double) player.getAudioPlayer().getPlayingTrack().getInfo().length / 60000.0
                             + " minutes",
                     true);
         }

@@ -35,7 +35,7 @@ public class AudioListener extends AudioEventAdapter {
         if (this.tracks.isEmpty()) {
             return;
         }
-        this.player.getAudioPlayer().startTrack((AudioTrack) this.tracks.poll(), false);
+        this.player.getAudioPlayer().startTrack(this.tracks.poll(), false);
     }
 
     @Override

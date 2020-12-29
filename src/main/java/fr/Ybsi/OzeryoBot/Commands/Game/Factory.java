@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Factory {
-    @command(name = "laboratoire", abbrev = "labo", type = command.ExecutorType.ALL, topic = command.Topics.Game)
+    @command(name = "tower", abbrev = "labo", type = command.ExecutorType.ALL, topic = command.Topics.Game)
     private void usine(Message message, Guild guild, String[] args, User user, MessageChannel channel, String arg,
                        ProfilData data, command.Language lang) {
         String c1;
@@ -228,7 +228,7 @@ public class Factory {
                 ArrayList<String> list;
                 int Scientifique = data.getProfils().get(user.getId()).getScientifique();
                 data.getProfils().get(user.getId()).setScientifique(++Scientifique);
-                Quest.Quest("exp", user, channel, Bonus_factory);
+                Quest.Quest("exp", data.getProfils().get(user.getId()), channel, Bonus_factory);
                 String pet = TextFileWriter
                         .read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
                 HashMap<String, ArrayList<String>> activePet = data.getProfils().get(user.getId()).getPet();
@@ -439,14 +439,14 @@ public class Factory {
                 }
                 if (c2.equals("confirm")) {
                     HashMap<String, Integer> res = data.getProfils().get(user.getId()).getRes();
-                    int verre = res.get("pierre");
-                    int pierre = res.get("paille");
+                    int pierre = res.get("pierre");
+                    int paille = res.get("paille");
                     int acier = res.get("argile");
-                    if (money >= need_money && acier >= need_mat && verre >= need_mat && pierre >= need_mat) {
+                    if (money >= need_money && acier >= need_mat && pierre >= need_mat && paille >= need_mat) {
                         money -= need_money;
-                        verre -= need_mat;
-                        acier -= need_mat;
                         pierre -= need_mat;
+                        acier -= need_mat;
+                        paille -= need_mat;
                         try {
                             data.getProfils().get(user.getId()).setMoney(money);
                         } catch (NullPointerException e) {
@@ -454,8 +454,8 @@ public class Factory {
                             data.getProfils().get(user.getId()).setMoney(money);
                         }
                         res.put("argile", acier);
-                        res.put("pierre", verre);
-                        res.put("paille", pierre);
+                        res.put("pierre", pierre);
+                        res.put("paille", paille);
                         try {
                             data.getProfils().get(user.getId()).setRes(res);
                         } catch (NullPointerException e) {

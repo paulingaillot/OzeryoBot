@@ -11,11 +11,11 @@ public final class SimpleCommand {
     private final Method method;
     private final int power;
     private Object object;
-    private String abbrev;
+    private final String abbrev;
     private command.Topics topic;
-    private String descfr;
-    private String descen;
-    private String use;
+    private final String descfr;
+    private final String descen;
+    private final String use;
 
     public SimpleCommand(String name, String abbrev, command.Topics topic, String descfr, String descen,
                          command.ExecutorType executorType, Object object, Method method, int power, String use) {

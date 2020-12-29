@@ -181,8 +181,8 @@ public class Shop {
             if (money >= (long) (5000 * c2)) {
                 int Pigeon;
                 Bstock2 -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
                 res.put("bois", bois += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
@@ -235,8 +235,8 @@ public class Shop {
             if (money >= (long) (5000 * c2)) {
                 int Pigeon;
                 Astock -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
                 res.put("argile", argile += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
@@ -288,8 +288,8 @@ public class Shop {
             if (money >= (long) (5000 * c2)) {
                 int Pigeon;
                 Bstock3 -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
                 res.put("cuir", cuir += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
@@ -341,8 +341,8 @@ public class Shop {
             if (money >= (long) (5000 * c2)) {
                 int Pigeon;
                 Vstock -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
                 res.put("pierre", pierre += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
@@ -394,8 +394,8 @@ public class Shop {
             if (money >= (long) (5000 * c2)) {
                 int Pigeon;
                 Pstock -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
                 res.put("paille", paille += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
@@ -447,9 +447,9 @@ public class Shop {
             }
             if (money >= (long) (5000 * c2)) {
                 Bstock4 -= c2;
-                money -= (long) (5000 * c2);
-                Quest.Quest("shop", user, channel, c2);
-                res.put("petrole", fer += c2);
+                money -= 5000 * c2;
+                Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
+                res.put("fer", fer += c2);
                 try {
                     data.getProfils().get(user.getId()).setRes(res);
                 } catch (NullPointerException e) {
@@ -502,8 +502,8 @@ public class Shop {
         int bois = 0;
         int argile = 0;
         int cuir = 0;
-        int paille = 0;
         int pierre = 0;
+        int paille = 0;
         int fer = 0;
         if (money >= (long) (2500 * c2)) {
             int Pigeon;
@@ -561,7 +561,7 @@ public class Shop {
                 channel.sendMessage("Well, you just buy " + bois + " wood, " + argile + " clay, " + cuir + " leather, "
                         + pierre + " stone, " + paille + " straw, " + fer + " iron.").queue();
             }
-            Quest.Quest("shop", user, channel, c2);
+            Quest.Quest("shop", data.getProfils().get(user.getId()), channel, c2);
             return;
         }
         if (lang == Language.fr) {

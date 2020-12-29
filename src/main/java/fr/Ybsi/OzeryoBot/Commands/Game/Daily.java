@@ -111,10 +111,10 @@ public class Daily {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setPet(activePet);
             }
-            pop += (long) pop_win;
-            money += (long) money_win;
+            pop += pop_win;
+            money += money_win;
             Game_EXP += EXP_win;
-            Quest.Quest("exp", user, channel, EXP_win);
+            Quest.Quest("exp", data.getProfils().get(user.getId()), channel, EXP_win);
             String Halloween1 = "";
             if (Event.Summer()) {
                 int nbalea = 500 + (int) (Math.random() * 501.0);
@@ -130,7 +130,7 @@ public class Daily {
                     Halloween1 = "You also won " + gain + " OzXp";
                 }
             }
-            Quest.Quest("jetons", user, channel, 5);
+            Quest.Quest("jetons", data.getProfils().get(user.getId()), channel, 5);
             try {
                 data.getProfils().get(user.getId()).setXp(Game_EXP);
             } catch (NullPointerException e) {

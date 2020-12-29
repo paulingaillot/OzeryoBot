@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.*;
@@ -68,7 +69,7 @@ public final class CommandMap {
 
         long t1 = System.currentTimeMillis();
         ++commands1;
-        ProfilData data = DiscordBot.getData();
+        ProfilData data = fr.Ybsi.OzeryoBot.DiscordBot.getData();
         Object[] object = CommandMap.getCommand(command2);
         if (object[0] == null)
             return false;
@@ -114,14 +115,14 @@ public final class CommandMap {
                     int mDay = calendar.get(5);
                     int mHour = calendar.get(11);
                     int mMinute = calendar.get(12);
-                    if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
+                    if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
                         channel.sendMessage("OzeryoBot passe en version 3.0 dans " + mDay + " jours, " + mHour
                                 + " heures et " + mMinute
-                                + " minutes. Préinscrivez-vous pour \u00eatre averti de la sortie de la 3\u00e8me version d'OzeryoBot et ainsi obtenir 1 mois de premium gratuitement d\u00e8s \u00e0 présent gr\u00e2ce a la commande ``=register`` . Il y a actuelement "
+                                + " minutes. Préinscrivez-vous pour \u00eatre averti de la sortie de la 3\u00e8me version d'OzeryoBot et ainsi obtenir 1 mois de premium gratuitement d\u00e8s \u00e0 présent gr\u00e2ce a la commande ``=register`` . Il y a actuellement "
                                 + data.getRegisters() + " inscrits.").queue();
                         return true;
                     }
-                    if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() != command.Language.en)
+                    if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() != command.Language.en)
                         return true;
                     channel.sendMessage("OzeryoBot imporve itself to version 3.0 in " + mDay + " days, " + mHour
                             + " hours and " + mMinute
@@ -139,17 +140,14 @@ public final class CommandMap {
                     int places = 0;
                     int alea = 1 + (int) (Math.random() * (double) (442 - taille - 1 + 1));
                     for (x = -10; x <= 10; ++x) {
-                        System.out.print(x);
                         for (y = -10; y <= 10; ++y) {
                             String name;
-                            System.out.print(y);
                             try {
                                 name = TextFileWriter
                                         .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                             } catch (IllegalArgumentException e1) {
                                 name = "0";
                             }
-                            System.out.println(name);
                             if (name.equals("0")) {
                                 ++places;
                             }
@@ -159,12 +157,12 @@ public final class CommandMap {
                         if (places >= alea)
                             break;
                     }
-                    data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
+                    data.getProfils().get(user.getId()).setHome(x + "_" + y);
                     TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt",
                             user.getId(), 1);
                     CommandMap.PublicLog(":baby:  Un nouveau joueur a rejoint le monde d'OzeryoBot. Il s'agit de **"
-                            + user.getName() + "**. Bonne chance \u00e0 lui.", DiscordBot.getjda());
+                            + user.getName() + "**. Bonne chance \u00e0 lui.", fr.Ybsi.OzeryoBot.DiscordBot.getjda());
                 }
                 Achivement.achivement(user, command2, channel);
                 String home = "0";
@@ -198,17 +196,17 @@ public final class CommandMap {
                     int places = 0;
                     int alea = 1 + (int) (Math.random() * (double) (442 - taille - 1 + 1));
                     for (x = -10; x <= 10; ++x) {
-                        System.out.print(x);
+
                         for (y = -10; y <= 10; ++y) {
                             String name;
-                            System.out.print(y);
+
                             try {
                                 name = TextFileWriter
                                         .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
                             } catch (IllegalArgumentException e1) {
                                 name = "0";
                             }
-                            System.out.println(name);
+
                             if (name.equals("0")) {
                                 ++places;
                             }
@@ -218,7 +216,7 @@ public final class CommandMap {
                         if (places >= alea)
                             break;
                     }
-                    data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
+                    data.getProfils().get(user.getId()).setHome(x + "_" + y);
                     TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt",
                             user.getId(), 1);
@@ -226,8 +224,7 @@ public final class CommandMap {
                 home = data.getProfils().get(user.getId()).getHome();
                 home = "x=" + home.replaceAll("_", " | y=");
                 int tuto = data.getProfils().get(user.getId()).getTuto();
-                command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
-                System.out.println("Tutoriel : " + tuto);
+                command.Language lang = fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
                 if (tuto == 0 && ((SimpleCommand) object[0]).getMethod().getName() != "tuto") {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
@@ -299,7 +296,7 @@ public final class CommandMap {
                     if (lang != command.Language.en)
                         return true;
                     channel.sendMessage(
-                            "Now you can build your first building! Let's start with the market place as an example: = b marché 1.")
+                            "Now you can build your first building! Let's start with the market place as an example: =b marché 1.")
                             .queue();
                     return true;
                 }
@@ -327,7 +324,7 @@ public final class CommandMap {
                     if (lang != command.Language.en)
                         return true;
                     channel.sendMessage(
-                            "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, = b camp 1.")
+                            "Each building has about twenty levels, you can build levels with Ozecoins and different materials. Now, learn to attack, first build your barracks, =b camp 1.")
                             .queue();
                     return true;
                 }
@@ -393,7 +390,7 @@ public final class CommandMap {
                             }
                             HashMap<String, Integer> building = new HashMap();
                             building = data.getProfils().get(user.getId()).getBuilding();
-                            if (LootBox.test(data.getProfils().get(user)) <= (Integer) building.get("armurerie") * 5 + 20) {
+                            if (LootBox.test(data.getProfils().get(user)) <= building.get("armurerie") * 5 + 20) {
                                 int aleaWeapons = 1 + (int) (Math.random() * 17.0);
                                 String weapon = "epee";
                                 switch (aleaWeapons) {
@@ -481,7 +478,7 @@ public final class CommandMap {
                                 }
                                 ArrayList<Integer> weaponList = new ArrayList<Integer>();
                                 try {
-                                    weaponList = (ArrayList<Integer>) weapons.get(weapon);
+                                    weaponList = weapons.get(weapon);
                                     weaponList.add(aleaWeapon2);
                                 } catch (NullPointerException e) {
                                     weaponList = new ArrayList<Integer>();
@@ -561,7 +558,7 @@ public final class CommandMap {
                             }
                             HashMap<String, Integer> building = new HashMap();
                             building = data.getProfils().get(user.getId()).getBuilding();
-                            if (LootBox.test(data.getProfils().get(user)) <= (Integer) building.get("armurerie") * 5 + 20) {
+                            if (LootBox.test(data.getProfils().get(user)) <= building.get("armurerie") * 5 + 20) {
                                 int aleaArmors = 1 + (int) (Math.random() * 17.0);
                                 String armor = "armure";
                                 switch (aleaArmors) {
@@ -648,7 +645,7 @@ public final class CommandMap {
                                 }
                                 ArrayList<Integer> armorList = new ArrayList<Integer>();
                                 try {
-                                    armorList = (ArrayList<Integer>) armors.get(armor);
+                                    armorList = armors.get(armor);
                                     armorList.add(aleaArmor2);
                                 } catch (NullPointerException e) {
                                     armorList = new ArrayList<Integer>();
@@ -728,12 +725,13 @@ public final class CommandMap {
                             int materiau;
                             String res1;
                             HashMap<String, Integer> res = data.getProfils().get(user.getId()).getRes();
+
                             int bois = res.get("bois");
                             int acier = res.get("argile");
-                            int beton = res.get("cuir");
-                            int verre = res.get("pierre");
-                            int pierre = res.get("paille");
-                            int plastique = res.get("fer");
+                            int cuir = res.get("cuir");
+                            int pierre = res.get("pierre");
+                            int paille = res.get("paille");
+                            int fer = res.get("fer");
                             int gameXp = data.getProfils().get(user.getId()).getXp();
                             try {
                                 double operation = 3 * gameXp / 4;
@@ -753,16 +751,16 @@ public final class CommandMap {
                                     acier += 1 * level;
                                 } else if (materiau == 3) {
                                     res1 = "cuir";
-                                    beton += 1 * level;
+                                    cuir += 1 * level;
                                 } else if (materiau == 4) {
                                     res1 = "pierre";
-                                    verre += 1 * level;
+                                    pierre += 1 * level;
                                 } else if (materiau == 5) {
                                     res1 = "paille";
-                                    pierre += 1 * level;
+                                    paille += 1 * level;
                                 } else if (materiau == 6) {
                                     res1 = "fer";
-                                    plastique += 1 * level;
+                                    fer += 1 * level;
                                 }
                                 if (lang == command.Language.fr) {
                                     channel.sendMessage("Vous venez de franchir le pallier " + lastpallier
@@ -783,16 +781,16 @@ public final class CommandMap {
                                     acier += 1 * level;
                                 } else if (materiau == 3) {
                                     res1 = "cuir";
-                                    beton += 1 * level;
+                                    cuir += 1 * level;
                                 } else if (materiau == 4) {
                                     res1 = "pierre";
-                                    verre += 1 * level;
+                                    pierre += 1 * level;
                                 } else if (materiau == 5) {
                                     res1 = "paille";
                                     pierre += 1 * level;
                                 } else if (materiau == 6) {
                                     res1 = "fer";
-                                    plastique += 1 * level;
+                                    fer += 1 * level;
                                 }
                                 materiau = 1 + (int) (Math.random() * 6.0);
                                 String res2 = "";
@@ -804,16 +802,16 @@ public final class CommandMap {
                                     acier += 1 * level;
                                 } else if (materiau == 3) {
                                     res1 = "cuir";
-                                    beton += 1 * level;
+                                    cuir += 1 * level;
                                 } else if (materiau == 4) {
                                     res1 = "pierre";
-                                    verre += 1 * level;
+                                    pierre += 1 * level;
                                 } else if (materiau == 5) {
                                     res1 = "paille";
                                     pierre += 1 * level;
                                 } else if (materiau == 6) {
                                     res1 = "fer";
-                                    plastique += 1 * level;
+                                     fer+= 1 * level;
                                 }
                                 if (lang == command.Language.fr) {
                                     channel.sendMessage(
@@ -849,7 +847,7 @@ public final class CommandMap {
                                 } catch (Exception acier) {
                                     // empty catch block
                                 }
-                                if ((Integer) building.get("cirque") >= pets) {
+                                if (building.get("cirque") >= pets) {
                                     list2 = new ArrayList<String>();
                                     list2.add("Aigle");
                                     list2.add("1");
@@ -910,7 +908,7 @@ public final class CommandMap {
                                 } catch (Exception e) {
                                     // empty catch block
                                 }
-                                if ((Integer) building.get("cirque") >= pets) {
+                                if (building.get("cirque") >= pets) {
                                     list2 = new ArrayList();
                                     list2.add("Lion");
                                     list2.add("1");
@@ -952,7 +950,7 @@ public final class CommandMap {
                                 }
                             } else if (lastpallier == 57) {
                                 User User_Premium = user;
-                                if (Premium.Premium(User_Premium)) {
+                                if (Premium.Premium(data.getProfils().get(User_Premium.getId()))) {
                                     int jours = Integer
                                             .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/"
                                                     + User_Premium.getId() + "/Premium/jours.txt"));
@@ -977,11 +975,11 @@ public final class CommandMap {
                                                     + User_Premium.getId() + "/Premium/années.txt", Integer.toString(années),
                                             1);
                                     if (lang == command.Language.fr) {
-                                        channel.sendMessage(String.valueOf(User_Premium.getName())
+                                        channel.sendMessage(User_Premium.getName()
                                                 + " a recu un mois de premium en plus.").queue();
                                     }
                                     if (lang == command.Language.en) {
-                                        channel.sendMessage(String.valueOf(User_Premium.getName())
+                                        channel.sendMessage(User_Premium.getName()
                                                 + " receive one Premium month more.").queue();
                                     }
                                 } else {
@@ -1014,7 +1012,7 @@ public final class CommandMap {
                                 } catch (Exception mois) {
                                     // empty catch block
                                 }
-                                if ((Integer) building.get("cirque") >= pets) {
+                                if (building.get("cirque") >= pets) {
                                     list2 = new ArrayList();
                                     list2.add("Lievre");
                                     list2.add("1");
@@ -1203,7 +1201,8 @@ public final class CommandMap {
             }
             CommandMap.execute((SimpleCommand) object[0], command2, (String[]) object[1], message, channel, guild,
                     user, jda);
-            System.out.println(" La commande " + ((SimpleCommand) object[0]).getMethod().getName()
+            Format f = new SimpleDateFormat("HH:mm:ss");
+            System.out.println("["+f.format(new Date())+"] La commande " + ((SimpleCommand) object[0]).getMethod().getName()
                     + " a été utilisé par " + user.getName() + " sur le serveur " + guild.getName());
             long temps_de_jeu = data.getProfils().get(user.getId()).getTemps_de_jeu();
             long lastcommand = data.getProfils().get(user.getId()).getLastCommand();
@@ -1234,14 +1233,14 @@ public final class CommandMap {
                     channel.sendMessage("You have unread messages. type ``=mail list`` to see them.").queue();
                 }
             }
-            Guild ozeryo = DiscordBot.getjda().getGuildById("326345972739473410");
+            Guild ozeryo = fr.Ybsi.OzeryoBot.DiscordBot.getjda().getGuildById("326345972739473410");
             TextChannel logChannel = ozeryo.getTextChannelById("498483581052649492");
             EmbedBuilder builder = new EmbedBuilder();
             builder.setTimestamp(Instant.now());
             builder.setAuthor("OzeryoBot");
             builder.setColor(color.couleurAleatoire(user));
-            builder.addField("User", String.valueOf(user.getName()) + " (``" + user.getId() + "``)", true);
-            builder.addField("Guild", String.valueOf(guild.getName()) + " (``" + guild.getId() + "``)", true);
+            builder.addField("User", user.getName() + " (``" + user.getId() + "``)", true);
+            builder.addField("Guild", guild.getName() + " (``" + guild.getId() + "``)", true);
             builder.addBlankField(true);
             builder.addField("Commande", ((SimpleCommand) object[0]).getMethod().getName(), true);
             long t2 = System.currentTimeMillis();
@@ -1255,12 +1254,12 @@ public final class CommandMap {
             logChannel.sendMessage(builder.build()).queue();
             return true;
         } catch (Exception exception) {
-            if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
+            if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
                 channel.sendMessage(
                         ":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionnée et vous remercions de votre aide.")
                         .queue();
             }
-            if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
+            if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
                 channel.sendMessage(
                         "An error occurred! Report it to an admin such as Ybsi#0451 (102108573298851840) or make a bug report with the command =report. We apologize for the inconvenience.")
                         .queue();
@@ -1278,7 +1277,7 @@ public final class CommandMap {
                 e.printStackTrace();
             }*/
             exception.printStackTrace();
-            Guild ozeryo = DiscordBot.getjda().getGuildById("326345972739473410");
+            Guild ozeryo = fr.Ybsi.OzeryoBot.DiscordBot.getjda().getGuildById("326345972739473410");
             TextChannel logChannel = ozeryo.getTextChannelById("498483581052649492");
             logChannel.sendMessage(
                     "La commande " + command2 + " utilisé par " + user.getName() + " sur le serveur " + guild.getName()
@@ -1352,11 +1351,11 @@ public final class CommandMap {
                         continue;
                     }
                     if (parameters[i].getType() == ProfilData.class) {
-                        objects[i] = DiscordBot.getData();
+                        objects[i] = fr.Ybsi.OzeryoBot.DiscordBot.getData();
                         continue;
                     }
                     if (parameters[i].getType() == command.Language.class) {
-                        objects[i] = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
+                        objects[i] = fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
                         continue;
                     }
                     if (parameters[i].getType() != MessageChannel.class)
@@ -1367,12 +1366,12 @@ public final class CommandMap {
                     simpleCommand.getMethod().invoke(simpleCommand.getObject(), objects);
                 } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     e.printStackTrace();
-                    if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
+                    if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.fr) {
                         channel.sendMessage(
                                 ":warning: Une erreur est survenue ! Signalez la \u00e0 un admin tel que Ybsi#0451 (102108573298851840) ou alors faites un rapport de bug avec le =report. Nous nous excusons de la g\u00e8ne occasionnée et vous remercions de votre aide.")
                                 .queue();
                     }
-                    if (DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
+                    if (fr.Ybsi.OzeryoBot.DiscordBot.getData().getProfils().get(user.getId()).getLanguage() == command.Language.en) {
                         channel.sendMessage(
                                 "An error occurred! Report it to an admin such as Ybsi#0451 (102108573298851840) or make a bug report with the command =report. We apologize for the inconvenience.")
                                 .queue();
@@ -1390,7 +1389,7 @@ public final class CommandMap {
                         e1.printStackTrace();
                     }*/
                     e.printStackTrace();
-                    Guild ozeryo = DiscordBot.getjda().getGuildById("326345972739473410");
+                    Guild ozeryo = fr.Ybsi.OzeryoBot.DiscordBot.getjda().getGuildById("326345972739473410");
                     TextChannel logChannel = ozeryo.getTextChannelById("498483581052649492");
                     logChannel
                             .sendMessage("La commande " + command2 + " utilisé par " + user.getName()
@@ -1404,7 +1403,7 @@ public final class CommandMap {
     }
 
     public static void NewPlayer(User user) {
-        ProfilData data = DiscordBot.getData();
+        ProfilData data = fr.Ybsi.OzeryoBot.DiscordBot.getData();
         HashMap<String, Integer> building = new HashMap<String, Integer>();
         building.put("marché", 0);
         building.put("habitations", 0);
@@ -1609,7 +1608,7 @@ public final class CommandMap {
         return tag2;
     }
 
-    public Collection<SimpleCommand> getCommands() {
+    public static Collection<SimpleCommand> getCommands() {
         return commands.values();
     }
 

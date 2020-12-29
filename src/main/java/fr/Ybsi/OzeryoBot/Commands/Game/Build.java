@@ -31,7 +31,7 @@ public class Build {
         } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
             // empty catch block
         }
-        System.out.println(c3);
+
         String c1 = "";
         try {
             c1 = args[0];
@@ -803,14 +803,13 @@ public class Build {
                     }
                     return;
                 }
-                System.out.println("4");
                 if (money >= need_money && iron >= need_iron && bois >= need_bois) {
                     money -= need_money;
                     bois -= need_bois;
                     iron -= need_iron;
                     if (lang == command.Language.fr) {
                         message.sendMessage(
-                                "Votre *centre commercial* vient d'\u00eatre amelioré au niveau **" + level_up + "**")
+                                "Vos *habitations* viennent d'être ameliorées au niveau **" + level_up + "**")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -842,7 +841,7 @@ public class Build {
                         message.sendMessage(
                                 "\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **"
                                         + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois)
-                                        + " bois et " + need_iron + " iron.")
+                                        + " bois et " + need_iron + " fer.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -855,7 +854,7 @@ public class Build {
                 if (lang == command.Language.fr) {
                     message.sendMessage("Vous pouvez améliorer votre *centre commercial* au niveau **" + level_up
                             + "** pour **" + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois)
-                            + " bois et " + need_iron + " pétrole.").queue();
+                            + " bois et " + need_iron + " fer.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *residetials* to level **" + level_up + "** for **"
@@ -878,7 +877,7 @@ public class Build {
                 return;
             }
             int need_argile = 0;
-            int need_pierre = 0;
+            int need_paille = 0;
             switch (level_up) {
                 case 1: {
                     need_money = 10000;
@@ -963,31 +962,31 @@ public class Build {
                 case 21: {
                     need_money = 7500000;
                     need_argile = 300;
-                    need_pierre = 300;
+                    need_paille = 300;
                     break;
                 }
                 case 22: {
                     need_money = 11250000;
                     need_argile = 450;
-                    need_pierre = 450;
+                    need_paille = 450;
                     break;
                 }
                 case 23: {
                     need_money = 17000000;
                     need_argile = 675;
-                    need_pierre = 675;
+                    need_paille = 675;
                     break;
                 }
                 case 24: {
                     need_money = 25000000;
                     need_argile = 1000;
-                    need_pierre = 1000;
+                    need_paille = 1000;
                     break;
                 }
                 case 25: {
                     need_money = 38000000;
                     need_argile = 1500;
-                    need_pierre = 1500;
+                    need_paille = 1500;
                     break;
                 }
                 default: {
@@ -1004,10 +1003,10 @@ public class Build {
                     }
                     return;
                 }
-                if (money >= (long) need_money && argile >= need_argile && pierre >= need_pierre) {
-                    money -= (long) need_money;
+                if (money >= (long) need_money && argile >= need_argile && paille >= need_paille) {
+                    money -= need_money;
                     argile -= need_argile;
-                    pierre -= need_pierre;
+                    paille -= need_paille;
                     if (lang == command.Language.fr) {
                         message.sendMessage("Votre auberge vient d'\u00eatre au niveau **" + level_up + "**").queue();
                     }
@@ -1028,7 +1027,7 @@ public class Build {
                         data.getProfils().get(user.getId()).setMoney(money);
                     }
                     res.put("argile", argile);
-                    res.put("pierre", pierre);
+                    res.put("paille", paille);
                     try {
                         data.getProfils().get(user.getId()).setRes(res);
                     } catch (NullPointerException e) {
@@ -1040,25 +1039,25 @@ public class Build {
                         message.sendMessage(
                                 "\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **"
                                         + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_argile)
-                                        + " argile et " + Utils.format(need_pierre) + " paille.")
+                                        + " argile et " + Utils.format(need_paille) + " paille.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("\ud83d\udcb8 You don't have enough money. For this upgrade, you need **"
                                 + Utils.format(need_money) + "$**, " + Utils.format(need_argile) + " clay and "
-                                + Utils.format(need_pierre) + " stone.").queue();
+                                + Utils.format(need_paille) + " straw.").queue();
                     }
                 }
             } else {
                 if (lang == command.Language.fr) {
                     message.sendMessage("Vous pouvez améliorer votre auberge au niveau **" + level_up + "** pour **"
                             + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_argile) + " argile et "
-                            + Utils.format(need_pierre) + " paille.").queue();
+                            + Utils.format(need_paille) + " paille.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your inn to level **" + level_up + "** for **"
                             + Utils.format(need_money) + "$**, " + Utils.format(need_argile) + " clay and "
-                            + Utils.format(need_pierre) + " stone.").queue();
+                            + Utils.format(need_paille) + " straw.").queue();
                 }
             }
         } else if (c1.equals("eglise") || c1.equals("egl")) {
@@ -1087,7 +1086,7 @@ public class Build {
             int need_mat = 500;
             if (money >= (long) need_money && bois >= need_mat && cuir >= need_mat && iron >= need_mat
                     && argile >= need_mat && paille >= need_mat && pierre >= need_mat) {
-                money -= (long) need_money;
+                money -= need_money;
                 bois -= need_mat;
                 iron -= need_mat;
                 argile -= need_mat;
@@ -1141,12 +1140,18 @@ public class Build {
                 }
             }
         } else if (c1.equals("golem") || c1.equals("gol")) {
-            int level = building.get("golem");
+
+            int level =0;
+            try {
+                building.get("golem");
+            }catch(NullPointerException e){
+                building.put("golem", 0);
+            }
             long money = data.getProfils().get(user.getId()).getMoney();
             int level_up = level + 1;
             if (level_up != 1) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Ce batiment ne poss\u00e8de qu'un niveau.").queue();
+                    channel.sendMessage("Ce batiment ne possède qu'un niveau.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("This building have only one level.").queue();
@@ -1171,7 +1176,7 @@ public class Build {
                 iron -= need_mat;
                 cuir -= need_mat;
                 if (lang == command.Language.fr) {
-                    message.sendMessage("Votre golem vient d'\u00eatre amelioré au niveau **" + level_up + "**")
+                    message.sendMessage("Vous venez de construire le golem **" + level_up + "**")
                             .queue();
                 }
                 if (lang == command.Language.en) {
@@ -1246,7 +1251,7 @@ public class Build {
             int need_mat = 2500;
             if (money >= (long) need_money && bois >= need_mat && cuir >= need_mat && iron >= need_mat
                     && argile >= need_mat && paille >= need_mat && pierre >= need_mat) {
-                money -= (long) need_money;
+                money -= need_money;
                 bois -= need_mat;
                 iron -= need_mat;
                 argile -= need_mat;
@@ -1312,7 +1317,7 @@ public class Build {
             if (c2 == level + 1) {
                 if (money >= (long) need_money && bois >= need_mat && cuir >= need_mat && iron >= need_mat
                         && argile >= need_mat && paille >= need_mat && pierre >= need_mat) {
-                    money -= (long) need_money;
+                    money -= need_money;
                     bois -= need_mat;
                     iron -= need_mat;
                     argile -= need_mat;
@@ -1577,7 +1582,7 @@ public class Build {
                     need_iron = 0;
                 }
                 if (money >= (long) need_money && bois >= need_bois && cuir >= need_cuir && iron >= need_iron) {
-                    money -= (long) need_money;
+                    money -= need_money;
                     bois -= need_bois;
                     iron -= need_iron;
                     cuir -= need_cuir;
@@ -1630,7 +1635,7 @@ public class Build {
                         message.sendMessage(
                                 "\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **"
                                         + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois)
-                                        + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " pétrole.")
+                                        + " bois, " + Utils.format(need_cuir) + " cuir et " + need_iron + " fer.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -1643,7 +1648,7 @@ public class Build {
                 if (lang == command.Language.fr) {
                     message.sendMessage("Vous pouvez améliorer votre camp au niveau **" + level_up + "** pour **"
                             + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_bois) + " bois, "
-                            + Utils.format(need_cuir) + " cuir et " + need_iron + " pétrole.").queue();
+                            + Utils.format(need_cuir) + " cuir et " + need_iron + " fer.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your training camp to level**" + level_up + "** for **"
@@ -1817,7 +1822,7 @@ public class Build {
                     }
                     return;
                 }
-                System.out.println("4");
+
                 if (money >= need_money && bois >= need_mat && argile >= need_mat && pierre >= need_mat
                         && cuir >= need_mat && paille >= need_mat && iron >= need_mat) {
                     money -= need_money;
@@ -2042,7 +2047,7 @@ public class Build {
                     }
                     return;
                 }
-                System.out.println("4");
+
                 if (money >= need_money && argile >= need_mat && pierre >= need_mat && paille >= need_mat) {
                     money -= need_money;
                     pierre -= need_mat;
@@ -2085,20 +2090,20 @@ public class Build {
                         message.sendMessage(
                                 "\ud83d\udcb8 Vous n'avez pas assez d'argent. Pour cette amelioration, il vous faudrait **"
                                         + Utils.format(need_money) + "$** ainsi que " + Utils.format(need_mat)
-                                        + "  de  paille, argile et paille.")
+                                        + "  de  pierre, argile et paille.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
                         message.sendMessage("\ud83d\udcb8 You don't have enough money. For this upgrade, you need **"
                                 + Utils.format(need_money) + "$** and " + Utils.format(need_mat)
-                                + " of  paille, argile and pierre.").queue();
+                                + " of staw, clay et stone.").queue();
                     }
                 }
             } else {
                 if (lang == command.Language.fr) {
                     message.sendMessage("Vous pouvez améliorer votre *muraille* au niveau **" + level_up + "** pour **"
                             + Utils.format(need_money) + "$**ainsi que " + Utils.format(need_mat)
-                            + " de  paille, argile et paille.").queue();
+                            + " de  pierre, argile et paille.").queue();
                 }
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *wall* to level **" + level_up + "** for **"
@@ -2280,7 +2285,7 @@ public class Build {
                     }
                     return;
                 }
-                System.out.println("4");
+
                 if (money >= need_money && argile >= need_mat && pierre >= need_mat && paille >= need_mat) {
                     money -= need_money;
                     pierre -= need_mat;
@@ -2330,7 +2335,7 @@ public class Build {
                     if (lang == command.Language.en) {
                         message.sendMessage("\ud83d\udcb8 You don't have enough money. For this upgrade, you need **"
                                 + Utils.format(need_money) + "$** and " + Utils.format(need_mat)
-                                + " de pierre, paille et argile.").queue();
+                                + " of staw, clay et stone.").queue();
                     }
                 }
             } else {
@@ -2342,7 +2347,7 @@ public class Build {
                 if (lang == command.Language.en) {
                     message.sendMessage("You can upgrade your *wizard tower* to level **" + level_up + "** for **"
                             + Utils.format(need_money) + "$** and " + Utils.format(need_mat)
-                            + " de pierre, paille et argile.").queue();
+                            + " of staw, clay et stone.").queue();
                 }
             }
         } else if (c3.equals("gare") || c3.equals("port") || c3.equals("aeroport") || c3.equals("zone de lancement")) {
@@ -2350,7 +2355,7 @@ public class Build {
             long money = data.getProfils().get(user.getId()).getMoney();
             if (level + 1 == 1 && !c3.equals("gare")) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous pouvez actuelement construire la gare pour 50.000.000$ et 500 materiaux.")
+                    channel.sendMessage("Vous pouvez actuellement construire la gare pour 50.000.000$ et 500 materiaux.")
                             .queue();
                 }
                 if (lang == command.Language.en) {
@@ -2362,18 +2367,18 @@ public class Build {
             if (level + 1 == 2 && !c3.equals("port")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
-                            "Vous pouvez actuelement construire le port pour 200.000.000$ et 1000 materiaux.").queue();
+                            "Vous pouvez actuellement construire le port pour 200.000.000$ et 1000 materiaux.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage(
-                            "You cna actually buid your port fotr 200.000.000$ and 1000 of every materials.").queue();
+                            "You can actually buid your port fotr 200.000.000$ and 1000 of every materials.").queue();
                 }
                 return;
             }
             if (level + 1 == 3 && !c3.equals("aeroport")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
-                            "Vous pouvez actuelement construire l'aeroport pour 400.000.000$ et 2500 materiaux.")
+                            "Vous pouvez actuellement construire l'aeroport pour 400.000.000$ et 2500 materiaux.")
                             .queue();
                 }
                 if (lang == command.Language.en) {
@@ -2386,7 +2391,7 @@ public class Build {
             if (level + 1 == 4 && !c3.equals("zone de lancement")) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage(
-                            "Vous pouvez actuelement construire la fusée pour 800.000.000$ et 5000 materiaux.").queue();
+                            "Vous pouvez actuellement construire la fusée pour 800.000.000$ et 5000 materiaux.").queue();
                 }
                 if (lang == command.Language.en) {
                     channel.sendMessage("You can actually build la fusée for 800.000.000$ and 5000 of every materials.")
@@ -2456,7 +2461,7 @@ public class Build {
             }
             if (money >= (long) need_money && bois >= need_mat && cuir >= need_mat && argile >= need_mat
                     && pierre >= need_mat && paille >= need_mat && iron >= need_mat) {
-                money -= (long) need_money;
+                money -= need_money;
                 bois -= need_mat;
                 cuir -= need_mat;
                 pierre -= need_mat;
@@ -2511,12 +2516,12 @@ public class Build {
         } else {
             if (lang == command.Language.fr) {
                 message.sendMessage(
-                        "=build ``habitation``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``")
+                        "=build ``habitations``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``tower``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``")
                         .queue();
             }
             if (lang == command.Language.en) {
                 message.sendMessage(
-                        "=build ``habitation``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``labo``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``")
+                        "=build ``habitations``, ``auberge``, ``marché``, ``camp``, ``cirque``, ``tower``, ``mine``,``biblioth\u00e8que``, ``muraille``, ``gare``, ``port``, ``aeroport``, ``zone de lancement``")
                         .queue();
             }
         }

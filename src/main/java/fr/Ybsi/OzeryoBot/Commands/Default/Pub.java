@@ -31,7 +31,7 @@ public class Pub {
             for (String str : args) {
                 if (str.equals(args[0]))
                     continue;
-                builder.append(String.valueOf(str) + " ");
+                builder.append(str + " ");
             }
             String c2 = builder.toString();
             if (c1.equals("")) {

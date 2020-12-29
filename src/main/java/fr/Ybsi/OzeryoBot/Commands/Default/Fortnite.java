@@ -53,12 +53,12 @@ public class Fortnite {
                 builder.append(str);
             }
             try {
-                plateforme = args[0].toString();
+                plateforme = args[0];
             } catch (ArrayIndexOutOfBoundsException e) {
                 plateforme = "";
             }
             try {
-                username = args[1].toString();
+                username = args[1];
             } catch (ArrayIndexOutOfBoundsException e) {
                 username = "";
             }
@@ -257,7 +257,7 @@ public class Fortnite {
                         StringBuilder builder1 = new StringBuilder(RatingChange);
                         System.out.println(RatingChange.length());
                         for (int i2 = builder1.length(); i2 > 6; --i2) {
-                            System.out.println(String.valueOf(RatingChange) + " / " + builder1);
+                            System.out.println(RatingChange + " / " + builder1);
                             builder1.deleteCharAt(builder.length() + 1);
                         }
                         RatingChange = builder1.toString();
@@ -265,31 +265,31 @@ public class Fortnite {
                         String Top1 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top1")
                                 .toString().replace("\"", "");
                         if (!Top1.equals("0")) {
-                            top = String.valueOf(top) + "- *Top 1* : " + Top1 + " \n";
+                            top = top + "- *Top 1* : " + Top1 + " \n";
                         }
                         if (!(Top3 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top3")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 3* : " + Top3 + " \n";
+                            top = top + "- *Top 3* : " + Top3 + " \n";
                         }
                         if (!(Top5 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top5")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 5* : " + Top5 + " \n";
+                            top = top + "- *Top 5* : " + Top5 + " \n";
                         }
                         if (!(Top6 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top6")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 6* : " + Top6 + " \n";
+                            top = top + "- *Top 6* : " + Top6 + " \n";
                         }
                         if (!(Top10 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top10")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 10* : " + Top10 + " \n";
+                            top = top + "- *Top 10* : " + Top10 + " \n";
                         }
                         if (!(Top12 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top12")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 12* : " + Top12 + " \n";
+                            top = top + "- *Top 12* : " + Top12 + " \n";
                         }
                         if (!(Top25 = ((JsonObject) jsonObject.getAsJsonArray("recentMatches").get(i)).get("top25")
                                 .toString().replace("\"", "")).equals("0")) {
-                            top = String.valueOf(top) + "- *Top 25* : " + Top25 + " \n";
+                            top = top + "- *Top 25* : " + Top25 + " \n";
                         }
                         if (top.equals("")) {
                             if (lang == command.Language.fr) {
@@ -353,7 +353,7 @@ public class Fortnite {
                     System.out.println(test);
                     buider.setColor(color.couleurAleatoire(user));
                     buider.setAuthor(user.getName(), null, "http://ozeryo.sytes.net/images/Logo_Fortnite.png");
-                    buider.setTitle(String.valueOf(c2) + " Stats");
+                    buider.setTitle(c2 + " Stats");
                     if (lang == command.Language.fr) {
                         buider.addField("\ud83d\udd79 | Plateforme | \ud83d\udd79\ufffd?",
                                 jsonObject.get("platformName").toString().replace("\"", ""), true);
@@ -401,51 +401,51 @@ public class Fortnite {
                                 .getAsJsonObject("top10").get("value").toString().replace("\"", "");
                         String top10Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top10").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 10 = " + top10 + " (" + top10Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 10 = " + top10 + " (" + top10Rank + "\ud83e\udd47) \n";
                         String top25 = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top25").get("value").toString().replace("\"", "");
                         String top25Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top25").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 25 = " + top25 + " (" + top25Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 25 = " + top25 + " (" + top25Rank + "\ud83e\udd47) \n";
                     } else if (mode_de_jeu.equals("p10")) {
                         String top6 = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top6").get("value").toString().replace("\"", "");
                         String top6Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top6").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 6 = " + top6 + " (" + top6Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 6 = " + top6 + " (" + top6Rank + "\ud83e\udd47) \n";
                         String top12 = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top12").get("value").toString().replace("\"", "");
                         String top12Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top12").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 12 = " + top12 + " (" + top12Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 12 = " + top12 + " (" + top12Rank + "\ud83e\udd47) \n";
                     } else if (mode_de_jeu.equals("p9")) {
                         String top3 = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top3").get("value").toString().replace("\"", "");
                         String top3Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top3").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 3 = " + top3 + " (" + top3Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 3 = " + top3 + " (" + top3Rank + "\ud83e\udd47) \n";
                         String top5 = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top5").get("value").toString().replace("\"", "");
                         String top5Rank = jsonObject.getAsJsonObject("stats").getAsJsonObject(mode_de_jeu)
                                 .getAsJsonObject("top5").get("rank").toString().replace("\"", "");
-                        top = String.valueOf(top) + "Top 5 = " + top5 + " (" + top5Rank + "\ud83e\udd47) \n";
+                        top = top + "Top 5 = " + top5 + " (" + top5Rank + "\ud83e\udd47) \n";
                     }
                     buider.addBlankField(true);
                     buider.addField("\ud83c\udfb2 | TRN Rating | \ud83c\udfb2",
-                            String.valueOf(trnRating) + "(" + trnRatingRank + "\ud83e\udd47)", true);
+                            trnRating + "(" + trnRatingRank + "\ud83e\udd47)", true);
                     buider.addBlankField(true);
                     buider.addField("\ufffd?\ufffd | **Win** | \ufffd?\ufffd",
-                            String.valueOf(win) + " (" + winRank + "\ud83e\udd47)", true);
+                            win + " (" + winRank + "\ud83e\udd47)", true);
                     buider.addField("\ufffd?\ufffd| **Win %** | \ufffd?\ufffd",
-                            String.valueOf(winRatio) + " (" + winRatioRank + "\ud83e\udd47)", true);
+                            winRatio + " (" + winRatioRank + "\ud83e\udd47)", true);
                     buider.addField("\ud83d\udcaf | **Score** | \ud83d\udcaf",
-                            String.valueOf(score) + " (" + scoreRank + "\ud83e\udd47)", true);
+                            score + " (" + scoreRank + "\ud83e\udd47)", true);
                     buider.addField("\ud83c\udfae | **Matchs** | \ud83c\udfae",
-                            String.valueOf(matchs) + " (" + matchsRank + "\ud83e\udd47)", true);
+                            matchs + " (" + matchsRank + "\ud83e\udd47)", true);
                     buider.addField("\u2620\ufffd? | **Kills** | \u2620\ufffd?",
-                            String.valueOf(kills) + " (" + killsRank + "\ud83e\udd47)", true);
+                            kills + " (" + killsRank + "\ud83e\udd47)", true);
                     buider.addField("\u2620\ufffd? | **K/D** | \u2620\ufffd?",
-                            String.valueOf(KD) + " (" + KDRank + "\ud83e\udd47)", true);
+                            KD + " (" + KDRank + "\ud83e\udd47)", true);
                     buider.addBlankField(true);
                     if (lang == command.Language.fr) {
                         buider.addField("\ud83d\udcaf | Score par match | \ud83d\udcaf", scoreParMatch, true);

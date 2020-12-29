@@ -102,7 +102,7 @@ public class Zoo {
                         if (lang == command.Language.en) {
                             message1 = Active_Pet.equals(nom) ? "Active Pet" : "Inactive";
                         }
-                        builder.addField(String.valueOf(nom) + " | Level " + level, message1, true);
+                        builder.addField(nom + " | Level " + level, message1, true);
                         ++i;
                     } while (true);
                 } catch (NullPointerException e) {
@@ -223,8 +223,8 @@ public class Zoo {
             } catch (NullPointerException e) {
                 level = 0;
             }
-            int bonus2 = bonus.equals("bois") || bonus.equals("beton") || bonus.equals("acier") || bonus.equals("verre")
-                    || bonus.equals("pierre") || bonus.equals("plastique") ? 10 * level
+            int bonus2 = bonus.equals("bois") || bonus.equals("argile") || bonus.equals("cuir") || bonus.equals("pierre")
+                    || bonus.equals("paille") || bonus.equals("fer") ? 10 * level
                     : (bonus.equals("res") ? 5 * level : 3 * level);
             String bonus3 = "+" + bonus2 + "%";
             String messages = "";
@@ -273,7 +273,7 @@ public class Zoo {
                 builder.setDescription("By upgrade this pet you will increate your " + messages + bonus);
             }
             builder.addBlankField(false);
-            builder.addField("Xp", String.valueOf(EXP2) + "Xp", true);
+            builder.addField("Xp", EXP2 + "Xp", true);
             builder.addField("Level", "" + level, true);
             builder.addBlankField(false);
             builder.addField("Bonus", bonus3, true);

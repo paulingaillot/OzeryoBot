@@ -36,7 +36,7 @@ public class Hypixel {
                 for (String str : args) {
                     if (str.equals(args[0]))
                         continue;
-                    builder.append(String.valueOf(str));
+                    builder.append(str);
                 }
                 String c2 = args[0];
                 String c1 = builder.toString();
@@ -140,15 +140,14 @@ public class Hypixel {
                         hypixel.addField("legacyRanking  : ",
                                 jsonObject.getAsJsonObject("guild").get("legacyRanking").toString().replace("\"", ""),
                                 true);
-                        hypixel.addField("Status  : ", String.valueOf(
-                                jsonObject.getAsJsonObject("guild").get("joinable").toString().replace("\"", "")) + "("
+                        hypixel.addField("Status  : ", jsonObject.getAsJsonObject("guild").get("joinable").toString().replace("\"", "") + "("
                                 + jsonObject.getAsJsonObject("guild").get("publiclyListed").toString().replace("\"", "")
                                 + ")", true);
                         hypixel.addField("Xp  : ",
                                 jsonObject.getAsJsonObject("guild").get("exp").toString().replace("\"", ""), true);
                         String jeux = "";
                         for (JsonElement i : jsonObject.getAsJsonObject("guild").getAsJsonArray("preferredGames")) {
-                            jeux = String.valueOf(jeux) + "- " + i.toString() + " \n";
+                            jeux = jeux + "- " + i.toString() + " \n";
                         }
                         if (lang == command.Language.fr) {
                             hypixel.addField("Jeux preférés  : ", jeux, true);
@@ -170,59 +169,59 @@ public class Hypixel {
                         int mMinute = calendar.get(12);
                         int mSecond = calendar.get(13);
                         if (lang == command.Language.fr) {
-                            hypixel.addField("Date de creation  : ", String.valueOf(mDay) + "/" + mMonth + "/" + mYear
+                            hypixel.addField("Date de creation  : ", mDay + "/" + mMonth + "/" + mYear
                                     + " " + mHour + ":" + mMinute + ":" + mSecond, true);
                         }
                         if (lang == command.Language.en) {
-                            hypixel.addField("Creation date  : ", String.valueOf(mDay) + "/" + mMonth + "/" + mYear
+                            hypixel.addField("Creation date  : ", mDay + "/" + mMonth + "/" + mYear
                                     + " " + mHour + ":" + mMinute + ":" + mSecond, true);
                         }
                         String message = "";
-                        message = String.valueOf(message) + "QUAKECRAFT : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "QUAKECRAFT : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("QUAKECRAFT").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n WALLS : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n WALLS : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("WALLS").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n PAINTBALL : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n PAINTBALL : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("PAINTBALL").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n SURVIVAL_GAMES : "
+                        message = message + "/n SURVIVAL_GAMES : "
                                 + jsonObject.getAsJsonObject("guild").getAsJsonObject("guildExpByGameType")
                                 .get("SURVIVAL_GAMES").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n TNTGAMES : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n TNTGAMES : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("TNTGAMES").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n VAMPIREZ : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n VAMPIREZ : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("VAMPIREZ").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n WALLS3 : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n WALLS3 : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("WALLS3").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n ARCADE : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n ARCADE : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("ARCADE").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n ARENA : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n ARENA : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("ARENA").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n MCGO : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n MCGO : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("MCGO").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n UHC : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n UHC : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("UHC").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n BATTLEGROUND : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n BATTLEGROUND : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("BATTLEGROUND").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n SUPER_SMASH : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n SUPER_SMASH : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("SUPER_SMASH").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n GINGERBREAD : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n GINGERBREAD : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("GINGERBREAD").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n SKYWARS : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n SKYWARS : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("SKYWARS").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n TRUE_COMBAT : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n TRUE_COMBAT : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("TRUE_COMBAT").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n SPEED_UHC : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n SPEED_UHC : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("SPEED_UHC").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n PROTOTYPE : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n PROTOTYPE : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("PROTOTYPE").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n BEDWARS : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n BEDWARS : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("BEDWARS").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n MURDER_MYSTERY : "
+                        message = message + "/n MURDER_MYSTERY : "
                                 + jsonObject.getAsJsonObject("guild").getAsJsonObject("guildExpByGameType")
                                 .get("MURDER_MYSTERY").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n BUILD_BATTLE : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n BUILD_BATTLE : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("BUILD_BATTLE").toString().replace("\"", "");
-                        message = String.valueOf(message) + "/n Duels : " + jsonObject.getAsJsonObject("guild")
+                        message = message + "/n Duels : " + jsonObject.getAsJsonObject("guild")
                                 .getAsJsonObject("guildExpByGameType").get("DUELS").toString().replace("\"", "");
                         if (lang == command.Language.fr) {
                             hypixel.addField("Xp par jeu ", message, true);
@@ -231,7 +230,7 @@ public class Hypixel {
                             hypixel.addField("Xp by game ", message, true);
                         }
                         channel.sendMessage(hypixel.build()).queue();
-                    } else if (c2.equals("Murder Mystery") || c2.toLowerCase().equals("mm") || c2.equals("murder")) {
+                    } else if (c2.equals("Murder Mystery") || c2.equalsIgnoreCase("mm") || c2.equals("murder")) {
                         String kills;
                         hypixel = new EmbedBuilder();
                         hypixel.setTitle("Profile");
@@ -691,9 +690,9 @@ public class Hypixel {
                                 true);
                         hypixel.addField("**\ud83d\udcb0 | Global Coins :** ", String.valueOf(totalCoins), true);
                         hypixel.addBlankField(true);
-                        hypixel.addField("**LastLogin :** ", String.valueOf(mDay1) + "/" + mMonth1 + "/" + mYear1 + " "
+                        hypixel.addField("**LastLogin :** ", mDay1 + "/" + mMonth1 + "/" + mYear1 + " "
                                 + mHour1 + ":" + mMinute1 + ":" + mSecond1, true);
-                        hypixel.addField("**FirstLogin :** ", String.valueOf(mDay) + "/" + mMonth + "/" + mYear + " "
+                        hypixel.addField("**FirstLogin :** ", mDay + "/" + mMonth + "/" + mYear + " "
                                 + mHour + ":" + mMinute + ":" + mSecond, true);
                         hypixel.setFooter(
                                 "ranking : "
@@ -705,7 +704,7 @@ public class Hypixel {
                                 "https://banner2.kisspng.com/20180501/oye/kisspng-minecraft-playstation-3-computer-servers-hypixel-v-vip-logo-5ae868aceded31.6203425515251805889746.jpg");
                         channel.sendMessage(hypixel.build()).queue();
                     }
-                    if (c2.toLowerCase().equals("skywars")) {
+                    if (c2.equalsIgnoreCase("skywars")) {
                         String lucky;
                         String slime;
                         String tnt;
@@ -760,8 +759,8 @@ public class Hypixel {
 
                         }
                         hypixel2.addField(
-                                String.valueOf(jda.getGuildById("326345972739473410")
-                                        .getEmotesByName("minecraft_head", true).get(0).getAsMention())
+                                jda.getGuildById("326345972739473410")
+                                        .getEmotesByName("minecraft_head", true).get(0).getAsMention()
                                         + " | Heads | "
                                         + jda.getGuildById("326345972739473410").getEmotesByName("minecraft_head", true)
                                         .get(0).getAsMention()
@@ -789,7 +788,7 @@ public class Hypixel {
                         hypixel2.addField("\ud83d\udcb0 | Coins | \ud83d\udcb0 : ",
                                 coins,
                                 true);
-                        hypixel2.addField("\u23f2\ufe0f | Time to play | \u23f2\ufe0f : ", String.valueOf(Heure) + "H",
+                        hypixel2.addField("\u23f2\ufe0f | Time to play | \u23f2\ufe0f : ", Heure + "H",
                                 true);
                         hypixel2.addBlankField(false);
 
@@ -964,8 +963,8 @@ public class Hypixel {
                             rush = "0";
                         }
                         hypixel2.addField(
-                                String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("lab", true)
-                                        .get(0).getAsMention())
+                                jda.getGuildById("326345972739473410").getEmotesByName("lab", true)
+                                        .get(0).getAsMention()
                                         + " | Lab | "
                                         + jda.getGuildById("326345972739473410").getEmotesByName("lab", true).get(0)
                                         .getAsMention()
@@ -1059,7 +1058,7 @@ public class Hypixel {
                             mess = "";
                             try {
                                 for (HashMap i : renown_unlocks.values()) {
-                                    mess = String.valueOf(mess) + ((String) i.get("key")).replaceAll("\"", "")
+                                    mess = mess + ((String) i.get("key")).replaceAll("\"", "")
                                             + " : **Tier** " + (Integer.parseInt((String) i.get("tier")) + 1) + " \n";
                                 }
                             } catch (NullPointerException e) {
@@ -1091,7 +1090,7 @@ public class Hypixel {
                         hypixel.addField("Renown", renown, true);
                         hypixel.addField("Cash", cash, true);
                         hypixel.addField("Renown Upgrade", mess, true);
-                        hypixel.addField("Last connexion", String.valueOf(mDay1) + "/" + mMonth1 + "/" + mYear1 + " "
+                        hypixel.addField("Last connexion", mDay1 + "/" + mMonth1 + "/" + mYear1 + " "
                                 + mHour1 + ":" + mMinute1 + ":" + mSecond1, true);
                         hypixel.setFooter(
                                 "ranking : "

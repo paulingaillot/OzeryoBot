@@ -8,6 +8,7 @@ import fr.Ybsi.OzeryoBot.Utils.Premium;
 import fr.Ybsi.OzeryoBot.Utils.Profil;
 import fr.Ybsi.OzeryoBot.Utils.ProfilData;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -21,23 +22,23 @@ public class Cosmetics {
     @command(name = "firework", abbrev = "fw", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void firework(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                           command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         channel.sendMessage(":tada:").complete();
     }
 
     @command(name = "hi", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void hi(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         channel.sendMessage(":wave:").complete();
     }
 
     @command(name = "hearts", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void heart(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 70) {
-            Message mess = (Message) channel.sendMessage(":broken_heart:").complete();
+            Message mess = channel.sendMessage(":broken_heart:").complete();
             mess.editMessage(":heart:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":sparkling_heart: ").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -53,10 +54,10 @@ public class Cosmetics {
     @command(name = "lol", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void lol(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                      ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 60) {
-            Message mess = (Message) channel.sendMessage(":neutral_face:").complete();
+            Message mess = channel.sendMessage(":neutral_face:").complete();
             mess.editMessage(":grinning:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":laughing:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":joy:").completeAfter(1L, TimeUnit.SECONDS);
@@ -73,10 +74,10 @@ public class Cosmetics {
     @command(name = "lf", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void lf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                     ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 100) {
-            Message mess = (Message) channel.sendMessage(
+            Message mess = channel.sendMessage(
                     ":white_check_mark::black_large_square::black_large_square::black_large_square::black_large_square:")
                     .complete();
             mess.editMessage(
@@ -102,10 +103,10 @@ public class Cosmetics {
     @command(name = "travel", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void travel(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                         ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 80) {
-            Message mess = (Message) channel.sendMessage(":cruise_ship:").complete();
+            Message mess = channel.sendMessage(":cruise_ship:").complete();
             mess.editMessage(":island:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":cruise_ship:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":sunrise:").completeAfter(1L, TimeUnit.SECONDS);
@@ -124,10 +125,10 @@ public class Cosmetics {
     @command(name = "rain", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void rain(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 90) {
-            Message mess = (Message) channel.sendMessage(":cloud:").complete();
+            Message mess = channel.sendMessage(":cloud:").complete();
             mess.editMessage(":umbrella2:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":cloud_rain:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":umbrella:").completeAfter(1L, TimeUnit.SECONDS);
@@ -144,10 +145,10 @@ public class Cosmetics {
     @command(name = "surf", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void surf(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 120) {
-            Message mess = (Message) channel.sendMessage(":park:").complete();
+            Message mess = channel.sendMessage(":park:").complete();
             mess.editMessage(":ocean:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":surfer:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -163,10 +164,10 @@ public class Cosmetics {
     @command(name = "travelplane", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void travelplane(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                              ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 140) {
-            Message mess = (Message) channel.sendMessage(":airplane_departure:").complete();
+            Message mess = channel.sendMessage(":airplane_departure:").complete();
             mess.editMessage(":foggy:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":japanese_castle:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":european_castle:").completeAfter(1L, TimeUnit.SECONDS);
@@ -186,10 +187,10 @@ public class Cosmetics {
     @command(name = "thug", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void thug(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 160) {
-            Message mess = (Message) channel.sendMessage(":no_mobile_phones:").complete();
+            Message mess = channel.sendMessage(":no_mobile_phones:").complete();
             mess.editMessage(":iphone:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":no_smoking:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":smoking:").completeAfter(1L, TimeUnit.SECONDS);
@@ -214,10 +215,10 @@ public class Cosmetics {
     @command(name = "ghost", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void ghost(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 180) {
-            Message mess = (Message) channel.sendMessage(":slight_smile:").complete();
+            Message mess = channel.sendMessage(":slight_smile:").complete();
             mess.editMessage(":ghost:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":scream:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -233,10 +234,10 @@ public class Cosmetics {
     @command(name = "singe", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void singe(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 200) {
-            Message mess = (Message) channel.sendMessage(":monkey_face:").complete();
+            Message mess = channel.sendMessage(":monkey_face:").complete();
             mess.editMessage(":see_no_evil:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":hear_no_evil:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":speak_no_evil:").completeAfter(1L, TimeUnit.SECONDS);
@@ -253,10 +254,10 @@ public class Cosmetics {
     @command(name = "moon", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void moon(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 240) {
-            Message mess = (Message) channel.sendMessage(":full_moon:").complete();
+            Message mess = channel.sendMessage(":full_moon:").complete();
             mess.editMessage(":waning_gibbous_moon:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":last_quarter_moon:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":waning_crescent_moon:").completeAfter(1L, TimeUnit.SECONDS);
@@ -277,10 +278,10 @@ public class Cosmetics {
     @command(name = "fight", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void fight(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 280) {
-            Message mess = (Message) channel.sendMessage(":nerd:").complete();
+            Message mess = channel.sendMessage(":nerd:").complete();
             mess.editMessage(":punch:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":boom:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":knife:").completeAfter(1L, TimeUnit.SECONDS);
@@ -300,16 +301,16 @@ public class Cosmetics {
 
     @command(name = "noel", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void noel(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        message.delete().queue();
-        Message mess = (Message) channel.sendMessage(":tada:").complete();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        Message mess = channel.sendMessage(":tada:").complete();
         mess.editMessage(":mrs_claus:").completeAfter(1L, TimeUnit.SECONDS);
         mess.editMessage(":gift:").completeAfter(1L, TimeUnit.SECONDS);
     }
 
     @command(name = "halloween", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void halloween(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        message.delete().queue();
-        Message mess = (Message) channel.sendMessage(":bat:").complete();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        Message mess = channel.sendMessage(":bat:").complete();
         mess.editMessage(":spider_web:").completeAfter(1L, TimeUnit.SECONDS);
         mess.editMessage(":alien:").completeAfter(1L, TimeUnit.SECONDS);
         mess.editMessage(":ghost:").completeAfter(1L, TimeUnit.SECONDS);
@@ -319,15 +320,15 @@ public class Cosmetics {
     @command(name = "happybirthday", abbrev = "ap", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void happybirthday(MessageChannel channel, User user, String[] args, Message message, Guild guild,
                                JDA jda) {
-        message.delete().queue();
-        Message mess = (Message) channel.sendMessage(":champagne:").complete();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        Message mess = channel.sendMessage(":champagne:").complete();
         mess.editMessage(":champagne:").completeAfter(1L, TimeUnit.SECONDS);
     }
 
     @command(name = "halloween2", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void halloween2(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        message.delete().queue();
-        Message mess = (Message) channel.sendMessage(":lollipop:").complete();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        Message mess = channel.sendMessage(":lollipop:").complete();
         mess.editMessage(":candy:").completeAfter(1L, TimeUnit.SECONDS);
         mess.editMessage(":dango:").completeAfter(1L, TimeUnit.SECONDS);
     }
@@ -335,7 +336,7 @@ public class Cosmetics {
     @command(name = "cfez", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void cfez(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         for (Profil profil : data.getProfils().values()) {
             Object member;
@@ -358,11 +359,11 @@ public class Cosmetics {
         int topOzr = 0;
         for (Map.Entry entry : entries) {
             ++topOzr;
-            if (((String) entry.getKey()).equals(user.getName()))
+            if (entry.getKey().equals(user.getName()))
                 break;
         }
         if (topOzr <= 5) {
-            Message mess = (Message) channel.sendMessage(":lock:").complete();
+            Message mess = channel.sendMessage(":lock:").complete();
             mess.editMessage(":unlock:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
             if (lang == command.Language.fr) {
@@ -378,10 +379,10 @@ public class Cosmetics {
     @command(name = "soundover", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void soundover(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                            ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 300) {
-            Message mess = (Message) channel.sendMessage(":loud_sound:").complete();
+            Message mess = channel.sendMessage(":loud_sound:").complete();
             mess.editMessage(":sound:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":speaker:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":mute:").completeAfter(1L, TimeUnit.SECONDS);
@@ -398,10 +399,10 @@ public class Cosmetics {
     @command(name = "timeislong", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void timeislong(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                             ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 500) {
-            Message mess = (Message) channel.sendMessage(":clock1:").complete();
+            Message mess = channel.sendMessage(":clock1:").complete();
             mess.editMessage(":clock2:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":clock3:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":clock4:").completeAfter(1L, TimeUnit.SECONDS);
@@ -425,10 +426,10 @@ public class Cosmetics {
 
     @command(name = "prem", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void prem(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-                      command.Language lang) {
-        message.delete().queue();
-        if (Premium.Premium(user)) {
-            Message mess = (Message) channel.sendMessage(":trophy:").complete();
+                      command.Language lang, ProfilData data) {
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        if (Premium.Premium(data.getProfils().get(user.getId()))) {
+            Message mess = channel.sendMessage(":trophy:").complete();
             mess.editMessage(":regional_indicator_p:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":regional_indicator_r:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":regional_indicator_e:").completeAfter(1L, TimeUnit.SECONDS);
@@ -450,7 +451,7 @@ public class Cosmetics {
     @command(name = "topreprec", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void topreprec(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                            ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         HashMap<String, Integer> classement = new HashMap<String, Integer>();
         for (Profil profil : data.getProfils().values()) {
             Object member;
@@ -473,11 +474,11 @@ public class Cosmetics {
         int topOzr = 0;
         for (Map.Entry entry : entries) {
             ++topOzr;
-            if (((String) entry.getKey()).equals(user.getName()))
+            if (entry.getKey().equals(user.getName()))
                 break;
         }
         if (topOzr <= 5) {
-            Message mess = (Message) channel.sendMessage(":bed:").complete();
+            Message mess = channel.sendMessage(":bed:").complete();
             mess.editMessage(":runner:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":sleeping_accommodation:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -493,10 +494,10 @@ public class Cosmetics {
     @command(name = "hiver", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void hiver(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 350) {
-            Message mess = (Message) channel.sendMessage(":snowman:").complete();
+            Message mess = channel.sendMessage(":snowman:").complete();
             mess.editMessage(":cloud_snow:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":snowman2:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -511,8 +512,8 @@ public class Cosmetics {
 
     @command(name = "valentins", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void valentins(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda) {
-        message.delete().queue();
-        Message mess = (Message) channel.sendMessage(":revolving_hearts:").complete();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
+        Message mess = channel.sendMessage(":revolving_hearts:").complete();
         mess.editMessage(":heart_eyes:").completeAfter(1L, TimeUnit.SECONDS);
         mess.editMessage(":angel:").completeAfter(1L, TimeUnit.SECONDS);
     }
@@ -520,10 +521,10 @@ public class Cosmetics {
     @command(name = "woman", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void woman(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                        ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 400) {
-            Message mess = (Message) channel.sendMessage(":bride_with_veil:").complete();
+            Message mess = channel.sendMessage(":bride_with_veil:").complete();
             mess.editMessage(":lipstick:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":kiss:").completeAfter(1L, TimeUnit.SECONDS);
         } else {
@@ -539,10 +540,10 @@ public class Cosmetics {
     @command(name = "vulcain", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void vulcain(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                          ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 10) {
-            Message mess = (Message) channel.sendMessage(":mount_fuji:").complete();
+            Message mess = channel.sendMessage(":mount_fuji:").complete();
             mess.editMessage(":mountain_snow:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":mountain:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":volcano:").completeAfter(1L, TimeUnit.SECONDS);
@@ -559,10 +560,10 @@ public class Cosmetics {
     @command(name = "rage", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void rage(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 30) {
-            Message mess = (Message) channel.sendMessage(":slight_smile:").complete();
+            Message mess = channel.sendMessage(":slight_smile:").complete();
             mess.editMessage(":neutral_face:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":angry:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":rage:").completeAfter(1L, TimeUnit.SECONDS);
@@ -579,10 +580,10 @@ public class Cosmetics {
     @command(name = "cry", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void cry(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                      ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 20) {
-            Message mess = (Message) channel.sendMessage(":confused:").complete();
+            Message mess = channel.sendMessage(":confused:").complete();
             mess.editMessage(":pensive:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":disappointed_relieved:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":sob:").completeAfter(1L, TimeUnit.SECONDS);
@@ -599,10 +600,10 @@ public class Cosmetics {
     @command(name = "grow", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void grow(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                       ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 40) {
-            Message mess = (Message) channel.sendMessage(":baby:").complete();
+            Message mess = channel.sendMessage(":baby:").complete();
             mess.editMessage(":boy:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":man:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":older_man:").completeAfter(1L, TimeUnit.SECONDS);
@@ -620,10 +621,10 @@ public class Cosmetics {
     @command(name = "nop", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void nop(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                      ProfilData data, command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         int rep = data.getProfils().get(user.getId()).getRep();
         if (rep >= 50) {
-            Message mess = (Message) channel.sendMessage(":sunny:").complete();
+            Message mess = channel.sendMessage(":sunny:").complete();
             mess.editMessage(":white_sun_small_cloud:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":partly_sunny:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":white_sun_cloud:").completeAfter(1L, TimeUnit.SECONDS);
@@ -643,10 +644,10 @@ public class Cosmetics {
     @command(name = "fck", type = command.ExecutorType.ALL, descfr = "Affiche le level d'un joueur", topic = command.Topics.Stories)
     private void fck(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
                      command.Language lang) {
-        message.delete().queue();
+        if(guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) message.delete().queue();
         if (user.getId().equals("102108573298851840") || user.getId().equals("502535486691082279")
                 || user.getId().equals("249987060365000704")) {
-            Message mess = (Message) channel.sendMessage(":ok_hand:").complete();
+            Message mess = channel.sendMessage(":ok_hand:").complete();
             mess.editMessage(":point_left:").completeAfter(1L, TimeUnit.SECONDS);
             mess.editMessage(":sweat_drops:").completeAfter(1L, TimeUnit.SECONDS);
         } else {

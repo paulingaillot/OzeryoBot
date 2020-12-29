@@ -87,7 +87,7 @@ public class Scheduler {
                 }
             }
         };
-        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 600L, 10L, TimeUnit.SECONDS);
+        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 600L, 180L, TimeUnit.SECONDS);
     }
 
     public static void Pub(final JDA jda) {
@@ -96,7 +96,6 @@ public class Scheduler {
             @Override
             public void run() {
                 try {
-                    System.out.println("Test 1 ");
                     ProfilData data = DiscordBot.getData();
                     ArrayList<String> list = new ArrayList<String>();
                     for (GuildProfil profil : DiscordBot.getGuilddata().getGuildProfil().values()) {
@@ -120,10 +119,10 @@ public class Scheduler {
                                     .equals(""))
                                 continue;
                             int alea = 1 + (int) (Math.random() * (double) (list.size() - 1 + 1));
-                            String id = (String) list.get(alea);
+                            String id = list.get(alea);
                             while (id.equals(profil.getId())) {
                                 alea = 1 + (int) (Math.random() * (double) (list.size() - 1 + 1));
-                                id = (String) list.get(alea);
+                                id = list.get(alea);
                             }
                             String pub = DiscordBot.getGuilddata().getGuildProfil().get(id).getPub();
                             DiscordBot.getGuilddata().getGuildProfil().get(id)
@@ -142,7 +141,6 @@ public class Scheduler {
                                     .getTextChannelById(DiscordBot.getGuilddata().getGuildProfil().get(profil.getId())
                                             .getPubchannel())
                                     .sendMessage(pub).queue();
-                            System.out.println("Test 2 ");
                         } catch (Exception alea) {
                             // empty catch block
                         }
@@ -185,15 +183,15 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setTopIdh(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         String user3;
                         try {
-                            user3 = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName();
+                            user3 = DiscordBot.getData().getProfils().get(entry.getKey()).getName();
                         } catch (NullPointerException e) {
                             user3 = "Une personne discr\u00e8te";
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) user3 + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + user3 + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/top.txt");
@@ -242,7 +240,7 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setTopXp(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         int Game_EXP = DiscordBot.getData().getProfils().get(entry.getKey()).getXp();
                         try {
                             double operation = 3 * Game_EXP / 4;
@@ -266,14 +264,14 @@ public class Scheduler {
                         String member2 = "Une personne discr\u00e8te | <span style=\"font-weight : bold\">Level</span> : "
                                 + level + emoji + " | <span style=\"font-weight : bold\">Level</span>EXP</span> ";
                         try {
-                            member2 = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName()
+                            member2 = DiscordBot.getData().getProfils().get(entry.getKey()).getName()
                                     + " | <span style=\"font-weight : bold\">Level</span> : " + level + emoji
                                     + " | <span style=\"font-weight : bold\">EXP</span> ";
                         } catch (NullPointerException math) {
                             // empty catch block
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) member2 + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + member2 + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/gamelevel.txt");
@@ -302,16 +300,16 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setToprRep(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         String member = "Une personne discr\u00e8te | <span style=\"font-weight : bold\">réputation</span> ";
                         try {
-                            member = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName()
+                            member = DiscordBot.getData().getProfils().get(entry.getKey()).getName()
                                     + " | <span style=\"font-weight : bold\">réputation</span>";
                         } catch (NullPointerException level) {
                             // empty catch block
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) member + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + member + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/rep.txt");
@@ -339,16 +337,16 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setTopCf(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         String member = "Une personne discr\u00e8te | <span style=\"font-weight : bold\">Combo</span>  ";
                         try {
-                            member = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName()
+                            member = DiscordBot.getData().getProfils().get(entry.getKey()).getName()
                                     + " | <span style=\"font-weight : bold\">Combo</span>  ";
                         } catch (NullPointerException level) {
                             // empty catch block
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) member + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + member + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/cf.txt");
@@ -376,10 +374,10 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setTopTrophy(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         String member = " inconnu";
                         try {
-                            member = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName();
+                            member = DiscordBot.getData().getProfils().get(entry.getKey()).getName();
                         } catch (Exception level) {
                             // empty catch block
                         }
@@ -388,14 +386,14 @@ public class Scheduler {
                         member = "Une personne discr\u00e8te | <span style=\"font-weight : bold\">Rank</span> : "
                                 + rank1 + " | <span style=\"font-weight : bold\">Trophées</span>  ";
                         try {
-                            member = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName()
+                            member = DiscordBot.getData().getProfils().get(entry.getKey()).getName()
                                     + " | <span style=\"font-weight : bold\">Rank</span> : " + rank
                                     + " | <span style=\"font-weight : bold\">Trophées</span>  ";
                         } catch (NullPointerException member2) {
                             // empty catch block
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) member + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + member + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/trophées.txt");
@@ -413,7 +411,7 @@ public class Scheduler {
                             } catch (NullPointerException rank1) {
                                 // empty catch block
                             }
-                            String member3 = String.valueOf(Guildname)
+                            String member3 = Guildname
                                     + " | <span style=\"font-weight : bold\">Level</span> : " + level;
                             classement.put(member3, EXP2);
                         } catch (NumberFormatException EXP2) {
@@ -434,9 +432,9 @@ public class Scheduler {
                     for (Map.Entry entry : entries) {
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) entry.getKey() + " : " + entry.getValue() + "\n";
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + entry.getKey() + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/guild.txt");
@@ -475,18 +473,18 @@ public class Scheduler {
                         } else if (o == 3) {
                             rank5 = "\ud83e\udd49";
                         } else {
-                            rank5 = String.valueOf(o) + "\u00e8me";
+                            rank5 = o + "\u00e8me";
                         }
                         String member4 = " inconnu";
                         try {
-                            member4 = DiscordBot.getLeveldata().getLevelProfil().get((String) entry.getKey()).getName();
+                            member4 = DiscordBot.getLeveldata().getLevelProfil().get(entry.getKey()).getName();
                         } catch (Exception member3) {
                             // empty catch block
                         }
-                        member4 = String.valueOf(member4) + "| <span style=\"font-weight : bold\">Level</span> : "
+                        member4 = member4 + "| <span style=\"font-weight : bold\">Level</span> : "
                                 + Level.level((String) entry.getKey())
                                 + " | <span style=\"font-weight : bold\">EXP</span> : ";
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + (String) rank5
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank5
                                 + "</span> : " + member4 + " : " + entry.getValue() + "\n";
                         ++o;
                     }
@@ -505,7 +503,7 @@ public class Scheduler {
                             double level2 = Game_EXP / 1000;
                             double level3 = Math.sqrt(level2);
                             int level = (int) Math.round(level3);
-                            String member5 = String.valueOf(file.getName())
+                            String member5 = file.getName()
                                     + " | <span style=\"font-weight : bold\">Level</span> : " + level;
                             classement.put(member5, Game_EXP);
                         } catch (IndexOutOfBoundsException Game_EXP) {
@@ -526,9 +524,9 @@ public class Scheduler {
                     for (Map.Entry entry : entries) {
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) entry.getKey() + " : " + entry.getValue() + "\n";
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + entry.getKey() + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/pays.txt");
@@ -556,15 +554,15 @@ public class Scheduler {
                         data.getProfils().get(entry.getKey()).setTopAp(o);
                         String rank = o == 1 ? "\ud83e\udd47"
                                 : (o == 2 ? "\ud83e\udd48"
-                                : (o == 3 ? "\ud83e\udd49" : String.valueOf(o) + "\u00e8me"));
+                                : (o == 3 ? "\ud83e\udd49" : o + "\u00e8me"));
                         String member = " inconnu";
                         try {
-                            member = DiscordBot.getData().getProfils().get((String) entry.getKey()).getName();
+                            member = DiscordBot.getData().getProfils().get(entry.getKey()).getName();
                         } catch (Exception Game_EXP) {
                             // empty catch block
                         }
-                        messages = String.valueOf(messages) + "<span style=\"font-weight : bold\">" + rank
-                                + "</span> : " + (String) member + " : " + entry.getValue() + "\n";
+                        messages = messages + "<span style=\"font-weight : bold\">" + rank
+                                + "</span> : " + member + " : " + entry.getValue() + "\n";
                         ++o;
                     }
                     TextFileWriter.delete("/home/DiscordBot/Rasberry/données/bot/LeaderBoard/ap.txt");
@@ -577,7 +575,7 @@ public class Scheduler {
             }
 
         };
-        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 1L, 1L, TimeUnit.MINUTES);
+        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 30L, 30L, TimeUnit.MINUTES);
     }
 
     public static void WebMap(final JDA jda) {
@@ -622,39 +620,41 @@ public class Scheduler {
                                     String Owner = "";
                                     String Level = "";
 
-                                    try {
-                                        Case = jda
-                                                .getUserById(TextFileWriter
-                                                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"))
-                                                .getName();
-                                    } catch (NullPointerException e) {
+                                    if(x>=-10 && x<=10 && y>=-10 && y<=10) {
                                         try {
-                                            Case = DiscordBot.getData().getProfils().get(TextFileWriter
-                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt")).getName();
-                                        }catch(Exception e1) {
-                                            Case = "personne";
-                                        }
-                                        if (Case.equals("")) {
-                                            Case = "personne";
-                                        }
-                                    } catch (NumberFormatException e) {
-                                        Case = TextFileWriter
-                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
-                                        Soldier = TextFileWriter
-                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
-                                        Owner = "";
-                                        try {
-                                            Owner = DiscordBot.getData().getProfils().get(TextFileWriter.read(
-                                                            "/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/owner.txt"))
+                                            Case = jda
+                                                    .getUserById(TextFileWriter
+                                                            .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"))
                                                     .getName();
-                                        } catch (NullPointerException e1) {
-                                            Owner = "personne";
+                                        } catch (NullPointerException e) {
+                                            try {
+                                                Case = DiscordBot.getData().getProfils().get(TextFileWriter
+                                                        .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt")).getName();
+                                            } catch (Exception e1) {
+                                                Case = "personne";
+                                            }
+                                            if (Case.equals("")) {
+                                                Case = "personne";
+                                            }
+                                        } catch (NumberFormatException e) {
+                                            Case = TextFileWriter
+                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt");
+                                            Soldier = TextFileWriter
+                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/soldier.txt");
+                                            Owner = "";
+                                            try {
+                                                Owner = DiscordBot.getData().getProfils().get(TextFileWriter.read(
+                                                        "/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/owner.txt"))
+                                                        .getName();
+                                            } catch (NullPointerException e1) {
+                                                Owner = "personne";
+                                            }
+                                            int res = Integer.parseInt(TextFileWriter
+                                                    .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/res.txt"));
+                                            Level = res + "";
+                                        } catch (IllegalArgumentException e) {
+                                            Case = "personne";
                                         }
-                                        int res = Integer.parseInt(TextFileWriter
-                                                .read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/res.txt"));
-                                        Level = res + "";
-                                    } catch (IllegalArgumentException e) {
-                                        Case = "personne";
                                     }
 
                                     Color couleur = null;
@@ -702,7 +702,7 @@ public class Scheduler {
                             g1.setBackground(Color.white);
                             g1.dispose();
                             try {
-                                ImageIO.write((RenderedImage) image, "png", new File(
+                                ImageIO.write(image, "png", new File(
                                         "/home/DiscordBot/Rasberry/données/bot/WebMap/" + xb + "_" + yb + ".png"));
                             } catch (Exception ex) {
                                 ex.printStackTrace();
@@ -715,7 +715,7 @@ public class Scheduler {
                 }
             }
         };
-        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 1, 1, TimeUnit.MINUTES);
+        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 5, 5, TimeUnit.MINUTES);
     }
 
     public static void hypixelStats(JDA jda) {
@@ -842,7 +842,7 @@ public class Scheduler {
                         if (!bool) {
                             ++o;
                         }
-                        if (!((String) entry.getKey()).equals(player))
+                        if (!entry.getKey().equals(player))
                             continue;
                         legacyRank = o;
                         bool = true;
@@ -855,7 +855,7 @@ public class Scheduler {
                     } catch (Exception e) {
                         xp3 = "0";
                     }
-                    pitXP = Integer.parseInt((String) xp3);
+                    pitXP = Integer.parseInt(xp3);
                     DiscordBot.getHypixeldata().getHypixelStats().get(player).setPitStats(pitXP);
                     HashMap<String, Integer> pitStats = new HashMap<String, Integer>();
                     for (Hypixel profil : DiscordBot.getHypixeldata().getHypixelStats().values()) {
@@ -875,7 +875,7 @@ public class Scheduler {
                         if (!bool) {
                             ++o;
                         }
-                        if (!((String) entry.getKey()).equals(player))
+                        if (!entry.getKey().equals(player))
                             continue;
                         pitRank = o;
                         bool = true;
@@ -920,7 +920,7 @@ public class Scheduler {
                 }
             }
         };
-        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 1L, 1L, TimeUnit.MINUTES);
+        ScheduledFuture<?> UptimeHandle = scheduler1.scheduleAtFixedRate(Uptime_Update, 5L, 5L, TimeUnit.MINUTES);
     }
 
     public static void Dungeon() {
@@ -931,7 +931,7 @@ public class Scheduler {
                     try {
                         String name;
                         int taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
-                        String message2 = String.valueOf(taille) + " joueurs  (" + taille * 100 / 441 + ")\n";
+                        String message2 = taille + " joueurs  (" + taille * 100 / 441 + ")\n";
                         int x = 0;
                         int y = 0;
                         int res = 0;
@@ -1009,7 +1009,7 @@ public class Scheduler {
                                     DiscordBot.getjda());
                         }
                         taille = TextFileWriter.folderlength("/home/DiscordBot/Rasberry/données/bot/Map/");
-                        message2 = String.valueOf(taille) + " joueurs  (" + taille * 100 / 441 + ")\n";
+                        message2 = taille + " joueurs  (" + taille * 100 / 441 + ")\n";
                         x = 0;
                         y = 0;
                         int donjon = 0;
@@ -1051,40 +1051,50 @@ public class Scheduler {
                         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt",
                                 "dungeon", 1);
-                        int alea1 = 1 + (int) (Math.random() * 10.0);
+                        double alea1 = Math.random();
                         int pv = 0;
-                        int level = alea1;
+                        int level=1 ;
                         int atk = 0;
-                        if (alea1 == 1) {
-                            atk = 25;
-                            pv = 2500;
-                        } else if (alea1 == 2) {
+                        if (alea1 <= 0.28) {
                             atk = 50;
-                            pv = 5000;
-                        } else if (alea1 == 3) {
+                            pv = 1000;
+                            level =1;
+                        } else if (alea1 <=0.51) {
                             atk = 100;
-                            pv = 7500;
-                        } else if (alea1 == 4) {
-                            atk = 150;
-                            pv = 15000;
-                        } else if (alea1 == 5) {
-                            atk = 200;
                             pv = 20000;
-                        } else if (alea1 == 6) {
-                            atk = 200;
-                            pv = 30000;
-                        } else if (alea1 == 7) {
+                            level =2;
+                        } else if (alea1 <= 0.685) {
+                            atk = 150;
+                            pv = 3000;
+                            level =3;
+                        } else if (alea1 <=  0.785) {
                             atk = 200;
                             pv = 40000;
-                        } else if (alea1 == 8) {
-                            atk = 200;
+                            level =4;
+                        } else if (alea1 <= 0.865) {
+                            atk = 250;
                             pv = 50000;
-                        } else if (alea1 == 9) {
-                            atk = 200;
-                            pv = 75000;
-                        } else if (alea1 == 10) {
-                            atk = 200;
+                            level =5;
+                        } else if (alea1 <= 0.925) {
+                            atk = 300;
+                            pv = 60000;
+                            level =6;
+                        } else if (alea1 <= 0.965) {
+                            atk = 350;
+                            pv = 70000;
+                            level =7;
+                        } else if (alea1 <= 0.985) {
+                            atk = 400;
+                            pv = 80000;
+                            level =8;
+                        } else if (alea1 <=  0.995) {
+                            atk = 450;
+                            pv = 90000;
+                            level =9;
+                        } else if (alea1 <= 1) {
+                            atk = 500;
                             pv = 100000;
+                            level =10;
                         }
                         TextFileWriter.write(
                                 "/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/bosslevel.txt",
@@ -1100,236 +1110,7 @@ public class Scheduler {
                     }
                 }
         };
-        ScheduledFuture<?> HelpHandle = scheduler1.scheduleAtFixedRate(Help_Update, 1L, 2L, TimeUnit.MINUTES);
-    }
-
-    public static void Help(final String id, final TextChannel channel, final Guild guild,
-                            final CommandMap commandMap) {
-        Runnable Help_Update = new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    JDA jda = DiscordBot.getjda();
-                    Message message = jda.getTextChannelById(channel.getId()).getHistory().getMessageById(id);
-                    for (MessageReaction emoji : message.getReactions()) {
-                        for (User user : emoji.getJDA().getUsers()) {
-                            if (user.isBot())
-                                continue;
-                            String emote = emoji.getReactionEmote().getName();
-                            if (emote.equals("\ud83d\udc51")) {
-                                String admin = "";
-                                for (SimpleCommand command2 : commandMap.getCommands()) {
-                                    if (command2.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || command2.getTopic() != command.Topics.Admin)
-                                        continue;
-                                    admin = String.valueOf(admin) + "``" + command2.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
-                                        new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (emote.equals("\ud83c\udfae")) {
-                                String game = "";
-                                for (SimpleCommand command3 : commandMap.getCommands()) {
-                                    if (command3.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || game.contains(command3.getName())
-                                            || command3.getTopic() != command.Topics.Game)
-                                        continue;
-                                    game = String.valueOf(game) + "``" + command3.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\ud83c\udfae **Jeu** \ud83c\udfae",
-                                        new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (emote.equals("\ud83c\udfb5")) {
-                                String music = "";
-                                for (SimpleCommand command4 : commandMap.getCommands()) {
-                                    if (command4.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || command4.getTopic() != command.Topics.Music)
-                                        continue;
-                                    music = String.valueOf(music) + "``" + command4.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\ud83c\udfb5 **Musique** \ud83c\udfb5",
-                                        new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (emote.equals("\ud83d\udd25")) {
-                                String social = "";
-                                for (SimpleCommand command5 : commandMap.getCommands()) {
-                                    if (command5.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || command5.getTopic() != command.Topics.Social)
-                                        continue;
-                                    social = String.valueOf(social) + "``" + command5.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25",
-                                        new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (emote.equals("\u26a1")) {
-                                String util = "";
-                                for (SimpleCommand command6 : commandMap.getCommands()) {
-                                    if (command6.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || command6.getTopic() != command.Topics.Util)
-                                        continue;
-                                    util = String.valueOf(util) + "``" + command6.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\u26a1  **Utilitaire** \u26a1",
-                                        new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (emote.equals("\ud83e\udd84")) {
-                                String stories = "";
-                                for (SimpleCommand command7 : commandMap.getCommands()) {
-                                    if (command7.getExecutorType() == command.ExecutorType.CONSOLE
-                                            || command7.getTopic() != command.Topics.Stories)
-                                        continue;
-                                    stories = String.valueOf(stories) + "``" + command7.getName() + "``, ";
-                                }
-                                EmbedBuilder builder1 = new EmbedBuilder();
-                                builder1.setTitle("\u2139 | Commands | \u2139");
-                                builder1.setColor(color.couleurAleatoire(user));
-                                builder1.setAuthor(user.getName());
-                                builder1.setFooter(guild.getName(), guild.getIconUrl());
-                                builder1.setTimestamp(Instant.now());
-                                builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
-                                        new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
-                                if (!user.hasPrivateChannel()) {
-                                    user.openPrivateChannel().complete();
-                                }
-                                ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                                emoji.removeReaction(user).queue();
-                                return;
-                            }
-                            if (!emote.equals("\ud83c\udf0e"))
-                                continue;
-                            String game = "";
-                            String admin = "";
-                            String util = "";
-                            String music = "";
-                            String social = "";
-                            String stories = "";
-                            for (SimpleCommand command8 : commandMap.getCommands()) {
-                                if (command8.getExecutorType() == command.ExecutorType.CONSOLE)
-                                    continue;
-                                if (command8.getTopic() == command.Topics.Game) {
-                                    game = String.valueOf(game) + "``" + command8.getName() + "``, ";
-                                    continue;
-                                }
-                                if (command8.getTopic() == command.Topics.Admin) {
-                                    admin = String.valueOf(admin) + "``" + command8.getName() + "``, ";
-                                    continue;
-                                }
-                                if (command8.getTopic() == command.Topics.Util) {
-                                    util = String.valueOf(util) + "``" + command8.getName() + "``, ";
-                                    continue;
-                                }
-                                if (command8.getTopic() == command.Topics.Music) {
-                                    music = String.valueOf(music) + "``" + command8.getName() + "``, ";
-                                    continue;
-                                }
-                                if (command8.getTopic() == command.Topics.Social) {
-                                    social = String.valueOf(social) + "``" + command8.getName() + "``, ";
-                                    continue;
-                                }
-                                if (command8.getTopic() != command.Topics.Stories)
-                                    continue;
-                                stories = String.valueOf(stories) + "``" + command8.getName() + "``, ";
-                            }
-                            EmbedBuilder builder1 = new EmbedBuilder();
-                            builder1.setTitle("\u2139 | Commands | \u2139");
-                            builder1.setColor(color.couleurAleatoire(user));
-                            builder1.setAuthor(user.getName());
-                            builder1.setFooter(guild.getName(), guild.getIconUrl());
-                            builder1.setTimestamp(Instant.now());
-                            builder1.addField("\ud83c\udfae **Jeu** \ud83c\udfae",
-                                    new StringBuilder(game).deleteCharAt(game.length() - 2).toString(), true);
-                            builder1.addField("\ud83d\udc6e **Moderation** \ud83d\udc6e",
-                                    new StringBuilder(admin).deleteCharAt(admin.length() - 2).toString(), false);
-                            builder1.addField("\ud83c\udfb5 **Musique** \ud83c\udfb5",
-                                    new StringBuilder(music).deleteCharAt(music.length() - 2).toString(), false);
-                            builder1.addField("\u26a1  **Utilitaire** \u26a1",
-                                    new StringBuilder(util).deleteCharAt(util.length() - 2).toString(), false);
-                            builder1.addField("\ud83e\udd84 **Stories** \ud83e\udd84",
-                                    new StringBuilder(stories).deleteCharAt(stories.length() - 2).toString(), true);
-                            builder1.addField("\ud83d\udd25 **Social** \ud83d\udd25",
-                                    new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
-                            if (!user.hasPrivateChannel()) {
-                                user.openPrivateChannel().complete();
-                            }
-                            ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
-                            emoji.removeReaction(user).queue();
-                            return;
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        final ScheduledFuture<?> HelpHandle = scheduler2.scheduleAtFixedRate(Help_Update, 5L, 1L, TimeUnit.SECONDS);
-        scheduler2.schedule(new Runnable() {
-
-            @Override
-            public void run() {
-                HelpHandle.cancel(true);
-            }
-        }, 5L, TimeUnit.MINUTES);
+        ScheduledFuture<?> HelpHandle = scheduler1.scheduleAtFixedRate(Help_Update, 2L, 2L, TimeUnit.HOURS);
     }
 
     public static void Map(JDA jda) {
@@ -1385,7 +1166,6 @@ public class Scheduler {
                         DiscordBot.getHypixeldata().saveData(URL22);
                         DiscordBot.getLeveldata().saveData(URL22);
                     }
-                    try {
                         if ((day -= 7) <= 0) {
                             day += 30;
                             --mois;
@@ -1394,18 +1174,15 @@ public class Scheduler {
                             mois += 30;
                             --année;
                         }
-                        TextFileWriter.recursifDelete(
-                                new File("/home/DiscordBot/Rasberry/données/backup/" + day + "-" + mois + "-" + année));
-                    } catch (Exception exception) {
-                        // empty catch block
-                    }
+                    File f = new File("/home/DiscordBot/Rasberry/données/backup/" + day + "-" + mois + "-" + année);
+                    if(f.isFile()) TextFileWriter.recursifDelete(f);
                     System.out.println("Données enregistrées");
                 } catch (Exception e) {
-                    System.out.println("Les données n'ont pas pu etre enregistrés");
+                    System.out.println("Les données n'ont pas pu etre enregistrés : "+e.getMessage());
                 }
             }
         };
-        ScheduledFuture<?> SaveHandle = scheduler1.scheduleAtFixedRate(Save_Update, 1L, 1L, TimeUnit.MINUTES);
+        ScheduledFuture<?> SaveHandle = scheduler1.scheduleAtFixedRate(Save_Update, 15L, 15L, TimeUnit.MINUTES);
     }
 
     public static void Give(final JDA jda) {
@@ -1435,51 +1212,51 @@ public class Scheduler {
                     for (File file : TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/bot/Pays")) {
                         for (int i = 1; i <= 10; ++i) {
                             long lastpay;
-                            TextFileWriter.folder(String.valueOf(file.getAbsolutePath()) + "/machine");
+                            TextFileWriter.folder(file.getAbsolutePath() + "/machine");
                             String machine = TextFileWriter
-                                    .read(String.valueOf(file.getAbsolutePath()) + "/machine/machine" + i + ".txt");
+                                    .read(file.getAbsolutePath() + "/machine/machine" + i + ".txt");
                             if (machine.equals("active")) {
                                 lastpay = Long.parseLong(TextFileWriter.read(
-                                        String.valueOf(file.getAbsolutePath()) + "/machine/lastpay" + i + ".txt"));
+                                        file.getAbsolutePath() + "/machine/lastpay" + i + ".txt"));
                                 if (System.currentTimeMillis() - lastpay <= 3600000L)
                                     continue;
                                 long money = Long.parseLong(
-                                        TextFileWriter.read(String.valueOf(file.getAbsolutePath()) + "/bank.txt"));
+                                        TextFileWriter.read(file.getAbsolutePath() + "/bank.txt"));
                                 long cout = Long.parseLong(TextFileWriter
-                                        .read(String.valueOf(file.getAbsolutePath()) + "/machine/cout" + i + ".txt"));
+                                        .read(file.getAbsolutePath() + "/machine/cout" + i + ".txt"));
                                 if (cout < 100000L) {
                                     cout = 100000L;
                                 }
                                 if (cout > money) {
                                     TextFileWriter.write(
-                                            String.valueOf(file.getAbsolutePath()) + "/machine/machine" + i + ".txt",
+                                            file.getAbsolutePath() + "/machine/machine" + i + ".txt",
                                             "stop", 1);
                                     continue;
                                 }
-                                TextFileWriter.write(String.valueOf(file.getAbsolutePath()) + "/bank.txt",
+                                TextFileWriter.write(file.getAbsolutePath() + "/bank.txt",
                                         Long.toString(money -= cout), 1);
                                 TextFileWriter.write(
-                                        String.valueOf(file.getAbsolutePath()) + "/machine/lastpay" + i + ".txt",
+                                        file.getAbsolutePath() + "/machine/lastpay" + i + ".txt",
                                         Long.toString(System.currentTimeMillis()), 1);
                                 cout = (long) ((double) cout * 1.1);
                                 TextFileWriter.write(
-                                        String.valueOf(file.getAbsolutePath()) + "/machine/cout" + i + ".txt",
+                                        file.getAbsolutePath() + "/machine/cout" + i + ".txt",
                                         Long.toString(cout), 1);
                                 continue;
                             }
                             if (!machine.equals("stop"))
                                 continue;
                             lastpay = Long.parseLong(TextFileWriter
-                                    .read(String.valueOf(file.getAbsolutePath()) + "/machine/lastpay" + i + ".txt"));
+                                    .read(file.getAbsolutePath() + "/machine/lastpay" + i + ".txt"));
                             if (System.currentTimeMillis() - lastpay <= 3600000L)
                                 continue;
                             long cout = Long.parseLong(TextFileWriter
-                                    .read(String.valueOf(file.getAbsolutePath()) + "/machine/cout" + i + ".txt"));
+                                    .read(file.getAbsolutePath() + "/machine/cout" + i + ".txt"));
                             cout = (long) ((double) cout / 1.05);
                             TextFileWriter.write(
-                                    String.valueOf(file.getAbsolutePath()) + "/machine/lastpay" + i + ".txt",
+                                    file.getAbsolutePath() + "/machine/lastpay" + i + ".txt",
                                     Long.toString(System.currentTimeMillis()), 1);
-                            TextFileWriter.write(String.valueOf(file.getAbsolutePath()) + "/machine/cout" + i + ".txt",
+                            TextFileWriter.write(file.getAbsolutePath() + "/machine/cout" + i + ".txt",
                                     Long.toString(cout), 1);
                         }
                     }
@@ -1501,7 +1278,7 @@ public class Scheduler {
                                         continue;
                                         int atk;
                                         if (!test.get(1).toString().contains("_")) {
-                                            Profil cible = data.getProfils().get((String) test.get(1));
+                                            Profil cible = data.getProfils().get(test.get(1));
                                             try {
                                                 atk = Integer.parseInt((String) test.get(2));
                                             } catch (IndexOutOfBoundsException e) {
@@ -1511,15 +1288,15 @@ public class Scheduler {
                                             Attack.Attack(profil, cible, atk, hero);
                                             map2.remove(heure);
                                         } else {
-                                            String cibleId = (String) test.get(1);
+                                            String cibleId = test.get(1).toString();
                                             String name = TextFileWriter.read(
                                                     "/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/name.txt");
                                             if (name.equals("dungeon")) {
                                                 Attack.AttackDungeon(profil, cibleId, jda);
                                                 map2.remove(heure);
-                                                continue;
+                                                return;
                                             }
-                                            if (name.equals("personne")) {
+                                            else if (name.equals("personne")) {
                                                 HashMap<String, ArrayList<String>> heroe;
                                                 boolean Umail;
                                                 command.Language lang = profil
@@ -1552,7 +1329,7 @@ public class Scheduler {
                                                 }
                                                 ArrayList list = null;
                                                 try {
-                                                    list = (ArrayList) heroe
+                                                    list = heroe
                                                             .get(profil.getActiveHeroe());
                                                 } catch (NullPointerException list2) {
                                                     // empty catch block
@@ -1698,9 +1475,6 @@ public class Scheduler {
                                     } catch (IndexOutOfBoundsException e) {
                                         c2 = 1;
                                     }
-                                    System.out.println(cibleId);
-                                    System.out.println(c1);
-                                    System.out.println(c2);
                                     Trade.give(c1, profil, data.getProfils().get(cibleId), c2);
                                     map211.remove(heure);
                                 }
@@ -1719,7 +1493,7 @@ public class Scheduler {
                 }
             }
         };
-        ScheduledFuture<?> GiveHandle = scheduler1.scheduleAtFixedRate(Give_Update, 2L, 1L, TimeUnit.SECONDS);
+        ScheduledFuture<?> GiveHandle = scheduler1.scheduleAtFixedRate(Give_Update, 30L, 10L, TimeUnit.SECONDS);
     }
 
     public static void Ressources(final JDA jda) {
@@ -1783,7 +1557,7 @@ public class Scheduler {
                                     res.put("fer", 0);
                                     res.put("cristal", 0);
                                 }
-                                int mat = (Integer) res.get(ressources);
+                                int mat = res.get(ressources);
                                 int gain = 20;
                                 if (!name.equals("Grotte")) {
                                     if (res1 > 20) {
@@ -1832,7 +1606,7 @@ public class Scheduler {
                             emoji = jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0);
                         }
                         CommandMap.PublicLog(
-                                String.valueOf(emoji.getAsMention())
+                                emoji.getAsMention()
                                         + " Les joueurs present sur les zones de ressources ont recus leur butin.",
                                 jda);
                     } catch (Exception e) {
@@ -1878,7 +1652,7 @@ public class Scheduler {
                         } catch (Exception exception) {
                             // empty catch block
                         }
-                        if ((Integer) building.get("cirque") >= pets) {
+                        if (building.get("cirque") >= pets) {
                             HashMap<String, ArrayList<String>> pet;
                             int Parieur;
                             ArrayList<String> list = new ArrayList<String>();
@@ -1919,14 +1693,16 @@ public class Scheduler {
                             int Parieur;
                             HashMap<String, ArrayList<String>> house;
                             try {
-                                Parieur = Integer.parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/"
-                                        + userid + "/Achievement/Parieur.txt"));
+                                Parieur = Integer.parseInt(DiscordBot.getData().getProfils().get(userid).getAchievement().get("Parieur").toString());
                             } catch (NumberFormatException e) {
                                 Parieur = 0;
                             }
-                            TextFileWriter.write(
-                                    "/home/DiscordBot/Rasberry/données/Users/" + userid + "/Achievement/Parieur.txt",
-                                    Integer.toString(++Parieur), 1);
+                            Parieur++;
+                            try {
+                                DiscordBot.getData().getProfils().get(userid).getAchievement().put("Parieur", Long.parseLong(""+Parieur));
+                            }catch(Exception e){
+
+                            }
                             ArrayList<String> list = new ArrayList<String>();
                             list.add(object);
                             list.add("10");
@@ -1949,8 +1725,7 @@ public class Scheduler {
                         } else if (object2.equals("weapon")) {
                         HashMap<String, Integer> building = data.getProfils().get(userid).getBuilding();
                             HashMap<String, ArrayList<Integer>> weapons = data.getProfils().get(userid).getWeapons();
-                            weapon = TextFileWriter
-                                    .read(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bid.txt"));
+                            weapon = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bid.txt");
                             int level = Integer
                                     .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/level.txt"));
                             if (LootBox.test(data.getProfils().get(userid)) <= building.get("armurerie") * 5 + 20) {
@@ -1983,8 +1758,7 @@ public class Scheduler {
                         } else if (object2.equals("armor")) {
                         HashMap<String, Integer> building = data.getProfils().get(userid).getBuilding();
                             HashMap<String, ArrayList<Integer>> armors = data.getProfils().get(userid).getArmor();
-                            armor = TextFileWriter
-                                    .read(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bid.txt"));
+                            armor = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/bid.txt");
                             int level = Integer
                                     .parseInt(TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/level.txt"));
                             if (LootBox.test(data.getProfils().get(userid)) <= building.get("armurerie") * 5 + 20) {
@@ -2294,7 +2068,7 @@ public class Scheduler {
             public void run() {
                 File_DeleteHandle.cancel(true);
             }
-        }, (long) durée, timeunit);
+        }, durée, timeunit);
     }
 
     public static void Quests(JDA jda) {
@@ -2334,11 +2108,11 @@ public class Scheduler {
                                 : (alea1 == 15
                                 ? "brique"
                                 : (alea1 == 16
-                                ? "verre"
+                                ? "pier"
                                 : (alea1 == 17
-                                ? "pierre"
+                                ? "paille"
                                 : (alea1 == 18
-                                ? "petrole"
+                                ? "fer"
                                 : "tr")))))))))))))))));
                     }
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Quests/quest1.txt", quest1, 1);
@@ -2368,9 +2142,9 @@ public class Scheduler {
                                 : (alea2 == 15
                                 ? "brique"
                                 : (alea2 == 16
-                                ? "verre"
-                                : (alea2 == 17
                                 ? "pierre"
+                                : (alea2 == 17
+                                ? "paille"
                                 : (alea2 == 18
                                 ? "petrole"
                                 : "tr")))))))))))))))));
@@ -2402,9 +2176,9 @@ public class Scheduler {
                                 : (alea3 == 15
                                 ? "brique"
                                 : (alea3 == 16
-                                ? "verre"
-                                : (alea3 == 17
                                 ? "pierre"
+                                : (alea3 == 17
+                                ? "paille"
                                 : (alea3 == 18
                                 ? "petrole"
                                 : "tr")))))))))))))))));
@@ -2537,7 +2311,7 @@ public class Scheduler {
             public void run() {
                 Message_DeleteHandle.cancel(true);
             }
-        }, (long) minutes, timeUnit);
+        }, minutes, timeUnit);
     }
 
     public static void Mute(final User user, int minutes, MessageChannel channel, final Guild guild) {
@@ -2558,7 +2332,7 @@ public class Scheduler {
             public void run() {
                 MuteHandle.cancel(true);
             }
-        }, (long) minutes, TimeUnit.MINUTES);
+        }, minutes, TimeUnit.MINUTES);
     }
 
     public static void GameUpdate(final JDA jda) {
@@ -2587,503 +2361,6 @@ public class Scheduler {
             }
         };
         ScheduledFuture<?> GameHandle = scheduler1.scheduleAtFixedRate(Game_Update, 10L, 10L, TimeUnit.MINUTES);
-    }
-
-    public static void OzeryoRoleUpdate(final JDA jda) {
-        Runnable beeper = new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    Guild guild = jda.getGuildById("326345972739473410");
-                    for (int i = 0; i < guild.getMembers().size(); ++i) {
-                        Member member;
-                        int Ulevel;
-                        int Game_EXP;
-                        int level = Level.level(guild.getMembers().get(i).getUser().getId());
-                        User user = guild.getMembers().get(i).getUser();
-                        if (user.isBot())
-                            continue;
-                        ArrayList<Role> add_role = new ArrayList<Role>();
-                        ArrayList<Role> rem_role = new ArrayList<Role>();
-                        block65:
-                        for (int j = 1; j <= level + 50; ++j) {
-                            String role_name = "";
-                            switch (j) {
-                                case 1: {
-                                    role_name = "[lvl1] Soldat";
-                                    break;
-                                }
-                                case 2: {
-                                    role_name = "[lvl2] Soldat";
-                                    break;
-                                }
-                                case 3: {
-                                    role_name = "[lvl3] Brigadier";
-                                    break;
-                                }
-                                case 4: {
-                                    role_name = "[lvl4] Brigadier";
-                                    break;
-                                }
-                                case 5: {
-                                    role_name = "[lvl5] Chef-Brigadier";
-                                    break;
-                                }
-                                case 6: {
-                                    role_name = "[lvl6] Chef-Brigadier";
-                                    break;
-                                }
-                                case 7: {
-                                    role_name = "[lvl7] Caporal";
-                                    break;
-                                }
-                                case 8: {
-                                    role_name = "[lvl8] Caporal";
-                                    break;
-                                }
-                                case 9: {
-                                    role_name = "[lvl9] Caporal-Chef";
-                                    break;
-                                }
-                                case 10: {
-                                    role_name = "[lvl10] Caporal-Chef";
-                                    break;
-                                }
-                                case 11: {
-                                    role_name = "[lvl11] Sergent";
-                                    break;
-                                }
-                                case 12: {
-                                    role_name = "[lvl12] Sergent";
-                                    break;
-                                }
-                                case 13: {
-                                    role_name = "[lvl13] Sergent-Chef";
-                                    break;
-                                }
-                                case 14: {
-                                    role_name = "[lvl14] Sergent-Chef";
-                                    break;
-                                }
-                                case 15: {
-                                    role_name = "[lvl15] Gendarme";
-                                    break;
-                                }
-                                case 16: {
-                                    role_name = "[lvl16] Gendarme";
-                                    break;
-                                }
-                                case 17: {
-                                    role_name = "[lvl17] Marechal";
-                                    break;
-                                }
-                                case 18: {
-                                    role_name = "[lvl18] Marechal";
-                                    break;
-                                }
-                                case 19: {
-                                    role_name = "[lvl19] Marechal-Chef";
-                                    break;
-                                }
-                                case 20: {
-                                    role_name = "[lvl20] Marechal-Chef";
-                                    break;
-                                }
-                                case 21: {
-                                    role_name = "[lvl21] Adjudant";
-                                    break;
-                                }
-                                case 22: {
-                                    role_name = "[lvl22] Adjudant";
-                                    break;
-                                }
-                                case 23: {
-                                    role_name = "[lvl23] Adjudant-Chef";
-                                    break;
-                                }
-                                case 24: {
-                                    role_name = "[lvl24] Adjudant-Chef";
-                                    break;
-                                }
-                                case 25: {
-                                    role_name = "[lvl25] Aspirant";
-                                    break;
-                                }
-                                case 26: {
-                                    role_name = "[lvl26] Aspirant";
-                                    break;
-                                }
-                                case 27: {
-                                    role_name = "[lvl27] Sous-Lieutenant";
-                                    break;
-                                }
-                                case 28: {
-                                    role_name = "[lvl28] Sous-Lieutenant";
-                                    break;
-                                }
-                                case 29: {
-                                    role_name = "[lvl29] Lieutenant";
-                                    break;
-                                }
-                                case 30: {
-                                    role_name = "[lvl30] Lieutenant";
-                                    break;
-                                }
-                                case 31: {
-                                    role_name = "[lvl31] Capitaine";
-                                    break;
-                                }
-                                case 32: {
-                                    role_name = "[lvl32] Capitaine";
-                                    break;
-                                }
-                                case 33: {
-                                    role_name = "[lvl33] Vice-Commandant";
-                                    break;
-                                }
-                                case 34: {
-                                    role_name = "[lvl34] Vice-Commandant";
-                                    break;
-                                }
-                                case 35: {
-                                    role_name = "[lvl35] Commandant";
-                                    break;
-                                }
-                                case 36: {
-                                    role_name = "[lvl36] Commandant";
-                                    break;
-                                }
-                                case 37: {
-                                    role_name = "[lvl37] Vice-Colonel";
-                                    break;
-                                }
-                                case 38: {
-                                    role_name = "[lvl38] Vice-Colonel";
-                                    break;
-                                }
-                                case 39: {
-                                    role_name = "[lvl39] Colonel";
-                                    break;
-                                }
-                                case 40: {
-                                    role_name = "[lvl40] Colonel";
-                                    break;
-                                }
-                                case 41: {
-                                    role_name = "[lvl41] Lieutenant-Colonel";
-                                    break;
-                                }
-                                case 42: {
-                                    role_name = "[lvl42] Lieutenant-Colonel";
-                                    break;
-                                }
-                                case 43: {
-                                    role_name = "[lvl43] Vice-Amiral";
-                                    break;
-                                }
-                                case 44: {
-                                    role_name = "[lvl44] Vice-Amiral";
-                                    break;
-                                }
-                                case 45: {
-                                    role_name = "[lvl45] Amiral";
-                                    break;
-                                }
-                                case 46: {
-                                    role_name = "[lvl46] Amiral";
-                                    break;
-                                }
-                                case 47: {
-                                    role_name = "[lvl47] Vice-Général";
-                                    break;
-                                }
-                                case 48: {
-                                    role_name = "[lvl48] Vice-Général";
-                                    break;
-                                }
-                                case 49: {
-                                    role_name = "[lvl49] Général";
-                                    break;
-                                }
-                                case 50: {
-                                    role_name = "[lvl50] Général";
-                                    break;
-                                }
-                                default: {
-                                    role_name = "[lvl??] Dieu";
-                                }
-                            }
-                            if (j < level) {
-                                rem_role.addAll(guild.getRolesByName(role_name, true));
-                            } else if (j > level) {
-                                rem_role.addAll(guild.getRolesByName(role_name, true));
-                            } else if (j == level) {
-                                add_role.addAll(guild.getRolesByName(role_name, true));
-                            }
-                            guild.addRoleToMember(guild.getMembers().get(i),
-                                    guild.getRolesByName("\u1801\u1801\u1801 Social levels \u1801\u1801\u1801", true).get(0))
-                                    .queue();
-                            int boucle = 2;
-                            String rank = null;
-                            try {
-                                rank = TextFileWriter.read1(
-                                        "/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/rank.txt",
-                                        boucle);
-                                while (rank != null) {
-                                    if (rank.equals("0") || rank == null || rank.equals(""))
-                                        continue block65;
-                                    guild.addRoleToMember(guild.getMembers().get(i),
-                                                    guild.getRolesByName(
-                                                            "\u1801\u1801\u1801 Events ranks \u1801\u1801\u1801", true).get(0))
-                                            .queue();
-                                    add_role.addAll(guild.getRolesByName(rank, true));
-                                    rank = TextFileWriter.read1(
-                                            "/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/rank.txt",
-                                            ++boucle);
-                                }
-                                continue;
-                            } catch (NullPointerException nullPointerException) {
-                                // empty catch block
-                            }
-                        }
-                        if (Premium.Premium(guild.getMembers().get(i).getUser())) {
-                            add_role.addAll(guild.getRolesByName("\ud83c\udf66 Premium", true));
-                        }
-                        if (!Premium.Premium(guild.getMembers().get(i).getUser())) {
-                            rem_role.addAll(guild.getRolesByName("\ud83c\udf66 Premium", true));
-                        }
-                        if (level >= 1) {
-                            rem_role.addAll(guild.getRolesByName("Néophyte", true));
-                        } else {
-                            add_role.addAll(guild.getRolesByName("Néophyte", true));
-                        }
-                        guild.removeRoleFromMember(guild.getMembers().get(i), rem_role.get(0)).queue();
-                        guild.addRoleToMember(guild.getMembers().get(i), add_role.get(0)).queue();
-                        try {
-                            Game_EXP = DiscordBot.getData().getProfils().get(user.getId()).getXp();
-                        } catch (NullPointerException e) {
-                            Game_EXP = 0;
-                        }
-                        try {
-                            double operation = 3 * Game_EXP / 4;
-                            double math = Math.sqrt(operation);
-                            Ulevel = (int) Math.round(math);
-                        } catch (NullPointerException e) {
-                            Ulevel = 0;
-                        }
-                        ArrayList<Role> add_role1 = new ArrayList<Role>();
-                        ArrayList<Role> rem_role1 = new ArrayList<Role>();
-                        for (int j = -1; j <= 1100; j += 50) {
-                            String role = "";
-                            if (j < 50) {
-                                role = "NOMADE | 0 - 50 \u272f";
-                            } else if (j >= 50 && j < 100) {
-                                role = "NOMADE | 50 - 100 \u272f";
-                            } else if (j >= 100 && j < 150) {
-                                role = "CAMPEMENT | 100 - 150 \u2606";
-                            } else if (j >= 150 && j < 200) {
-                                role = "CAMPEMENT | 150 - 200 \u2606";
-                            } else if (j >= 200 && j < 250) {
-                                role = "CAMPEMENT FORTIFIE | 200 - 250 \u2605";
-                            } else if (j >= 250 && j < 300) {
-                                role = "CAMPEMENT FORTIFIE | 250 - 300 \u2605";
-                            } else if (j >= 300 && j < 350) {
-                                role = "HAMEAU | 300 - 350 \u2729";
-                            } else if (j >= 350 && j < 400) {
-                                role = "HAMEAU | 350 - 400 \u2729";
-                            } else if (j >= 400 && j < 450) {
-                                role = "VILLAGE | 400 - 450 \u272d";
-                            } else if (j >= 450 && j < 500) {
-                                role = "VILLAGE | 450 - 500 \u272d";
-                            } else if (j >= 500 && j < 550) {
-                                role = "BOURG | 500 - 550 \u2730";
-                            } else if (j >= 550 && j < 600) {
-                                role = "BOURG | 550 - 600 \u2730";
-                            } else if (j >= 600 && j < 650) {
-                                role = "VILLE | 600 - 650 \u272c";
-                            } else if (j >= 650 && j < 700) {
-                                role = "VILLE | 650 - 700 \u272c";
-                            } else if (j >= 700 && j < 750) {
-                                role = "CITE | 700 - 750 \u272a";
-                            } else if (j >= 750 && j < 800) {
-                                role = "CITE | 750 - 800 \u272a";
-                            } else if (j >= 800 && j < 850) {
-                                role = "CITADELLE | 800 - 850 \u2726";
-                            } else if (j >= 850 && j < 900) {
-                                role = "CITADELLE | 850 - 900 \u2726";
-                            } else if (j >= 900 && j < 950) {
-                                role = "CAPITALE | 900 - 950 \u2727";
-                            } else if (j >= 950 && j < 1000) {
-                                role = "CAPITALE | 950 - 1000 \u2727";
-                            } else if (j >= 1000) {
-                                role = "UTOPIE | 1000 + \ud83c\udf11";
-                            }
-                            if (j < Ulevel + 51 && j > Ulevel - 51) {
-                                add_role1.addAll(guild.getRolesByName(role, true));
-                                continue;
-                            }
-                            rem_role1.addAll(guild.getRolesByName(role, true));
-                        }
-                        guild.removeRoleFromMember(guild.getMembers().get(i), rem_role1.get(0)).queue();
-                        guild
-                                .addRoleToMember(guild.getMembers().get(i),
-                                        guild.getRolesByName("\u1801\u1801\u1801 Game levels \u1801\u1801\u1801", true).get(0))
-                                .queue();
-                        guild.addRoleToMember(guild.getMembers().get(i), add_role1.get(0)).queue();
-                        /*if (guild.getMembers().get(i).getUser().getId().equals("102108573298851840")
-                                || guild.getMembers().get(i).getUser().getId().equals("284730935331782657")
-                                || guild.getMembers().get(i).getUser().getId().equals("502535486691082279")
-                                || guild.getMembers().get(i).getUser().getId().equals("249987060365000704")) {
-                            guild
-                                    .addRoleToMember(guild.getMembers().get(i), guild
-                                            .getRolesByName("\u1801\u1801\u1801 Server ranks \u1801\u1801\u1801", true).get(0))
-                                    .queue();
-                        } else {
-                            guild
-                                    .removeRoleFromMember(guild.getMembers().get(i), guild
-                                            .getRolesByName("\u1801\u1801\u1801 Server ranks \u1801\u1801\u1801", true).get(0))
-                                    .queue();
-                        }*/
-                        String emoji = "";
-                        if (Ulevel >= 200 && Ulevel < 300) {
-                            emoji = "\ud83d\udc9b";
-                        } else if (Ulevel >= 300 && Ulevel < 400) {
-                            emoji = "\ud83d\udc9a";
-                        } else if (Ulevel >= 400 && Ulevel < 500) {
-                            emoji = "\ud83d\udc99";
-                        } else if (Ulevel >= 500 && Ulevel < 600) {
-                            emoji = "\ud83d\udc9c";
-                        } else if (Ulevel >= 600) {
-                            emoji = "\ud83d\udda4";
-                        }
-                        /*Message mess = jda.getGuildById("326345972739473410").getTextChannelById("392366630912655372")
-                                .getHistory().getMessageById("542026527953649664");
-                        List list = null;
-                        List list2 = null;
-                        List list3 = null;
-                        List list4 = null;
-                        for (MessageReaction mess1 : mess.getReactions()) {
-                            if (mess1.getReactionEmote().getName().equals("broken_heart")) {
-                                list = (List) mess1.getJDA().getUsers();
-                                continue;
-                            }
-                            if (mess1.getReactionEmote().getName().equals(jda.getGuildById("326345972739473410")
-                                    .getEmotesByName("levelupbadge", true).get(0).getName())) {
-                                list2 = (List) mess1.getJDA().getUsers();
-                                continue;
-                            }
-                            if (mess1.getReactionEmote().getName().equals(":white_check_mark:")) {
-                                list4 = (List) mess1.getJDA().getUsers();
-                                continue;
-                            }
-                            if (!mess1.getReactionEmote().getName().equals("\ud83d\udcf2"))
-                                continue;
-                            list3 = (List) mess1.getJDA().getUsers();
-                        }
-                        boolean emoji1 = true;
-                        for (User user1 : mess.getReactions().get(0).getJDA().getUsers()) {
-                            if (!user1.getId().equals(user.getId()))
-                                continue;
-                            emoji1 = false;
-                        }
-                        boolean level1 = true;
-                        for (User user1 : mess.getReactions().get(1).getJDA().getUsers()) {
-                            if (!user1.getId().equals(user.getId()))
-                                continue;
-                            level1 = false;
-                        }*/
-                        String pseudo = guild.getMembers().get(i).getEffectiveName();
-                        String[] args = pseudo.split(" ");
-                        if (args[0].contains("[") && args[0].contains("]")) {
-                            pseudo = pseudo.replace(String.valueOf(args[0]) + " ", "");
-                        }
-                        if (Ulevel != 0) {
-                                if (guild.getSelfMember().hasPermission(Permission.NICKNAME_MANAGE)
-                                        && user.getName().length() <= 27) {
-                                    if (!guild.getMembers().get(i).hasPermission(Permission.ADMINISTRATOR)) {
-                                        guild.modifyNickname(guild.getMembers().get(i),
-                                                "[" + Ulevel + emoji + "] " + pseudo).queue();
-                                    }
-                                }
-                            }
-                        if (Ulevel != 0) {
-                                if (guild.getSelfMember().hasPermission(Permission.NICKNAME_MANAGE)
-                                        && user.getName().length() <= 27) {
-                                    if (!guild.getMembers().get(i).hasPermission(Permission.ADMINISTRATOR)) {
-                                        guild
-                                                .modifyNickname(guild.getMembers().get(i), "[" + Ulevel + "] " + pseudo)
-                                                .queue();
-                                    }
-                                }
-                            }
-                        if (Ulevel != 0) {
-                                if (guild.getSelfMember().hasPermission(Permission.NICKNAME_MANAGE)
-                                        && user.getName().length() <= 27) {
-                                    if (!guild.getMembers().get(i).hasPermission(Permission.ADMINISTRATOR)) {
-                                        guild
-                                                .modifyNickname(guild.getMembers().get(i), "[" + emoji + "] " + pseudo)
-                                                .queue();
-                                    }
-                                }
-
-                        } else if (Ulevel != 0) {
-                            if (guild.getSelfMember().hasPermission(Permission.NICKNAME_MANAGE)
-                                    && user.getName().length() <= 27) {
-                                if (!guild.getMembers().get(i).hasPermission(Permission.ADMINISTRATOR)) {
-                                    guild.modifyNickname(guild.getMembers().get(i), pseudo).queue();
-                                }
-                            }
-                        }
-                        /*for (User user1 : mess.getReactions().get(2).getJDA().getUsers()) {
-                            member = null;
-                            try {
-                                member = guild.getMember(user1);
-                            } catch (Exception exception) {
-                                // empty catch block
-                            }
-                            if (member == null)
-                                continue;
-                            if (user1.getId().equals(user.getId())) {
-                                guild
-                                        .addRoleToMember(member, guild.getRolesByName(
-                                                "᠁᠁᠁ Notifications settings ᠁᠁᠁", true).get(0))
-                                        .queue();
-                                guild.addRoleToMember(member,
-                                        guild.getRolesByName("🔔 notifications", true).get(0));
-                                continue;
-                            }
-                            guild.removeRoleFromMember(member,
-                                    guild.getRolesByName("🔔 notifications", true).get(0));
-                        }
-                        for (User user1 : mess.getReactions().get(3).getJDA().getUsers()) {
-                            member = null;
-                            try {
-                                member = guild.getMember(user1);
-                            } catch (Exception exception) {
-                                // empty catch block
-                            }
-                            if (member == null)
-                                continue;
-                            if (user1.getId().equals(user.getId())) {
-                                guild
-                                        .addRoleToMember(guild.getMember(user1), guild.getRolesByName(
-                                                "᠁᠁᠁ Notifications settings ᠁᠁᠁", true).get(0))
-                                        .queue();
-                                guild.addRoleToMember(guild.getMember(user1),
-                                        guild.getRolesByName("🔔 notif-events", true).get(0));
-                                continue;
-                            }
-                            guild.removeRoleFromMember(guild.getMember(user1),
-                                    guild.getRolesByName("🔔 notif-events", true).get(0));
-                        }*/
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        ScheduledFuture<?> beeperHandle = scheduler1.scheduleAtFixedRate(beeper, 1L, 1L, TimeUnit.MINUTES);
     }
 
 }

@@ -248,13 +248,13 @@ public class BotListener implements EventListener {
             return;
         }
         if (event.getMessage().getContentDisplay()
-                .startsWith(String.valueOf(this.commandMap.getPrefix(event.getGuild())) + "say")
+                .startsWith(this.commandMap.getPrefix(event.getGuild()) + "say")
                 || event.getMessage().getContentDisplay()
-                .startsWith(String.valueOf(this.commandMap.getTag()) + "say")) {
+                .startsWith(this.commandMap.getTag() + "say")) {
             event.getMessage().delete().queue();
         }
         if ((message = event.getMessage().getContentRaw()).startsWith(event.getJDA().getSelfUser().getAsMention())) {
-            message = message.replaceFirst(String.valueOf(event.getJDA().getSelfUser().getAsMention()) + " ", "");
+            message = message.replaceFirst(event.getJDA().getSelfUser().getAsMention() + " ", "");
             CommandMap.commandUser(event.getAuthor(), message, event.getMessage(), event.getChannel(),
                     event.getGuild(), event.getJDA());
         }

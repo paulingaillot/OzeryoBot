@@ -16,6 +16,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.internal.entities.UserImpl;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -256,7 +257,7 @@ public class Attack {
                 HashMap<String, Integer> building = cible.getBuilding();
                 int bunker = building.get("muraille");
                 double bonus = 1.0 + (double) bunker * 0.075;
-                System.out.println(bonus);
+
                 long def = (int) ((double) def1 * bonus);
                 try {
                     heroeA = user.getHeroe();
@@ -286,7 +287,7 @@ public class Attack {
                 }
                 ArrayList listA = null;
                 try {
-                    listA = (ArrayList) heroeA.get(user.getActiveHeroe());
+                    listA = heroeA.get(user.getActiveHeroe());
                 } catch (NullPointerException list) {
                     // empty catch block
                 }
@@ -301,13 +302,13 @@ public class Attack {
                 double APV = atk;
                 double AMagic = atk;
                 if (hero.equals("true")) {
-                    Aatk = atk + Heroe.getAtk(data.getProfils().get(user.getId()).getActiveHeroe(), levelA, user);
-                    Adef = atk + Heroe.getDef(data.getProfils().get(user.getId()).getActiveHeroe(), levelA, user);
-                    APV = atk + Heroe.getPV(data.getProfils().get(user.getId()).getActiveHeroe(), data.getProfils().get(user.getId()));
+                    Aatk = atk + Heroe.getAtk(user.getActiveHeroe(), levelA, user);
+                    Adef = atk + Heroe.getDef(user.getActiveHeroe(), levelA, user);
+                    APV = atk + Heroe.getPV(user.getActiveHeroe(), user);
                     AMagic = 0 + Heroe.getMagic(data.getProfils().get(user.getId()).getActiveHeroe(), levelA);
                 }
                 try {
-                    heroeD = data.getProfils().get(cible.getId()).getHeroe();
+                    heroeD = cible.getHeroe();
                 } catch (NullPointerException e) {
                     heroeD = new HashMap();
                     ArrayList<String> list = new ArrayList<String>();
@@ -334,7 +335,7 @@ public class Attack {
                 }
                 ArrayList listD = null;
                 try {
-                    listD = (ArrayList) heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
+                    listD = heroeD.get(cible.getActiveHeroe());
                 } catch (NullPointerException list) {
                     // empty catch block
                 }
@@ -352,11 +353,11 @@ public class Attack {
                 double Ddef = def;
                 if (isAttack.equals("false")) {
                     Datk = def
-                            + (long) Heroe.getAtk(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
+                            + (long) Heroe.getAtk(cible.getActiveHeroe(), levelD, cible);
                     Ddef = def
-                            + (long) Heroe.getDef(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, cible);
-                    DPV = def + (long) Heroe.getPV(data.getProfils().get(cible.getId()).getActiveHeroe(), data.getProfils().get(cible.getId()));
-                    DMagic = 0 + Heroe.getMagic(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD);
+                            + (long) Heroe.getDef(cible.getActiveHeroe(), levelD, cible);
+                    DPV = def + (long) Heroe.getPV(cible.getActiveHeroe(),cible);
+                    DMagic = 0 + Heroe.getMagic(cible.getActiveHeroe(), levelD);
                 } else {
                     Datk = def;
                     Ddef = def;
@@ -369,8 +370,8 @@ public class Attack {
                 while (DPV > 0.0 && APV > 0.0) {
                     int ABonus = 0 + (int) (Math.random() * (AMagic - 0.0 + 1.0));
                     int DBonus = 0 + (int) (Math.random() * (DMagic - 0.0 + 1.0));
-                    DPV -= Aatk + (double) ABonus / Ddef;
-                    APV -= Datk + (double) DBonus / Adef;
+                    DPV -= (Aatk +  ABonus) / Ddef;
+                    APV -= (Datk + DBonus) / Adef;
                 }
                 if (DPV <= 0.0) {
                     ArrayList<ArrayList<String>> mails3;
@@ -387,8 +388,8 @@ public class Attack {
                         listD.set(2, heroAtkD);
                         listD.set(3, "0");
                         listD.set(4, Long.toString(System.currentTimeMillis()));
-                        heroeD.put(data.getProfils().get(cible.getId()).getActiveHeroe(), listD);
-                        data.getProfils().get(cible.getId()).setHeroe(heroeD);
+                        heroeD.put(cible.getActiveHeroe(), listD);
+                        cible.setHeroe(heroeD);
                     }
                     if (hero.equals("true")) {
                         int cartesA = Integer.parseInt((String) listA.get(1));
@@ -400,39 +401,38 @@ public class Attack {
                         listA.set(2, "false");
                         listA.set(3, Integer.toString(calcul));
                         listA.set(4, Long.toString(System.currentTimeMillis()));
-                        heroeA.put(data.getProfils().get(user.getId()).getActiveHeroe(), listA);
-                        data.getProfils().get(user.getId()).setHeroe(heroeA);
+                        heroeA.put(user.getActiveHeroe(), listA);
+                        user.setHeroe(heroeA);
                     }
                     def -= def;
-                    long Umoney = data.getProfils().get(user.getId()).getMoney();
-                    long Cmoney = data.getProfils().get(cible.getId()).getMoney();
+                    long Umoney =user.getMoney();
+                    long Cmoney = cible.getMoney();
                     double Mperte = 0.0;
                     Double rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
-                    System.out.println(rapport);
-                    if (rapport < 0.5) {
+                    if (rapport < 0.1) {
                         Mperte = 0.0;
+                    } else if (rapport >= 0.1 && rapport < 0.25) {
+                        Mperte = 0.01;
+                    } else if (rapport >= 0.25 && rapport < 0.5) {
+                        Mperte = 0.025;
                     } else if (rapport >= 0.5 && rapport < 0.75) {
-                        Mperte = 0.0010000000000000009;
-                    } else if (rapport >= 0.75 && rapport < 1.0) {
-                        Mperte = 0.010000000000000009;
-                    } else if (rapport >= 1.0 && rapport < 2.0) {
-                        Mperte = 0.020000000000000018;
-                    } else if (rapport >= 2.0 && rapport < 5.0) {
-                        Mperte = 0.050000000000000044;
-                    } else if (rapport >= 5.0) {
-                        Mperte = 0.09999999999999998;
+                        Mperte = 0.05;
+                    } else if (rapport >= 0.75 && rapport < 1) {
+                        Mperte = 0.075;
+                    } else if (rapport >= 1) {
+                        Mperte = 0.01;
                     }
                     int perte2 = (int) ((double) Cmoney * Mperte);
-                    Umoney += (long) perte2;
-                    Cmoney -= (long) perte2;
+                    Umoney += perte2;
+                    Cmoney -= perte2;
                     try {
-                        data.getProfils().get(user.getId()).setMoney(Umoney);
+                       user.setMoney(Umoney);
                     } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setMoney(Umoney);
                     }
                     try {
-                        data.getProfils().get(cible.getId()).setMoney(Cmoney);
+                        cible.setMoney(Cmoney);
                     } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setMoney(Cmoney);
@@ -444,30 +444,29 @@ public class Attack {
                     }
                     double Pperte = 0.0;
                     rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
-                    System.out.println(rapport);
-                    if (rapport < 0.5) {
+                    if (rapport < 0.1) {
                         Pperte = 0.0;
+                    } else if (rapport >= 0.1 && rapport < 0.25) {
+                        Pperte = 0.01;
+                    } else if (rapport >= 0.25 && rapport < 0.5) {
+                        Pperte = 0.025;
                     } else if (rapport >= 0.5 && rapport < 0.75) {
-                        Pperte = 0.0010000000000000009;
+                        Pperte = 0.050;
                     } else if (rapport >= 0.75 && rapport < 1.0) {
-                        Pperte = 0.010000000000000009;
-                    } else if (rapport >= 1.0 && rapport < 2.0) {
-                        Pperte = 0.020000000000000018;
-                    } else if (rapport >= 2.0 && rapport < 5.0) {
-                        Pperte = 0.050000000000000044;
-                    } else if (rapport >= 5.0) {
-                        Pperte = 0.09999999999999998;
+                        Pperte = 0.075;
+                    } else if (rapport >= 1.0) {
+                        Pperte = 0.01;
                     }
                     int perte3 = (int) ((double) Cpop * Pperte);
-                    Cpop -= (long) perte3;
+                    Cpop -= perte3;
                     try {
-                        data.getProfils().get(cible.getId()).setHabitants(Cpop);
+                       cible.setHabitants(Cpop);
                     } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setHabitants(Cpop);
                     }
-                    HashMap<String, Integer> Ures = data.getProfils().get(user.getId()).getRes();
-                    HashMap<String, Integer> Cres = data.getProfils().get(cible.getId()).getRes();
+                    HashMap<String, Integer> Ures = user.getRes();
+                    HashMap<String, Integer> Cres = cible.getRes();
                     int Ubois = Ures.get("bois");
                     int Uargile = Ures.get("argile");
                     int Ucuir = Ures.get("cuir");
@@ -484,19 +483,19 @@ public class Attack {
                     int Ccristal = Cres.get("cristal");
                     double Rperte = 0.0;
                     rapport = ((double) trophéescible + 1.0) / ((double) trophéesuser + 1.0);
-                    System.out.println(rapport);
-                    if (rapport < 0.5) {
+
+                    if (rapport < 0.1) {
                         Rperte = 0.0;
+                    } else if (rapport >= 0.1 && rapport < 0.25) {
+                        Rperte = 0.01;
+                    } else if (rapport >= 0.25 && rapport < 0.5) {
+                        Rperte = 0.025;
                     } else if (rapport >= 0.5 && rapport < 0.75) {
-                        Rperte = 0.010000000000000009;
+                        Rperte = 0.05;
                     } else if (rapport >= 0.75 && rapport < 1.0) {
-                        Rperte = 0.020000000000000018;
-                    } else if (rapport >= 1.0 && rapport < 2.0) {
-                        Rperte = 0.050000000000000044;
-                    } else if (rapport >= 2.0 && rapport < 5.0) {
-                        Rperte = 0.09999999999999998;
-                    } else if (rapport >= 5.0) {
-                        Rperte = 0.19999999999999996;
+                        Rperte = 0.1;
+                    } else if (rapport >= 1) {
+                        Rperte = 0.2;
                     }
                     int pertebois = (int) ((double) Cbois * Rperte);
                     int perteargile = (int) ((double) Cargile * Rperte);
@@ -520,13 +519,13 @@ public class Attack {
                     Cres.put("fer", Cfer -= pertefer);
                     Cres.put("cristal", Ccristal -= pertecristal);
                     try {
-                        data.getProfils().get(user.getId()).setRes(Ures);
+                        user.setRes(Ures);
                     } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setRes(Ures);
                     }
                     try {
-                        data.getProfils().get(cible.getId()).setRes(Cres);
+                        cible.setRes(Cres);
                     } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setRes(Cres);
@@ -534,39 +533,39 @@ public class Attack {
                     int trophéesP = trophéescible;
                     int trophéesV = trophéesuser;
                     int dif = trophéesV - trophéesP;
-                    int gain = dif > 500 ? 1
-                            : (dif > 250 && dif <= 500 ? 4
-                            : (dif > 0 && dif <= 250 ? 9
-                            : (dif > -250 && dif <= 0 ? 14
-                            : (dif > -250 && dif <= -500 ? 19 : (dif < -500 ? 29 : 1)))));
+                    int gain = dif > 400 ? 1
+                            : (dif > 200 && dif <= 400 ? 4
+                            : (dif > 0 && dif <= 200 ? 9
+                            : (dif > -50 && dif <= 0 ? 14
+                            : (dif > -50 && dif <= -100 ? 19 : (dif < -100 ? 29 : 1)))));
                     trophéesV = dif < 1000 ? trophéesV + gain + 1 : (trophéesV += 0);
                     trophéesP = trophéesP > gain - 1 ? (trophéesP -= gain - 1) : 0;
                     try {
-                        data.getProfils().get(user.getId()).setTrophy(trophéesV);
+                        user.setTrophy(trophéesV);
                     } catch (NullPointerException e) {
                         data.getProfils().put(user.getId(), new Profil(user.getId()));
                         data.getProfils().get(user.getId()).setTrophy(trophéesV);
                     }
                     try {
-                        data.getProfils().get(cible.getId()).setTrophy(trophéesP);
+                        cible.setTrophy(trophéesP);
                     } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setTrophy(trophéesP);
                     }
                     try {
-                        data.getProfils().get(cible.getId()).setSoldiers(def);
+                        cible.setSoldiers(def);
                     } catch (NullPointerException e) {
                         data.getProfils().put(cible.getId(), new Profil(cible.getId()));
                         data.getProfils().get(cible.getId()).setSoldiers(def);
                     }
                    // Quest.Quest("atk", user, ((UserImpl) user).openPrivateChannel().complete(), 1);
-                    String villeCible = data.getProfils().get(cible.getId()).getHome();
+                    String villeCible = cible.getHome();
                     String ownerville = TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
                     if (!ownerville.equals(cible.getId())) {
                         boolean Umail3;
                         try {
-                            Umail3 = data.getProfils().get(user.getId()).isMail();
+                            Umail3 = user.isMail();
                         } catch (Exception e) {
                             Umail3 = false;
                         }
@@ -600,29 +599,29 @@ public class Attack {
                             mail13.add("false");
                             mail13.add("" + System.currentTimeMillis());
                             try {
-                                ArrayList<ArrayList<String>> mails5 = data.getProfils().get(user.getId()).getListMail();
+                                ArrayList<ArrayList<String>> mails5 = user.getListMail();
                                 mails5.add(0, mail13);
-                                data.getProfils().get(user.getId()).setListMail(mails5);
+                                user.setListMail(mails5);
                             } catch (NullPointerException e) {
                                 ArrayList<ArrayList<String>> mails6 = new ArrayList<ArrayList<String>>();
                                 mails6.add(0, mail13);
-                                data.getProfils().get(user.getId()).setListMail(mails6);
+                                user.setListMail(mails6);
                             }
                         }
                         return;
                     }
                     TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible));
-                    int Conquerant = data.getProfils().get(user.getId()).getConquerant();
-                    data.getProfils().get(user.getId()).setConquerant(++Conquerant);
+                    int Conquerant = user.getConquerant();
+                    user.setConquerant(++Conquerant);
                     int L = data.getProfils().get(cible.getId()).getLooser();
-                    data.getProfils().get(cible.getId()).setLooser(++L);
+                    user.setLooser(++L);
                     try {
-                        Umail2 = data.getProfils().get(user.getId()).isMail();
+                        Umail2 = user.isMail();
                     } catch (Exception e) {
                         Umail2 = false;
                     }
                     try {
-                        Cmail2 = data.getProfils().get(cible.getId()).isMail();
+                        Cmail2 = cible.isMail();
                     } catch (Exception e) {
                         Cmail2 = false;
                     }
@@ -677,13 +676,13 @@ public class Attack {
                         mail12.add("false");
                         mail12.add("" + System.currentTimeMillis());
                         try {
-                            mails3 = data.getProfils().get(user.getId()).getListMail();
+                            mails3 = user.getListMail();
                             mails3.add(0, mail12);
-                            data.getProfils().get(user.getId()).setListMail(mails3);
+                            user.setListMail(mails3);
                         } catch (NullPointerException e) {
                             mails4 = new ArrayList<ArrayList<String>>();
                             mails4.add(0, mail12);
-                            data.getProfils().get(user.getId()).setListMail(mails4);
+                            user.setListMail(mails4);
                         }
                     }
                     if (gain1 == 0) {
@@ -740,13 +739,13 @@ public class Attack {
                         mail12.add("false");
                         mail12.add("" + System.currentTimeMillis());
                         try {
-                            mails3 = data.getProfils().get(cible.getId()).getListMail();
+                            mails3 = cible.getListMail();
                             mails3.add(0, mail12);
-                            data.getProfils().get(cible.getId()).setListMail(mails3);
+                            cible.setListMail(mails3);
                         } catch (NullPointerException e) {
                             mails4 = new ArrayList();
                             mails4.add(0, mail12);
-                            data.getProfils().get(cible.getId()).setListMail(mails4);
+                            cible.setListMail(mails4);
                         }
                     }
                     CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur "
@@ -769,8 +768,8 @@ public class Attack {
                     listD.set(2, heroAtkD);
                     listD.set(3, Integer.toString(calcul));
                     listD.set(4, Long.toString(System.currentTimeMillis()));
-                    heroeD.put(data.getProfils().get(cible.getId()).getActiveHeroe(), listD);
-                    data.getProfils().get(cible.getId()).setHeroe(heroeD);
+                    heroeD.put(cible.getActiveHeroe(), listD);
+                    cible.setHeroe(heroeD);
                 }
                 if (hero.equals("true")) {
                     int cartesA = Integer.parseInt((String) listA.get(1));
@@ -779,48 +778,44 @@ public class Attack {
                     listA.set(2, "false");
                     listA.set(3, "0");
                     listA.set(4, Long.toString(System.currentTimeMillis()));
-                    heroeA.put(data.getProfils().get(user.getId()).getActiveHeroe(), listA);
-                    data.getProfils().get(user.getId()).setHeroe(heroeA);
+                    heroeA.put(user.getActiveHeroe(), listA);
+                    user.setHeroe(heroeA);
                 }
                 def = perteSoldats;
-                int trophéesV = data.getProfils().get(cible.getId()).getTrophy();
-                int trophéesP = data.getProfils().get(user.getId()).getTrophy();
+                int trophéesV = cible.getTrophy();
+                int trophéesP = user.getTrophy();
                 int dif = trophéesP - trophéesV;
-                int gain = dif > 500 ? 29
-                        : (dif > 250 && dif <= 500 ? 19
-                        : (dif > 0 && dif <= 250 ? 14
-                        : (dif > -250 && dif <= 0 ? 9
-                        : (dif > -250 && dif <= -500 ? 4 : (dif < -500 ? 1 : 1)))));
+                int gain = dif > 400 ? 1
+                        : (dif > 200 && dif <= 400 ? 4
+                        : (dif > 0 && dif <= 200 ? 9
+                        : (dif > -50 && dif <= 0 ? 14
+                        : (dif > -50 && dif <= -100 ? 19 : (dif < -100 ? 29 : 1)))));
                 trophéesV = trophéesV + gain + 1;
                 trophéesP = trophéesP > gain - 1 ? (trophéesP -= gain - 1) : 0;
                 try {
-                    data.getProfils().get(user.getId()).setTrophy(trophéesP);
+                    user.setTrophy(trophéesP);
                 } catch (NullPointerException e) {
                     data.getProfils().put(user.getId(), new Profil(user.getId()));
                     data.getProfils().get(user.getId()).setTrophy(trophéesP);
                 }
                 try {
-                    data.getProfils().get(cible.getId()).setTrophy(trophéesV);
+                    cible.setTrophy(trophéesV);
                 } catch (NullPointerException e) {
-                    data.getProfils().put(cible.getId(), new Profil(cible.getId()));
-                    data.getProfils().get(cible.getId()).setTrophy(trophéesV);
                 }
                 if (def > def1) {
                     def = def1;
                 }
                 try {
-                    data.getProfils().get(cible.getId()).setSoldiers(perteSoldats);
+                    cible.setSoldiers(perteSoldats);
                 } catch (NullPointerException e) {
-                    data.getProfils().put(cible.getId(), new Profil(cible.getId()));
-                    data.getProfils().get(cible.getId()).setSoldiers(perteSoldats);
                 }
-                String villeCible = data.getProfils().get(cible.getId()).getHome();
+                String villeCible = cible.getHome();
                 String ownerville = TextFileWriter
                         .read("/home/DiscordBot/Rasberry/données/bot/Map/" + villeCible + "/name.txt");
                 if (!ownerville.equals(cible.getId())) {
                     boolean Umail4;
                     try {
-                        Umail4 = data.getProfils().get(user.getId()).isMail();
+                        Umail4 = user.isMail();
                     } catch (Exception e) {
                         Umail4 = false;
                     }
@@ -854,28 +849,28 @@ public class Attack {
                         mail14.add("false");
                         mail14.add("" + System.currentTimeMillis());
                         try {
-                            ArrayList<ArrayList<String>> mails7 = data.getProfils().get(user.getId()).getListMail();
+                            ArrayList<ArrayList<String>> mails7 = user.getListMail();
                             mails7.add(0, mail14);
-                            data.getProfils().get(user.getId()).setListMail(mails7);
+                            user.setListMail(mails7);
                         } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails8 = new ArrayList<ArrayList<String>>();
                             mails8.add(0, mail14);
-                            data.getProfils().get(user.getId()).setListMail(mails8);
+                            user.setListMail(mails8);
                         }
                     }
                     return;
                 }
-                int Defenseur = data.getProfils().get(cible.getId()).getDefenseur();
-                data.getProfils().get(cible.getId()).setDefenseur(++Defenseur);
+                int Defenseur =cible.getDefenseur();
+                cible.setDefenseur(++Defenseur);
                 int L = data.getProfils().get(user.getId()).getLooser();
-                data.getProfils().get(user.getId()).setLooser(++L);
+                user.setLooser(++L);
                 try {
-                    Umail = data.getProfils().get(user.getId()).isMail();
+                    Umail = user.isMail();
                 } catch (Exception e) {
                     Umail = false;
                 }
                 try {
-                    Cmail = data.getProfils().get(cible.getId()).isMail();
+                    Cmail = cible.isMail();
                 } catch (Exception e) {
                     Cmail = false;
                 }
@@ -915,13 +910,13 @@ public class Attack {
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
                     try {
-                        mails = data.getProfils().get(user.getId()).getListMail();
+                        mails = user.getListMail();
                         mails.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails);
+                        user.setListMail(mails);
                     } catch (NullPointerException e) {
                         mails2 = new ArrayList<ArrayList<String>>();
                         mails2.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails2);
+                        user.setListMail(mails2);
                     }
                 }
                 if (!Cmail) {
@@ -960,19 +955,19 @@ public class Attack {
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
                     try {
-                        mails = data.getProfils().get(cible.getId()).getListMail();
+                        mails = cible.getListMail();
                         mails.add(0, mail1);
-                        data.getProfils().get(cible.getId()).setListMail(mails);
+                        cible.setListMail(mails);
                     } catch (NullPointerException e) {
                         mails2 = new ArrayList();
                         mails2.add(0, mail1);
-                        data.getProfils().get(cible.getId()).setListMail(mails2);
+                        cible.setListMail(mails2);
                     }
                 }
                 CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque** :crossed_swords: \n\nle joueur "
                         + cible.getName() + " (" + cible.getId() + ") a gagné face a " + user.getName() + " ("
                         + user.getId() + ")", DiscordBot.getjda());
-                //Quest.Quest("def", cible, ((UserImpl) user).openPrivateChannel().complete(), 1);
+                Quest.Quest("def", user, null, 1);
             } catch (Exception e) {
                 e.printStackTrace();
                 CommandMap.Log("Attack", e.getLocalizedMessage(), DiscordBot.getjda());
@@ -986,6 +981,7 @@ public class Attack {
             try {
                 boolean Umail;
                 String owner;
+
                 try {
                     owner = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt");
                 } catch (NullPointerException e) {
@@ -994,7 +990,6 @@ public class Attack {
                 if (owner.equals("") || owner == null || owner == "0") {
                     owner = "personne";
                 }
-                System.out.println(owner);
                 if (!owner.equals("personne")) {
                     double Ddef;
                     int cartesA;
@@ -1005,11 +1000,11 @@ public class Attack {
                     double Datk;
                     boolean Umail2;
                     int perteSoldats;
-                    command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
+                    command.Language lang = user.getLanguage();
                     String defHero = TextFileWriter
                             .read("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt");
                     Profil cible = data.getProfils().get(owner);
-                    command.Language langc = DiscordBot.getData().getProfils().get(cible.getId()).getLanguage();
+                    command.Language langc = cible.getLanguage();
                     int def = 0;
                     try {
                         def = Integer.parseInt(TextFileWriter
@@ -1018,7 +1013,7 @@ public class Attack {
                         def = 0;
                     }
                     try {
-                        heroeA = data.getProfils().get(user.getId()).getHeroe();
+                        heroeA = user.getHeroe();
                     } catch (NullPointerException e) {
                         heroeA = new HashMap();
                         ArrayList<String> list = new ArrayList<String>();
@@ -1045,7 +1040,7 @@ public class Attack {
                     }
                     ArrayList listA = null;
                     try {
-                        listA = (ArrayList) heroeA.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                        listA = heroeA.get(user.getActiveHeroe());
                     } catch (NullPointerException list) {
                         // empty catch block
                     }
@@ -1060,12 +1055,12 @@ public class Attack {
                     double APV = atk;
                     double AMagic = atk;
                     if (hero.equals("true")) {
-                        Aatk = atk + Heroe.getAtk(data.getProfils().get(user.getId()).getActiveHeroe(), levelA, data.getProfils().get(user.getId()));
-                        Adef = atk + Heroe.getDef(data.getProfils().get(user.getId()).getActiveHeroe(), levelA, data.getProfils().get(user.getId()));
-                        AMagic = 0 + Heroe.getMagic(data.getProfils().get(user.getId()).getActiveHeroe(), levelA);
+                        Aatk = atk + Heroe.getAtk(user.getActiveHeroe(), levelA, user);
+                        Adef = atk + Heroe.getDef(user.getActiveHeroe(), levelA, user);
+                        AMagic = 0 + Heroe.getMagic(user.getActiveHeroe(), levelA);
                     }
                     try {
-                        heroeD = data.getProfils().get(cible.getId()).getHeroe();
+                        heroeD =cible.getHeroe();
                     } catch (NullPointerException e) {
                         heroeD = new HashMap();
                         ArrayList<String> list = new ArrayList<String>();
@@ -1092,16 +1087,16 @@ public class Attack {
                     }
                     ArrayList listD = null;
                     try {
-                        listD = (ArrayList) heroeD.get(data.getProfils().get(cible.getId()).getActiveHeroe());
+                        listD = heroeD.get(cible.getActiveHeroe());
                     } catch (NullPointerException list) {
                         // empty catch block
                     }
-                    int levelD = Integer.parseInt((String) listD.get(0));
                     if (defHero.equals("true")) {
-                        Datk = def + Heroe.getAtk(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, data.getProfils().get(user.getId()));
-                        Ddef = def + Heroe.getDef(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD, data.getProfils().get(user.getId()));
-                        DPV = def + Heroe.getPV(data.getProfils().get(cible.getId()).getActiveHeroe(), cible);
-                        DMagic = 0 + Heroe.getMagic(data.getProfils().get(cible.getId()).getActiveHeroe(), levelD);
+                        int levelD = Integer.parseInt((String) listD.get(0));
+                        Datk = def + Heroe.getAtk(cible.getActiveHeroe(), levelD, cible);
+                        Ddef = def + Heroe.getDef(cible.getActiveHeroe(), levelD, cible);
+                        DPV = def + Heroe.getPV(cible.getActiveHeroe(), cible);
+                        DMagic = 0 + Heroe.getMagic(cible.getActiveHeroe(), levelD);
                     } else {
                         Datk = def;
                         Ddef = def;
@@ -1114,21 +1109,22 @@ public class Attack {
                     while (DPV > 0.0 && APV > 0.0) {
                         int ABonus = 0 + (int) (Math.random() * (AMagic - 0.0 + 1.0));
                         int DBonus = 0 + (int) (Math.random() * (DMagic - 0.0 + 1.0));
-                        DPV -= Aatk + (double) ABonus / Ddef;
-                        APV -= Datk + (double) DBonus / Adef;
+                        DPV -= (Aatk +  ABonus) / Ddef;
+                        APV -= (Datk + DBonus) / Adef;
                     }
                     if (DPV <= 0.0) {
                         boolean Umail3;
                         if (defHero.equals("true")) {
                             int cartesD = Integer.parseInt((String) listD.get(1));
                             String heroAtkD = "false";
+                            int levelD = Integer.parseInt((String) listD.get(0));
                             listD.set(0, Integer.toString(levelD));
                             listD.set(1, Integer.toString(cartesD));
                             listD.set(2, heroAtkD);
                             listD.set(3, "0");
                             listD.set(4, Long.toString(System.currentTimeMillis()));
-                            heroeD.put(data.getProfils().get(cible.getId()).getActiveHeroe(), listD);
-                            data.getProfils().get(cible.getId()).setHeroe(heroeD);
+                            heroeD.put(cible.getActiveHeroe(), listD);
+                            cible.setHeroe(heroeD);
                             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt",
                                     "false", 1);
                         }
@@ -1144,33 +1140,35 @@ public class Attack {
                             listA.set(2, "true");
                             listA.set(3, Integer.toString(pertePV));
                             listA.set(4, Long.toString(System.currentTimeMillis()));
-                            heroeA.put(data.getProfils().get(user.getId()).getActiveHeroe(), listA);
-                            data.getProfils().get(user.getId()).setHeroe(heroeA);
+                            heroeA.put(user.getActiveHeroe(), listA);
+                            user.setHeroe(heroeA);
                             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/hero.txt",
                                     "true", 1);
                         }
-                        String UserPays = data.getProfils().get(user.getId()).getCountry();
-                        String CiblePays = data.getProfils().get(cible.getId()).getCountry();
-                        atk = user.getId().equals(owner) || UserPays.equals(CiblePays) ? (atk += def) : perteSoldats;
+                        String UserPays = user.getCountry();
+                        String CiblePays = cible.getCountry();
+                        atk = user.getId().equals(owner) ? (atk += def) : perteSoldats;
                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt",
                                 Integer.toString(atk), 1);
                         TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt",
                                 user.getId(), 1);
-                        int Avant_poste = data.getProfils().get(user.getId()).getAvant_poste();
-                        data.getProfils().get(user.getId()).setAvant_poste(++Avant_poste);
-                        if (!user.getId().equals(owner) && !UserPays.equals(CiblePays)) {
+                        int Avant_poste = user.getAvant_poste();
+                       user.setAvant_poste(++Avant_poste);
+                       boolean pays = false;
+                       if(UserPays.equals(CiblePays) && !UserPays.equals("") && !UserPays.equals("aucun") && UserPays != null) pays = true;
+                        if (!user.getId().equals(owner) && pays ==false) {
                             ArrayList<String> mail1;
                             ArrayList<ArrayList<String>> mails;
                             boolean Cmail;
                             ArrayList<ArrayList<String>> mails2;
                             boolean Umail4;
                             try {
-                                Umail4 = data.getProfils().get(user.getId()).isMail();
+                                Umail4 = user.isMail();
                             } catch (Exception e) {
                                 Umail4 = false;
                             }
                             try {
-                                Cmail = data.getProfils().get(cible.getId()).isMail();
+                                Cmail = cible.isMail();
                             } catch (Exception e) {
                                 Cmail = false;
                             }
@@ -1216,13 +1214,13 @@ public class Attack {
                                 mail1.add("false");
                                 mail1.add("" + System.currentTimeMillis());
                                 try {
-                                    mails2 = data.getProfils().get(user.getId()).getListMail();
+                                    mails2 = user.getListMail();
                                     mails2.add(0, mail1);
-                                    data.getProfils().get(user.getId()).setListMail(mails2);
+                                    user.setListMail(mails2);
                                 } catch (NullPointerException e) {
                                     mails = new ArrayList<ArrayList<String>>();
                                     mails.add(0, mail1);
-                                    data.getProfils().get(user.getId()).setListMail(mails);
+                                    user.setListMail(mails);
                                 }
                             }
                             if (!Cmail) {
@@ -1248,27 +1246,28 @@ public class Attack {
                                 }
                                 if (langc == command.Language.fr) {
                                     mail1.add(
-                                            ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez perdu face a "
+                                            ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez perdu votre zone de ressource en "
+                                                    + cible2.replace("_", " ") +" face a "
                                                     + user.getName() + ". Vous perdez " + def + " soldats");
                                 }
                                 if (langc == command.Language.en) {
                                     mail1.add(
-                                            ":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** against "
-                                                    + user.getName() + ". You lose " + def + " soldiers");
+                                            ":crossed_swords:  Ressource defense report :crossed_swords: \n **You lose** your ressource area in "
+                                                    + cible2.replace("_", " ") + " against "  + user.getName() + ". You lose " + def + " soldiers");
                                 }
                                 mail1.add("false");
                                 mail1.add("" + System.currentTimeMillis());
                                 try {
-                                    mails2 = data.getProfils().get(cible.getId()).getListMail();
+                                    mails2 = cible.getListMail();
                                     mails2.add(0, mail1);
-                                    data.getProfils().get(cible.getId()).setListMail(mails2);
+                                    cible.setListMail(mails2);
                                 } catch (NullPointerException e) {
                                     mails = new ArrayList();
                                     mails.add(0, mail1);
-                                    data.getProfils().get(cible.getId()).setListMail(mails);
+                                    cible.setListMail(mails);
                                 }
                             }
-                           // Quest.Quest("def", cible, ((UserImpl) cible).openPrivateChannel().complete(), 1);
+                            Quest.Quest("def", cible,null,  1);
                             CommandMap.PublicLog(
                                     ":crossed_swords: **Rapport d'attaque de ressources** :crossed_swords: \n\nle joueur "
                                             + user.getName() + " (" + user.getId()
@@ -1278,7 +1277,7 @@ public class Attack {
                             break block117;
                         }
                         try {
-                            Umail3 = data.getProfils().get(user.getId()).isMail();
+                            Umail3 =user.isMail();
                         } catch (Exception e) {
                             Umail3 = false;
                         }
@@ -1310,13 +1309,13 @@ public class Attack {
                             mail1.add("false");
                             mail1.add("" + System.currentTimeMillis());
                             try {
-                                ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                                ArrayList<ArrayList<String>> mails = user.getListMail();
                                 mails.add(0, mail1);
-                                data.getProfils().get(user.getId()).setListMail(mails);
+                                user.setListMail(mails);
                             } catch (NullPointerException e) {
                                 ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                                 mails.add(0, mail1);
-                                data.getProfils().get(user.getId()).setListMail(mails);
+                                user.setListMail(mails);
                             }
                         }
                         CommandMap.PublicLog(
@@ -1330,6 +1329,7 @@ public class Attack {
                     perteSoldats = (int) ((double) def * (DPV * 1.0 / (double) def));
                     if (defHero.equals("true")) {
                         int cartesD = Integer.parseInt((String) listD.get(1));
+                        int levelD = Integer.parseInt((String) listD.get(0));
                         String heroAtkD = "true";
                         int pvD = Integer.parseInt((String) listD.get(3));
                         double calcul1 = DPV * 1.0 / (double) (def + pvD);
@@ -1340,8 +1340,8 @@ public class Attack {
                         listD.set(2, heroAtkD);
                         listD.set(3, Integer.toString(calcul));
                         listD.set(4, Long.toString(System.currentTimeMillis()));
-                        heroeD.put(data.getProfils().get(cible.getId()).getActiveHeroe(), listD);
-                        data.getProfils().get(cible.getId()).setHeroe(heroeD);
+                        heroeD.put(cible.getActiveHeroe(), listD);
+                        cible.setHeroe(heroeD);
                     }
                     if (hero.equals("true")) {
                         cartesA = Integer.parseInt((String) listA.get(1));
@@ -1350,25 +1350,27 @@ public class Attack {
                         listA.set(2, "false");
                         listA.set(3, "0");
                         listA.set(4, Long.toString(System.currentTimeMillis()));
-                        heroeA.put(data.getProfils().get(user.getId()).getActiveHeroe(), listA);
-                        data.getProfils().get(user.getId()).setHeroe(heroeA);
+                        heroeA.put(user.getActiveHeroe(), listA);
+                        user.setHeroe(heroeA);
                     }
-                    String UserPays = data.getProfils().get(user.getId()).getCountry();
-                    String CiblePays = data.getProfils().get(cible.getId()).getCountry();
-                    def = user.getId().equals(owner) || UserPays.equals(CiblePays) ? atk + def : perteSoldats;
+                    String UserPays = user.getCountry();
+                    String CiblePays = cible.getCountry();
+                    def = user.getId().equals(owner) ? atk + def : perteSoldats;
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/soldier.txt",
                             Integer.toString(def), 1);
-                    if (!user.getId().equals(owner) && !UserPays.equals(CiblePays)) {
+                    boolean pays = false;
+                    if(UserPays.equals(CiblePays) && !UserPays.equals("") && !UserPays.equals("aucun") && UserPays != null) pays = true;
+                    if (!user.getId().equals(owner) && pays == false) {
                         ArrayList<String> mail1;
                         ArrayList<ArrayList<String>> mails;
                         boolean Cmail;
                         try {
-                            Umail2 = data.getProfils().get(user.getId()).isMail();
+                            Umail2 = user.isMail();
                         } catch (Exception e) {
                             Umail2 = false;
                         }
                         try {
-                            Cmail = data.getProfils().get(cible.getId()).isMail();
+                            Cmail = cible.isMail();
                         } catch (Exception e) {
                             Cmail = false;
                         }
@@ -1395,24 +1397,24 @@ public class Attack {
                             }
                             if (lang == command.Language.fr) {
                                 mail1.add(
-                                        ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu face a "
+                                        ":crossed_swords: Rapport d'Attaque de ressources :crossed_swords: \n Vous avez perdu votre attaque contre la zone de ressource en "+cible2.replaceAll("_", " ")+" face a "
                                                 + cible.getName() + ". Vous perdez " + atk + "soldats");
                             }
                             if (lang == command.Language.en) {
                                 mail1.add(
-                                        ":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** against "
+                                        ":crossed_swords: Ressources attack report :crossed_swords: \n **You lose** your ressource area in "+cible2.replaceAll("_", " ")+" against "
                                                 + cible.getName() + ". You lose " + atk + " soldiers");
                             }
                             mail1.add("false");
                             mail1.add("" + System.currentTimeMillis());
                             try {
-                                ArrayList<ArrayList<String>> mails3 = data.getProfils().get(user.getId()).getListMail();
+                                ArrayList<ArrayList<String>> mails3 =user.getListMail();
                                 mails3.add(0, mail1);
-                                data.getProfils().get(user.getId()).setListMail(mails3);
+                                user.setListMail(mails3);
                             } catch (NullPointerException e) {
                                 mails = new ArrayList<ArrayList<String>>();
                                 mails.add(0, mail1);
-                                data.getProfils().get(user.getId()).setListMail(mails);
+                                user.setListMail(mails);
                             }
                         }
                         if (!Cmail) {
@@ -1438,25 +1440,25 @@ public class Attack {
                             }
                             if (langc == command.Language.fr) {
                                 mail1.add(
-                                        ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné face a "
+                                        ":crossed_swords:  Rapport de Defense de ressources:crossed_swords: \n Vous avez gagné la defense du point de ressource en "+cible2.replaceAll("_", " ")+" face a "
                                                 + user.getName() + ". Vous perdez " + atk + " soldats");
                             }
                             if (langc == command.Language.en) {
                                 mail1.add(
-                                        ":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** against "
+                                        ":crossed_swords:  Ressource defense report :crossed_swords: \n **You won** the defense of the ressource point in "+cible2.replaceAll("_", "")+" against "
                                                 + user.getName() + ". You lose " + atk + " soldiers");
                             }
                             mail1.add("false");
                             mail1.add("" + System.currentTimeMillis());
                             try {
-                                ArrayList<ArrayList<String>> mails4 = data.getProfils().get(cible.getId())
+                                ArrayList<ArrayList<String>> mails4 = cible
                                         .getListMail();
                                 mails4.add(0, mail1);
-                                data.getProfils().get(cible.getId()).setListMail(mails4);
+                                cible.setListMail(mails4);
                             } catch (NullPointerException e) {
                                 mails = new ArrayList();
                                 mails.add(0, mail1);
-                                data.getProfils().get(cible.getId()).setListMail(mails);
+                                cible.setListMail(mails);
                             }
                         }
                         //Quest.Quest("def", cible, ((UserImpl) cible).getPrivateChannel(), 1);
@@ -1469,7 +1471,7 @@ public class Attack {
                         break block117;
                     }
                     try {
-                        Umail2 = data.getProfils().get(user.getId()).isMail();
+                        Umail2 = user.isMail();
                     } catch (Exception e) {
                         Umail2 = false;
                     }
@@ -1505,13 +1507,13 @@ public class Attack {
                         mail1.add("false");
                         mail1.add("" + System.currentTimeMillis());
                         try {
-                            ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                            ArrayList<ArrayList<String>> mails = user.getListMail();
                             mails.add(0, mail1);
-                            data.getProfils().get(user.getId()).setListMail(mails);
+                            user.setListMail(mails);
                         } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                             mails.add(0, mail1);
-                            data.getProfils().get(user.getId()).setListMail(mails);
+                            user.setListMail(mails);
                         }
                     }
                     CommandMap.PublicLog(
@@ -1531,7 +1533,7 @@ public class Attack {
                 TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cible2 + "/owner.txt",  user.getId(),
                         1);
                 try {
-                    Umail = data.getProfils().get(user.getId()).isMail();
+                    Umail = user.isMail();
                 } catch (Exception e) {
                     Umail = false;
                 }
@@ -1566,13 +1568,13 @@ public class Attack {
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
                     try {
-                        ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                        ArrayList<ArrayList<String>> mails = user.getListMail();
                         mails.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails);
+                        user.setListMail(mails);
                     } catch (NullPointerException e) {
                         ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                         mails.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails);
+                        user.setListMail(mails);
                     }
                 }
                 CommandMap.PublicLog(
@@ -1596,11 +1598,13 @@ public class Attack {
                 boolean Umail;
                 double pvB = Double.parseDouble(
                         TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt"));
+                double pvB2 = Double.parseDouble(
+                        TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt"));
                 int DBonus;
-                command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
+                command.Language lang = user.getLanguage();
                 ProfilData data = DiscordBot.getData();
                 try {
-                    heroe = data.getProfils().get(user.getId()).getHeroe();
+                    heroe = user.getHeroe();
                 } catch (NullPointerException e) {
                     heroe = new HashMap();
                     ArrayList<String> list2 = new ArrayList<String>();
@@ -1627,15 +1631,15 @@ public class Attack {
                 }
                 ArrayList list = null;
                 try {
-                    list = (ArrayList) heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                    list = heroe.get(user.getActiveHeroe());
                 } catch (NullPointerException list2) {
                     // empty catch block
                 }
                 int level = Integer.parseInt((String) list.get(0));
-                double pvU = Heroe.getPV(data.getProfils().get(user.getId()).getActiveHeroe(), data.getProfils().get(user.getId()));
-                double atkU = Heroe.getAtk(data.getProfils().get(user.getId()).getActiveHeroe(), level, data.getProfils().get(user.getId()));
-                double defU = Heroe.getDef(data.getProfils().get(user.getId()).getActiveHeroe(), level, data.getProfils().get(user.getId()));
-                double magU = Heroe.getMagic(data.getProfils().get(user.getId()).getActiveHeroe(), level);
+                double pvU = Heroe.getPV(user.getActiveHeroe(), user);
+                double atkU = Heroe.getAtk(user.getActiveHeroe(), level, user);
+                double defU = Heroe.getDef(user.getActiveHeroe(), level, user);
+                double magU = Heroe.getMagic(user.getActiveHeroe(), level);
                 double atkB = Integer.parseInt(
                         TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
                 double defB = Integer.parseInt(
@@ -1643,25 +1647,26 @@ public class Attack {
                 double magB = Integer.parseInt(
                         TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/atk.txt"));
                 double pvBSosstart = pvB;
-                for (pvB = Double.parseDouble((String) TextFileWriter.read(
-                        (String) new java.lang.StringBuilder((String) "/home/DiscordBot/Rasberry/données/bot/Map/")
-                                .append((String) cibleId).append((String) "/pv.txt").toString())); pvU > 0.0
-                             && pvB > 0.0; pvB -= atkU + (double) ABonus / defB, pvU -= atkB
-                        + (double) DBonus / defU) {
-                    ABonus = 0 + (int) (Math.random() * (magU - 0.0 + 1.0));
-                    DBonus = 0 + (int) (Math.random() * (magB - 0.0 + 1.0));
+                while (pvB > 0.0 && pvU > 0.0) {
+                     ABonus = 0 + (int) (Math.random() * (magU - 0.0 + 1.0));
+                     DBonus = 0 + (int) (Math.random() * (magB - 0.0 + 1.0));
+                    pvB -= (atkU +  ABonus) / defB;
+                    pvU -= (atkB + DBonus) / defU;
                 }
                 if (pvU <= 0.0 && pvB > 0.0) {
                     boolean Umail2;
                     list.set(2, "false");
                     list.set(3, "0");
                     list.set(4, Long.toString(System.currentTimeMillis()));
-                    heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
-                    data.getProfils().get(user.getId()).setHeroe(heroe);
+                    heroe.put(user.getActiveHeroe(), list);
+                    user.setHeroe(heroe);
                     TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/pv.txt",
                             Integer.toString((int) pvB), 1);
+                    TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/attackers/");
+                    TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/attackers/"+user.getId()+".txt",
+                            Integer.toString((int)(pvB2-pvB)), 1);
                     try {
-                        Umail2 = data.getProfils().get(user.getId()).isMail();
+                        Umail2 = user.isMail();
                     } catch (Exception e) {
                         Umail2 = false;
                     }
@@ -1702,13 +1707,13 @@ public class Attack {
                         mail1.add("false");
                         mail1.add("" + System.currentTimeMillis());
                         try {
-                            ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                            ArrayList<ArrayList<String>> mails = user.getListMail();
                             mails.add(0, mail1);
-                            data.getProfils().get(user.getId()).setListMail(mails);
+                            user.setListMail(mails);
                         } catch (NullPointerException e) {
                             ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                             mails.add(0, mail1);
-                            data.getProfils().get(user.getId()).setListMail(mails);
+                            user.setListMail(mails);
                         }
                     }
                     CommandMap
@@ -1719,23 +1724,69 @@ public class Attack {
                                     DiscordBot.getjda());
                     break block52;
                 }
+
                 list.set(2, "false");
                 list.set(3, Integer.toString((int) pvU));
                 list.set(4, Long.toString(System.currentTimeMillis()));
-                heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
-                data.getProfils().get(user.getId()).setHeroe(heroe);
+                heroe.put(user.getActiveHeroe(), list);
+                user.setHeroe(heroe);
                 int levelB = Integer.parseInt(
                         TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/bosslevel.txt"));
+
+                TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/attackers/");
+                for(File file : TextFileWriter.folderlist("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId + "/attackers/")) {
+
+                    Profil cible = data.getProfils().get(file.getName().replaceAll(".txt", ""));
+
+                        int aleaLB = (1 + (int)(Math.random() * ((levelB - 1) + 1)))/2;
+                        if(aleaLB == 0) aleaLB++;
+                        int lb = cible.getLootbox();
+                        cible.setLootbox(lb += aleaLB);
+
+                        ArrayList<String> mail1 = new ArrayList<String>();
+                        if (lang == command.Language.fr) {
+                            mail1.add("Donjon Vaincu");
+                        }
+                        if (lang == command.Language.en) {
+                            mail1.add("Dungeon clear");
+                        }
+                        if (lang == command.Language.fr) {
+                            mail1.add(
+                                    ":crossed_swords: Donjon Vaincu :crossed_swords: \n Le Boss du Donjon a été vaincu par "+user.getName()+"."
+                                          +". \n Vous avez obtenu " + aleaLB + " lootbox pour avoir aidé a tué le boss.");
+                        }
+                        if (lang == command.Language.en) {
+                            mail1.add(
+                                    ":crossed_swords: Dungeon clear :crossed_swords: \n The dungeon boss has been killed by "+user.getName()+"."
+                                            +"\n You received " + aleaLB + " lootbox for helping to kill the boss.");
+                        }
+                        mail1.add("false");
+                        mail1.add("" + System.currentTimeMillis());
+                        try {
+                            ArrayList<ArrayList<String>> mails = cible.getListMail();
+                            mails.add(0, mail1);
+                            cible.setListMail(mails);
+                        } catch (NullPointerException e) {
+                            ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
+                            mails.add(0, mail1);
+                            cible.setListMail(mails);
+                        }
+
+
+
+                }
+
                 try {
                     TextFileWriter.recursifDelete(new File("/home/DiscordBot/Rasberry/données/bot/Map/" + cibleId));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 int aleaLB = 1 + (int) (Math.random() * (double) (levelB - 1 + 1));
-                int lb = data.getProfils().get(user.getId()).getLootbox();
-                data.getProfils().get(user.getId()).setLootbox(lb += aleaLB);
+                int lb = user.getLootbox();
+                user.setLootbox(lb += aleaLB);
                 try {
-                    Umail = data.getProfils().get(user.getId()).isMail();
+                    Umail = user.isMail();
                 } catch (Exception e) {
                     Umail = false;
                 }
@@ -1776,25 +1827,26 @@ public class Attack {
                     mail1.add("false");
                     mail1.add("" + System.currentTimeMillis());
                     try {
-                        ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                        ArrayList<ArrayList<String>> mails = user.getListMail();
                         mails.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails);
+                        user.setListMail(mails);
                     } catch (NullPointerException e) {
                         ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                         mails.add(0, mail1);
-                        data.getProfils().get(user.getId()).setListMail(mails);
+                        user.setListMail(mails);
                     }
                 }
                 CommandMap.PublicLog(":crossed_swords: **Rapport d'attaque de donjon** :crossed_swords: \n\nle joueur "
                         + user.getName() + " (" + user.getId() + ") a vaincu le boss du donjon en "
                         + cibleId.replace("_", " "), DiscordBot.getjda());
             } catch (Exception e) {
+                e.printStackTrace();
                 boolean Umail;
                 HashMap<String, ArrayList<String>> heroe;
-                command.Language lang = DiscordBot.getData().getProfils().get(user.getId()).getLanguage();
+                command.Language lang = user.getLanguage();
                 ProfilData data = DiscordBot.getData();
                 try {
-                    heroe = data.getProfils().get(user.getId()).getHeroe();
+                    heroe = user.getHeroe();
                 } catch (NullPointerException e1) {
                     heroe = new HashMap();
                     ArrayList<String> list3 = new ArrayList<String>();
@@ -1821,18 +1873,18 @@ public class Attack {
                 }
                 ArrayList list = null;
                 try {
-                    list = (ArrayList) heroe.get(data.getProfils().get(user.getId()).getActiveHeroe());
+                    list = heroe.get(user.getActiveHeroe());
                 } catch (NullPointerException list3) {
                     // empty catch block
                 }
-                double pvU = Heroe.getPV(data.getProfils().get(user.getId()).getActiveHeroe(), data.getProfils().get(user.getId()));
+                double pvU = Heroe.getPV(user.getActiveHeroe(), user);
                 list.set(2, "false");
                 list.set(3, Integer.toString((int) pvU));
                 list.set(4, Long.toString(System.currentTimeMillis()));
-                heroe.put(data.getProfils().get(user.getId()).getActiveHeroe(), list);
-                data.getProfils().get(user.getId()).setHeroe(heroe);
+                heroe.put(user.getActiveHeroe(), list);
+                user.setHeroe(heroe);
                 try {
-                    Umail = data.getProfils().get(user.getId()).isMail();
+                    Umail = user.isMail();
                 } catch (Exception e1) {
                     Umail = false;
                 }
@@ -1869,13 +1921,13 @@ public class Attack {
                 mail1.add("false");
                 mail1.add("" + System.currentTimeMillis());
                 try {
-                    ArrayList<ArrayList<String>> mails = data.getProfils().get(user.getId()).getListMail();
+                    ArrayList<ArrayList<String>> mails = user.getListMail();
                     mails.add(0, mail1);
-                    data.getProfils().get(user.getId()).setListMail(mails);
+                    user.setListMail(mails);
                 } catch (NullPointerException e1) {
                     ArrayList<ArrayList<String>> mails = new ArrayList<ArrayList<String>>();
                     mails.add(0, mail1);
-                    data.getProfils().get(user.getId()).setListMail(mails);
+                    user.setListMail(mails);
                 }
             }
         }
@@ -1922,13 +1974,16 @@ public class Attack {
         }
         int x = 0;
         int y = 0;
-        User cible = null;
+        Profil cible = null;
         try {
-            cible = message.getMentionedUsers().get(0);
+            cible = data.getProfils().get(message.getMentionedUsers().get(0).getId());
         } catch (IndexOutOfBoundsException e) {
             try {
-                cible = jda.getUserById(c1);
-            } catch (NumberFormatException e1) {
+                if(!c1.equals("0")) {
+                    cible = data.getProfils().get(c1);
+                    cible.getId();
+                }
+            } catch (Exception e1) {
                 cible = null;
             }
         }
@@ -1950,12 +2005,14 @@ public class Attack {
                 return;
             }
             try {
-                cible = jda.getUserById(
+                cible = data.getProfils().get(
                         TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt"));
-            } catch (NumberFormatException e) {
-                // empty catch block
+                cible.getId();
+            } catch (Exception e) {
+                cible = null;
             }
         }
+
         String ActivePet = TextFileWriter.read("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/pet.txt");
         HashMap<String, ArrayList<String>> pet = data.getProfils().get(user.getId()).getPet();
         try {
@@ -1973,6 +2030,7 @@ public class Attack {
         double operationpet2 = Math.sqrt(operationpet);
         double Pet_Level = Math.round(operationpet2);
         double pet_bonus = 1.0 + 0.03 * Pet_Level;
+
         if (cible == null) {
             long duree;
             String name;
@@ -1994,7 +2052,7 @@ public class Attack {
             if (name.equals("dungeon")) {
                 HashMap<String, ArrayList<String>> heroe;
                 long duree2;
-                ArrayList list;
+                ArrayList list = null;
                 try {
                     heroe = data.getProfils().get(user.getId()).getHeroe();
                 } catch (NullPointerException e) {
@@ -2023,25 +2081,26 @@ public class Attack {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    list = (ArrayList) heroe.get(activeHero);
+                    list = heroe.get(activeHero);
                 } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
                                 .queue();
+                        return;
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage(
                                 "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
                                 .queue();
+                        return;
                     }
-                    return;
                 }
-                boolean heroAtk = ((String) list.get(2)).equals("true");
+                boolean heroAtk = list.get(2).equals("true");
                 if (heroAtk) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
+                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuellement.").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("You hero is already in attack , you can't use it actually.").queue();
@@ -2060,9 +2119,9 @@ public class Attack {
                 int xC = x;
                 int yC = y;
                 double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
-                System.out.println(operation);
+
                 double durée = Math.sqrt(operation);
-                System.out.println();
+
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis((long) (durée * 3600000.0));
                 int heure = calendar.get(11) - 1;
@@ -2075,7 +2134,7 @@ public class Attack {
                     duree2 = 1L;
                 }
                 long DateFin = System.currentTimeMillis() + duree2;
-                String cible2 = String.valueOf(x) + "_" + y;
+                String cible2 = x + "_" + y;
                 ArrayList<String> list1 = new ArrayList<String>();
                 list1.add(Long.toString(DateFin));
                 list1.add(cible2);
@@ -2087,8 +2146,6 @@ public class Attack {
                     map.put(DateFin, list1);
                 } catch (NullPointerException e) {
                     map = new HashMap();
-                    System.out.println(DateFin);
-                    System.out.println(list1);
                     map.put(DateFin, list1);
                 }
                 data.getProfils().get(user.getId()).setAttack(map);
@@ -2103,190 +2160,190 @@ public class Attack {
                             + "m. A private message will be send to you when the fight will stop.").queue();
                 }
                 return;
-            }
-            String cible2 = String.valueOf(x) + "_" + y;
-            int atk = 0;
-            try {
-                atk = Integer.parseInt(args[2]);
-            } catch (IndexOutOfBoundsException e) {
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("Please type a valid  soldier number.").queue();
-                }
-                return;
-            } catch (NumberFormatException e) {
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("Please type a valid  soldier number.").queue();
-                }
-                return;
-            }
-            if (atk < 0) {
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("Please type a valid  soldier number.").queue();
-                }
-                return;
-            }
-            String c3 = "";
-            try {
-                c3 = args[3];
-            } catch (IndexOutOfBoundsException heroAtk) {
-                // empty catch block
-            }
-            String hero = "false";
-            if (c3.equals("hero")) {
-                hero = "true";
-            }
-            if (hero.equals("true")) {
-                ArrayList list;
-                HashMap<String, ArrayList<String>> heroe;
+            } else {
+
+                String cible2 = x + "_" + y;
+                int atk = 0;
                 try {
-                    heroe = data.getProfils().get(user.getId()).getHeroe();
-                } catch (NullPointerException e) {
-                    heroe = new HashMap();
-                    list = new ArrayList();
-                    list.add("1");
-                    list.add("0");
-                    list.add("false");
-                    list.add("0");
-                    heroe.put("Karl", list);
-                    heroe.put("Valkyrie", null);
-                    heroe.put("Ouranos", null);
-                    heroe.put("Oeil", null);
-                    heroe.put("Ikaryus", null);
-                    heroe.put("Yegarde", null);
-                    heroe.put("Angel", null);
-                    heroe.put("Zhen", null);
-                    heroe.put("Hearth", null);
-                    heroe.put("Lixie", null);
-                    heroe.put("Akashi", null);
-                    heroe.put("Rose", null);
-                    heroe.put("Hell", null);
-                    heroe.put("Spirita", null);
-                    heroe.put("Tempest", null);
-                    heroe.put("Ivoire", null);
-                }
-                String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
-                try {
-                    list = (ArrayList) heroe.get(activeHero);
-                } catch (NullPointerException e) {
+                    atk = Integer.parseInt(args[2]);
+                } catch (IndexOutOfBoundsException e) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage(
-                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
-                                .queue();
+                        channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage(
-                                "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
-                                .queue();
+                        channel.sendMessage("Please type a valid  soldier number.").queue();
+                    }
+                    return;
+                } catch (NumberFormatException e) {
+                    if (lang == command.Language.fr) {
+                        channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
+                    }
+                    if (lang == command.Language.en) {
+                        channel.sendMessage("Please type a valid  soldier number.").queue();
                     }
                     return;
                 }
-                boolean heroAtk = ((String) list.get(2)).equals("true");
-                if (heroAtk) {
+                long soldier = data.getProfils().get(user.getId()).getSoldiers();
+                if ((long) atk > soldier) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage(
-                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement.").queue();
+                        channel.sendMessage("Vous ne pouvez pas attaquer avec plus de soldats que vous n'en avez.").queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage("Your hero is already in attack, you can't use it actually.").queue();
+                        channel.sendMessage("You can't attack with more soldiers you actually have.").queue();
                     }
                     return;
                 }
-                String heroAtk1 = "true";
-                int pv = Integer.parseInt((String) list.get(3));
-                list.set(2, heroAtk1);
-                list.set(3, Integer.toString(pv));
-                list.set(4, Long.toString(System.currentTimeMillis()));
-            }
-            String userHome = data.getProfils().get(user.getId()).getHome();
-            String[] strU = userHome.split("_");
-            int xU = Integer.parseInt(strU[0]);
-            int yU = Integer.parseInt(strU[1]);
-            int xC = x;
-            int yC = y;
-            double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
-            System.out.println(operation);
-            double durée = Math.sqrt(operation);
-            System.out.println(durée);
-            long bonus = 0L;
-            if (Pet_Bonus.equals("spped")) {
-                bonus = (long) (60000.0 * pet_bonus);
-            }
-            if ((duree = (long) (durée * 3600000.0 - (double) bonus)) <= 0L) {
-                duree = 1L;
-            }
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(duree);
-            int heure = calendar.get(11) - 1;
-            int minutes = calendar.get(12);
-            long DateFin = System.currentTimeMillis() + duree;
-            ArrayList<String> list = new ArrayList<String>();
-            list.add(Long.toString(DateFin));
-            list.add(cible2);
-            list.add(Integer.toString(atk));
-            list.add(hero);
-            HashMap<Long, ArrayList<String>> map = new HashMap();
-            try {
-                map = data.getProfils().get(user.getId()).getAttack();
-                System.out.println(DateFin);
-                System.out.println(list);
-                map.put(DateFin, list);
-            } catch (NullPointerException e) {
-                map = new HashMap();
-                System.out.println(DateFin);
-                System.out.println(list);
-                map.put(DateFin, list);
-            }
-            long soldier = data.getProfils().get(user.getId()).getSoldiers();
-            if ((long) atk > soldier) {
+
+                if (atk < 0) {
+                    if (lang == command.Language.fr) {
+                        channel.sendMessage("Veuillez indiquer un nombre de soldats correct.").queue();
+                    }
+                    if (lang == command.Language.en) {
+                        channel.sendMessage("Please type a valid  soldier number.").queue();
+                    }
+                    return;
+                }
+                String c3 = "";
+                try {
+                    c3 = args[3];
+                } catch (IndexOutOfBoundsException heroAtk) {
+                    // empty catch block
+                }
+                String hero = "false";
+                if (c3.equals("hero")) {
+                    hero = "true";
+                }
+                if (hero.equals("true")) {
+                    ArrayList list;
+                    HashMap<String, ArrayList<String>> heroe;
+                    try {
+                        heroe = data.getProfils().get(user.getId()).getHeroe();
+                    } catch (NullPointerException e) {
+                        heroe = new HashMap();
+                        list = new ArrayList();
+                        list.add("1");
+                        list.add("0");
+                        list.add("false");
+                        list.add("0");
+                        heroe.put("Karl", list);
+                        heroe.put("Valkyrie", null);
+                        heroe.put("Ouranos", null);
+                        heroe.put("Oeil", null);
+                        heroe.put("Ikaryus", null);
+                        heroe.put("Yegarde", null);
+                        heroe.put("Angel", null);
+                        heroe.put("Zhen", null);
+                        heroe.put("Hearth", null);
+                        heroe.put("Lixie", null);
+                        heroe.put("Akashi", null);
+                        heroe.put("Rose", null);
+                        heroe.put("Hell", null);
+                        heroe.put("Spirita", null);
+                        heroe.put("Tempest", null);
+                        heroe.put("Ivoire", null);
+                    }
+                    String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
+                    try {
+                        list = heroe.get(activeHero);
+                    } catch (NullPointerException e) {
+                        if (lang == command.Language.fr) {
+                            channel.sendMessage(
+                                    "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par en selectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                    .queue();
+                        }
+                        if (lang == command.Language.en) {
+                            channel.sendMessage(
+                                    "You don't have any hero selected. Try first to select a hero with the command ``=hero select`` if you want to attack with it.")
+                                    .queue();
+                        }
+                        return;
+                    }
+                    boolean heroAtk = list.get(2).equals("true");
+                    if (heroAtk) {
+                        if (lang == command.Language.fr) {
+                            channel.sendMessage(
+                                    "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuellement.").queue();
+                        }
+                        if (lang == command.Language.en) {
+                            channel.sendMessage("Your hero is already in attack, you can't use it actually.").queue();
+                        }
+                        return;
+                    }
+                    String heroAtk1 = "true";
+                    int pv = Integer.parseInt((String) list.get(3));
+                    list.set(2, heroAtk1);
+                    list.set(3, Integer.toString(pv));
+                    list.set(4, Long.toString(System.currentTimeMillis()));
+                }
+                String userHome = data.getProfils().get(user.getId()).getHome();
+                String[] strU = userHome.split("_");
+                int xU = Integer.parseInt(strU[0]);
+                int yU = Integer.parseInt(strU[1]);
+                int xC = x;
+                int yC = y;
+                double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
+
+                double durée = Math.sqrt(operation);
+
+                long bonus = 0L;
+                if (Pet_Bonus.equals("spped")) {
+                    bonus = (long) (60000.0 * pet_bonus);
+                }
+                if ((duree = (long) (durée * 3600000.0 - (double) bonus)) <= 0L) {
+                    duree = 1L;
+                }
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(duree);
+                int heure = calendar.get(11) - 1;
+                int minutes = calendar.get(12);
+                long DateFin = System.currentTimeMillis() + duree;
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(Long.toString(DateFin));
+                list.add(x + "_" + y);
+                list.add(Integer.toString(atk));
+                list.add(hero);
+                HashMap<Long, ArrayList<String>> map = new HashMap();
+                try {
+                    map = data.getProfils().get(user.getId()).getAttack();
+
+                    map.put(DateFin, list);
+                } catch (NullPointerException e) {
+                    map = new HashMap();
+
+                    map.put(DateFin, list);
+                }
+
+                soldier -= atk;
+                try {
+                    data.getProfils().get(user.getId()).setSoldiers(soldier);
+                } catch (NullPointerException e) {
+                    data.getProfils().put(user.getId(), new Profil(user.getId()));
+                    data.getProfils().get(user.getId()).setSoldiers(soldier);
+                }
+                try {
+                    data.getProfils().get(user.getId()).setAttack(map);
+                } catch (NullPointerException e) {
+                    data.getProfils().put(user.getId(), new Profil(user.getId()));
+                    data.getProfils().get(user.getId()).setAttack(map);
+                }
                 if (lang == command.Language.fr) {
-                    channel.sendMessage("Vous ne pouvez pas attaquer avec plus de soldats que vous n'en avez.").queue();
+                    channel.sendMessage("Vous venez d'attaquer en " + x + "," + y + " avec " + atk
+                            + " soldats. Vos soldats arriveront a destination dans " + heure + "h" + minutes
+                            + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage("You can't attack with more soldiers you actually have.").queue();
+                    channel.sendMessage("You just attack in " + x + "," + y + " with " + atk
+                            + " soldiers. Your soldiers will arive at this point in " + heure + "h" + minutes
+                            + "m. A private message will be send you when the fight will stop.").queue();
                 }
-                return;
-            }
-            if (atk <= 0) {
-                if (lang == command.Language.fr) {
-                    channel.sendMessage("Veuillez indiquer un nombre valide de soldats.").queue();
-                }
-                if (lang == command.Language.en) {
-                    channel.sendMessage("Please type a valid soldiers number.").queue();
-                }
-            }
-            soldier -= (long) atk;
-            try {
-                data.getProfils().get(user.getId()).setSoldiers(soldier);
-            } catch (NullPointerException e) {
-                data.getProfils().put(user.getId(), new Profil(user.getId()));
-                data.getProfils().get(user.getId()).setSoldiers(soldier);
-            }
-            try {
-                data.getProfils().get(user.getId()).setAttack(map);
-            } catch (NullPointerException e) {
-                data.getProfils().put(user.getId(), new Profil(user.getId()));
-                data.getProfils().get(user.getId()).setAttack(map);
-            }
-            if (lang == command.Language.fr) {
-                channel.sendMessage("Vous venez d'attaquer en " + x + "," + y + " avec " + atk
-                        + " soldats. Vos soldats arriveront a destination dans " + heure + "h" + minutes
-                        + "m. Un message privée vous sera envoyé a la fin de la bataille.").queue();
-            }
-            if (lang == command.Language.en) {
-                channel.sendMessage("You just attack in " + x + "," + y + " with " + atk
-                        + " soldiers. Your soldiers will arive at this point in " + heure + "h" + minutes
-                        + "m. A private message will be send you when the fight will stop.").queue();
             }
         } else {
+
+            if(cible.getId().equals(user.getId())) {
+                channel.sendMessage("Ne nous fais pas une matthieu").queue();
+                return;
+            }
+
             long duree;
             int atk = 0;
             String c3 = "";
@@ -2332,11 +2389,11 @@ public class Attack {
                 }
                 String activeHero = data.getProfils().get(user.getId()).getActiveHeroe();
                 try {
-                    list = (ArrayList) heroe.get(activeHero);
+                    list = heroe.get(activeHero);
                 } catch (NullPointerException e) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Vous n'avez actuelement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
+                                "Vous n'avez actuellement aucun hero selectionner. Commencez d'abord par enselectionner un a l'aide de la commande ``=hero select`` si vous voulez attaquer avec.")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
@@ -2346,11 +2403,11 @@ public class Attack {
                     }
                     return;
                 }
-                boolean heroAtk = ((String) list.get(2)).equals("true");
+                boolean heroAtk = list.get(2).equals("true");
                 if (heroAtk) {
                     if (lang == command.Language.fr) {
                         channel.sendMessage(
-                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuelement. ").queue();
+                                "Votre hero est deja en attaque, vous ne pouvez pas l'utiliser actuellement. ").queue();
                     }
                     if (lang == command.Language.en) {
                         channel.sendMessage("Your hero is already in attack, You can't use it actually.").queue();
@@ -2363,7 +2420,7 @@ public class Attack {
                 list.set(3, Integer.toString(pv));
                 list.set(4, Long.toString(System.currentTimeMillis()));
             }
-            if (user == cible) {
+            if (user.getId() == cible.getId()) {
                 if (lang == command.Language.fr) {
                     channel.sendMessage("Vous ne pouvez pas vous auto-attaquer.").queue();
                 }
@@ -2392,6 +2449,7 @@ public class Attack {
                 }
                 return;
             }
+
             HashMap<String, Integer> building = data.getProfils().get(user.getId()).getBuilding();
             int caserne = building.get("camp d'entrainement");
             if (caserne == 0) {
@@ -2405,7 +2463,7 @@ public class Attack {
                 }
                 return;
             }
-            HashMap<String, Integer> building1 = data.getProfils().get(cible.getId()).getBuilding();
+            HashMap<String, Integer> building1 = cible.getBuilding();
             int Ccaserne = building1.get("camp d'entrainement");
             if (Ccaserne == 0) {
                 if (lang == command.Language.fr) {
@@ -2438,14 +2496,13 @@ public class Attack {
             String[] strU = userHome.split("_");
             int xU = Integer.parseInt(strU[0]);
             int yU = Integer.parseInt(strU[1]);
-            String cibleHome = data.getProfils().get(cible.getId()).getHome();
+            String cibleHome = cible.getHome();
             String[] strC = cibleHome.split("_");
             int xC = Integer.parseInt(strC[0]);
             int yC = Integer.parseInt(strC[1]);
             double operation = Math.pow(xC - xU, 2.0) + Math.pow(yC - yU, 2.0);
-            System.out.println(operation);
             double durée = Math.sqrt(operation);
-            System.out.println(durée);
+
             long bonus = 0L;
             if (Pet_Bonus.equals("speed")) {
                 bonus = (long) (60000.0 * pet_bonus);
@@ -2559,7 +2616,7 @@ public class Attack {
             rank = "Master";
         }
         if (lang == command.Language.fr) {
-            channel.sendMessage("Vous avez " + trophéesP + " trophées. Vous etes actuelement rank " + rank + ".")
+            channel.sendMessage("Vous avez " + trophéesP + " trophées. Vous etes actuellement rank " + rank + ".")
                     .queue();
         }
         if (lang == command.Language.en) {

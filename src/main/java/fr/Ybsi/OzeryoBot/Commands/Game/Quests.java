@@ -5,6 +5,7 @@ package fr.Ybsi.OzeryoBot.Commands.Game;
 
 import fr.Ybsi.OzeryoBot.Commands.command;
 import fr.Ybsi.OzeryoBot.Utils.Premium;
+import fr.Ybsi.OzeryoBot.Utils.ProfilData;
 import fr.Ybsi.OzeryoBot.Utils.TextFileWriter;
 import fr.Ybsi.OzeryoBot.Utils.color;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -16,7 +17,7 @@ import java.util.Date;
 
 public class Quests {
     @command(name = "quest", abbrev = "sol", type = command.ExecutorType.ALL, descfr = "usage : [BETA] creer une ville et developpe la au fil de temps", topic = command.Topics.Game)
-    private void quest(MessageChannel channel, User user, Guild guild, String[] args, command.Language lang) {
+    private void quest(MessageChannel channel, User user, Guild guild, String[] args, command.Language lang, ProfilData data) {
         int totalpoints3;
         int totalpoints2;
         int totalpoints1;
@@ -93,13 +94,13 @@ public class Quests {
                     .equals("brique")
                     ? "Recuperer 50 cuir"
                     : (quest1
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Recuperer 50 pierre"
                     : (quest1
-                    .equals("pierre")
+                    .equals("paille")
                     ? "Recuperer 50 paille"
                     : (quest1
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Recuperer 50 fer"
                     : "aucune")))))))))))))))));
         }
@@ -132,13 +133,13 @@ public class Quests {
                     .equals("brique")
                     ? "Collect 50 cuir"
                     : (quest1
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Collect 50 pierre"
                     : (quest1
                     .equals("pierre")
                     ? "Collect 50 paille"
                     : (quest1
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Collect 50 fer"
                     : "any")))))))))))))))));
         }
@@ -171,13 +172,13 @@ public class Quests {
                     .equals("brique")
                     ? "Recuperer 50 cuir"
                     : (quest2
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Recuperer 50 pierre"
                     : (quest2
                     .equals("pierre")
                     ? "Recuperer 50 paille"
                     : (quest2
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Recuperer 50 fer"
                     : "aucune")))))))))))))))));
         }
@@ -210,13 +211,13 @@ public class Quests {
                     .equals("brique")
                     ? "Collect 50 cuir"
                     : (quest2
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Collect 50 pierre"
                     : (quest2
                     .equals("pierre")
                     ? "Collect 50 paille"
                     : (quest2
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Collect 50 fer"
                     : "any")))))))))))))))));
         }
@@ -249,13 +250,13 @@ public class Quests {
                     .equals("brique")
                     ? "Recuperer 50 cuir"
                     : (quest3
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Recuperer 50 pierre"
                     : (quest3
                     .equals("pierre")
                     ? "Recuperer 50 paille"
                     : (quest3
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Recuperer 50 fer"
                     : "aucune")))))))))))))))));
         }
@@ -288,13 +289,13 @@ public class Quests {
                     .equals("brique")
                     ? "Collect 50 cuir"
                     : (quest3
-                    .equals("verre")
+                    .equals("pierre")
                     ? "Collect 50 pierre"
                     : (quest3
                     .equals("pierre")
                     ? "Collect 50 paille"
                     : (quest3
-                    .equals("petrole")
+                    .equals("fer")
                     ? "Collect 50 fer"
                     : "any")))))))))))))))));
         }
@@ -320,13 +321,13 @@ public class Quests {
         }
         builder.setColor(color.couleurAleatoire(user));
         builder.setFooter(guild.getName(), guild.getIconUrl());
-        builder.addField(String.valueOf(emoji1) + "Quest 1",
-                String.valueOf(quest1) + " (" + points1 + "/" + totalpoints1 + ")", true);
-        builder.addField(String.valueOf(emoji2) + "Quest 2",
-                String.valueOf(quest2) + " (" + points2 + "/" + totalpoints2 + ")", true);
-        if (Premium.Premium(user)) {
-            builder.addField(String.valueOf(emoji3) + "Quest 3",
-                    String.valueOf(quest3) + " (" + points3 + "/" + totalpoints3 + ")", true);
+        builder.addField(emoji1 + "Quest 1",
+                quest1 + " (" + points1 + "/" + totalpoints1 + ")", true);
+        builder.addField(emoji2 + "Quest 2",
+                quest2 + " (" + points2 + "/" + totalpoints2 + ")", true);
+        if (Premium.Premium(data.getProfils().get(user.getId()))) {
+            builder.addField(emoji3 + "Quest 3",
+                    quest3 + " (" + points3 + "/" + totalpoints3 + ")", true);
         }
         channel.sendMessage(builder.build()).queue();
     }

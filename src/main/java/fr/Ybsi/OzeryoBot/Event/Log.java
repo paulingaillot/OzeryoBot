@@ -123,9 +123,9 @@ public class Log implements EventListener {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
         builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
-        builder.addField("Ancienne place", String.valueOf(((Integer) event.getOldValue()).toString()) + "e position",
+        builder.addField("Ancienne place", event.getOldValue().toString() + "e position",
                 false);
-        builder.addField("Nouvelle place", String.valueOf(((Integer) event.getNewValue()).toString()) + "e position",
+        builder.addField("Nouvelle place", event.getNewValue().toString() + "e position",
                 false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -140,9 +140,9 @@ public class Log implements EventListener {
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
-        String mess = (Boolean) event.getOldValue() != false ? "separé des autres roles"
+        String mess = event.getOldValue() != false ? "separé des autres roles"
                 : "Non séparé des autres roles";
-        String mess2 = (Boolean) event.getNewValue() != false ? "separé des autres roles"
+        String mess2 = event.getNewValue() != false ? "separé des autres roles"
                 : "Non séparé des autres roles";
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
         builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
@@ -161,8 +161,8 @@ public class Log implements EventListener {
         }
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
-        String mess = (Boolean) event.getOldValue() != false ? "Mentionable" : "Non-Mentionable";
-        String mess2 = (Boolean) event.getNewValue() != false ? "Mentionable" : "Non-Mentionable";
+        String mess = event.getOldValue() != false ? "Mentionable" : "Non-Mentionable";
+        String mess2 = event.getNewValue() != false ? "Mentionable" : "Non-Mentionable";
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
         builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
         builder.addField("Avant", mess, false);
@@ -182,8 +182,8 @@ public class Log implements EventListener {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
         builder.setDescription("Le role " + event.getRole().getAsMention() + " a été modifié.\n ");
-        builder.addField("Ancien nom", ((String) event.getOldValue()).toString(), false);
-        builder.addField("Nouveau nom", ((String) event.getNewValue()).toString(), false);
+        builder.addField("Ancien nom", event.getOldValue(), false);
+        builder.addField("Nouveau nom", event.getNewValue(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -199,8 +199,8 @@ public class Log implements EventListener {
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
         builder.setDescription("Le role " + event.getRole().getAsMention() + " \u00e0 été modifié.\n ");
-        builder.addField("Ancienne couleur", ((Integer) event.getOldValue()).toString(), false);
-        builder.addField("Nouvelle couleur", ((Integer) event.getNewValue()).toString(), false);
+        builder.addField("Ancienne couleur", event.getOldValue().toString(), false);
+        builder.addField("Nouvelle couleur", event.getNewValue().toString(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -342,7 +342,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getJDA().getSelfUser().getName(), null, event.getJDA().getSelfUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a été mute dans le salon "
+        builder.setDescription(event.getMember().getAsMention() + " a été mute dans le salon "
                 + event.getVoiceState().getChannel().getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -375,7 +375,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a été ban du serveur");
+        builder.setDescription(event.getUser().getAsMention() + " a été ban du serveur");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -391,7 +391,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getUser().getName(), null, event.getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " a été ban du serveur");
+        builder.setDescription(event.getUser().getAsMention() + " a été ban du serveur");
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -407,7 +407,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " s'est deplacé du salon "
+        builder.setDescription(event.getMember().getAsMention() + " s'est deplacé du salon "
                 + event.getChannelLeft().getName() + " vers le salon " + event.getChannelJoined());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -424,7 +424,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a quitté un salon vocal : "
+        builder.setDescription(event.getMember().getAsMention() + " a quitté un salon vocal : "
                 + event.getChannelLeft().getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -441,7 +441,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getMember().getAsMention()) + " a rejoint un salon vocal : "
+        builder.setDescription(event.getMember().getAsMention() + " a rejoint un salon vocal : "
                 + event.getChannelJoined().getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -463,7 +463,7 @@ public class Log implements EventListener {
         builder.setAuthor(event.getAuthor().getName(), null, event.getAuthor().getAvatarUrl());
         builder.setDescription("Un message a été edité dans le channel " + event.getChannel().getAsMention());
         builder.addField("**Avant**", " ??? " + event, false);
-        builder.addField("**Apres**", String.valueOf(event.getMessage().getContentDisplay().toString()), false);
+        builder.addField("**Apres**", event.getMessage().getContentDisplay(), false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -513,7 +513,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.addField("Join", String.valueOf(event.getUser().getName()) + " a rejoint le serveur", false);
+        builder.addField("Join", event.getUser().getName() + " a rejoint le serveur", false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -529,7 +529,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.addField("Leave", String.valueOf(event.getUser().getName()) + " a quitté le serveur", false);
+        builder.addField("Leave", event.getUser().getName() + " a quitté le serveur", false);
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
     }
@@ -545,7 +545,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " \u00e0 re\u00e7u le role "
+        builder.setDescription(event.getUser().getAsMention() + " \u00e0 re\u00e7u le role "
                 + event.getRoles().get(0).getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();
@@ -562,7 +562,7 @@ public class Log implements EventListener {
         TextChannel log = event.getGuild().getTextChannelById(channel);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setAuthor(event.getMember().getUser().getName(), null, event.getMember().getUser().getAvatarUrl());
-        builder.setDescription(String.valueOf(event.getUser().getAsMention()) + " \u00e0 été retiré du role "
+        builder.setDescription(event.getUser().getAsMention() + " \u00e0 été retiré du role "
                 + event.getRoles().get(0).getName());
         builder.setFooter(new SimpleDateFormat("dd/MM HH:mm:ss", Locale.FRANCE).format(new Date()), null);
         log.sendMessage(builder.build()).queue();

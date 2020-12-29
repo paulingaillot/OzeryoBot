@@ -60,7 +60,7 @@ public class Habitations {
             if (i == 0) {
                 if (lang == command.Language.fr) {
                     builder.addField("Vide",
-                            "Vous n'avez actuelement aucunes maisons, commencer a en acheter des a present avec la commande ``=bid``.",
+                            "Vous n'avez actuellement aucunes maisons, commencer a en acheter des a present avec la commande ``=bid``.",
                             true);
                 }
                 if (lang == command.Language.en) {
@@ -69,7 +69,7 @@ public class Habitations {
                 }
             } else {
                 if (lang == command.Language.fr) {
-                    builder.setDescription("Vous avez actuelement " + i + " maisons.");
+                    builder.setDescription("Vous avez actuellement " + i + " maisons.");
                 }
                 if (lang == command.Language.en) {
                     builder.setDescription("You have actually " + i + " houses.");

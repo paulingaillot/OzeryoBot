@@ -153,7 +153,6 @@ public class CommandDefaut {
                     " Click here to get OzeryoBot on your server : \n\n https://discord.com/oauth2/authorize?client_id=768122696210186292&scope=bot&permissions=2146958847 \n\n:top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: :top: ")
                     .complete();
         }
-        System.out.println("La commande serveur a été utilisé par : " + user.getName());
     }
 
     @command(name = "serveur", type = ExecutorType.ALL, descfr = "Permet de rejoindre le serveur officiel d'OzeryoBot", descen = "allows to join the official OzeryoBot server")
@@ -178,7 +177,6 @@ public class CommandDefaut {
             channel.sendMessage("non mais tu reve la ??").queue();
         } else {
             channel.sendMessage(messages.getContentRaw().replace("=say ", "")).complete();
-            System.out.println("La commande say a été utilisé par : " + user.getName());
         }
     }
 
@@ -565,7 +563,7 @@ public class CommandDefaut {
                 e4.printStackTrace();
             }
             rank = "Default";
-            if (Premium.Premium(cible)) {
+            if (Premium.Premium(data.getProfils().get(cible.getId()))) {
                 rank = "Premium";
             }
             if (cible.getId().equals("102108573298851840") || cible.getId().equals("249987060365000704")
@@ -691,7 +689,6 @@ public class CommandDefaut {
         int topPays = 0;
         for (Map.Entry entry1 : entries1) {
             ++topPays;
-            System.out.println((String) entry1.getKey());
             if (((String) entry1.getKey()).equals(pays))
                 break;
         }
@@ -728,7 +725,7 @@ public class CommandDefaut {
         channel.sendMessage(builder.build()).queue();
     }
 
-    /*@command(name = "vote", type = ExecutorType.ALL, descfr = "Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen = "Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic = Topics.Social)
+    @command(name = "vote", type = ExecutorType.ALL, descfr = "Permet de voter pour le bot. Pour recuperer votre gain veuillez refaire (delay de 2 minutes possible)", descen = "Allow you to vote for the bot. To claim your price please redo the commands (delay of 2 minutes possible)", topic = Topics.Social)
     private void vote(MessageChannel message, Guild guild, String[] args, User user, JDA jda, Language lang) {
         ProfilData data = DiscordBot.getData();
         TextFileWriter.folder("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/vote/");
@@ -853,9 +850,9 @@ public class CommandDefaut {
                     if (Pet_Bonus.equals("resHr")) {
                         pop_win2 = (int) ((double) pop_win2 * pet_bonus);
                     }
-                    data.getProfils().get(user.getId()).setHabitants(pop += (long) pop_win2);
-                    Quest.Quest("vote", user, message, 1);
-                    Quest.Quest("jetons", user, message, 5);
+                    data.getProfils().get(data.getProfils().get(user.getId()).getId()).setHabitants(pop += (long) pop_win2);
+                    Quest.Quest("vote", data.getProfils().get(user.getId()), message, 1);
+                    Quest.Quest("jetons", data.getProfils().get(user.getId()), message, 5);
                     int jeton = data.getProfils().get(user.getId()).getJetons_récolté();
                     jeton += 5;
                     data.getProfils().get(user.getId()).getJetons_récolté();
@@ -922,7 +919,7 @@ public class CommandDefaut {
             builder.setFooter(guild.getName(), guild.getIconUrl());
             message.sendMessage(builder.build()).queue();
         });
-    }*/
+    }
 
     @command(name = "game", type = ExecutorType.ALL, descfr = "Met a jour le jeu du bot", descen = "Update the bot game", topic = Topics.Admin)
     private void game(MessageChannel message, Guild guild, String[] args, User user, JDA jda, Language lang) {
@@ -1162,21 +1159,21 @@ public class CommandDefaut {
                     } catch (NullPointerException e) {
                         mute_time = 5;
                     }
-                    System.out.println("1");
+
                     User userk = message.getMentionedUsers().get(0);
                     if (guild.getRolesByName("Muted", true).isEmpty()) {
-                        System.out.println("2");
+
                         guild.createRole().setName("Muted").setColor(color.couleurAleatoire(user))
                                 .setHoisted(false).queue();
-                        System.out.println("2bis");
+
                         List<Role> role = guild.getRolesByName("Muted", true);
                         Role role2 = role.get(0);
-                        System.out.println("3");
+
                         for (int i = 0; i < guild.getTextChannels().size(); ++i) {
                             TextChannel chanel2 = guild.getTextChannels().get(i);
-                            System.out.println("4");
+            ;
                             EnumSet<Permission> deny = EnumSet.of(Permission.MESSAGE_WRITE);
-                            System.out.println("5");
+
                             try {
                                 chanel2.createPermissionOverride(role2).setPermissions(null, deny).queue();
                                 continue;
@@ -1184,7 +1181,7 @@ public class CommandDefaut {
                                 // empty catch block
                             }
                         }
-                        System.out.println("6");
+
                         guild.addRoleToMember(guild.getMember(userk), role2).queue();
                         if (lang == Language.fr) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
@@ -1195,16 +1192,16 @@ public class CommandDefaut {
                                     + mute_time + " minutes").queue();
                         }
                     } else {
-                        System.out.println("7");
+
                         List<Role> role = guild.getRolesByName("Muted", false);
                         Role role2 = role.get(0);
-                        System.out.println("8");
+
                         for (int i = 0; i < guild.getTextChannels().size(); ++i) {
-                            System.out.println("8bis");
+
                             TextChannel chanel2 = guild.getTextChannels().get(i);
-                            System.out.println("9");
+
                             EnumSet<Permission> deny = EnumSet.of(Permission.MESSAGE_WRITE);
-                            System.out.println("10");
+
                             try {
                                 chanel2.createPermissionOverride(role2).setPermissions(null, deny).queue();
                                 continue;
@@ -1212,7 +1209,7 @@ public class CommandDefaut {
                                 // empty catch block
                             }
                         }
-                        System.out.println("11");
+
                         guild.addRoleToMember(guild.getMember(userk), role2).queue();
                         if (lang == Language.fr) {
                             channel.sendMessage(String.valueOf(userk.getAsMention()) + " a bien été muet pour "
@@ -1323,14 +1320,13 @@ public class CommandDefaut {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(1);
+
             TextFileWriter.folder("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y);
-            System.out.println(2);
+
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/bot/Map/" + x + "_" + y + "/name.txt", user.getId(),
                     1);
-            System.out.println(3);
+
             data.getProfils().get(user.getId()).setHome(String.valueOf(x) + "_" + y);
-            System.out.println(4);
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/lasthome.txt",
                     Long.toString(System.currentTimeMillis()), 1);
             if (lang == Language.fr) {
@@ -1357,7 +1353,7 @@ public class CommandDefaut {
                 } catch (IllegalArgumentException e1) {
                     name = "0";
                 }
-                System.out.println(name);
+
                 if (name.equals("0")) {
                     message = places == 4 ? String.valueOf(message) + " ``(" + x + "," + y + ")``"
                             : String.valueOf(message) + " ``(" + x + "," + y + ")`` | ";
@@ -1688,10 +1684,10 @@ public class CommandDefaut {
             }
             try {
                 if (lang == Language.fr) {
-                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **réputation** ";
+                    member = String.valueOf(profil.getName()) + " | **réputation** ";
                 }
                 if (lang == Language.en) {
-                    member = String.valueOf(jda.getUserById(profil.getId()).getName()) + " | **reputation** ";
+                    member = String.valueOf(profil.getName()) + " | **reputation** ";
                 }
             } catch (NullPointerException nullPointerException) {
                 // empty catch block
@@ -1874,7 +1870,7 @@ public class CommandDefaut {
                 return;
             }
             User User_Premium = message.getMentionedUsers().get(0);
-            if (Premium.Premium(User_Premium)) {
+            if (Premium.Premium(data.getProfils().get(User_Premium.getId()))) {
                 long premium = data.getProfils().get(User_Premium.getId()).getPremium();
                 data.getProfils().get(User_Premium.getId()).setPremium(premium += 2592000000L);
             } else {
@@ -1906,8 +1902,8 @@ public class CommandDefaut {
     }
 
     @command(name = "color", type = ExecutorType.ALL, descfr = "Permet de definir une couleur pour tout vos commandes (Premium Uniquement)", descen = "Allow you to set a color for your commands (Only for Premium users)")
-    private void color(MessageChannel channel, User user, String[] args, Message message, Language lang) {
-        if (Premium.Premium(user)) {
+    private void color(MessageChannel channel, User user, String[] args, Message message, Language lang, ProfilData data) {
+        if (Premium.Premium(data.getProfils().get(user.getId()))) {
             String g;
             String b;
             String r;
@@ -2136,10 +2132,10 @@ public class CommandDefaut {
             HashMap<String, Integer> res = data.getProfils().get(user.getId()).getRes();
             int A_bois = res.get("bois");
             int A_acier = res.get("argile");
-            int A_beton = res.get("cuir");
-            int A_verre = res.get("pierre");
-            int A_pierre = res.get("paille");
-            int A_plastique = res.get("fer");
+            int A_cuir = res.get("cuir");
+            int A_pierre = res.get("pierre");
+            int A_paille = res.get("paille");
+            int A_fer = res.get("fer");
             int rarity2 = 1;
             if (rarity.equals("common")) {
                 rarity2 = 1;
@@ -2160,13 +2156,13 @@ public class CommandDefaut {
             Double operation3 = operation2 + 1.0;
             Double operation = operation3 * 5.0 * bonus;
             int gain = (int) Math.round(operation);
-            System.out.println("" + gain);
+
             int bois = 0;
             int acier = 0;
-            int beton = 0;
-            int verre = 0;
+            int cuir = 0;
             int pierre = 0;
-            int plastique = 0;
+            int paille = 0;
+            int fer = 0;
             if (rarity.equals("common")) {
                 materiau = 1 + (int) (Math.random() * 6.0);
                 if (materiau == 1) {
@@ -2174,13 +2170,13 @@ public class CommandDefaut {
                 } else if (materiau == 2) {
                     acier += gain;
                 } else if (materiau == 3) {
-                    beton += gain;
+                    cuir += gain;
                 } else if (materiau == 4) {
-                    verre += gain;
-                } else if (materiau == 5) {
                     pierre += gain;
+                } else if (materiau == 5) {
+                    paille += gain;
                 } else if (materiau == 6) {
-                    plastique += gain;
+                    fer += gain;
                 }
             } else if (rarity.equals("rare")) {
                 for (i2 = 0; i2 < 2; ++i2) {
@@ -2194,20 +2190,20 @@ public class CommandDefaut {
                         continue;
                     }
                     if (materiau2 == 3) {
-                        beton += gain;
+                        cuir += gain;
                         continue;
                     }
                     if (materiau2 == 4) {
-                        verre += gain;
+                        pierre += gain;
                         continue;
                     }
                     if (materiau2 == 5) {
-                        pierre += gain;
+                        paille += gain;
                         continue;
                     }
                     if (materiau2 != 6)
                         continue;
-                    plastique += gain;
+                    fer += gain;
                 }
             } else if (rarity.equals("epic")) {
                 for (i2 = 0; i2 < 3; ++i2) {
@@ -2221,20 +2217,20 @@ public class CommandDefaut {
                         continue;
                     }
                     if (materiau2 == 3) {
-                        beton += gain;
+                        cuir += gain;
                         continue;
                     }
                     if (materiau2 == 4) {
-                        verre += gain;
+                        pierre += gain;
                         continue;
                     }
                     if (materiau2 == 5) {
-                        pierre += gain;
+                        paille += gain;
                         continue;
                     }
                     if (materiau2 != 6)
                         continue;
-                    plastique += gain;
+                    fer += gain;
                 }
             } else if (rarity.equals("legendary")) {
                 for (i2 = 0; i2 < 4; ++i2) {
@@ -2248,20 +2244,20 @@ public class CommandDefaut {
                         continue;
                     }
                     if (materiau2 == 3) {
-                        beton += gain;
+                        cuir += gain;
                         continue;
                     }
                     if (materiau2 == 4) {
-                        verre += gain;
+                        pierre += gain;
                         continue;
                     }
                     if (materiau2 == 5) {
-                        pierre += gain;
+                        paille += gain;
                         continue;
                     }
                     if (materiau2 != 6)
                         continue;
-                    plastique += gain;
+                    fer += gain;
                 }
             } else {
                 materiau = 1 + (int) (Math.random() * 6.0);
@@ -2270,13 +2266,13 @@ public class CommandDefaut {
                 } else if (materiau == 2) {
                     acier += gain;
                 } else if (materiau == 3) {
-                    beton += gain;
+                    cuir += gain;
                 } else if (materiau == 4) {
-                    verre += gain;
-                } else if (materiau == 5) {
                     pierre += gain;
+                } else if (materiau == 5) {
+                    paille += gain;
                 } else if (materiau == 6) {
-                    plastique += gain;
+                    fer += gain;
                 }
             }
             String gains = "";
@@ -2292,26 +2288,26 @@ public class CommandDefaut {
                                 .getEmotesByName("clay", true).get(0).getAsMention() + " **Argile :** " + acier;
                         continue;
                     }
-                    if (i == 3 && beton != 0) {
+                    if (i == 3 && cuir != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Cuir :** " + beton;
+                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Cuir :** " + cuir;
                         continue;
                     }
-                    if (i == 4 && verre != 0) {
+                    if (i == 4 && pierre != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Paille :** " + verre;
+                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Pierre :** " + pierre;
                         continue;
                     }
-                    if (i == 5 && pierre != 0) {
+                    if (i == 5 && paille != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Pierre :** " + pierre;
+                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Paille :** " + paille;
                         continue;
                     }
-                    if (i != 6 || plastique == 0)
+                    if (i != 6 || fer == 0)
                         continue;
                     gains = String.valueOf(gains) + "\n"
                             + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
-                            + " **Fer :** " + plastique;
+                            + " **Fer :** " + fer;
                 }
             }
             if (lang == Language.en) {
@@ -2326,34 +2322,34 @@ public class CommandDefaut {
                                 .getEmotesByName("clay", true).get(0).getAsMention() + " **Clay :** " + acier;
                         continue;
                     }
-                    if (i == 3 && beton != 0) {
+                    if (i == 3 && cuir != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Leather :** " + beton;
+                                .getEmotesByName("leather", true).get(0).getAsMention() + " **Leather :** " + cuir;
                         continue;
                     }
-                    if (i == 4 && verre != 0) {
+                    if (i == 4 && pierre != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Straw :** " + verre;
+                                .getEmotesByName("stone", true).get(0).getAsMention() + " **Stone :** " + pierre;
                         continue;
                     }
-                    if (i == 5 && pierre != 0) {
+                    if (i == 5 && paille != 0) {
                         gains = String.valueOf(gains) + "\n" + jda.getGuildById("326345972739473410")
-                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Stone :** " + pierre;
+                                .getEmotesByName("straw", true).get(0).getAsMention() + " **Straw :** " + paille;
                         continue;
                     }
-                    if (i != 6 || plastique == 0)
+                    if (i != 6 || fer == 0)
                         continue;
                     gains = String.valueOf(gains) + "\n"
                             + jda.getGuildById("326345972739473410").getEmotesByName("iron", true).get(0).getAsMention()
-                            + " **Iron :** " + plastique;
+                            + " **Iron :** " + fer;
                 }
             }
             int bois_Total = bois + A_bois;
             int acier_Total = acier + A_acier;
-            int beton_Total = beton + A_beton;
-            int verre_Total = verre + A_verre;
+            int cuir_Total = cuir + A_cuir;
             int pierre_Total = pierre + A_pierre;
-            int plastique_Total = plastique + A_plastique;
+            int paille_Total = paille + A_paille;
+            int fer_Total = fer + A_fer;
             int rarity3 = 7;
             if (rarity.equals("common")) {
                 rarity3 = 7;
@@ -2389,33 +2385,33 @@ public class CommandDefaut {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setPet(pet);
             }
-            Quest.Quest("exp", user, channel, (int) Math.round(operation4));
-            Quest.Quest("tr", user, channel, 1);
-            Quest.Quest("materiau", user, channel, bois + acier + beton + verre + pierre + plastique);
+            Quest.Quest("exp", data.getProfils().get(user.getId()), channel, (int) Math.round(operation4));
+            Quest.Quest("tr", data.getProfils().get(user.getId()), channel, 1);
+            Quest.Quest("materiau", data.getProfils().get(user.getId()), channel, bois + acier + cuir + pierre + paille + fer);
             if (bois != 0) {
-                Quest.Quest("bois", user, channel, bois);
+                Quest.Quest("bois", data.getProfils().get(user.getId()), channel, bois);
             }
             if (acier != 0) {
-                Quest.Quest("acier", user, channel, acier);
+                Quest.Quest("acier", data.getProfils().get(user.getId()), channel, acier);
             }
-            if (beton != 0) {
-                Quest.Quest("brique", user, channel, beton);
-            }
-            if (verre != 0) {
-                Quest.Quest("verre", user, channel, verre);
+            if (cuir != 0) {
+                Quest.Quest("brique", data.getProfils().get(user.getId()), channel, cuir);
             }
             if (pierre != 0) {
-                Quest.Quest("pierre", user, channel, pierre);
+                Quest.Quest("pierre", data.getProfils().get(user.getId()), channel, pierre);
             }
-            if (plastique != 0) {
-                Quest.Quest("petrole", user, channel, plastique);
+            if (paille != 0) {
+                Quest.Quest("paille", data.getProfils().get(user.getId()), channel, paille);
+            }
+            if (fer != 0) {
+                Quest.Quest("petrole", data.getProfils().get(user.getId()), channel, fer);
             }
             res.put("bois", bois_Total);
             res.put("argile", acier_Total);
-            res.put("cuir", beton_Total);
-            res.put("pierre", verre_Total);
-            res.put("paille", pierre_Total);
-            res.put("fer", plastique_Total);
+            res.put("cuir", cuir_Total);
+            res.put("pierre", pierre_Total);
+            res.put("paille", paille_Total);
+            res.put("fer", fer_Total);
             try {
                 data.getProfils().get(user.getId()).setRes(res);
             } catch (NullPointerException e) {
@@ -2670,7 +2666,8 @@ public class CommandDefaut {
         for (Guild guild : guilds) {
             message = String.valueOf(message) + " " + guild.getName() + " | " + guild.getMembers().size();
         }
-        System.out.println(message);
+
+
     }
 
     @command(name = "region", type = ExecutorType.CONSOLE)
@@ -2770,8 +2767,8 @@ public class CommandDefaut {
      */
     @command(name = "setgrade", type = ExecutorType.ALL, descfr = "Permet de modifier son grade (premium uniquement)", descen = "Allow you to modifiy your rank (Premium only)")
     private void setgrade(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-                          Language lang) {
-        if (Premium.Premium(user)) {
+                          Language lang, ProfilData data) {
+        if (Premium.Premium(data.getProfils().get(user.getId()))) {
             try {
                 String grade = args[0];
                 TextFileWriter.write("/home/DiscordBot/Rasberry/données/Users/" + user.getId() + "/grade.txt", grade,
@@ -2938,7 +2935,7 @@ public class CommandDefaut {
                 emoji = ":x:";
             }
             if (lang == Language.fr) {
-                channel.sendMessage(String.valueOf(emoji) + " | Vous avez actuelement " + Ufilleuls + " filleuls.")
+                channel.sendMessage(String.valueOf(emoji) + " | Vous avez actuellement " + Ufilleuls + " filleuls.")
                         .queue();
             }
             if (lang == Language.en) {
@@ -3012,7 +3009,7 @@ public class CommandDefaut {
             }
             if (langcible == Language.fr) {
                 ((UserImpl) cible).getPrivateChannel().sendMessage(
-                        "Vous venez de gagner un nouveau filleul. Vous avez actuelement " + Cfilleuls + " filleuls.")
+                        "Vous venez de gagner un nouveau filleul. Vous avez actuellement " + Cfilleuls + " filleuls.")
                         .queue();
             }
             if (langcible == Language.en) {
@@ -3034,7 +3031,7 @@ public class CommandDefaut {
                                     "Great you have " + Cfilleuls + " godson, So you win one month of Ozeryo Premium.")
                             .queue();
                 }
-                if (Premium.Premium(cible)) {
+                if (Premium.Premium(data.getProfils().get(cible.getId()))) {
                     long premium = data.getProfils().get(cible.getId()).getPremium();
                     data.getProfils().get(cible.getId()).setPremium(premium += 2592000000L);
                 } else {
@@ -3050,11 +3047,11 @@ public class CommandDefaut {
                       Language lang) {
         ScriptEngineManager mgr = new ScriptEngineManager();
         ScriptEngine engine = mgr.getEngineByName("JavaScript");
-        System.out.println(message.getContentRaw());
+
         String foo = arg.replace("math", "");
-        System.out.println(arg);
+
         try {
-            System.out.println(engine.eval(foo));
+
             if (foo.equals("")) {
                 if (lang == Language.fr) {
                     channel.sendMessage("Syntaxe : ``=math [calcul]``.").queue();
@@ -3065,7 +3062,6 @@ public class CommandDefaut {
             }
             channel.sendMessage("``" + foo + "`` = " + engine.eval(foo)).queue();
         } catch (ScriptException e) {
-            System.out.println("Error");
             if (lang == Language.fr) {
                 channel.sendMessage("Erreur Math : " + arg).queue();
             }
@@ -3094,7 +3090,7 @@ public class CommandDefaut {
             String object1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/object.txt");
             String cible1 = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Bid/biduser.txt");
             try {
-                cible = jda.getUserById(cible1).getName();
+                cible = data.getProfils().get(cible1).getName();
             } catch (NullPointerException e) {
                 cible = "personne";
             }
@@ -3238,9 +3234,8 @@ public class CommandDefaut {
 
     @command(name = "setdescription", type = ExecutorType.ALL, descfr = "Permet de definir une description de profil (Premium only)", descen = " Allow you to set your profile description ( Premium only)")
     private void setdescription(MessageChannel channel, User user, String[] args, Message message, Guild guild, JDA jda,
-                                Language lang) {
-        if (Premium.Premium(user)) {
-            ProfilData data = DiscordBot.getData();
+                                Language lang, ProfilData data) {
+        if (Premium.Premium(data.getProfils().get(user.getId()))) {
             String desc = message.getContentRaw();
             desc = desc.replaceAll("=setdescription ", "");
             try {
@@ -3325,7 +3320,13 @@ public class CommandDefaut {
         }
         String Attack2 = "";
         try {
-            for (ArrayList<String> atk : data.getProfils().get(user.getId()).getAttack().values()) {
+            HashMap<Long, ArrayList<String>> test = data.getProfils().get(user.getId()).getAttack();
+
+            TreeMap<Long, ArrayList<String>> sorted = new TreeMap<>();
+            sorted.putAll(test);
+
+
+            for (ArrayList<String> atk : sorted.values()) {
                 String cible;
                 Object timer = Long.parseLong(atk.get(0));
                 timer = (Long) timer - System.currentTimeMillis();
@@ -3337,8 +3338,11 @@ public class CommandDefaut {
                 if(!atk.get(1).toString().contains("_")) {
                     cible = data.getProfils().get(atk.get(1)).getName();
                 }else {
+                    String[] at = atk.get(1).split("_");
+                    String x = at[0];
+                    String y = at[1];
                     cible = TextFileWriter.read("/home/DiscordBot/Rasberry/données/bot/Map/" + atk.get(1) + "/name.txt")
-                            .equals("dungeon") ? "attaque de donjon" : "zone de ressource";
+                            .equals("dungeon") ? "attaque de donjon ("+x+" "+y+")" : "zone de ressource ("+x+" "+y+")";
                 }
                 Attack2 = String.valueOf(Attack2) + "**" + mHour + "h" + mMinute4 + "m" + mSecond4 + "s** : " + cible
                         + " \n";
@@ -3739,7 +3743,7 @@ public class CommandDefaut {
                 ex.printStackTrace();
             }
             if (lang == Language.fr) {
-                channel.sendMessage("``Vous avez actuelement " + (xp - pallier * 1000) + " / 1000 OzXp``")
+                channel.sendMessage("``Vous avez actuellement " + (xp - pallier * 1000) + " / 1000 OzXp``")
                         .addFile(new File("/home/DiscordBot/Rasberry/données/bot/SummerUpdate/test.png")).queue();
             }
             if (lang == Language.en) {
@@ -4325,7 +4329,6 @@ public class CommandDefaut {
             int i = 1;
             DiscordBot.getData().getProfils().get(user.getId()).setTuto(i);
             tuto = data.getProfils().get(user.getId()).getTuto();
-            System.out.println("Tuto : " + tuto);
             channel.sendMessage("Bien, commencez par récupérer votre récompense quotidienne avec la commande =daily.")
                     .queue();
         } else if (tuto == 0) {
@@ -4489,23 +4492,23 @@ public class CommandDefaut {
                     }
                     if (!data.getProfils().get(profil.getId()).isRegister())
                         continue;
-                    User User_Premium = jda.getUserById(profil.getId());
+                    Profil User_Premium = profil;
                     TextFileWriter.folder("/home/DiscordBot/données/Users/" + User_Premium);
                     if (Premium.Premium(User_Premium)) {
-                        premium = data.getProfils().get(profil.getId()).getPremium();
-                        data.getProfils().get(profil.getId()).setPremium(premium += 2592000000L);
+                        premium = profil.getPremium();
+                        profil.setPremium(premium += 2592000000L);
                     } else {
                         premium = System.currentTimeMillis() + 2592000000L;
-                        data.getProfils().get(profil.getId()).setPremium(premium);
+                        profil.setPremium(premium);
                     }
                     ArrayList<String> list = new ArrayList<String>();
                     list.add("\ud83c\udf89 Premium");
                     list.add("You just received 1 Premium Month on OzeryoBot as pre-register reward");
                     list.add("false");
                     list.add("" + System.currentTimeMillis());
-                    ArrayList<ArrayList<String>> mails = data.getProfils().get(profil.getId()).getListMail();
+                    ArrayList<ArrayList<String>> mails = profil.getListMail();
                     mails.add(0, list);
-                    data.getProfils().get(profil.getId()).setListMail(mails);
+                    profil.setListMail(mails);
                 } catch (Exception User_Premium) {
                     // empty catch block
                 }

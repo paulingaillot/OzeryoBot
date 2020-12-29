@@ -194,8 +194,8 @@ public class ChannelSet {
                         }
                         break block81;
                     }
-                    if (c1.toLowerCase().equals("welcomemessage")) {
-                        String mess = message.getContentRaw().replace(String.valueOf(c1) + " ", "");
+                    if (c1.equalsIgnoreCase("welcomemessage")) {
+                        String mess = message.getContentRaw().replace(c1 + " ", "");
                         if ((mess = mess.replace("=set ", "")).equals("")) {
                             if (lang == command.Language.fr) {
                                 channel.sendMessage("Syntaxe : ``=set welcomemessage [message]").queue();

@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class HypixelData {
     private ArrayList<String> HypixelQueue = new ArrayList();
-    private HashMap<String, Hypixel> HypixelStats = new HashMap();
+    private final HashMap<String, Hypixel> HypixelStats = new HashMap();
 
     public static HypixelData loadData(File file) {
         DataSerializerManager hsm = new DataSerializerManager();

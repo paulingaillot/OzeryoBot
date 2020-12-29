@@ -166,7 +166,7 @@ public class Achivement {
         }
         int levelh = 0;
         try {
-            levelh = Integer.parseInt((String) hero.get(0));
+            levelh = Integer.parseInt(hero.get(0));
         } catch (NullPointerException nullPointerException) {
             // empty catch block
         }
@@ -1429,7 +1429,7 @@ public class Achivement {
             }
             return;
         }
-        boolean premium = Premium.Premium(user);
+        boolean premium = Premium.Premium(data.getProfils().get(user.getId()));
         if (premium && data.getProfils().get(user.getId()).getAchievement().get("What a luck") == 0L) {
             map.put("What a luck", System.currentTimeMillis());
             try {
@@ -1580,7 +1580,7 @@ public class Achivement {
             travailleur = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(travailleur));
-            travailleur = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            travailleur = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollecteurI = map.get("Harvester I").toString();
@@ -1588,7 +1588,7 @@ public class Achivement {
             CollecteurI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollecteurI));
-            CollecteurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollecteurI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollecteurII = map.get("Harvester II").toString();
@@ -1596,7 +1596,7 @@ public class Achivement {
             CollecteurII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollecteurII));
-            CollecteurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollecteurII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollecteurIII = map.get("Harvester III").toString();
@@ -1604,7 +1604,7 @@ public class Achivement {
             CollecteurIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollecteurIII));
-            CollecteurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollecteurIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EntrepreneurI = map.get("Entrepreneur I").toString();
@@ -1612,7 +1612,7 @@ public class Achivement {
             EntrepreneurI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EntrepreneurI));
-            EntrepreneurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            EntrepreneurI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EntrepreneurII = map.get("Entrepreneur II").toString();
@@ -1620,7 +1620,7 @@ public class Achivement {
             EntrepreneurII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EntrepreneurII));
-            EntrepreneurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            EntrepreneurII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EntrepreneurIII = map.get("Entrepreneur III").toString();
@@ -1628,7 +1628,7 @@ public class Achivement {
             EntrepreneurIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EntrepreneurIII));
-            EntrepreneurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            EntrepreneurIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ConquérantI = map.get("Conquérant I").toString();
@@ -1636,7 +1636,7 @@ public class Achivement {
             ConquérantI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ConquérantI));
-            ConquérantI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ConquérantI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ConquérantII = map.get("Conquérant II").toString();
@@ -1644,7 +1644,7 @@ public class Achivement {
             ConquérantII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ConquérantII));
-            ConquérantII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ConquérantII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ConquérantIII = map.get("Conquérant III").toString();
@@ -1652,7 +1652,7 @@ public class Achivement {
             ConquérantIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ConquérantIII));
-            ConquérantIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ConquérantIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String DéfenseurI = map.get("Défenseur I").toString();
@@ -1660,7 +1660,7 @@ public class Achivement {
             DéfenseurI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(DéfenseurI));
-            DéfenseurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            DéfenseurI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String DéfenseurII = map.get("Défenseur II").toString();
@@ -1668,7 +1668,7 @@ public class Achivement {
             DéfenseurII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(DéfenseurII));
-            DéfenseurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            DéfenseurII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String DéfenseurIII = map.get("Défenseur III").toString();
@@ -1676,7 +1676,7 @@ public class Achivement {
             DéfenseurIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(DéfenseurIII));
-            DéfenseurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            DéfenseurIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EspionI = map.get("Espion I").toString();
@@ -1684,7 +1684,7 @@ public class Achivement {
             EspionI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EspionI));
-            EspionI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            EspionI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String EspionII = map.get("Espion II").toString();
@@ -1692,7 +1692,7 @@ public class Achivement {
             EspionII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EspionII));
-            EspionII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            EspionII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String EspionIII = map.get("Espion III").toString();
@@ -1700,7 +1700,7 @@ public class Achivement {
             EspionIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(EspionIII));
-            EspionIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            EspionIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String FarmerI = map.get("Farmer I").toString();
@@ -1708,7 +1708,7 @@ public class Achivement {
             FarmerI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(FarmerI));
-            FarmerI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            FarmerI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String FarmerII = map.get("Farmer II").toString();
@@ -1716,7 +1716,7 @@ public class Achivement {
             FarmerII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(FarmerII));
-            FarmerII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            FarmerII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String FarmerIII = map.get("Farmer III").toString();
@@ -1724,7 +1724,7 @@ public class Achivement {
             FarmerIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(FarmerIII));
-            FarmerIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            FarmerIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Instructeur = map.get("Instructeur").toString();
@@ -1732,7 +1732,7 @@ public class Achivement {
             Instructeur = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Instructeur));
-            Instructeur = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Instructeur = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ZoologueI = map.get("Zoologue I").toString();
@@ -1740,7 +1740,7 @@ public class Achivement {
             ZoologueI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ZoologueI));
-            ZoologueI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ZoologueI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ZoologueII = map.get("Zoologue II").toString();
@@ -1748,7 +1748,7 @@ public class Achivement {
             ZoologueII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ZoologueII));
-            ZoologueII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ZoologueII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ZoologueIII = map.get("Zoologue III").toString();
@@ -1756,7 +1756,7 @@ public class Achivement {
             ZoologueIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ZoologueIII));
-            ZoologueIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            ZoologueIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Parieur = map.get("Parieur").toString();
@@ -1764,7 +1764,7 @@ public class Achivement {
             Parieur = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Parieur));
-            Parieur = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Parieur = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String thxdudeI = map.get("Thx dude I").toString();
@@ -1772,7 +1772,7 @@ public class Achivement {
             thxdudeI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(thxdudeI));
-            thxdudeI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            thxdudeI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String thxdudeII = map.get("Thx dude II").toString();
@@ -1780,7 +1780,7 @@ public class Achivement {
             thxdudeII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(thxdudeII));
-            thxdudeII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            thxdudeII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String thxdudeIII = map.get("Thx dude III").toString();
@@ -1788,7 +1788,7 @@ public class Achivement {
             thxdudeIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(thxdudeIII));
-            thxdudeIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            thxdudeIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String BraquerI = map.get("Braquer I").toString();
@@ -1796,7 +1796,7 @@ public class Achivement {
             BraquerI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(BraquerI));
-            BraquerI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            BraquerI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String BraquerII = map.get("Braquer II").toString();
@@ -1804,7 +1804,7 @@ public class Achivement {
             BraquerII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(BraquerII));
-            BraquerII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            BraquerII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String BraquerIII = map.get("Braquer III").toString();
@@ -1812,7 +1812,7 @@ public class Achivement {
             BraquerIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(BraquerIII));
-            BraquerIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            BraquerIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ParrainDeLaMafia = map.get("Parrain de la mafia").toString();
@@ -1820,7 +1820,7 @@ public class Achivement {
             ParrainDeLaMafia = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ParrainDeLaMafia));
-            ParrainDeLaMafia = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            ParrainDeLaMafia = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ToujoursPresent = map.get("Toujours présent").toString();
@@ -1828,7 +1828,7 @@ public class Achivement {
             ToujoursPresent = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ToujoursPresent));
-            ToujoursPresent = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            ToujoursPresent = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String ToujoursDebout = map.get("Toujours debout").toString();
@@ -1836,7 +1836,7 @@ public class Achivement {
             ToujoursDebout = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(ToujoursDebout));
-            ToujoursDebout = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            ToujoursDebout = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String FouDesJeux = map.get("Fou des jeux").toString();
@@ -1844,7 +1844,7 @@ public class Achivement {
             FouDesJeux = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(FouDesJeux));
-            FouDesJeux = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            FouDesJeux = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Croyant = map.get("Croyant").toString();
@@ -1852,7 +1852,7 @@ public class Achivement {
             Croyant = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Croyant));
-            Croyant = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Croyant = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String L = map.get("L").toString();
@@ -1860,7 +1860,7 @@ public class Achivement {
             L = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(L));
-            L = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            L = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String InvestisseurI = map.get("Investisseur I").toString();
@@ -1868,7 +1868,7 @@ public class Achivement {
             InvestisseurI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(InvestisseurI));
-            InvestisseurI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            InvestisseurI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String InvestisseurII = map.get("Investisseur II").toString();
@@ -1876,7 +1876,7 @@ public class Achivement {
             InvestisseurII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(InvestisseurII));
-            InvestisseurII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            InvestisseurII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String InvestisseurIII = map.get("Investisseur III").toString();
@@ -1884,7 +1884,7 @@ public class Achivement {
             InvestisseurIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(InvestisseurIII));
-            InvestisseurIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            InvestisseurIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String MineurConfirme = map.get("Mineur confirme").toString();
@@ -1892,7 +1892,7 @@ public class Achivement {
             MineurConfirme = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(MineurConfirme));
-            MineurConfirme = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            MineurConfirme = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String AvantPoste = map.get("Avant poste").toString();
@@ -1900,7 +1900,7 @@ public class Achivement {
             AvantPoste = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(AvantPoste));
-            AvantPoste = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            AvantPoste = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Pigeon = map.get("Pigeon").toString();
@@ -1908,7 +1908,7 @@ public class Achivement {
             Pigeon = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Pigeon));
-            Pigeon = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Pigeon = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String Famous = map.get("Famous").toString();
@@ -1916,7 +1916,7 @@ public class Achivement {
             Famous = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Famous));
-            Famous = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Famous = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String Scientifique = map.get("Scientifique").toString();
@@ -1924,7 +1924,7 @@ public class Achivement {
             Scientifique = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Scientifique));
-            Scientifique = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Scientifique = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Megalopole = map.get("Megalopole").toString();
@@ -1932,7 +1932,7 @@ public class Achivement {
             Megalopole = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Megalopole));
-            Megalopole = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Megalopole = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String VilleTouristique = map.get("Ville touristique").toString();
@@ -1940,7 +1940,7 @@ public class Achivement {
             VilleTouristique = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(VilleTouristique));
-            VilleTouristique = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            VilleTouristique = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Magicien = map.get("Magicien").toString();
@@ -1948,7 +1948,7 @@ public class Achivement {
             Magicien = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Magicien));
-            Magicien = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Magicien = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String WhatALuck = map.get("What a luck").toString();
@@ -1956,7 +1956,7 @@ public class Achivement {
             WhatALuck = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(WhatALuck));
-            WhatALuck = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            WhatALuck = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String AGoodPlayer = map.get("A good player").toString();
@@ -1964,7 +1964,7 @@ public class Achivement {
             AGoodPlayer = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(AGoodPlayer));
-            AGoodPlayer = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            AGoodPlayer = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String VilleAttractive = map.get("Ville attractive").toString();
@@ -1972,7 +1972,7 @@ public class Achivement {
             VilleAttractive = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(VilleAttractive));
-            VilleAttractive = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            VilleAttractive = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Useless = map.get("Useless").toString();
@@ -1980,7 +1980,7 @@ public class Achivement {
             Useless = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Useless));
-            Useless = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Useless = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String Impliqué = map.get("Impliqué").toString();
@@ -1988,7 +1988,7 @@ public class Achivement {
             Impliqué = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Impliqué));
-            Impliqué = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Impliqué = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Starter = map.get("Starter").toString();
@@ -1996,7 +1996,7 @@ public class Achivement {
             Starter = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Starter));
-            Starter = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Starter = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String GrinderI = map.get("Grinder I").toString();
@@ -2004,7 +2004,7 @@ public class Achivement {
             GrinderI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(GrinderI));
-            GrinderI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            GrinderI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String GrinderII = map.get("Grinder II").toString();
@@ -2012,7 +2012,7 @@ public class Achivement {
             GrinderII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(GrinderII));
-            GrinderII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            GrinderII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String GrinderIII = map.get("Grinder III").toString();
@@ -2020,7 +2020,7 @@ public class Achivement {
             GrinderIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(GrinderIII));
-            GrinderIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            GrinderIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Yourspecial = map.get("You'r special").toString();
@@ -2028,7 +2028,7 @@ public class Achivement {
             Yourspecial = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Yourspecial));
-            Yourspecial = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            Yourspecial = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Catch_them_all = map.get("Catch them all").toString();
@@ -2036,7 +2036,7 @@ public class Achivement {
             Catch_them_all = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Catch_them_all));
-            Catch_them_all = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " "
+            Catch_them_all = calendar.get(5) + "/" + (calendar.get(2) + 1) + " "
                     + (calendar.get(10) - 1) + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String SwordMaster = map.get("SwordMaster").toString();
@@ -2044,7 +2044,7 @@ public class Achivement {
             SwordMaster = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(SwordMaster));
-            SwordMaster = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            SwordMaster = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Armorer = map.get("Armorer").toString();
@@ -2052,7 +2052,7 @@ public class Achivement {
             Armorer = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Armorer));
-            Armorer = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Armorer = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollectorI = map.get("Collector I").toString();
@@ -2060,7 +2060,7 @@ public class Achivement {
             CollectorI = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollectorI));
-            CollectorI = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollectorI = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollectorII = map.get("Collector II").toString();
@@ -2068,7 +2068,7 @@ public class Achivement {
             CollectorII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollectorII));
-            CollectorII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollectorII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String CollectorIII = map.get("Collector III").toString();
@@ -2076,7 +2076,7 @@ public class Achivement {
             CollectorIII = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(CollectorIII));
-            CollectorIII = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
+            CollectorIII = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1)
                     + ":" + calendar.get(12) + ":" + calendar.get(13);
         }
         String Melting = map.get("Melting").toString();
@@ -2084,7 +2084,7 @@ public class Achivement {
             Melting = ":negative_squared_cross_mark:";
         } else {
             calendar.setTimeInMillis(Long.parseLong(Melting));
-            Melting = String.valueOf(calendar.get(5)) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
+            Melting = calendar.get(5) + "/" + (calendar.get(2) + 1) + " " + (calendar.get(10) - 1) + ":"
                     + calendar.get(12) + ":" + calendar.get(13);
         }
         if (c1 > 6) {

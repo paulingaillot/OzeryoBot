@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
+import org.discordbots.api.client.DiscordBotListAPI;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
@@ -52,13 +53,17 @@ public class DiscordBot implements Runnable {
         if(Leveldata == null) Leveldata = new LevelProfilData();
         if(Hypixeldata == null) Hypixeldata = new HypixelData();
 
-        String DiscordKey = "NzY4MTIyNjk2MjEwMTg2Mjky.X474AQ.gWQ-z3Kxb8QTA26Jr3op1sra5s4";
+        String DiscordKey = "NzY4MTIyNjk2MjEwMTg2Mjky.X474AQ.JTjNmy-AavaitxZxrtOXD412Y0w";
         String DiscordBotKey = TextFileWriter.read("/home/DiscordBot/Rasberry/key/DiscordBotKey.txt");
-        this.jda = JDABuilder.createDefault(DiscordKey).build();
+        jda = JDABuilder.createDefault(DiscordKey).build();
         jda.awaitReady();
         jda.addEventListener(new BotListener(this.commandMap), new BadWords(), new EXP(), new levelup(),
                 new Log(), new GlobalChat(), new count());
 
+        /*DiscordBotListAPI api = new DiscordBotListAPI.Builder()
+                .token("token")
+                .botId("768122696210186292")
+                .build();*/
 
         String secondes = new SimpleDateFormat("ss", Locale.FRANCE).format(new Date());
         String minutes = new SimpleDateFormat("mm", Locale.FRANCE).format(new Date());
@@ -77,25 +82,24 @@ public class DiscordBot implements Runnable {
                         + jours + "/" + mois + " \ufffd " + heures + ":" + minutes + ":" + secondes
                         + "\n\n----------------------------------------------------------------\n ");
 
-        Scheduler.Save(this.jda);
+        Scheduler.Save(jda);
 
-        Scheduler.Bid(this.jda);
-        Scheduler.OzeryoRoleUpdate(this.jda);
-        Scheduler.GameUpdate(this.jda);
-        Scheduler.Guild_Bonus(this.jda);
-        Scheduler.Quests(this.jda);
+        Scheduler.Bid(jda);
+        Scheduler.GameUpdate(jda);
+        Scheduler.Guild_Bonus(jda);
+        Scheduler.Quests(jda);
         Scheduler.Shop();
-        Scheduler.Ressources(this.jda);
+        Scheduler.Ressources(jda);
         Scheduler.Dungeon();
-        Scheduler.Map(this.jda);
-        Scheduler.Give(this.jda);
+        Scheduler.Map(jda);
+        Scheduler.Give(jda);
 
-        Scheduler.Uptime(this.jda);
-        Scheduler.hypixelStats(this.jda);
-        Scheduler.WebMap(this.jda);
-        Scheduler.WebLeaderBoard(this.jda);
-        Scheduler.Guildtest(this.jda);
-        Scheduler.Pub(this.jda);
+        Scheduler.Uptime(jda);
+        Scheduler.hypixelStats(jda);
+        Scheduler.WebMap(jda);
+        Scheduler.WebLeaderBoard(jda);
+        Scheduler.Guildtest(jda);
+        Scheduler.Pub(jda);
     }
 
     public static JDA getjda() {
@@ -105,12 +109,12 @@ public class DiscordBot implements Runnable {
     public static void main(String[] args) throws Exception {
         try {
             DiscordBot DiscordBot2 = new DiscordBot();
-            new Thread((Runnable) DiscordBot2, "Ozeryo").start();
+            new Thread(DiscordBot2, "Ozeryo").start();
         } catch (IllegalArgumentException | LoginException | RateLimitedException e) {
             e.printStackTrace();
             String txtDate = new SimpleDateFormat("dd/MM/yyyy - hh:mm:ss", Locale.FRANCE).format(new Date());
             TextFileWriter.write("/home/DiscordBot/Rasberry/données/log.txt",
-                    String.valueOf(txtDate) + " ERROR " + e.getMessage(), 1);
+                    txtDate + " ERROR " + e.getMessage(), 1);
         }
     }
 

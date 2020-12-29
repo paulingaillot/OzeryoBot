@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class DataSerializerManager {
-    private Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setLenient().create();
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().setLenient().create();
 
     public String serialize(ProfilData s) {
         return this.gson.toJson(s);

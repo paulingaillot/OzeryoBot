@@ -55,25 +55,14 @@ public class HelpCommand {
             builder12.addField(":zap: Util help", "**=help util**", true);
             builder12.addField(":unicorn: Stories help", "**=help stories**", true);
             builder12.addField("\ud83c\udf0e General help", "**=help all**", true);
-            Message mess = (Message) channel.sendMessage(builder12.build()).complete();
-            mess.addReaction("\ud83d\udc51").queue();
-            mess.addReaction("\ud83c\udfae").queue();
-            mess.addReaction("\ud83c\udfb5").queue();
-            mess.addReaction("\ud83d\udd25").queue();
-            mess.addReaction("\u26a1").queue();
-            mess.addReaction("\ud83e\udd84").queue();
-            mess.addReaction("\ud83c\udf0e").queue();
-            String id = mess.getId();
-            if (guild.getSelfMember().hasPermission(Permission.MESSAGE_MANAGE)) {
-                Scheduler.Help(id, channel, guild, this.commandMap);
-            }
+            channel.sendMessage(builder12.build()).queue();
         } else if (c1.equals("admin")) {
             String admin = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Modo)
                     continue;
-                admin = String.valueOf(admin) + "``" + command2.getName() + "``, ";
+                admin = admin + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -89,19 +78,19 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("util")) {
             String util = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Util)
                     continue;
-                util = String.valueOf(util) + "``" + command2.getName() + "``, ";
+                util = util + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -117,19 +106,19 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("music")) {
             String music = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Music)
                     continue;
-                music = String.valueOf(music) + "``" + command2.getName() + "``, ";
+                music = music + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -145,19 +134,19 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("game")) {
             String game = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName())
                         || command2.getTopic() != command.Topics.Game)
                     continue;
-                game = String.valueOf(game) + "``" + command2.getName() + "``, ";
+                game = game + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -173,19 +162,19 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("social")) {
             String social = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Social)
                     continue;
-                social = String.valueOf(social) + "``" + command2.getName() + "``, ";
+                social = social + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -201,19 +190,19 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("stories")) {
             String stories = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Stories)
                     continue;
-                stories = String.valueOf(stories) + "``" + command2.getName() + "``, ";
+                stories = stories + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -229,10 +218,10 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder1.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else if (c1.equals("all")) {
@@ -242,32 +231,32 @@ public class HelpCommand {
             String music = "";
             String social = "";
             String stories = "";
-            for (SimpleCommand command3 : this.commandMap.getCommands()) {
+            for (SimpleCommand command3 : CommandMap.getCommands()) {
                 if (command3.getExecutorType() == command.ExecutorType.CONSOLE)
                     continue;
                 if (command3.getTopic() == command.Topics.Game) {
-                    game = String.valueOf(game) + "``" + command3.getName() + "``, ";
+                    game = game + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Modo) {
-                    admin = String.valueOf(admin) + "``" + command3.getName() + "``, ";
+                    admin = admin + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Util) {
-                    util = String.valueOf(util) + "``" + command3.getName() + "``, ";
+                    util = util + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Music) {
-                    music = String.valueOf(music) + "``" + command3.getName() + "``, ";
+                    music = music + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Social) {
-                    social = String.valueOf(social) + "``" + command3.getName() + "``, ";
+                    social = social + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() != command.Topics.Stories)
                     continue;
-                stories = String.valueOf(stories) + "``" + command3.getName() + "``, ";
+                stories = stories + "``" + command3.getName() + "``, ";
             }
             EmbedBuilder builder13 = new EmbedBuilder();
             builder13.setTitle("\u2139 | Commands | \u2139");
@@ -293,10 +282,10 @@ public class HelpCommand {
             ((UserImpl) user).getPrivateChannel().sendMessage(builder13.build()).queue();
             if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                 if (lang == command.Language.fr) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés").queue();
+                    channel.sendMessage(user.getAsMention() + " regarde tes messages privés").queue();
                 }
                 if (lang == command.Language.en) {
-                    channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                    channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                 }
             }
         } else {
@@ -338,11 +327,11 @@ public class HelpCommand {
                 ((UserImpl) user).getPrivateChannel().sendMessage(builder.build()).queue();
                 if (guild.getSelfMember().hasPermission(Permission.MESSAGE_WRITE)) {
                     if (lang == command.Language.fr) {
-                        channel.sendMessage(String.valueOf(user.getAsMention()) + " regarde tes messages privés")
+                        channel.sendMessage(user.getAsMention() + " regarde tes messages privés")
                                 .queue();
                     }
                     if (lang == command.Language.en) {
-                        channel.sendMessage(String.valueOf(user.getAsMention()) + " see your private messages").queue();
+                        channel.sendMessage(user.getAsMention() + " see your private messages").queue();
                     }
                 }
                 return;
@@ -393,11 +382,11 @@ public class HelpCommand {
             channel.sendMessage(builder12.build()).complete();
         } else if (c1.equals("admin")) {
             String admin = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Modo)
                     continue;
-                admin = String.valueOf(admin) + "``" + command2.getName() + "``, ";
+                admin = admin + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -410,11 +399,11 @@ public class HelpCommand {
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("util")) {
             String util = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Util)
                     continue;
-                util = String.valueOf(util) + "``" + command2.getName() + "``, ";
+                util = util + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -427,11 +416,11 @@ public class HelpCommand {
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("music")) {
             String music = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Music)
                     continue;
-                music = String.valueOf(music) + "``" + command2.getName() + "``, ";
+                music = music + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -444,11 +433,11 @@ public class HelpCommand {
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("game")) {
             String game = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE || game.contains(command2.getName())
                         || command2.getTopic() != command.Topics.Game)
                     continue;
-                game = String.valueOf(game) + "``" + command2.getName() + "``, ";
+                game = game + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -461,11 +450,11 @@ public class HelpCommand {
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("social")) {
             String social = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Social)
                     continue;
-                social = String.valueOf(social) + "``" + command2.getName() + "``, ";
+                social = social + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -478,11 +467,11 @@ public class HelpCommand {
             channel.sendMessage(builder1.build()).queue();
         } else if (c1.equals("stories")) {
             String stories = "";
-            for (SimpleCommand command2 : this.commandMap.getCommands()) {
+            for (SimpleCommand command2 : CommandMap.getCommands()) {
                 if (command2.getExecutorType() == command.ExecutorType.CONSOLE
                         || command2.getTopic() != command.Topics.Stories)
                     continue;
-                stories = String.valueOf(stories) + "``" + command2.getName() + "``, ";
+                stories = stories + "``" + command2.getName() + "``, ";
             }
             builder1 = new EmbedBuilder();
             builder1.setTitle("\u2139 | Commands | \u2139");
@@ -500,32 +489,32 @@ public class HelpCommand {
             String music = "";
             String social = "";
             String stories = "";
-            for (SimpleCommand command3 : this.commandMap.getCommands()) {
+            for (SimpleCommand command3 : CommandMap.getCommands()) {
                 if (command3.getExecutorType() == command.ExecutorType.CONSOLE)
                     continue;
                 if (command3.getTopic() == command.Topics.Game) {
-                    game = String.valueOf(game) + "``" + command3.getName() + "``, ";
+                    game = game + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Modo) {
-                    admin = String.valueOf(admin) + "``" + command3.getName() + "``, ";
+                    admin = admin + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Util) {
-                    util = String.valueOf(util) + "``" + command3.getName() + "``, ";
+                    util = util + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Music) {
-                    music = String.valueOf(music) + "``" + command3.getName() + "``, ";
+                    music = music + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() == command.Topics.Social) {
-                    social = String.valueOf(social) + "``" + command3.getName() + "``, ";
+                    social = social + "``" + command3.getName() + "``, ";
                     continue;
                 }
                 if (command3.getTopic() != command.Topics.Stories)
                     continue;
-                stories = String.valueOf(stories) + "``" + command3.getName() + "``, ";
+                stories = stories + "``" + command3.getName() + "``, ";
             }
             EmbedBuilder builder13 = new EmbedBuilder();
             builder13.setTitle("\u2139 | Commands | \u2139");
@@ -547,7 +536,7 @@ public class HelpCommand {
                     new StringBuilder(social).deleteCharAt(social.length() - 2).toString(), true);
             channel.sendMessage(builder13.build()).queue();
         } else {
-            for (SimpleCommand command4 : this.commandMap.getCommands()) {
+            for (SimpleCommand command4 : CommandMap.getCommands()) {
                 if (!command4.getName().equals(c1))
                     continue;
                 String name = command4.getName();

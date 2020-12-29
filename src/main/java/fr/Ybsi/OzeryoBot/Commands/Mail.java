@@ -80,7 +80,7 @@ public class Mail {
                     }
                     if (i < min || i > max)
                         continue;
-                    mess = String.valueOf(mess) + "**[" + emoji + i + "]** : " + objet + " \n";
+                    mess = mess + "**[" + emoji + i + "]** : " + objet + " \n";
                 }
             } catch (NullPointerException mail2) {
                 // empty catch block
@@ -124,11 +124,11 @@ public class Mail {
                 pref = "=";
             }
             String mess = message.getContentRaw();
-            mess = mess.replaceAll(String.valueOf(pref) + "mail ", "");
-            mess = mess.replace(String.valueOf(cible.getAsMention()) + " ", "");
+            mess = mess.replaceAll(pref + "mail ", "");
+            mess = mess.replace(cible.getAsMention() + " ", "");
             mess = mess.replace("<@!" + cible.getId() + "> ", "");
             mess = mess.replace("<@" + cible.getId() + "> ", "");
-            mess = mess.replace(String.valueOf(cible.getId()) + " ", "");
+            mess = mess.replace(cible.getId() + " ", "");
             mess = mess.replace("send ", "");
             ArrayList<String> list = new ArrayList<String>();
             if (lang == command.Language.fr) {

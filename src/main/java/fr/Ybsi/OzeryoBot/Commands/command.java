@@ -11,36 +11,36 @@ import java.lang.annotation.Target;
 @Target(value = {ElementType.METHOD})
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface command {
-    public String name();
+    String name();
 
-    public String abbrev() default "donotusethiscommand";
+    String abbrev() default "donotusethiscommand";
 
-    public String descfr() default "sans description";
+    String descfr() default "sans description";
 
-    public String descen() default "without description";
+    String descen() default "without description";
 
-    public String use() default "=[command]";
+    String use() default "=[command]";
 
-    public ExecutorType type() default ExecutorType.ALL;
+    ExecutorType type() default ExecutorType.ALL;
 
-    public Topics topic() default Topics.Util;
+    Topics topic() default Topics.Util;
 
-    public int rank() default 1;
+    int rank() default 1;
 
-    public int power() default 0;
+    int power() default 0;
 
-    public static enum ExecutorType {
-        ALL, USER, CONSOLE;
-
-    }
-
-    public static enum Language {
-        fr, en;
+    enum ExecutorType {
+        ALL, USER, CONSOLE
 
     }
 
-    public static enum Topics {
-        Util, Game, Admin, Social, Stories, Music, Modo;
+    enum Language {
+        fr, en
+
+    }
+
+    enum Topics {
+        Util, Game, Admin, Social, Stories, Music, Modo
 
     }
 

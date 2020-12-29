@@ -4,6 +4,7 @@
 package fr.Ybsi.OzeryoBot.Utils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class TextFileWriter {
     public static void write(String filename, String text, int boucle) {
@@ -82,7 +83,7 @@ public class TextFileWriter {
         try {
             String line;
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
+                    new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             text = line = reader.readLine();
             while (line != null) {
                 line = reader.readLine();
@@ -102,7 +103,7 @@ public class TextFileWriter {
         try {
             String content;
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
+                    new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             text = content = reader.readLine();
             for (int i = 1; i < line; ++i) {
                 text = content = reader.readLine();
@@ -118,7 +119,7 @@ public class TextFileWriter {
         int text = 0;
         try {
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader((InputStream) new FileInputStream(file), "UTF-8"));
+                    new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             String line = reader.readLine();
             text = Integer.parseInt(line);
             while (line != null) {

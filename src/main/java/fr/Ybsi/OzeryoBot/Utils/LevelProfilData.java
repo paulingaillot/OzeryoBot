@@ -7,7 +7,7 @@ import java.io.File;
 import java.util.HashMap;
 
 public class LevelProfilData {
-    private HashMap<String, LevelProfil> levelProfil = new HashMap();
+    private final HashMap<String, LevelProfil> levelProfil = new HashMap();
 
     public static LevelProfilData loadData(File file) {
         DataSerializerManager hsm = new DataSerializerManager();

@@ -110,8 +110,8 @@ public class hourly {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setPet(pet);
             }
-            Quest.Quest("exp", user, channel, EXP_win);
-            Quest.Quest("hr", user, channel, 1);
+            Quest.Quest("exp", data.getProfils().get(user.getId()), channel, EXP_win);
+            Quest.Quest("hr", data.getProfils().get(user.getId()), channel, 1);
             int jetons1 = data.getProfils().get(user.getId()).getTokens();
             ++jetons1;
             try {
@@ -120,10 +120,10 @@ public class hourly {
                 data.getProfils().put(user.getId(), new Profil(user.getId()));
                 data.getProfils().get(user.getId()).setTokens(jetons1);
             }
-            pop += (long) pop_win;
-            money += (long) money_win;
+            pop += pop_win;
+            money += money_win;
             Game_EXP += EXP_win;
-            Quest.Quest("jetons", user, channel, 1);
+            Quest.Quest("jetons", data.getProfils().get(user.getId()), channel, 1);
             try {
                 data.getProfils().get(user.getId()).setXp(Game_EXP);
             } catch (NullPointerException e) {

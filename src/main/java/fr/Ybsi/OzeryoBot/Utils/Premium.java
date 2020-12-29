@@ -7,10 +7,10 @@ import fr.Ybsi.OzeryoBot.DiscordBot;
 import net.dv8tion.jda.api.entities.User;
 
 public class Premium {
-    public static boolean Premium(User user) {
+    public static boolean Premium(Profil user) {
         long prem;
         try {
-            prem = DiscordBot.getData().getProfils().get(user.getId()).getPremium();
+            prem = user.getPremium();
         } catch (Exception e) {
             prem = 0L;
         }

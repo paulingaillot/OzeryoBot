@@ -31,7 +31,7 @@ public class WOT {
             for (String str : args) {
                 if (str.equals(args[0]))
                     continue;
-                builder.append(String.valueOf(str));
+                builder.append(str);
             }
             String c1 = args[0];
             String c2 = builder.toString();
@@ -88,25 +88,24 @@ public class WOT {
                 return;
             }
             EmbedBuilder builder1 = new EmbedBuilder();
-            builder1.setTitle(String.valueOf(c1) + " WOT Stats");
+            builder1.setTitle(c1 + " WOT Stats");
             builder1.setColor(color.couleurAleatoire(user));
             builder1.setAuthor(user.getName(), null, user.getAvatarUrl());
             builder1.setThumbnail("https://logos-download.com/wp-content/uploads/2016/02/world-of-tanks.png");
             builder1.setFooter(guild.getName(), guild.getIconUrl());
             if (lang == command.Language.fr) {
                 builder1.addField(
-                        String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("wot", true).get(0)
-                                .getAsMention()) + " Cote Personnel",
+                        jda.getGuildById("326345972739473410").getEmotesByName("wot", true).get(0)
+                                .getAsMention() + " Cote Personnel",
                         jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("global_rating").toString(), true);
             }
             if (lang == command.Language.fr) {
                 builder1.addField(
-                        String.valueOf(jda.getGuildById("326345972739473410").getEmotesByName("wot", true).get(0)
-                                .getAsMention()) + " Personal Rating",
+                        jda.getGuildById("326345972739473410").getEmotesByName("wot", true).get(0)
+                                .getAsMention() + " Personal Rating",
                         jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("global_rating").toString(), true);
             }
-            Long lastbataille = new Long(String.valueOf(
-                    jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("last_battle_time").toString()) + "000");
+            Long lastbataille = new Long(jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("last_battle_time").toString() + "000");
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(lastbataille);
             int mYear = calendar.get(1);
@@ -117,16 +116,16 @@ public class WOT {
             int mSecond = calendar.get(13);
             if (lang == command.Language.fr) {
                 builder1.addField("\ud83d\udd5b Derni\u00e8re bataille",
-                        String.valueOf(mDay) + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
+                        mDay + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
                         true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ud83d\udd5b Last battle",
-                        String.valueOf(mDay) + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
+                        mDay + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
                         true);
             }
             Long lastUpdate = new Long(
-                    String.valueOf(jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("updated_at").toString())
+                    jsonObject.getAsJsonObject("data").getAsJsonObject(id).get("updated_at").toString()
                             + "000");
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(lastUpdate);
@@ -138,12 +137,12 @@ public class WOT {
             mSecond = calendar.get(13);
             if (lang == command.Language.fr) {
                 builder1.addField("\ud83d\udd5b Derniere mise a jour des stats",
-                        String.valueOf(mDay) + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
+                        mDay + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
                         true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("\ud83d\udd5bLast update of your stats",
-                        String.valueOf(mDay) + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
+                        mDay + "/" + mMonth + "/" + mYear + " " + mHour + ":" + mMinute + ":" + mSecond,
                         true);
             }
             builder1.addBlankField(false);
@@ -192,15 +191,15 @@ public class WOT {
             }
             if (lang == command.Language.fr) {
                 builder1.addField("% de coup au but",
-                        String.valueOf(jsonObject.getAsJsonObject("data").getAsJsonObject(id)
-                                .getAsJsonObject("statistics").getAsJsonObject("all").get("hits_percents").toString())
+                        jsonObject.getAsJsonObject("data").getAsJsonObject(id)
+                                .getAsJsonObject("statistics").getAsJsonObject("all").get("hits_percents").toString()
                                 + "%",
                         true);
             }
             if (lang == command.Language.en) {
                 builder1.addField("% of shot on goal",
-                        String.valueOf(jsonObject.getAsJsonObject("data").getAsJsonObject(id)
-                                .getAsJsonObject("statistics").getAsJsonObject("all").get("hits_percents").toString())
+                        jsonObject.getAsJsonObject("data").getAsJsonObject(id)
+                                .getAsJsonObject("statistics").getAsJsonObject("all").get("hits_percents").toString()
                                 + "%",
                         true);
             }
